@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" role="img"
+     aria-label="Vine ornament: scrolling arabesque with small leaves; emblem of living breath (Green Man).">
+  <rect width="320" height="80" fill="#fff8e7"/>
+  <path d="M10,50 C40,10 80,10 110,50 S180,90 210,50 S280,10 310,50"
+        fill="none" stroke="#8f846f" stroke-width="2"/>
+  <g fill="#6a8f5e" stroke="#4f6c46" stroke-width="0.8">
+    <ellipse cx="70" cy="38" rx="6" ry="10"/>
+    <ellipse cx="150" cy="58" rx="6" ry="10"/>
+    <ellipse cx="230" cy="38" rx="6" ry="10"/>
+  </g>
+  <text x="12" y="18" font-family="Georgia,serif" font-size="10" fill="#6b6257">
+    Vine scroll — vegetative soul; renewal (Hermetic).
+  </text>
+</svg>
