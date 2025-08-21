@@ -2,203 +2,100 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Stone Grimoire — Rosslyn Nave (Living Cathedral)</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A Rosslyn-pattern nave: twin pillars, apprentice spiral, angel choir, and chapels — the Cathedral as a living grimoire.">
+  <title>Stone Grimoire — Thelemic Alignment Brief (Codex 144:99)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Thelemic alignment brief for Codex 144:99 — mottos, numerology (93/99/2→8), lineage map, thrones/archetypes, and reciprocity over hierarchy.">
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="./assets/css/palette.css">
-  <link rel="stylesheet" href="./assets/css/light.css">
-  <script src="./assets/js/theme.js" defer></script>
-<script src="./assets/js/planetary-light.js" defer></script>
-<script src="./assets/js/game.js" defer></script>
+  <!-- Site styles & living light -->
+  <link rel="stylesheet" href="../assets/css/palette.css">
+  <link rel="stylesheet" href="../assets/css/light.css">
+  <script src="../assets/js/theme.js" defer></script>
+  <script src="../assets/js/planetary-light.js" defer></script>
 
   <style>
-    /* Layout + ornament specific to this page */
-    html,body{margin:0}
-    body.mystic{background:radial-gradient(circle at 50% 20%, var(--bg) 78%, #ece7dc 100%); color:var(--ink); font:18px/1.6 Georgia,"Iowan Old Style",serif}
-    a{color:var(--accent); text-decoration:none}
-    a:hover{text-decoration:underline}
-
-    header, footer{
-      margin:18px auto; max-width:1100px; background:var(--wash);
-      border:2px solid var(--accent-2); border-radius:14px; padding:18px 20px; text-align:center
-    }
-    header h1{margin:.2rem 0 .3rem; font-size:1.6rem;}
-    header .seal{font-size:1.6rem; color:var(--accent-2); margin:.4rem 0}
-    header p{margin:.2rem 0 .2rem; color:#4a433b}
-    header:before, footer:after{
-      content:"✧❦✧"; display:block; color:var(--accent); margin:.2rem 0; font-size:1.1rem
-    }
-
-    /* Shell: optional sidebar + nave */
-    .shell{max-width:1100px; margin:10px auto 24px; padding:0 12px; display:grid; grid-template-columns: 340px 1fr; gap:14px;}
-    @media (max-width:900px){ .shell{grid-template-columns:1fr} }
-
-    /* Sidebar frame */
-    .frame{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px}
-    .title{color:var(--accent); font-weight:bold; margin:.2rem 0 .4rem}
-    .note{color:#6b6257; font-size:.9rem}
-    .choir{margin:.6rem 0; color:var(--accent)}
-
-    /* Nave grid: Boaz | Center | Jachin */
-    .nave{display:grid; grid-template-columns:1fr 2fr 1fr; gap:14px;}
-    @media (max-width:900px){ .nave{grid-template-columns:1fr} }
-
-    .pillar{
-      background:var(--panel); border:2px solid var(--accent-2); border-radius:14px; padding:12px; position:relative; overflow:hidden;
-    }
-    .pillar h2{margin:0; text-align:center; color:var(--accent); font-size:1.1rem; letter-spacing:.04em}
-    .shaft{
-      margin:12px auto; width:72px; height:360px; border:2px solid var(--line); border-radius:999px;
-      background: linear-gradient(180deg,#fff 0%, #f6f2ea 100%);
-      box-shadow: inset 0 0 40px rgba(0,0,0,.06);
-    }
-    .carve{position:absolute; inset:auto 0 6px 0; text-align:center; color:#6a6359; font-size:.85rem}
-
-    .center{
-      background:var(--panel); border:2px solid var(--accent); border-radius:16px; padding:16px; text-align:center; position:relative; overflow:hidden;
-    }
-    .center h2{margin:.1rem 0 .4rem}
-    .spiral{font-size:2rem; color:var(--accent-2); margin:.2rem 0 .4rem}
-    .legend{color:#6b6257; margin:.1rem 0 .7rem}
-
-    /* faint vine ornament */
-    .center:before{
-      content:""; position:absolute; inset:0;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240"><defs><pattern id="v" patternUnits="userSpaceOnUse" width="120" height="120"><path d="M10,60 C20,20 60,20 70,60 S120,100 110,120" fill="none" stroke="%23c1b497" stroke-width="1.2"/><circle cx="35" cy="35" r="2" fill="%2389a1c9"/><circle cx="90" cy="30" r="1.8" fill="%2389a1c9"/><path d="M20,90 q20,-20 40,0 q20,20 40,0" fill="none" stroke="%23c1b497" stroke-width="1.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23v)"/></svg>');
-      opacity:.18; pointer-events:none;
-    }
-
-    .cells{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:10px 0}
-    @media (max-width:560px){ .cells{grid-template-columns:1fr} }
-    .cell{background:#ffffffcc; border:1px solid var(--line); border-radius:12px; padding:10px; text-align:left}
-    .cell h3{margin:.2rem 0 .2rem; font-size:1rem; color:#3d3a34}
-    .cell p{margin:0; font-size:.92rem; color:#6b6257}
-
-    footer{color:#5a534b; line-height:1.4; text-align:center; padding:10px}
+    body.mystic{background:radial-gradient(circle at 50% 18%, var(--bg) 78%, #ece7dc 100%); color:var(--ink); font:18px/1.6 Georgia,"Iowan Old Style",serif}
+    a{color:var(--accent); text-decoration:none} a:hover{text-decoration:underline}
+    .wrap{max-width:900px;margin:0 auto;padding:22px}
+    header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:8px}
+    h1{margin:.2rem 0 .4rem;color:var(--accent)}
+    .meta{color:#6b6257;font-size:.95rem}
+    .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;margin:10px 0}
+    .note{background:var(--wash);border:1px solid var(--line);border-radius:12px;padding:12px;margin:8px 0}
+    h2{font-size:1.2rem;color:var(--accent-2);margin:1rem 0 .4rem}
+    dl{margin:.5rem 0 0} dt{font-weight:bold;margin-top:.4rem} dd{margin:0 0 .4rem 0}
+    ul{margin:.4rem 0;padding-left:1.1rem}
+    footer{margin:18px 0 0;text-align:center;color:#5a534b}
+    .seal{font-size:1.2rem;color:var(--accent-2)}
+    .glyph{font-variant:small-caps; letter-spacing:.03em}
+    .badges{display:flex;gap:6px;flex-wrap:wrap;margin:.3rem 0}
+    .badge{display:inline-block;padding:.1rem .5rem;border:1px solid var(--line);border-radius:999px;font-size:.82rem;background:#fff}
   </style>
-
-  <!-- Scripts -->
-  <script src="./assets/js/theme.js" defer></script>
-  <script src="./assets/js/planetary-light.js" defer></script>
-  <script src="./assets/js/game.js" defer></script>
 </head>
-
 <body class="mystic" data-theme="tiphereth">
+<div class="wrap">
   <header>
-    <h1>Stone Grimoire — Rosslyn Nave</h1>
-    <div class="seal" aria-hidden="true">𓂀 ✦ 93 ✦ 𓂀</div>
-    <p>The Cathedral is the Living Grimoire. As Rosslyn is a book carved in stone, so this Archive is a book in light.</p>
+    <div>
+      <h1>Thelemic Alignment Brief — <span class="glyph">Codex 144:99</span></h1>
+      <div class="meta">93 / 99 / 2 → 8 · Reciprocity over hierarchy · Magdalene wisdom-current · Living atelier‑coven.</div>
+    </div>
+    <div class="meta"><a href="../cathedral.html">⟵ Back to Cathedral</a></div>
   </header>
 
-  <div class="shell">
-    <!-- Sidebar (consecration + choir) -->
-    <aside class="frame" aria-label="Rosslyn Sidebar">
-      <div class="title">Rosslyn Pattern — Living Grimoire</div>
-      <div class="choir" aria-hidden="true">𓃤 Angel Choir 𓃤</div>
-      <p class="note">Planetary Hours light the nave; themes shift by sphere (☉ ☾ ☿ ♀ ♂ ♃ ♄). Use the palette button to explore pigments & spheres. High contrast toggle is available.</p>
-      <p class="note"><a href="./guides/mystic-colors.html">Mystic Colors</a> · <a href="./standards/README.md">Standards (Charter)</a></p>
-    </aside>
+  <section class="note" role="note" aria-label="Curatorial Note">
+    <strong>Curatorial Note:</strong> This brief sets the numerological and doctrinal spine of the Stone Grimoire. It aligns the Codex with Thelemic principle (Will + Love), Hermetic lineage, and a modern ethic of <em>reciprocity</em> (collaboration, witness, adaptive angel‑tech) rather than rigid hierarchy. Number attributions are traditional or author‑declared and clearly labeled as interpretive where applicable.
+    <div class="badges" aria-hidden="true">
+      <span class="badge">Museum Layer</span>
+      <span class="badge">Esoteric (Interpretive)</span>
+      <span class="badge">Accessible</span>
+    </div>
+  </section>
 
-    <!-- Nave (Boaz | Center | Jachin) -->
-    <main class="nave" role="region" aria-label="Nave with twin pillars and central apprentice pillar">
-      <!-- Boaz -->
-      <section class="pillar" aria-labelledby="boaz">
-        <h2 id="boaz">Pillar of Boaz</h2>
-        <div class="shaft" aria-hidden="true"></div>
-        <div class="carve" aria-hidden="true">Strength · Foundation</div>
-      </section>
+  <section class="panel" aria-labelledby="mottos">
+    <h2 id="mottos">Core Mottos (Number Keys)</h2>
+    <dl>
+      <dt>Codex Motto</dt>
+      <dd><em>Ordo in aeternum resonat</em> — “Order resounds forever.” → <strong>99</strong> (angel mirror, infinite resonance).</dd>
+      <dt>Atelier Motto</dt>
+      <dd><em>Ex umbris in lucem artis</em> — “From shadows into the light of art.” → <strong>93</strong> (Thelema: Love/Will) → reduces to <strong>3</strong> (Hermetic triad, creative synthesis).</dd>
+      <dt>Seal Motto</dt>
+      <dd><em>In umbris clavis vigilat</em> — “In the shadows the Key keeps watch.” → isopsephy <strong>1496 → 2</strong> (duality, guardianship, Watchtower).</dd>
+    </dl>
+    <p><strong>Triad Harmony:</strong> 99 (Codex) + 93 (Atelier) + 2 (Seal) = <strong>8</strong> (Balance, Justice, Infinity).</p>
+  </section>
 
-      
-          <!-- Center chamber -->
-<section class="center" aria-labelledby="apprentice">
-  <h2 id="apprentice">Apprentice Pillar — Prima Materia</h2>
-  <div class="spiral" aria-hidden="true">⟲</div>
-  <div class="legend">Circuitum99 · Double Tree · 33 Vertebrae</div>
+  <section class="panel" aria-labelledby="lineage">
+    <h2 id="lineage">Lineage Map</h2>
+    <ul>
+      <li><strong>Ancient:</strong> <em>Picatrix, Key of Solomon, Abramelin, Goetia, Corpus Hermeticum</em>.</li>
+      <li><strong>Modern:</strong> Crowley, Regardie, Chaos Magicians (Carroll, Hine), Robert Anton Wilson, Leary, Antero Alli, EJ Gold, Alan Moore, Hilma af Klint.</li>
+      <li><strong>Parallel:</strong> where tradition sought hierarchy/control, Codex <strong>144:99</strong> seeks <strong>reciprocity</strong>, witness, and adaptive <em>angel‑tech</em>.</li>
+    </ul>
+  </section>
 
-  <div class="angel" aria-hidden="true">𓃤 Angel Choir 𓃤</div>
+  <section class="panel" aria-labelledby="thrones">
+    <h2 id="thrones">Thrones / Archetypes</h2>
+    <ul>
+      <li><strong>Moonchild 2000</strong> → prima materia spark.</li>
+      <li><strong>Ann Abyss</strong> → Nigredo (sacred grief, void).</li>
+      <li><strong>IGNI</strong> → Rubedo (fire, completion).</li>
+      <li><strong>Gemini</strong> → Albedo (flood‑sigil, balance).</li>
+      <li><strong>Virelai Ezra Lux</strong> → Violet Sophia current.</li>
+      <li><strong>Zidaryen</strong> → forest trickster, Green Man parallel.</li>
+      <li><strong>Bea Betwixted</strong> → Raven Codex, paradox writer.</li>
+      <li><strong>Mirror Witch</strong> → Hermetic reflection pillar.</li>
+      <li><strong>Ledger of 21 Pillars</strong> → (1: Gnosis7 · 2: Sophia7 · 3: Winnie Reweave …).</li>
+    </ul>
+  </section>
 
-  <div class="cells" aria-label="Chapels / Galleries">
-    <!-- Folios / Standards / Front -->
-    <div class="cell">
-      <h3><a href="./folios/folio1.html">Folio I — Archive</a></h3>
-      <p>First plate / notes under museum standards.</p>
-    </div>
-    <div class="cell">
-      <h3><a href="./standards/README.md">Standards (Charter)</a></h3>
-      <p>Intention · Technique · Lineage · Evidence · Reflection.</p>
-    </div>
-    <div class="cell">
-      <h3><a href="./index.html">Frontispiece</a></h3>
-      <p>Open the book before entering the nave.</p>
-    </div>
-
-    <!-- Plans / Catalog -->
-    <div class="cell">
-      <h3><a href="./plans/floorplan.svg">Floorplan (schematic)</a></h3>
-      <p>Book‑in‑stone map.</p>
-    </div>
-    <div class="cell">
-      <h3><a href="./chapels/cubes-catalog.html">Rosslyn Cubes — Catalog</a></h3>
-      <p>Museum entries · schematics · lawful overlays.</p>
-    </div>
-
-    <!-- Chapels -->
-    <div class="cell">
-      <h3><a href="./chapels/apprentice-pillar.html">Apprentice Pillar — Chapel</a></h3>
-      <p>Helical vine · initiation.</p>
-    </div>
-    <div class="cell">
-      <h3><a href="./chapels/lady-chapel.html">Lady Chapel — East Apse</a></h3>
-      <p>Marian heart · angel choir.</p>
-    </div>
-    <div class="cell">
-      <h3><a href="./chapels/crypt.html">Crypt — Undercroft</a></h3>
-      <p>Sealed chamber · Saturn/Binah.</p>
-    </div>
-
-    <!-- Harmonics / Labs -->
-    <div class="cell">
-      <h3><a href="./chapels/musical-cubes.html">Musical Cubes — Museum Study</a></h3>
-      <p>Facts vs hypotheses · documentation method.</p>
-    </div>
-    <div class="cell">
-      <h3><a href="./chapels/angel-lab.html">Angel‑Cubes Lab</a></h3>
-      <p>Match cube → ratio → tone → angel; export YAML.</p>
-    </div>
-    <div class="cell">
-      <h3><a href="./chapels/cubes-visual-lab.html" aria-label="Open Musical Cubes Visual Study Lab">Musical Cubes — Visual Lab</a></h3>
-      <p>PD overlay · edges · pattern families · YAML export.</p>
-    </div>
-
-    <!-- Patrons / PD Library / Ladder -->
-    <div class="cell">
-      <h3><a href="./patrons/sinclair-family.html">Sinclair Patrons</a></h3>
-      <p>Founders · heraldry · stewardship.</p>
-    </div>
-    <div class="cell">
-      <h3><a href="./images/pd/index.html">Public‑Domain Image Library</a></h3>
-      <p>Historic engravings & early photos (safe to use).</p>
-    </div>
-    <div class="cell">
-      <h3><a href="https://bekalah.github.io/test-cathedral/">Jacob’s Ladder (33)</a></h3>
-      <p>Interactive ascent · public façade.</p>
-    </div>
-  </div>
-</section>
-      <!-- Jachin -->
-      <section class="pillar" aria-labelledby="jachin">
-        <h2 id="jachin">Pillar of Jachin</h2>
-        <div class="shaft" aria-hidden="true"></div>
-        <div class="carve" aria-hidden="true">Establishment · Mercy</div>
-      </section>
-    </main>
-  </div>
+  <section class="panel" aria-labelledby="short">
+    <h2 id="short">In Short</h2>
+    <p>Codex <strong>144:99</strong> sits naturally in the Thelemic current: <strong>93/99/2</strong> harmonics, structured around Moonchild’s spark, and designed as a <strong>living, adaptive spine</strong> rather than a rigid hierarchy. It is Thelemic in <em>number</em>, Hermetic in <em>root</em>, and visionary in <em>art</em>.</p>
+  </section>
 
   <footer>
-    ❦ Green Man’s vine entwines; the Choir resounds. ❦<br>
-    93 93/93 — Stone Grimoire · Rosslyn Pattern
+    <div class="seal" aria-hidden="true">𓂀 ✦ “In umbris clavis vigilat.” ✦ 𓂀</div>
+    <div class="meta"><a href="../archive/index.html">Temple Archive</a> · <a href="../standards/README.md">Standards</a></div>
   </footer>
+</div>
 </body>
 </html>
