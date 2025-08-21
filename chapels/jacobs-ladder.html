@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Stone Grimoire — Jacob’s Ladder (Living Cosmogram)</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="A museum-grade, visionary Jacob’s Ladder: 33 illuminated steps with historical notes, esoteric correspondences, and a gentle interactive ascent.">
+<link rel="stylesheet" href="../assets/css/palette.css">
+<link rel="stylesheet" href="../assets/css/light.css">
+<script src="../assets/js/theme.js" defer></script>
+<script src="../assets/js/planetary-light.js" defer></script>
+<style>
+  body.mystic{background:radial-gradient( circle at 50% 18%, var(--bg) 78%, #ece7dc 100% ); color:var(--ink); font:18px/1.6 Georgia,serif}
+  .wrap{max-width:1100px;margin:0 auto;padding:18px}
+  header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px}
+  h1{margin:.2rem 0;color:var(--accent)}
+  .meta{color:#6b6257;font-size:.95rem}
+  .legend{background:var(--wash);border:1px solid var(--line);border-radius:12px;padding:12px;margin:8px 0}
+  .grid{display:grid; grid-template-columns: 1.1fr .9fr; gap:14px}
+  @media (max-width:980px){ .grid{grid-template-columns:1fr} }
+
+  /* Ladder column */
+  .ladder{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:12px; position:relative; overflow:hidden}
+  .axis{position:absolute; left:50%; top:0; bottom:0; width:2px; background:linear-gradient(180deg,#d9cfbf,transparent); transform:translateX(-50%)}
+  .step{display:grid; grid-template-columns: 1fr 1fr; gap:10px; align-items:center; padding:8px 0; border-bottom:1px dashed var(--line)}
+  .step:last-child{border-bottom:0}
+  .plate{background:#fff; border:1px solid var(--line); border-radius:10px; padding:10px}
+  .plate h3{margin:.1rem 0; font-size:1rem; color:#3d3a34}
+  .badge{display:inline-block;padding:.1rem .5rem;border:1px solid var(--line);border-radius:999px;font-size:.8rem;margin-right:.3rem}
+  .seal{font-size:1.2rem;color:var(--accent-2)}
+  .stair{height:8px;border-radius:999px;background:linear-gradient(90deg,var(--accent-2),var(--accent)); box-shadow: 0 0 8px var(--accent-2)}
+  .controls{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+  .btn{border:0;border-radius:10px;padding:8px 12px;cursor:pointer;font:inherit}
+  .btn.primary{background:var(--accent);color:#fff}
+  .btn.ghost{background:#fff;border:1px solid var(--line);color:#2b2520}
+
+  /* Right column (museum labels + commentary) */
+  .panel{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:12px}
+  details{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0}
+  summary{cursor:pointer; font-weight:bold; color:#3d3a34}
+  .note{font-size:.9rem;color:#6b6257}
+  .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size:.9rem; background:#fff; border:1px solid var(--line); border-radius:6px; padding:2px 6px}
+
+  /* Minimal ladder ornament */
+  .halo{height:40px;background:radial-gradient( circle at 50% 50%, var(--accent-2), transparent 60% ); opacity:.25; border-radius:999px}
+</style>
+</head>
+<body class="mystic" data-theme="tiphereth">
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Jacob’s Ladder — Living Cosmogram</h1>
+      <div class="meta">An ascent of 33 illuminated steps. <em>Outer museum labels</em> present historical context; <em>inner commentary</em> offers Hermetic/Thelemic correspondences; a gentle interactive ascent completes the rite.</div>
+    </div>
+    <div class="meta"><a href="../cathedral.html">⟵ Back to Cathedral</a></div>
+  </header>
+
+  <section class="legend" role="note" aria-label="Curatorial Note">
+    <strong>Curatorial Note (Museum layer):</strong> Jacob’s Ladder is a traditional image of ascent (Genesis 28), reinterpreted by medieval/Renaissance esotericism as an <em>order of spheres</em> (angelic, planetary, sefirotic). Rosslyn Chapel does not depict a fixed 33-rung ladder in stone; this page presents a <em>historically informed synthesis</em> consistent with medieval ladders, Qabalistic ascent (10 sefiroth + 22 paths + crown), and Christian mysticism (33 as devotional count). Interpretive correspondences are labeled clearly.
+  </section>
+
+  <div class="grid">
+    <!-- LEFT: Ladder -->
+    <section class="ladder" aria-label="Ladder (interactive ascent)">
+      <div class="axis" aria-hidden="true"></div>
+
+      <div class="controls" role="group" aria-label="Ascent controls">
+        <button id="begin" class="btn primary">Begin Ascent</button>
+        <button id="prev" class="btn ghost" disabled>Step −</button>
+        <button id="next" class="btn ghost" disabled>Step +</button>
+        <span class="meta" id="progress" aria-live="polite">Step 0 / 33</span>
+      </div>
+
+      <div class="halo" aria-hidden="true"></div>
+
+      <div id="steps" aria-label="Steps list">
+        <!-- Steps are injected via JS for clean numbering and easy editing -->
+      </div>
+    </section>
+
+    <!-- RIGHT: Labels & Commentary -->
+    <aside class="panel" aria-label="Museum Labels and Esoteric Commentary">
+      <h2 class="mystic-title">Museum Labels</h2>
+      <details open>
+        <summary>What this page is (and isn’t)</summary>
+        <p>This is a <strong>study visualization</strong> of a traditional mystical ladder, aligned with museum standards. It is <em>not</em> a claim about a specific 33‑rung object at Rosslyn; rather, it uses <em>documented motifs</em> (Boaz/Jachin, crypt→choir→apse, Marian devotion, angelic orders) to present a historically informed ascent.</p>
+      </details>
+
+      <details>
+        <summary>Correspondence method (esoteric layer)</summary>
+        <p>Each step lists: <strong>Sphere</strong> (sefirotic/planetary), <strong>Angel</strong> (Shem or Enochian-adjacent), <strong>Virtue</strong>, and an <strong>Artifact</strong> anchor (e.g., Apprentice Pillar, Lady Chapel, Musical Cubes). This is a <em>fusion map</em>: historically grounded anchors + clearly labeled interpretive correspondences.</p>
+      </details>
+
+      <details>
+        <summary>Accessibility</summary>
+        <p>All steps are keyboard reachable (<span class="kbd">Tab</span>), controls work with <span class="kbd">Enter</span>/<span class="kbd">Space</span>. Descriptions are written to support screen readers.</p>
+      </details>
+
+      <p class="note">Tip: begin ascent and use the step buttons to reveal plates one by one. Planetary light will tint the page as hours change.</p>
+    </aside>
+  </div>
+
+  <footer class="meta" style="text-align:center;margin-top:10px">
+    ❦ 93 93/93 — “In tenebris Clavis custodit.” — In the darkness the Key keeps watch.
+  </footer>
+</div>
+
+<script>
+(function(){
+  // 33-step curated scaffold (museum anchor + interpretive correspondences)
+  // Keep anchors historically grounded; clearly mark interpretations.
+  const STEPS = [
+    // 1–10: Sefiroth (Malkuth → Kether) with Rosslyn anchors where apt
+    { n:1,  title:'Malkuth — Ground / Nave Floor',        anchor:'Entrance / Ground (Rosslyn nave)',    angel:'—',          planet:'Earth',  virtue:'Orientation', interpretive:true },
+    { n:2,  title:'Yesod — Foundation / Dream',           anchor:'Crypt (undercroft)',                  angel:'Gabriel',    planet:'☾',     virtue:'Imagination', interpretive:true },
+    { n:3,  title:'Hod — Form / Intellect',               anchor:'Choir stalls / Carved programs',      angel:'Michael',    planet:'☿',     virtue:'Clarity',     interpretive:true },
+    { n:4,  title:'Netzach — Nature / Devotion',          anchor:'Green Man motifs',                    angel:'Haniel',     planet:'♀',     virtue:'Vitality',    interpretive:true },
+    { n:5,  title:'Tiphereth — Beauty / Sun',             anchor:'Apprentice Pillar (helical vine)',    angel:'Raphael',    planet:'☉',     virtue:'Integration', interpretive:true },
+    { n:6,  title:'Gevurah — Severity / Strength',        anchor:'Pillar of Boaz (north)',              angel:'Kamael',     planet:'♂',     virtue:'Discipline',  interpretive:true },
+    { n:7,  title:'Chesed — Mercy / Expansion',           anchor:'Pillar of Jachin (south)',            angel:'Tzadkiel',   planet:'♃',     virtue:'Grace',       interpretive:true },
+    { n:8,  title:'Binah — Understanding / Great Sea',    anchor:'Marian devotion (Lady Chapel)',       angel:'Tzaphkiel',  planet:'♄',     virtue:'Depth',       interpretive:true },
+    { n:9,  title:'Chokmah — Wisdom / First Motion',      anchor:'Vault ribs / star fields',            angel:'Raziel',     planet:'Zodiac', virtue:'Gnosis',      interpretive:true },
+    { n:10, title:'Kether — Crown / Silence',             anchor:'Apse crown / east light',             angel:'Metatron',   planet:'Crown', virtue:'Union',       interpretive:true },
+
+    // 11–32: 22 Paths (condensed selection; you can expand later)
+    { n:11, title:'Path Aleph — Air',                      anchor:'Choir elevation (air/light)',         angel:'—', planet:'Air', virtue:'Breath', interpretive:true },
+    { n:12, title:'Path Beth — House',                     anchor:'Nave geometry (house of God)',        angel:'—', planet:'—',   virtue:'Study', interpretive:true },
+    { n:13, title:'Path Gimel — The Priestess / Moon',     anchor:'Lunar motifs',                        angel:'—', planet:'☾',  virtue:'Stillness', interpretive:true },
+    { n:14, title:'Path Daleth — Venus / Door',            anchor:'Rose / vine work',                    angel:'—', planet:'♀',  virtue:'Love', interpretive:true },
+    { n:15, title:'Path Heh — Window / Aries',             anchor:'Window tracery',                      angel:'—', planet:'♂',  virtue:'Vision', interpretive:true },
+    { n:16, title:'Path Vav — Nail / Taurus',              anchor:'Joinery / bonds',                     angel:'—', planet:'—',  virtue:'Cohesion', interpretive:true },
+    { n:17, title:'Path Zayin — Sword / Gemini',           anchor:'Iconographic pairings',               angel:'—', planet:'—',  virtue:'Discernment', interpretive:true },
+    { n:18, title:'Path Cheth — Fence / Cancer',           anchor:'Enclosure / arcade',                  angel:'—', planet:'—',  virtue:'Care', interpretive:true },
+    { n:19, title:'Path Teth — Serpent / Leo',             anchor:'Serpentine vine (Apprentice)',        angel:'—', planet:'☉',  virtue:'Courage', interpretive:true },
+    { n:20, title:'Path Yod — Hand / Virgo',               anchor:'Masonry marks',                       angel:'—', planet:'—',  virtue:'Craft', interpretive:true },
+    { n:21, title:'Path Kaph — Palm / Jupiter',            anchor:'Blessing gestures',                   angel:'—', planet:'♃',  virtue:'Fortune', interpretive:true },
+    { n:22, title:'Path Lamed — Ox-goad / Libra',          anchor:'Balance motifs',                      angel:'—', planet:'—',  virtue:'Justice', interpretive:true },
+    { n:23, title:'Path Mem — Water / Hanged Man',         anchor:'Baptismal / water symbols',           angel:'—', planet:'—',  virtue:'Surrender', interpretive:true },
+    { n:24, title:'Path Nun — Fish / Scorpio',             anchor:'Crypt depths',                        angel:'—', planet:'—',  virtue:'Transformation', interpretive:true },
+    { n:25, title:'Path Samekh — Prop / Sagittarius',      anchor:'Arc support / vaulting',              angel:'—', planet:'—',  virtue:'Trust', interpretive:true },
+    { n:26, title:'Path Ayin — Eye / Capricorn',           anchor:'Watcher faces (gargoyles)',           angel:'—', planet:'♄',  virtue:'Seeing', interpretive:true },
+    { n:27, title:'Path Peh — Mouth / Mars',               anchor:'Choir (mouth of song)',               angel:'—', planet:'♂',  virtue:'Speech', interpretive:true },
+    { n:28, title:'Path Tzaddi — Hook / Aquarius',         anchor:'Net/lattice ornament',                angel:'—', planet:'—',  virtue:'Innovation', interpretive:true },
+    { n:29, title:'Path Qoph — Back of head / Pisces',     anchor:'Dream figures',                       angel:'—', planet:'—',  virtue:'Compassion', interpretive:true },
+    { n:30, title:'Path Resh — Sun / Judgment',            anchor:'Solar discs / oculi',                 angel:'—', planet:'☉',  virtue:'Truth', interpretive:true },
+    { n:31, title:'Path Shin — Fire / Spirit',             anchor:'Candles / pentarch fire',             angel:'—', planet:'—',  virtue:'Purification', interpretive:true },
+    { n:32, title:'Path Tav — Cross / Saturn',             anchor:'Crossing of aisle/axis',              angel:'—', planet:'♄',  virtue:'Completion', interpretive:true },
+
+    // 33: Crowned step (devotional completion)
+    { n:33, title:'Crowned Step — Devotional Completion',  anchor:'East apse / light',                   angel:'—', planet:'Crown', virtue:'Peace', interpretive:true }
+  ];
+
+  const stepsEl = document.getElementById('steps');
+  const progressEl = document.getElementById('progress');
+  const prevBtn = document.getElementById('prev');
+  const nextBtn = document.getElementById('next');
+  const beginBtn = document.getElementById('begin');
+
+  // Render ladder
+  STEPS.forEach(s=>{
+    const row = document.createElement('div'); row.className='step'; row.id='step-'+s.n;
+    row.innerHTML = `
+      <div class="plate" role="group" aria-label="Step ${s.n}">
+        <h3>Step ${s.n} — ${s.title}</h3>
+        <div class="meta">Anchor: ${s.anchor}</div>
+        <div class="meta">${s.planet ? `<span class="badge">${s.planet}</span>`:''} ${s.angel && s.angel!=='—' ? `<span class="badge">${s.angel}</span>`:''} <span class="badge">${s.virtue}</span> ${s.interpretive?'<span class="badge">interpretive</span>':''}</div>
+      </div>
+      <div aria-hidden="true">
+        <div class="stair" title="Ascent rail"></div>
+      </div>
+    `;
+    stepsEl.appendChild(row);
+  });
+
+  // Ascent logic: reveal step by step
+  let i = 0;
+  function update(){
+    const total = STEPS.length;
+    progressEl.textContent = `Step ${i} / ${total}`;
+    prevBtn.disabled = (i<=0);
+    nextBtn.disabled = (i>=total);
+    // reveal up to i
+    for(let k=1;k<=total;k++){
+      const el = document.getElementById('step-'+k);
+      el.style.opacity = k<=i ? 1 : .25;
+      el.style.filter  = k<=i ? 'none' : 'grayscale(0.4)';
+      el.style.transform = k<=i ? 'none' : 'scale(0.98)';
+      el.querySelector('.stair').style.opacity = k<=i ? 1 : .2;
+    }
+    // scroll current into view
+    if(i>0){
+      const cur = document.getElementById('step-'+i);
+      cur.scrollIntoView({behavior:'smooth', block:'center'});
+    }
+  }
+  beginBtn.addEventListener('click', ()=>{ i=1; update(); beginBtn.disabled=true; nextBtn.disabled=false; });
+  prevBtn.addEventListener('click', ()=>{ if(i>0){ i--; update(); } });
+  nextBtn.addEventListener('click', ()=>{ if(i<STEPS.length){ i++; update(); } });
+
+  update();
+})();
+</script>
+</body>
+</html>
