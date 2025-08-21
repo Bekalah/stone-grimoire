@@ -2,47 +2,191 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Stone Grimoire — Folio I</title>
+<title>Stone Grimoire — Folio I (Archive Plate)</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Stone Grimoire · Folio I — archival folio with Invocation Fields: Intention, Technique, Lineage, Evidence, Reflection.">
 <style>
-  :root {
-    --bg:#f8f5ef; --ink:#2b2520; --line:#d8d0c5; --gold:#b89635; --lapis:#2f5a9e;
+  :root{
+    --bg:#f8f5ef; --ink:#2b2520; --line:#d8d0c5; --gold:#d4af37; --lapis:#2f5a9e;
   }
-  body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.6 "Iowan Old Style",Georgia,serif;line-height:1.6}
-  .wrap{max-width:700px;margin:0 auto;padding:32px}
-  h1{font-size:1.6rem;color:var(--gold);margin:0 0 .6rem}
-  h2{font-size:1.1rem;color:var(--lapis);margin:1.2rem 0 .4rem}
-  label{display:block;font-size:.9rem;margin:.5rem 0 .2rem;color:#555}
-  textarea,input{width:100%;padding:8px;border:1px solid var(--line);border-radius:6px;font:inherit;background:#fff}
-  textarea{min-height:80px}
-  .nav{margin-top:2rem;font-size:.9rem}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.6 "Iowan Old Style", Georgia, serif}
+  .wrap{max-width:820px;margin:0 auto;padding:28px}
+  h1{font-size:1.7rem;color:var(--lapis);margin:0 0 .4rem}
+  .meta{color:#6b6257;font-size:.95rem;margin:0 0 1.2rem;border-left:3px solid var(--gold);padding-left:.6rem}
+  h2{font-size:1.1rem;color:#3d3a34;margin:1.2rem 0 .4rem}
+  label{display:block;font-size:.9rem;margin:.4rem 0 .2rem;color:#4d4741}
+  input,select,textarea{
+    width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;background:#fff;font:inherit
+  }
+  textarea{min-height:110px}
+  .artifact{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media (max-width:700px){ .grid{grid-template-columns:1fr} }
+  .bar{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+  .btn{
+    background:var(--lapis);color:#fff;border:0;border-radius:8px;padding:8px 12px;font:inherit;cursor:pointer
+  }
+  .btn.secondary{background:#ffffff;border:1px solid var(--line);color:#2b2520}
+  .nav{margin-top:22px;font-size:.95rem}
   a{color:var(--lapis);text-decoration:none}
   a:hover{text-decoration:underline}
+  footer{margin-top:28px;text-align:center;font-size:.9rem;color:#5a534b}
+  .visually-hidden{
+    position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);
+    white-space:nowrap;border:0;padding:0;margin:-1px
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>Folio I</h1>
-  <p><em>Stone Grimoire</em> — archival folio preserving sacred experiment.</p>
+  <div class="wrap">
+    <h1>Folio I — Archive Plate</h1>
+    <p class="meta">
+      Catalog: Folio I · License: CC‑BY 4.0 (text) · Outer Temple (public‑safe)  
+      <span class="visually-hidden">This page is accessible and uses semantic fields for screen readers.</span>
+    </p>
 
-  <h2>Intention</h2>
-  <textarea placeholder="What is willed here?"></textarea>
+    <div class="grid" aria-label="Folio metadata">
+      <div>
+        <label for="date">Date</label>
+        <input id="date" type="date" autocomplete="off" />
+      </div>
+      <div>
+        <label for="realm">Realm (Four Worlds)</label>
+        <select id="realm">
+          <option value="">— select —</option>
+          <option>Assiah (Earth)</option>
+          <option>Yetzirah (Formation)</option>
+          <option>Briah (Creation)</option>
+          <option>Atziluth (Emanation)</option>
+        </select>
+      </div>
+      <div>
+        <label for="stage">Stage (Alchemical)</label>
+        <select id="stage">
+          <option value="">— select —</option>
+          <option>nigredo</option>
+          <option>albedo</option>
+          <option>citrinitas</option>
+          <option>rubedo</option>
+        </select>
+      </div>
+      <div>
+        <label for="license">License</label>
+        <select id="license">
+          <option>CC‑BY 4.0</option>
+          <option>CC‑BY‑SA 4.0</option>
+          <option>CC0‑1.0</option>
+          <option>Public Domain</option>
+          <option>ARR (display only)</option>
+        </select>
+      </div>
+    </div>
 
-  <h2>Technique</h2>
-  <textarea placeholder="Ritual, art, or code used"></textarea>
+    <h2>Intention</h2>
+    <label for="intention" class="visually-hidden">Intention (Will)</label>
+    <textarea id="intention" placeholder="What is willed here? What change is sought?"></textarea>
 
-  <h2>Lineage</h2>
-  <textarea placeholder="Sources, correspondences, traditions"></textarea>
+    <h2>Technique</h2>
+    <label for="technique" class="visually-hidden">Technique (method)</label>
+    <textarea id="technique" placeholder="Ritual form, medium, algorithm, workflow. If AI: model, prompt (public‑safe), seed."></textarea>
 
-  <h2>Evidence</h2>
-  <textarea placeholder="Artifact, link, or description"></textarea>
+    <h2>Lineage</h2>
+    <label for="lineage" class="visually-hidden">Lineage (sources & correspondences)</label>
+    <textarea id="lineage" placeholder="Sources & correspondences (Agrippa, Soyga, Qabalah, Tarot; one‑reed.org; oto‑usa.org). PD vs commentary vs original."></textarea>
 
-  <h2>Reflection</h2>
-  <textarea placeholder="What shifted? What cautions?"></textarea>
+    <h2>Evidence</h2>
+    <div class="artifact">
+      <label for="evidence" class="visually-hidden">Evidence (artifact link / process notes)</label>
+      <textarea id="evidence" placeholder="Artifact or link, brief process notes, reproducibility details."></textarea>
+    </div>
 
-  <div class="nav">
-    ⟵ <a href="../index.html">Return to Index</a>
+    <h2>Reflection</h2>
+    <label for="reflection" class="visually-hidden">Reflection (integration)</label>
+    <textarea id="reflection" placeholder="What changed? What worked/failed? Notes for future work."></textarea>
+
+    <div class="bar" role="group" aria-label="Actions">
+      <button class="btn" id="saveBtn">Save</button>
+      <button class="btn secondary" id="clearBtn" aria-describedby="clearNote">Clear (this device)</button>
+      <span id="clearNote" class="visually-hidden">Clears locally stored data for this folio only.</span>
+      <button class="btn secondary" id="exportBtn">Export JSON</button>
+    </div>
+
+    <div class="nav">
+      ⟵ <a href="../cathedral.html">Back to Cathedral (Rosslyn Nave)</a> ·
+      <a href="../standards/README.md">Standards (Charter)</a> ·
+      <a href="../index.html">Frontispiece</a>
+    </div>
+
+    <footer>
+      ❦ Stone Grimoire — Folio I ❦<br>
+      93 93/93
+    </footer>
   </div>
-</div>
+
+<script>
+(function(){
+  const key = 'stone-grimoire:folio1';
+  const fields = ['date','realm','stage','license','intention','technique','lineage','evidence','reflection'];
+
+  function load(){
+    try{
+      const raw = localStorage.getItem(key);
+      if(!raw) return;
+      const data = JSON.parse(raw);
+      fields.forEach(id=>{
+        const el = document.getElementById(id);
+        if(el && data[id] !== undefined){ el.value = data[id]; }
+      });
+    }catch(e){}
+  }
+
+  function save(){
+    const data = {};
+    fields.forEach(id=>{
+      const el = document.getElementById(id);
+      data[id] = el ? el.value : '';
+    });
+    localStorage.setItem(key, JSON.stringify(data));
+    alert('Saved on this device.');
+  }
+
+  function clearAll(){
+    localStorage.removeItem(key);
+    fields.forEach(id=>{
+      const el = document.getElementById(id);
+      if(el){ el.value = ''; }
+    });
+    alert('Cleared on this device.');
+  }
+
+  function exportJSON(){
+    const data = {};
+    fields.forEach(id=>{
+      const el = document.getElementById(id);
+      data[id] = el ? el.value : '';
+    });
+    const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'folio1.json';
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  document.getElementById('saveBtn').addEventListener('click', save);
+  document.getElementById('clearBtn').addEventListener('click', clearAll);
+  document.getElementById('exportBtn').addEventListener('click', exportJSON);
+  document.addEventListener('DOMContentLoaded', load);
+
+  // Auto-fill date if empty
+  window.addEventListener('load', ()=>{
+    const d = document.getElementById('date');
+    if(d && !d.value){
+      const t = new Date(); const iso = t.toISOString().slice(0,10);
+      d.value = iso;
+    }
+  });
+})();
+</script>
 </body>
 </html>
