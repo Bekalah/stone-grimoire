@@ -1,87 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Stone Grimoire — Rosslyn Nave (The Cathedral is the Grimoire)</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="A Rosslyn-inspired nave: twin pillars, apprentice spiral, angel choir, and vine ornaments — declaring the Cathedral itself as Living Grimoire.">
-<style>
-  /* — Museum palette: stone, gold, lapis — */
-  :root{
-    --bg:#f8f5ef; --ink:#0f1216; --line:#d9cfbf;
-    --gold:#d4af37; --lapis:#2f5a9e; --stone:#ffffff;
-  }
-  html,body{margin:0;background:radial-gradient(circle at 50% 20%, #f8f5ef 80%, #ece7dc 100%);color:var(--ink);font:18px/1.6 Georgia, "Iowan Old Style", serif}
-  a{color:var(--lapis);text-decoration:none}
-  a:hover{text-decoration:underline}
-  /* — Framed header & footer (gilded) — */
-  header, footer{
-    margin:18px auto; max-width:1100px; background:#fff8e7;
-    border:2px solid var(--gold); border-radius:14px; padding:18px 20px; text-align:center
-  }
-  header h1{margin:.2rem 0 .3rem; font-size:1.6rem; color:var(--lapis)}
-  header .seal{font-size:1.6rem; color:var(--gold); margin:.4rem 0}
-  header p{margin:.2rem 0 .2rem; color:#4a433b}
-  header:before, footer:after{
-    content:"✧❦✧"; display:block; color:var(--lapis); margin:.2rem 0; font-size:1.1rem
-  }
+  <meta charset="UTF-8">
+  <title>Stone Grimoire — Rosslyn Nave (The Cathedral is the Grimoire)</title>
 
-  /* — Nave grid: Boaz | Center (Apprentice) | Jachin — */
-  .nave-wrap{max-width:1100px; margin:10px auto 24px; padding:0 12px}
-  .nave{
-    display:grid; grid-template-columns:1fr 2fr 1fr; gap:14px;
-  }
-  @media (max-width:900px){ .nave{grid-template-columns:1fr} }
+  <!-- Rosslyn Sidebar stylesheet -->
+  <link rel="stylesheet" href="./assets/css/rosslyn.css">
 
-  /* — Pillars — */
-  .pillar{
-    background:var(--stone); border:2px solid var(--gold); border-radius:14px; padding:12px;
-    position:relative; overflow:hidden;
-  }
-  .pillar h2{
-    margin:0; text-align:center; color:var(--lapis); font-size:1.1rem; letter-spacing:.04em
-  }
-  .shaft{
-    margin:12px auto; width:72px; height:360px; border:2px solid var(--line); border-radius:999px;
-    background:
-      radial-gradient(circle at 50% 10%, rgba(212,175,55,.25), transparent 60%),
-      linear-gradient(180deg, #fff 0%, #f4efe6 100%);
-    box-shadow: inset 0 0 40px rgba(0,0,0,.06);
-  }
-  .carve{
-    position:absolute; inset:auto 0 6px 0; text-align:center; color:#6a6359; font-size:.85rem
-  }
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A Rosslyn-inspired nave: twin pillars, apprentice spiral, angel choir, and vine ornaments — declaring the Cathedral itself as Living Grimoire.">
+  <style>
+    /* — Museum palette: stone, gold, lapis — */
+    :root{
+      --bg:#f8f5ef; --ink:#0f1216; --line:#d9cfbf;
+      --gold:#d4af37; --lapis:#2f5a9e; --stone:#ffffff;
+    }
+    html,body{margin:0;background:radial-gradient(circle at 50% 20%, #f8f5ef 80%, #ece7dc 100%);color:var(--ink);font:18px/1.6 Georgia, "Iowan Old Style", serif}
+    a{color:var(--lapis);text-decoration:none}
+    a:hover{text-decoration:underline}
+    /* — Framed header & footer (gilded) — */
+    header, footer{
+      margin:18px auto; max-width:1100px; background:#fff8e7;
+      border:2px solid var(--gold); border-radius:14px; padding:18px 20px; text-align:center
+    }
+    header h1{margin:.2rem 0 .3rem; font-size:1.6rem; color:var(--lapis)}
+    header .seal{font-size:1.6rem; color:var(--gold); margin:.4rem 0}
+    header p{margin:.2rem 0 .2rem; color:#4a433b}
+    header:before, footer:after{
+      content:"✧❦✧"; display:block; color:var(--lapis); margin:.2rem 0; font-size:1.1rem
+    }
 
-  /* — Center: Apprentice Pillar chamber — */
-  .center{
-    background:var(--stone); border:2px solid var(--lapis); border-radius:16px; padding:16px; text-align:center; position:relative; overflow:hidden;
-  }
-  .center h2{margin:.1rem 0 .4rem; color:var(--lapis); font-size:1.2rem}
-  .spiral{font-size:2rem; color:var(--gold); margin:.2rem 0 .4rem}
-  .legend{color:#6b6257; margin:.1rem 0 .7rem}
+    /* — Nave grid: Boaz | Center (Apprentice) | Jachin — */
+    .nave-wrap{max-width:1100px; margin:10px auto 24px; padding:0 12px}
+    .nave{
+      display:grid; grid-template-columns:1fr 2fr 1fr; gap:14px;
+    }
+    @media (max-width:900px){ .nave{grid-template-columns:1fr} }
 
-  /* — Embedded arabesque / vine ornament (inline SVG pattern) — */
-  .center:before{
-    content:""; position:absolute; inset:0;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240"><defs><pattern id="v" patternUnits="userSpaceOnUse" width="120" height="120"><path d="M10,60 C20,20 60,20 70,60 S120,100 110,120" fill="none" stroke="%23c1b497" stroke-width="1.2"/><circle cx="35" cy="35" r="2" fill="%2389a1c9"/><circle cx="90" cy="30" r="1.8" fill="%2389a1c9"/><path d="M20,90 q20,-20 40,0 q20,20 40,0" fill="none" stroke="%23c1b497" stroke-width="1.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23v)"/></svg>');
-    opacity:.25; pointer-events:none;
-  }
+    /* — New shell: sidebar + nave side-by-side — */
+    .nave-shell{
+      max-width:1100px; margin:10px auto 24px; padding:0 12px;
+      display:grid; grid-template-columns: 340px 1fr; gap:14px;
+    }
+    @media (max-width:900px){ .nave-shell{ grid-template-columns:1fr; } }
 
-  /* — Chapel links (as museum labels) — */
-  .cells{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:10px 0}
-  @media (max-width:560px){ .cells{grid-template-columns:1fr} }
-  .cell{
-    background:#ffffffcc; border:1px solid var(--line); border-radius:12px; padding:10px;
-  }
-  .cell h3{margin:.2rem 0 .2rem; font-size:1rem; color:#3d3a34}
-  .cell p{margin:0; font-size:.92rem; color:#6b6257}
+    /* — Pillars — */
+    .pillar{
+      background:var(--stone); border:2px solid var(--gold); border-radius:14px; padding:12px;
+      position:relative; overflow:hidden;
+    }
+    .pillar h2{
+      margin:0; text-align:center; color:var(--lapis); font-size:1.1rem; letter-spacing:.04em
+    }
+    .shaft{
+      margin:12px auto; width:72px; height:360px; border:2px solid var(--line); border-radius:999px;
+      background:
+        radial-gradient(circle at 50% 10%, rgba(212,175,55,.25), transparent 60%),
+        linear-gradient(180deg, #fff 0%, #f4efe6 100%);
+      box-shadow: inset 0 0 40px rgba(0,0,0,.06);
+    }
+    .carve{
+      position:absolute; inset:auto 0 6px 0; text-align:center; color:#6a6359; font-size:.85rem
+    }
 
-  /* — Angel Choir line — */
-  .angel{font-size:1.3rem; color:var(--lapis); margin:.6rem 0}
+    /* — Center: Apprentice Pillar chamber — */
+    .center{
+      background:var(--stone); border:2px solid var(--lapis); border-radius:16px; padding:16px; text-align:center; position:relative; overflow:hidden;
+    }
+    .center h2{margin:.1rem 0 .4rem; color:var(--lapis); font-size:1.2rem}
+    .spiral{font-size:2rem; color:var(--gold); margin:.2rem 0 .4rem}
+    .legend{color:#6b6257; margin:.1rem 0 .7rem}
 
-  /* — Footer — */
-  footer{color:#5a534b; line-height:1.4}
-</style>
+    /* — Embedded arabesque / vine ornament — */
+    .center:before{
+      content:""; position:absolute; inset:0;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240"><defs><pattern id="v" patternUnits="userSpaceOnUse" width="120" height="120"><path d="M10,60 C20,20 60,20 70,60 S120,100 110,120" fill="none" stroke="%23c1b497" stroke-width="1.2"/><circle cx="35" cy="35" r="2" fill="%2389a1c9"/><circle cx="90" cy="30" r="1.8" fill="%2389a1c9"/><path d="M20,90 q20,-20 40,0 q20,20 40,0" fill="none" stroke="%23c1b497" stroke-width="1.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23v)"/></svg>');
+      opacity:.25; pointer-events:none;
+    }
+
+    /* — Chapel links — */
+    .cells{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:10px 0}
+    @media (max-width:560px){ .cells{grid-template-columns:1fr} }
+    .cell{background:#ffffffcc; border:1px solid var(--line); border-radius:12px; padding:10px;}
+    .cell h3{margin:.2rem 0 .2rem; font-size:1rem; color:#3d3a34}
+    .cell p{margin:0; font-size:.92rem; color:#6b6257}
+
+    .angel{font-size:1.3rem; color:var(--lapis); margin:.6rem 0}
+    footer{color:#5a534b; line-height:1.4}
+  </style>
 </head>
 <body>
   <header>
@@ -90,49 +96,103 @@
     <p>The Cathedral itself is the Living Grimoire. As Rosslyn is a book carved in stone, so this Archive is a book in light.</p>
   </header>
 
-  <div class="nave-wrap">
-    <div class="nave" role="region" aria-label="Nave with twin pillars and central apprentice pillar">
-      <!-- Boaz -->
-      <section class="pillar" aria-labelledby="boaz">
-        <h2 id="boaz">Pillar of Boaz</h2>
-        <div class="shaft" aria-hidden="true"></div>
-        <div class="carve" aria-hidden="true">Strength · Foundation</div>
-      </section>
+  <div class="nave-shell">
+    <!-- Rosslyn Sidebar -->
+    <aside class="rosslyn-sidebar" aria-label="Rosslyn Sidebar">
+      <div class="frame">
+        <div class="seal" aria-hidden="true">𓂀 ✦ 93 ✦ 𓂀</div>
+        <div class="title">Rosslyn Pattern — Living Grimoire</div>
 
-      <!-- Center chamber: Apprentice Pillar / Prima Materia -->
-      <section class="center" aria-labelledby="apprentice">
-        <h2 id="apprentice">Apprentice Pillar — Prima Materia</h2>
-        <div class="spiral">⟲</div>
-        <div class="legend">Circuitum99 · Double Tree · 33 Vertebrae</div>
-
-        <div class="angel" aria-hidden="true">𓃤 Angel Choir 𓃤</div>
-
-        <div class="cells" aria-label="Chapels / Galleries">
-          <div class="cell">
-            <h3><a href="./folios/folio1.html">Folio I — Archive</a></h3>
-            <p>First plate / notes under museum standards.</p>
+        <!-- Gargoyles -->
+        <div class="gargoyles" aria-hidden="true">
+          <div class="gargoyle">
+            <svg viewBox="0 0 120 90" width="100" height="75" role="img" aria-label="Gargoyle">
+              <path d="M12,70 C20,50 20,30 35,25 C45,22 55,25 65,32 C74,39 83,45 94,46 C86,54 74,62 62,66 C50,70 36,72 12,70 Z"
+                    fill="#cdbf9f" stroke="#8f846f" stroke-width="1.2"/>
+            </svg>
           </div>
-          <div class="cell">
-            <h3><a href="./standards/README.md">Standards (Charter)</a></h3>
-            <p>Intention · Technique · Lineage · Evidence · Reflection.</p>
-          </div>
-          <div class="cell">
-            <h3><a href="./index.html">Frontispiece</a></h3>
-            <p>Stone Grimoire index (parchment).</p>
-          </div>
-          <div class="cell">
-            <h3><a href="https://bekalah.github.io/test-cathedral/">Jacob’s Ladder (33)</a></h3>
-            <p>Interactive ascent · public façade.</p>
+          <div class="gargoyle">
+            <svg viewBox="0 0 120 90" width="100" height="75" role="img" aria-label="Gargoyle">
+              <g transform="translate(120,0) scale(-1,1)">
+                <path d="M12,70 C20,50 20,30 35,25 C45,22 55,25 65,32 C74,39 83,45 94,46 C86,54 74,62 62,66 C50,70 36,72 12,70 Z"
+                      fill="#cdbf9f" stroke="#8f846f" stroke-width="1.2"/>
+              </g>
+            </svg>
           </div>
         </div>
-      </section>
 
-      <!-- Jachin -->
-      <section class="pillar" aria-labelledby="jachin">
-        <h2 id="jachin">Pillar of Jachin</h2>
-        <div class="shaft" aria-hidden="true"></div>
-        <div class="carve" aria-hidden="true">Establishment · Mercy</div>
-      </section>
+        <!-- Angel Choir -->
+        <div class="choir" aria-hidden="true">𓃤 Angel Choir 𓃤</div>
+
+        <!-- Oscillum Medallion -->
+        <div class="oscillum" aria-hidden="true">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="g" cx="50%" cy="50%" r="60%">
+                <stop offset="0%" stop-color="#fff9d6"/>
+                <stop offset="100%" stop-color="#d4af37"/>
+              </radialGradient>
+            </defs>
+            <circle cx="50" cy="50" r="48" fill="url(#g)" stroke="#8d7a2c" stroke-width="1.5"/>
+            <g stroke="#2f5a9e" stroke-width="1.5" fill="none">
+              <circle cx="50" cy="50" r="24"/>
+              <path d="M50,26 A24,24 0 0,1 74,50" />
+              <path d="M74,50 A24,24 0 0,1 50,74" />
+              <path d="M50,74 A24,24 0 0,1 26,50" />
+              <path d="M26,50 A24,24 0 0,1 50,26" />
+            </g>
+          </svg>
+        </div>
+
+        <div class="note">93 93/93 — Consecration Seal</div>
+      </div>
+    </aside>
+
+    <!-- Nave content -->
+    <div class="nave-wrap">
+      <div class="nave" role="region" aria-label="Nave with twin pillars and central apprentice pillar">
+        <!-- Boaz -->
+        <section class="pillar" aria-labelledby="boaz">
+          <h2 id="boaz">Pillar of Boaz</h2>
+          <div class="shaft" aria-hidden="true"></div>
+          <div class="carve" aria-hidden="true">Strength · Foundation</div>
+        </section>
+
+        <!-- Center chamber -->
+        <section class="center" aria-labelledby="apprentice">
+          <h2 id="apprentice">Apprentice Pillar — Prima Materia</h2>
+          <div class="spiral">⟲</div>
+          <div class="legend">Circuitum99 · Double Tree · 33 Vertebrae</div>
+
+          <div class="angel" aria-hidden="true">𓃤 Angel Choir 𓃤</div>
+
+          <div class="cells" aria-label="Chapels / Galleries">
+            <div class="cell">
+              <h3><a href="./folios/folio1.html">Folio I — Archive</a></h3>
+              <p>First plate / notes under museum standards.</p>
+            </div>
+            <div class="cell">
+              <h3><a href="./standards/README.md">Standards (Charter)</a></h3>
+              <p>Intention · Technique · Lineage · Evidence · Reflection.</p>
+            </div>
+            <div class="cell">
+              <h3><a href="./index.html">Frontispiece</a></h3>
+              <p>Stone Grimoire index (parchment).</p>
+            </div>
+            <div class="cell">
+              <h3><a href="https://bekalah.github.io/test-cathedral/">Jacob’s Ladder (33)</a></h3>
+              <p>Interactive ascent · public façade.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Jachin -->
+        <section class="pillar" aria-labelledby="jachin">
+          <h2 id="jachin">Pillar of Jachin</h2>
+          <div class="shaft" aria-hidden="true"></div>
+          <div class="carve" aria-hidden="true">Establishment · Mercy</div>
+        </section>
+      </div>
     </div>
   </div>
 
