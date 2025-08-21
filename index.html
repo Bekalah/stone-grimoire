@@ -1,48 +1,53 @@
-<!doctype html>
+
+
+   <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>📜 Stone Grimoire</title>
+<title>Stone Grimoire — Archive Index</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
-  :root{
-    --parch:#f4efe6; --ink:#2e2a24; --gold:#c79b2b; --scarlet:#8e3a3a; --line:#d8d1c5;
+  :root {
+    --bg:#f8f5ef; --ink:#2b2520; --line:#d8d0c5;
+    --gold:#b89635; --lapis:#2f5a9e;
   }
-  html,body{margin:0;background:var(--parch);color:var(--ink);font:18px/1.6 "Iowan Old Style", Georgia, serif;}
-  .wrap{max-width:900px;margin:0 auto;padding:28px;}
-  h1{font-size:2rem;margin:.5rem 0 1rem;color:var(--scarlet);letter-spacing:.02em}
-  h2{font-size:1.2rem;margin:1.2rem 0 .4rem;color:#4b4034}
-  .folio{border:1px solid var(--line);border-radius:10px;background:#fff8;box-shadow:0 0 0 8px #00000008 inset;padding:18px}
-  .rule{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:14px 0}
-  .tags span{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 8px;margin:2px 6px 0 0;font-size:.85rem;color:#6b6257}
-  a{color:var(--scarlet);text-decoration:underline wavy var(--gold)}
-  footer{margin:22px 0 40px;color:#6b6257}
+  body {margin:0;background:var(--bg);color:var(--ink);
+        font:18px/1.6 "Iowan Old Style",Georgia,serif;}
+  .wrap {max-width:800px;margin:0 auto;padding:32px;}
+  h1 {font-size:1.9rem;color:var(--gold);margin:0 0 1rem;}
+  h2 {font-size:1.2rem;color:var(--lapis);margin:1.5rem 0 .6rem;}
+  ul {list-style:none;padding-left:0;}
+  li {margin:.3rem 0;}
+  a {color:var(--lapis);text-decoration:none;}
+  a:hover {text-decoration:underline;}
+  footer {margin-top:2rem;font-size:.9rem;color:#777;text-align:center;}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>📜 Stone Grimoire</h1>
-    <div class="folio">
-      <p><em>Stone Grimoire: a testbed for AI-driven esoteric design standards, inspired by living grimoires, alchemy, and cathedral codices.</em></p>
-      <div class="rule"></div>
-      <h2>Purpose</h2>
-      <ul>
-        <li>Archive AI design experiments in the style of historical grimoires & alchemical manuscripts.</li>
-        <li>Formalize standards: intention, technique, lineage, evidence, ethics.</li>
-        <li>Keep oath-bound/private gnosis sealed; publish museum-quality summaries only.</li>
-      </ul>
+<div class="wrap">
+  <h1>Stone Grimoire</h1>
+  <p><em>A living archive of mystical experiments and folios, preserved in academic clarity and sacred style.</em></p>
 
-      <h2>Folio Map</h2>
-      <ul>
-        <li><a href="./folios/">Folios</a> — manuscript pages (coming soon)</li>
-        <li><a href="./standards/">Standards</a> — palettes, charters, rules</li>
-        <li><a href="./assets/">Assets</a> — images, ornaments, type</li>
-      </ul>
+  <h2>Folio Map</h2>
+  <ul>
+    <li><a href="./folios/folio1.html">Folio I — First archival page</a></li>
+    <!-- Add new folios here as they are created -->
+  </ul>
 
-      <div class="tags"><span>alchemy</span><span>qabalah</span><span>ai-design</span><span>museum-grade</span></div>
-    </div>
+  <h2>Standards</h2>
+  <ul>
+    <li><a href="./standards/">Standards README</a> — palettes, ethics, provenance</li>
+  </ul>
 
-    <footer>Love is the law, love under will.</footer>
-  </div>
+  <h2>Assets</h2>
+  <ul>
+    <li><a href="./assets/">Assets folder</a> — images, ornaments, typography</li>
+  </ul>
+
+  <footer>
+    Love is the law, love under will.<br>
+    &copy; Stone Grimoire — archival edition
+  </footer>
+</div>
 </body>
 </html>
