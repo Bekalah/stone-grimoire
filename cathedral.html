@@ -18,6 +18,21 @@
     html,body{margin:0;background:radial-gradient(circle at 50% 20%, #f8f5ef 80%, #ece7dc 100%);color:var(--ink);font:18px/1.6 Georgia, "Iowan Old Style", serif}
     a{color:var(--lapis);text-decoration:none}
     a:hover{text-decoration:underline}
+
+    /* Visually-hidden (for screen reader scholia) */
+    .visually-hidden{
+      position:absolute !important;
+      height:1px; width:1px;
+      overflow:hidden; clip:rect(1px, 1px, 1px, 1px);
+      white-space:nowrap; border:0; padding:0; margin:-1px;
+    }
+    /* Skip to main content (for keyboard/screen reader) */
+    .skip-link{
+      position:absolute; left:-9999px; top:auto;
+      background:#2f5a9e; color:#fff; padding:8px 12px; border-radius:8px; z-index:1000;
+    }
+    .skip-link:focus{ left:12px; top:12px; }
+
     /* — Framed header & footer (gilded) — */
     header, footer{
       margin:18px auto; max-width:1100px; background:#fff8e7;
@@ -90,7 +105,10 @@
   </style>
 </head>
 <body>
-  <header>
+  <!-- Skip to main content for keyboard/screen-reader users -->
+  <a class="skip-link" href="#nave-main">Skip to main (Nave)</a>
+
+  <header role="banner">
     <h1>Stone Grimoire — Rosslyn Nave</h1>
     <div class="seal">𓂀 ✦ 93 ✦ 𓂀</div>
     <p>The Cathedral itself is the Living Grimoire. As Rosslyn is a book carved in stone, so this Archive is a book in light.</p>
@@ -98,21 +116,23 @@
 
   <div class="nave-shell">
     <!-- Rosslyn Sidebar -->
-    <aside class="rosslyn-sidebar" aria-label="Rosslyn Sidebar">
+    <aside class="rosslyn-sidebar" role="complementary" aria-label="Rosslyn side aisle: gargoyles, angel choir, consecration seal">
       <div class="frame">
         <div class="seal" aria-hidden="true">𓂀 ✦ 93 ✦ 𓂀</div>
         <div class="title">Rosslyn Pattern — Living Grimoire</div>
 
         <!-- Gargoyles -->
-        <div class="gargoyles" aria-hidden="true">
+        <div class="gargoyles">
           <div class="gargoyle">
-            <svg viewBox="0 0 120 90" width="100" height="75" role="img" aria-label="Gargoyle">
+            <svg viewBox="0 0 120 90" width="100" height="75" role="img"
+                 aria-label="Gargoyle: crouching winged beast in stone, guardian of the south aisle; emblem of vigilance and transformation.">
               <path d="M12,70 C20,50 20,30 35,25 C45,22 55,25 65,32 C74,39 83,45 94,46 C86,54 74,62 62,66 C50,70 36,72 12,70 Z"
                     fill="#cdbf9f" stroke="#8f846f" stroke-width="1.2"/>
             </svg>
           </div>
           <div class="gargoyle">
-            <svg viewBox="0 0 120 90" width="100" height="75" role="img" aria-label="Gargoyle">
+            <svg viewBox="0 0 120 90" width="100" height="75" role="img"
+                 aria-label="Gargoyle: mirrored guardian of the north aisle; echoes the twin pillar symmetry.">
               <g transform="translate(120,0) scale(-1,1)">
                 <path d="M12,70 C20,50 20,30 35,25 C45,22 55,25 65,32 C74,39 83,45 94,46 C86,54 74,62 62,66 C50,70 36,72 12,70 Z"
                       fill="#cdbf9f" stroke="#8f846f" stroke-width="1.2"/>
@@ -122,10 +142,13 @@
         </div>
 
         <!-- Angel Choir -->
-        <div class="choir" aria-hidden="true">𓃤 Angel Choir 𓃤</div>
+        <div class="choir" aria-label="Angel Choir: a carved hymn line">
+          𓃤 Angel Choir 𓃤
+          <span class="visually-hidden">A carved hymn announces the choir; resonance implied, no audio required.</span>
+        </div>
 
         <!-- Oscillum Medallion -->
-        <div class="oscillum" aria-hidden="true">
+        <div class="oscillum" role="img" aria-label="Consecration medallion: gold rosette of twelve petals in lapis and gold, seal of the 93 Current">
           <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <radialGradient id="g" cx="50%" cy="50%" r="60%">
@@ -149,11 +172,12 @@
     </aside>
 
     <!-- Nave content -->
-    <div class="nave-wrap">
-      <div class="nave" role="region" aria-label="Nave with twin pillars and central apprentice pillar">
+    <main id="nave-main" class="nave-wrap" role="main" aria-label="Nave: twin pillars Boaz and Jachin, central Apprentice Pillar">
+      <div class="nave" aria-label="Pillars and central chamber">
         <!-- Boaz -->
         <section class="pillar" aria-labelledby="boaz">
           <h2 id="boaz">Pillar of Boaz</h2>
+          <p class="visually-hidden">Boaz: Pillar of Strength and Foundation; counterpart to Jachin.</p>
           <div class="shaft" aria-hidden="true"></div>
           <div class="carve" aria-hidden="true">Strength · Foundation</div>
         </section>
@@ -161,6 +185,7 @@
         <!-- Center chamber -->
         <section class="center" aria-labelledby="apprentice">
           <h2 id="apprentice">Apprentice Pillar — Prima Materia</h2>
+          <p class="visually-hidden">Apprentice Pillar: Prima Materia. The spiral indicates ascent through the Double Tree and 33 steps.</p>
           <div class="spiral">⟲</div>
           <div class="legend">Circuitum99 · Double Tree · 33 Vertebrae</div>
 
@@ -168,19 +193,19 @@
 
           <div class="cells" aria-label="Chapels / Galleries">
             <div class="cell">
-              <h3><a href="./folios/folio1.html">Folio I — Archive</a></h3>
+              <h3><a href="./folios/folio1.html" aria-label="Open Folio One: archival page">Folio I — Archive</a></h3>
               <p>First plate / notes under museum standards.</p>
             </div>
             <div class="cell">
-              <h3><a href="./standards/README.md">Standards (Charter)</a></h3>
+              <h3><a href="./standards/README.md" aria-label="Read the Standards Charter: museum and ethical canon">Standards (Charter)</a></h3>
               <p>Intention · Technique · Lineage · Evidence · Reflection.</p>
             </div>
             <div class="cell">
-              <h3><a href="./index.html">Frontispiece</a></h3>
+              <h3><a href="./index.html" aria-label="Return to the Stone Grimoire frontispiece">Frontispiece</a></h3>
               <p>Stone Grimoire index (parchment).</p>
             </div>
             <div class="cell">
-              <h3><a href="https://bekalah.github.io/test-cathedral/">Jacob’s Ladder (33)</a></h3>
+              <h3><a href="https://bekalah.github.io/test-cathedral/" aria-label="Enter the Jacob’s Ladder: 33-step interactive ascent">Jacob’s Ladder (33)</a></h3>
               <p>Interactive ascent · public façade.</p>
             </div>
           </div>
@@ -189,14 +214,15 @@
         <!-- Jachin -->
         <section class="pillar" aria-labelledby="jachin">
           <h2 id="jachin">Pillar of Jachin</h2>
+          <p class="visually-hidden">Jachin: Pillar of Establishment and Mercy; counterpart to Boaz.</p>
           <div class="shaft" aria-hidden="true"></div>
           <div class="carve" aria-hidden="true">Establishment · Mercy</div>
         </section>
       </div>
-    </div>
+    </main>
   </div>
 
-  <footer>
+  <footer role="contentinfo">
     ❦ Green Man’s vine entwines; the Choir resounds. ❦<br>
     93 93/93 — Stone Grimoire · Circuitum99 · Rosslyn Pattern
   </footer>
