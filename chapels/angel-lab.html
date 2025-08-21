@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Stone Grimoire — Angel Cubes Lab</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    body{max-width:780px;margin:0 auto;padding:20px;background:#f8f5ef;color:#2b2520;
+      font:18px/1.6 "Iowan Old Style",serif}
+    h1{color:#2f5a9e}
+    h2{color:#b89635}
+    .cube{display:inline-block;width:60px;height:60px;border:1px solid #ccc;
+      margin:6px;text-align:center;line-height:60px;font-size:1.2rem;cursor:pointer}
+    #output{margin-top:1rem;padding:10px;background:#fff;border:1px solid #ddd}
+  </style>
+</head>
+<body>
+  <h1>Angel Cubes Lab</h1>
+  <p>Match cube → ratio → tone → angel. This experimental folio translates <em>Rosslyn’s musical cubes</em> into harmonic seeds for Angel-Tech exploration.</p>
+
+  <h2>Choose a Cube</h2>
+  <div id="cubes"></div>
+
+  <div id="output" aria-live="polite">Click a cube to reveal its harmonic correspondence.</div>
+
+  <script>
+    const cubes=document.getElementById('cubes');
+    const out=document.getElementById('output');
+    const angels=[
+      {n:1,ratio:"1:1",tone:"C",angel:"Metatron"},
+      {n:2,ratio:"3:2",tone:"G",angel:"Raziel"},
+      {n:3,ratio:"4:3",tone:"F",angel:"Michael"},
+      {n:4,ratio:"5:4",tone:"E",angel:"Raphael"},
+      {n:5,ratio:"6:5",tone:"D",angel:"Gabriel"}
+    ];
+    angels.forEach(c=>{
+      let el=document.createElement('div');
+      el.className='cube';
+      el.textContent=c.n;
+      el.onclick=()=>{out.textContent=
+        `Cube ${c.n} → Ratio ${c.ratio} → Tone ${c.tone} → Angel ${c.angel}`;
+      };
+      cubes.appendChild(el);
+    });
+  </script>
+
+  <p>→ <a href="../cathedral.html">Return to the Nave</a></p>
+</body>
+</html>
