@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "elements": [
+    { "id": "Fire",  "glyph": "🜂", "planet": "Sun",     "metal": "Gold",    "color": "#e0b84f", "solfeggio": 741, "stylepack": "alchemy_quadrivium" },
+    { "id": "Water", "glyph": "🜄", "planet": "Moon",    "metal": "Silver",  "color": "#bfc6d1", "solfeggio": 639, "stylepack": "shekhinah_marian"   },
+    { "id": "Air",   "glyph": "🜁", "planet": "Mercury", "metal": "Mercury", "color": "#a8d5e5", "solfeggio": 528, "stylepack": "enochian_astral"    },
+    { "id": "Earth", "glyph": "🜃", "planet": "Saturn",  "metal": "Lead",    "color": "#556b57", "solfeggio": 396, "stylepack": "druidic_greenman"   },
+    { "id": "Aether","glyph": "🜍", "planet": "Jupiter", "metal": "Tin",     "color": "#b9a6ff", "solfeggio": 852, "stylepack": "hilma_spiral"        }
+  ],
+  "operations": [
+    { "id":"calcination",  "emoji":"🔥", "from":"Fire",  "to":"Earth",  "curve":"expoOut",  "notes":"Reduce to ash; brighten highlights." },
+    { "id":"dissolution",  "emoji":"💧", "from":"Earth", "to":"Water",  "curve":"sine",     "notes":"Ash into water; soften edges." },
+    { "id":"separation",   "emoji":"🔪", "from":"Water", "to":"Air",    "curve":"linear",   "notes":"Clarify components; outline." },
+    { "id":"conjunction",  "emoji":"⚭", "from":"Air",   "to":"Fire",   "curve":"easeInOut","notes":"Sacred marriage; iridescence." },
+    { "id":"fermentation", "emoji":"🫧", "from":"Fire",  "to":"Water",  "curve":"bounce",   "notes":"Life returns; spectrum noise." },
+    { "id":"distillation", "emoji":"🧪", "from":"Water", "to":"Air",    "curve":"expoIn",   "notes":"Refine; sharpen; rise." },
+    { "id":"coagulation",  "emoji":"🜔", "from":"Air",   "to":"Aether", "curve":"easeOut",  "notes":"Unify layers; aureole." }
+  ]
+}
