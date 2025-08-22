@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Stone Grimoire — Spiral Mandalas (Hilma-inspired)
+     Multiple <symbol> blocks you can <use> or sample into canvases. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <!-- Soft gold + lapis styles -->
+    <style><![CDATA[
+      .lapis{ stroke:#2f5a9e; fill:none; }
+      .gold { stroke:#d4af37; fill:none; }
+      .thin { stroke-width:1.2; opacity:.85; }
+      .hair { stroke-width:.7; opacity:.6; }
+    ]]></style>
+
+    <!-- Mandala A: Concentric Aura + Triple Spiral (Guggenheim-esque ascent) -->
+    <symbol id="mandala-spiral" viewBox="0 0 1000 1000">
+      <g transform="translate(500 520)">
+        <!-- Concentric rings -->
+        <g class="lapis thin">
+          <circle r="120"/><circle r="180"/><circle r="260"/><circle r="360"/><circle r="460"/>
+        </g>
+        <!-- Triple logarithmic spiral -->
+        <g class="gold thin">
+          <path d="M0,-80
+                   C60,-60 100,-20 120,40
+                   C140,100 160,160 210,210
+                   C260,260 330,300 420,320" />
+          <use href="#arm" transform="rotate(120)"/>
+          <use href="#arm" transform="rotate(240)"/>
+        </g>
+      </g>
+      <!-- Define one arm to reuse -->
+      <path id="arm" class="gold thin" d="M0,-80
+                   C60,-60 100,-20 120,40
+                   C140,100 160,160 210,210
+                   C260,260 330,300 420,320" />
+    </symbol>
+
+    <!-- Mandala B: Vesica / Rose Cross construction -->
+    <symbol id="mandala-vesica" viewBox="0 0 1000 1000">
+      <g transform="translate(500 500)">
+        <g class="lapis thin">
+          <circle r="260"/><circle r="380"/>
+        </g>
+        <g class="lapis hair">
+          <ellipse rx="320" ry="220" />
+          <ellipse rx="220" ry="320" />
+        </g>
+        <g class="gold thin">
+          <line x1="-340" y1="0" x2="340" y2="0"/>
+          <line x1="0" y1="-340" x2="0" y2="340"/>
+          <circle r="120"/>
+          <circle r="40"/>
+        </g>
+      </g>
+    </symbol>
+
+    <!-- Mandala C: Altarpiece rays (triune arcs) -->
+    <symbol id="mandala-altarpiece" viewBox="0 0 1000 1000">
+      <g transform="translate(500 500)">
+        <g class="gold hair">
+          <path d="M0,-430 A430,430 0 0 1 372,215" />
+          <path d="M-372,215 A430,430 0 0 1 0,-430" />
+          <path d="M372,215 A430,430 0 0 1 -372,215" />
+        </g>
+        <g class="lapis thin">
+          <circle r="300"/>
+          <circle r="180"/>
+          <circle r="60"/>
+        </g>
+      </g>
+    </symbol>
+
+    <!-- Mandala D: Rose lattice (12/24 petal) -->
+    <symbol id="mandala-rose" viewBox="0 0 1000 1000">
+      <g transform="translate(500 500)">
+        <g class="lapis hair">
+          <!-- 24 spokes -->
+          <g id="spoke">
+            <line x1="0" y1="0" x2="0" y2="-420"/>
+          </g>
+          <use href="#spoke" transform="rotate(15)"/>
+          <use href="#spoke" transform="rotate(30)"/>
+          <use href="#spoke" transform="rotate(45)"/>
+          <use href="#spoke" transform="rotate(60)"/>
+          <use href="#spoke" transform="rotate(75)"/>
+          <use href="#spoke" transform="rotate(90)"/>
+          <use href="#spoke" transform="rotate(105)"/>
+          <use href="#spoke" transform="rotate(120)"/>
+          <use href="#spoke" transform="rotate(135)"/>
+          <use href="#spoke" transform="rotate(150)"/>
+          <use href="#spoke" transform="rotate(165)"/>
+          <use href="#spoke" transform="rotate(180)"/>
+          <use href="#spoke" transform="rotate(195)"/>
+          <use href="#spoke" transform="rotate(210)"/>
+          <use href="#spoke" transform="rotate(225)"/>
+          <use href="#spoke" transform="rotate(240)"/>
+          <use href="#spoke" transform="rotate(255)"/>
+          <use href="#spoke" transform="rotate(270)"/>
+          <use href="#spoke" transform="rotate(285)"/>
+          <use href="#spoke" transform="rotate(300)"/>
+          <use href="#spoke" transform="rotate(315)"/>
+          <use href="#spoke" transform="rotate(330)"/>
+          <use href="#spoke" transform="rotate(345)"/>
+        </g>
+        <!-- petal rings -->
+        <g class="gold thin">
+          <circle r="420"/>
+          <circle r="280"/>
+          <circle r="160"/>
+        </g>
+      </g>
+    </symbol>
+  </defs>
+
+  <!-- Preview sheet (optional; you can delete everything below defs in production) -->
+  <rect width="1200" height="800" fill="#f8f5ef"/>
+  <use href="#mandala-spiral" x="100" y="50" width="460" height="460"/>
+  <use href="#mandala-vesica" x="640" y="50"  width="460" height="460"/>
+  <use href="#mandala-altarpiece" x="100" y="420" width="460" height="360"/>
+  <use href="#mandala-rose" x="640" y="420" width="460" height="360"/>
+</svg>
