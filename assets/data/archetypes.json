@@ -1,0 +1,26 @@
+{
+  "angels": [
+    { "id": "michael",  "name": "Mikael (Michael)",  "sephirah": "Tiphereth", "planet": "Sun",     "hue": 45,  "color": "#f6c453", "rung": 5,  "notes": "Solar guardian; courage and balance." },
+    { "id": "gabriel",  "name": "Gavriel (Gabriel)", "sephirah": "Yesod",     "planet": "Moon",    "hue": 220, "color": "#aeb9ff", "rung": 2,  "notes": "Lunar messenger; memory, waters." },
+    { "id": "raphael",  "name": "Rafaʾel (Raphael)", "sephirah": "Hod",       "planet": "Mercury", "hue": 170, "color": "#00a991", "rung": 3,  "notes": "Healer; craft and script." },
+    { "id": "haniel",   "name": "Haniel",            "sephirah": "Netzach",   "planet": "Venus",   "hue": 132, "color": "#7dcf92", "rung": 4,  "notes": "Beauty, harmony; rose & vine." },
+    { "id": "kamael",   "name": "Kamael",            "sephirah": "Geburah",   "planet": "Mars",    "hue": 12,  "color": "#d6523c", "rung": 6,  "notes": "Tempered fire; the just sword." },
+    { "id": "zadkiel",  "name": "Tzadkiel (Zadkiel)","sephirah": "Chesed",    "planet": "Jupiter", "hue": 38,  "color": "#d4b483", "rung": 7,  "notes": "Mercy and patronage; royal measure." },
+    { "id": "cassiel",  "name": "Qafsiel (Cassiel)","sephirah": "Binah",     "planet": "Saturn",  "hue": 270, "color": "#67597a", "rung": 8,  "notes": "Borders, time, the sealed crypt." }
+  ],
+  "daimons": [
+    { "id": "samael",   "name": "Samael (Severity)",  "planet": "Mars",    "hue": 8,   "color": "#9f2b2b", "notes": "Edge of force; temper with heart." },
+    { "id": "lilith",   "name": "Lilith (Night)",     "planet": "Moon",    "hue": 255, "color": "#7a7fb2", "notes": "Liminal sovereignty; night wind." },
+    { "id": "belial",   "name": "Belial (Lawless)",   "planet": "Saturn",  "hue": 280, "color": "#3f2f4b", "notes": "Gravity/pride; bind to form." },
+    { "id": "astaroth", "name": "Astaroth (Venus‑Inverted)", "planet": "Venus", "hue": 305, "color": "#b46aa0", "notes": "Beauty inverted; seek the true rose." },
+    { "id": "bael",     "name": "Bael (Multiplicity)","planet": "Mercury", "hue": 160, "color": "#2aa58f", "notes": "From confusion to clarity; name the parts." }
+  ],
+  "folk": [
+    { "id": "green_man", "name": "The Green Man", "origin": "British/Scots", "pattern": "rosette", "color": "#3c6b3d", "notes": "Renewal; oak/ivy; face in leaves." },
+    { "id": "brownie",   "name": "Brownie",       "origin": "Scottish",      "pattern": "lattice", "color": "#9b6a40", "notes": "Hearth helper; bowl of milk; broom." },
+    { "id": "selkie",    "name": "Selkie",        "origin": "Orkney",        "pattern": "circle",  "color": "#4b6d91", "notes": "Sea‑skin; longing; seal‑song." },
+    { "id": "cailleach", "name": "Cailleach",     "origin": "Gaelic",        "pattern": "star",    "color": "#3a4a6d", "notes": "Winter hag; mountain stones; storm." },
+    { "id": "mari_lwyd", "name": "Mari Lwyd",     "origin": "Welsh",         "pattern": "star",    "color": "#dcdcdc", "notes": "Horse skull; midwinter limen; riddles." },
+    { "id": "black_dog", "name": "Black Dog",     "origin": "British",       "pattern": "circle",  "color": "#222222", "notes": "Church‑grim; night guardian." }
+  ]
+}
