@@ -1,0 +1,57 @@
+[
+  {
+    "id": "gothic_english",
+    "label": "Gothic English",
+    "palette": "Sun",
+    "tempera": "pyth",
+    "cymatic": "star",
+    "glassHue": 48,
+    "ornament": "tracery",
+    "glyphFolder": "gothic",
+    "notes": "English Gothic tracery, lancet arches, choir gold/blue."
+  },
+  {
+    "id": "mesoamerican",
+    "label": "Mesoamerican (Maya/Aztec PD)",
+    "palette": "Mars",
+    "tempera": "just",
+    "cymatic": "lattice",
+    "glassHue": 18,
+    "ornament": "step_fret",
+    "glyphFolder": "meso",
+    "notes": "Step‑fret, serpent motifs; use public‑domain codex forms only."
+  },
+  {
+    "id": "east_asian",
+    "label": "East Asian (PD)",
+    "palette": "Moon",
+    "tempera": "pentatonic",
+    "cymatic": "circle",
+    "glassHue": 210,
+    "ornament": "cloud_scroll",
+    "glyphFolder": "east",
+    "notes": "Cloud scrolls, ink wash sensibility; five‑note scale feel."
+  },
+  {
+    "id": "druidic_celtic",
+    "label": "Druidic/Celtic (Insular PD)",
+    "palette": "Green Man",
+    "tempera": "pyth",
+    "cymatic": "rosette",
+    "glassHue": 132,
+    "ornament": "triskele",
+    "glyphFolder": "celtic",
+    "notes": "Knotwork, triskele, oak/rowan; Insular manuscript geometry."
+  },
+  {
+    "id": "hathoric_egypt",
+    "label": "Hathoric/Egyptian (PD)",
+    "palette": "Venus",
+    "tempera": "just",
+    "cymatic": "rosette",
+    "glassHue": 36,
+    "ornament": "papyrus_hathor",
+    "glyphFolder": "egypt",
+    "notes": "Papyrus bundle, sistrum, Hathor crown; PD relief patterns."
+  }
+]
