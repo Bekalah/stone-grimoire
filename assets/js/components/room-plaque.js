@@ -1,18 +1,52 @@
 // Museum plaque: reads structure.json + stylepacks.json + alchemy.json,
 // then renders a small curator card for the current room.
-// Accessible, ND‑friendly, and auto-positions bottom-right.
+// Now robust to missing data-section: infers from filename or route.
 
 async function j(path){ const r = await fetch(path); return r.json(); }
 function rel(path){
-  // Robust relative path resolver (root vs subfolders)
   const depth = location.pathname.split('/').length - 2;
   return ('../'.repeat(Math.max(0, depth))) + path;
 }
-function detectSection(){
+function filenameFromPath(){
+  const last = location.pathname.split('/').pop() || 'index.html';
+  return last.toLowerCase();
+}
+function inferIdFromFilename(file){
+  // strip .html
+  const base = file.endsWith('.html') ? file.slice(0, -5) : file;
+  if (base === '' || base === 'index') return 'frontispiece';
+  if (base === 'cathedral') return 'nave';
+  return base; // e.g., lady-chapel, crypt, helix-totem, etc.
+}
+function detectSection(structure){
+  // 1) explicit
   const ds = document.body.dataset.section;
   if (ds) return ds;
-  const file = (location.pathname.split('/').pop() || 'index.html').replace('.html','');
-  return file || 'frontispiece';
+
+  // 2) filename inference
+  const file = filenameFromPath();
+  const inferred = inferIdFromFilename(file);
+
+  // If the inferred id exists in structure, use it
+  if (structure?.rooms?.some(r => r.id === inferred)) return inferred;
+
+  // 3) try matching by route (supports subpaths and hashes)
+  const path = location.pathname.replace(/\/+$/, ''); // no trailing slash
+  const hash = location.hash || '';
+  // prefer exact route; then filename; then anchor endings
+  const byExact = structure?.rooms?.find(r => r.route && (new URL(r.route, location.origin).pathname === path));
+  if (byExact) return byExact.id;
+
+  const byFile = structure?.rooms?.find(r => r.route && r.route.toLowerCase().includes(file));
+  if (byFile) return byFile.id;
+
+  if (hash) {
+    const byHash = structure?.rooms?.find(r => r.route && r.route.split('#')[1] && ('#' + r.route.split('#')[1]) === hash);
+    if (byHash) return byHash.id;
+  }
+
+  // 4) fallback: frontispiece
+  return 'frontispiece';
 }
 function el(tag, attrs={}, children=[]){
   const d = document.createElement(tag);
@@ -38,7 +72,8 @@ async function attachPlaque(){
   ]).catch(()=>[null,null,null]);
 
   if (!structure) return;
-  const id = detectSection();
+
+  const id = detectSection(structure);
   const room = structure.rooms.find(r => r.id === id);
   if (!room) return;
 
@@ -84,13 +119,11 @@ async function attachPlaque(){
     class:'room-plaque',
     role:'complementary',
     'aria-label':'Room information plaque'
-  }, [
-    title, meta, palette, notes, toggle
-  ]);
+  }, [ title, meta, palette, notes, toggle ]);
 
   document.body.appendChild(container);
 }
 
-// Auto-run
+// auto-attach
 attachPlaque();
 export { attachPlaque };
