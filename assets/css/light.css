@@ -1,0 +1,66 @@
+/* Stone Grimoire — Light Base (typography/layout) */
+
+html,body{margin:0; padding:0; background:var(--bg); color:var(--ink);}
+body{
+  font: var(--fs-2)/1.6 Georgia, "Iowan Old Style", "Times New Roman", serif;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+
+/* Links */
+a{ color: var(--accent); text-decoration: none; }
+a:hover{ text-decoration: underline; }
+
+/* Containers */
+.frame{
+  max-width: 1100px; margin: 14px auto; padding: 16px 20px;
+  background: var(--wash); border: 1px solid var(--line);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+}
+.section{ max-width: 1100px; margin: 10px auto; padding: 0 12px; }
+
+/* Headings */
+h1{ margin: .2rem 0 .6rem; font-size: var(--fs-4); color: var(--accent); }
+h2{ margin: 1.2rem 0 .5rem; font-size: var(--fs-3); color: var(--accent); }
+h3{ margin: .8rem 0 .4rem; font-size: 1.1rem; color:#3d3a34; }
+
+/* Cards / panels */
+.card{
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 12px; box-shadow: var(--shadow);
+}
+
+/* Plaque (museum label) */
+.plaque{
+  background: #ffffffcc; border: 1px solid var(--line);
+  border-radius: 12px; padding: 12px; color:#4a433b;
+}
+.plaque h3{ margin: .1rem 0 .3rem; font-size: 1rem; color: var(--accent); }
+
+/* Grid helpers */
+.grid{ display:grid; gap: 12px; }
+.grid.two{ grid-template-columns: 1fr 1fr; }
+.grid.three{ grid-template-columns: 1fr 1fr 1fr; }
+@media (max-width: 900px){ .grid.two, .grid.three{ grid-template-columns: 1fr; } }
+
+/* Buttons */
+.btn{
+  display:inline-block; padding: 8px 12px; border-radius: 10px;
+  border: 1px solid var(--line); background: var(--panel); color: var(--ink);
+}
+.btn.primary{ border-color: var(--accent); color: #fff; background: var(--accent); }
+.btn.gold{ border-color: var(--accent-2); color:#5a4b26; background: #fff8e7; }
+
+/* Images + figure */
+figure{ margin: .6rem 0; }
+figcaption{ font-size: .9rem; color:#6b6257; margin-top: .2rem; }
+
+/* Forms (for folios) */
+label{ display:block; font-size:.95rem; margin:.4rem 0 .2rem; color:#555; }
+input, textarea{
+  width:100%; padding: 8px 10px; border:1px solid var(--line);
+  border-radius: 8px; font: inherit; background:#fff;
+}
+
+/* Helper spacing */
+.mt-1{ margin-top: .5rem; } .mt-2{ margin-top: 1rem; } .mt-3{ margin-top: 1.5rem; }
+.mb-1{ margin-bottom: .5rem; } .mb-2{ margin-bottom: 1rem; } .mb-3{ margin-bottom: 1.5rem; }
