@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Stone Grimoire — Helix Totem (Angel ✕ Daimon/Folk)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Dual-strand allegory pillar: fuse Angel with Daimon/Folk currents. Museum-grade, ND-friendly, sound+color+geometry.">
+<link rel="stylesheet" href="../assets/css/palette.css">
+<link rel="stylesheet" href="../assets/css/light.css">
+
+<!-- Import map for component deps -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+    "tone": "https://esm.sh/tone@14.8.39"
+  }
+}
+</script>
+
+<!-- Components -->
+<script type="module" src="../assets/js/components/sg-pillar.js"></script>
+<script type="module" src="../assets/js/components/sg-layer-toggle.js"></script>
+
+<style>
+  :root{ --panel: rgba(248,245,239,.95); --ink:#2b2520; --line:#d9cfbf; }
+  body{margin:0;background:#0a0a0d;color:#f8f5ef;font:18px/1.6 Georgia,"Iowan Old Style",serif}
+  header{position:sticky;top:0;z-index:3;background:rgba(10,10,13,.6);backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(212,175,55,.25);padding:.6rem 1rem}
+  h1{margin:0;font-size:1.05rem;color:#d4af37}
+  .controls{
+    position:fixed;left:12px;top:72px;z-index:4;max-width:400px;
+    background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:12px
+  }
+  label{display:block;margin:.35rem 0 .15rem;color:#2f5a9e;font-weight:bold}
+  select,button,input[type="checkbox"]{font:inherit}
+  .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .note{font-size:.9rem;color:#5a534b}
+  .back{color:#ddd;text-decoration:none}
+  /* Dual-strand overlay canvas */
+  #ribbons{position:fixed;inset:0;pointer-events:none;z-index:2; mix-blend-mode:screen;}
+  /* Accessibility note bar */
+  .a11y{position:fixed;right:12px;top:72px;z-index:4;max-width:320px;background:var(--panel);color:var(--ink);
+    border:1px solid var(--line);border-radius:12px;padding:10px;font-size:.92rem}
+</style>
+</head>
+<body>
+  <header>
+    <a class="back" href="../cathedral.html">⟵ Back to Cathedral</a>
+    <h1>Helix Totem — Angel ✕ Daimon/Folk Fusion</h1>
+  </header>
+
+  <!-- Accessibility guidance -->
+  <aside class="a11y" aria-label="Accessibility">
+    <strong>Sensory Controls:</strong> Volume & Calm Mode are in the pillar HUD (bottom right). No strobe; gentle fades. Keyboard: Space (strike), ↑/↓ (rungs). A “Calm On” toggle softens light/reverb.
+  </aside>
+
+  <!-- Fusion controls -->
+  <section class="controls" aria-label="Totem Fusion Controls">
+    <label for="angel">Angel Strand</label>
+    <select id="angel" aria-label="Angel strand"></select>
+
+    <label for="other">Other Strand (Daimon or Folk)</label>
+    <select id="other" aria-label="Daimon or Folk strand"></select>
+
+    <div class="row" style="margin-top:.6rem">
+      <button id="fuse">Fuse</button>
+      <button id="strike">Strike</button>
+      <button id="auto">Auto</button>
+      <label><input type="checkbox" id="ribbonToggle" checked> Show dual ribbons</label>
+    </div>
+    <p class="note">
+      Angel sets planetary palette & rung; Daimon/Folk sets temperament & pattern. “Fuse” reweaves the pillar and dual ribbons. “Strike” plays the harmonic chord.
+    </p>
+    <p class="note">
+      <em>Lineage:</em> Hermetic Qabalah (Tree), British/Scots folk‑lore (cunning craft, Green Man, selkie), angelology (planetary archangels).
+    </p>
+  </section>
+
+  <!-- Dual-strand visual overlay (independent of 3D pillar) -->
+  <canvas id="ribbons" aria-hidden="true"></canvas>
+
+  <!-- Pillar instrument -->
+  <sg-pillar
+    id="pillar"
+    map-src="../data/ladder-map.json"
+    palettes="Sun,Moon,Mercury,Venus,Mars,Jupiter,Saturn,Magdalene,Green Man,Hilma Spiral"
+    base="A3"
+    temperament="pyth"
+    calm="false">
+  </sg-pillar>
+
+  <!-- Optional layer presets -->
+  <sg-layer-toggle for="pillar"></sg-layer-toggle>
+
+  <script type="module">
+    // ====== Data load ======
+    const pillar = document.getElementById('pillar');
+    const angelSel = document.getElementById('angel');
+    const otherSel = document.getElementById('other');
+    const fuseBtn  = document.getElementById('fuse');
+    const strikeBtn= document.getElementById('strike');
+    const autoBtn  = document.getElementById('auto');
+    const ribbonToggle = document.getElementById('ribbonToggle');
+
+    const ribbons = document.getElementById('ribbons');
+    const ctx = ribbons.getContext('2d');
+
+    let ANGELS=[], DAIMONS=[], FOLK=[];
+    let A_CUR = null, O_CUR = null; // current choices
+
+    async function loadArchetypes(){
+      const res = await fetch('../assets/data/archetypes.json');
+      const data = await res.json();
+      ANGELS = data.angels||[];
+      DAIMONS = (data.daimons||[]).map(x=>({...x, group:'daimon'}));
+      FOLK    = (data.folk||[]).map(x=>({...x, group:'folk'}));
+
+      angelSel.innerHTML = ANGELS.map(a=>`<option value="${a.id}">${a.name} — ${a.planet}</option>`).join('');
+      otherSel.innerHTML = [
+        `<optgroup label="Daimon">`,
+        ...DAIMONS.map(x=>`<option value="D:${x.id}">${x.name} — ${x.planet}</option>`),
+        `</optgroup>`,
+        `<optgroup label="Folk">`,
+        ...FOLK.map(x=>`<option value="F:${x.id}">${x.name} — ${x.origin}</option>`),
+        `</optgroup>`
+      ].join('');
+      // defaults
+      A_CUR = ANGELS[0]; O_CUR = DAIMONS[0] || FOLK[0];
+    }
+
+    function findAngel(id){ return ANGELS.find(a=>a.id===id) || null; }
+    function findDaimon(id){ return DAIMONS.find(d=>d.id===id) || null; }
+    function findFolk(id){ return FOLK.find(f=>f.id===id) || null; }
+
+    // ====== Pillar HUD bridge ======
+    function hud(){ return pillar.shadowRoot; }
+    function setRange(id,v){ const el = hud()?.getElementById(id); if(!el) return; el.value=v; el.dispatchEvent(new Event('input',{bubbles:true})); }
+    function setSel(id,v){ const el = hud()?.getElementById(id); if(!el) return;
+      [...el.options].forEach(o=>o.selected = (o.textContent===v || o.value===v));
+      el.dispatchEvent(new Event('change',{bubbles:true}));
+    }
+    function click(id){ const el=hud()?.getElementById(id); el&&el.click(); }
+
+    const planetPalette = { Sun:'Sun', Moon:'Moon', Mercury:'Mercury', Venus:'Venus', Mars:'Mars', Jupiter:'Jupiter', Saturn:'Saturn', 'Earth/Saturn':'Saturn', Crown:'Sun' };
+
+    function fuse(){
+      // read selection
+      const aId = angelSel.value;
+      const oVal= otherSel.value;
+      const A = findAngel(aId);
+      let O=null, kind=null;
+      if(!A) return;
+      if(oVal?.startsWith('D:')) { kind='daimon'; O = findDaimon(oVal.slice(2)); }
+      if(oVal?.startsWith('F:')) { kind='folk';   O = findFolk(oVal.slice(2)); }
+      if(!O) return;
+      A_CUR = A; O_CUR = O;
+
+      // Angel sets rung + planetary palette
+      if(A.rung) setRange('rung', A.rung);
+      if(A.planet) setSel('palette', planetPalette[A.planet] || 'Sun');
+
+      // Other sets temperament + pattern
+      if(kind==='daimon'){
+        setSel('temper', (O.planet==='Saturn'||O.planet==='Mars')?'just':'pyth');
+        setSel('pattern', (O.planet==='Mars'||O.planet==='Mercury')?'star':'lattice');
+      } else if(kind==='folk'){
+        setSel('temper', 'pyth');
+        if(O.pattern) setSel('pattern', O.pattern);
+      }
+
+      // Refresh visuals (palette/pattern handlers run on change)
+      // Strike so the user hears/feels the weave
+      click('strike');
+
+      // Update dual ribbons overlay
+      drawRibbons();
+    }
+
+    function strike(){ click('strike'); }
+    function toggleAuto(){
+      click('auto');
+      // Sync external button label to inner
+      const label = hud()?.getElementById('auto')?.textContent || 'Auto';
+      autoBtn.textContent = label;
+    }
+
+    // ====== Dual Ribbons Overlay (angel vs other) ======
+    function resize(){
+      ribbons.width = innerWidth; ribbons.height = innerHeight;
+      drawRibbons();
+    }
+    window.addEventListener('resize', resize);
+
+    function hexToRGBA(hex, alpha){
+      const s = hex.replace('#',''); const n = parseInt(s,16);
+      const r = (n>>16)&255, g = (n>>8)&255, b = n&255;
+      return `rgba(${r},${g},${b},${alpha})`;
+    }
+
+    function drawRibbons(){
+      const W = ribbons.width, H = ribbons.height;
+      ctx.clearRect(0,0,W,H);
+      if(!ribbonToggle.checked || !A_CUR || !O_CUR) return;
+
+      // Two intertwined sinusoids with gentle glow — dreamlike, not flashy
+      const cx = W/2, top = H*0.12, bottom = H*0.88, height = bottom-top;
+      const turns = 3.5; // number of waves
+      const amp = Math.min(W,H)*0.08;
+      const steps = 720;
+
+      // Colors (angel warm gold, other literal color)
+      const angelC = hexToRGBA(A_CUR.color || '#f6c453', 0.22);
+      const otherC = hexToRGBA(O_CUR.color || '#7a7fb2', 0.22);
+
+      // Soft gradient background hint
+      const grad = ctx.createLinearGradient(0, top, 0, bottom);
+      grad.addColorStop(0, 'rgba(255,255,240,0.04)');
+      grad.addColorStop(1, 'rgba(0,0,0,0.0)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, top, W, height);
+
+      // Draw one ribbon
+      function ribbon(color, phase=0){
+        ctx.lineWidth = 8;
+        ctx.strokeStyle = color;
+        ctx.beginPath();
+        for(let i=0;i<=steps;i++){
+          const t =
