@@ -1,0 +1,74 @@
+/* Stone Grimoire — Palette (defaults + theme variants)
+   These are safe defaults; your style-engine can override any var. */
+
+:root{
+  /* Core ink/paper */
+  --bg: #f8f5ef;          /* page background */
+  --wash: #fff8e7;        /* parchment wash */
+  --panel: #ffffff;       /* card/panel surface */
+  --ink: #2b2520;         /* body text */
+  --line: #d9cfbf;        /* hairline borders */
+
+  /* Accent metals/pigments */
+  --accent: #2f5a9e;      /* lapis */
+  --accent-2: #d4af37;    /* gold */
+
+  /* Utility */
+  --shadow: 0 6px 20px rgba(0,0,0,.08);
+  --radius: 14px;
+
+  /* Type scale */
+  --fs-0: 14px;
+  --fs-1: 16px;
+  --fs-2: 18px;
+  --fs-3: 22px;
+  --fs-4: 28px;
+}
+
+/* High‑contrast toggle (optional) */
+:root[data-contrast="high"]{
+  --ink:#111; --line:#222; --wash:#fff; --panel:#fff;
+  --accent:#153b7a; --accent-2:#b89020;
+}
+
+/* Planetary/Sephirotic tints (you can pick any you like) */
+:root[data-theme="kether"]{
+  --wash:#fbfaf6; --panel:#ffffff; --accent:#7a6aa1; --accent-2:#d8c9ff;
+}
+:root[data-theme="tiphereth"]{
+  --wash:#fff7ec; --panel:#fffdf8; --accent:#c28b1a; --accent-2:#f2d58a;
+}
+:root[data-theme="yesod"]{
+  --wash:#f5f2f9; --panel:#ffffff; --accent:#7a5ea1; --accent-2:#b9a7da;
+}
+:root[data-theme="malkuth"]{
+  --wash:#f5f4ee; --panel:#ffffff; --accent:#3b6b3e; --accent-2:#a5b86a;
+}
+:root[data-theme="chesed"]{
+  --wash:#eef4fb; --panel:#ffffff; --accent:#2c6aa8; --accent-2:#9ec4ea;
+}
+:root[data-theme="geburah"]{
+  --wash:#fdf2f0; --panel:#ffffff; --accent:#9a2f2f; --accent-2:#e6a1a1;
+}
+
+/* Ornaments (stylepacks can toggle these classes on <body>) */
+.motif-hilma{
+  background-image:
+    radial-gradient(80% 60% at 50% 15%, rgba(255,248,231,0.8), transparent 70%);
+}
+.ornament-fine-lines{
+  background-image:
+    linear-gradient(transparent 95%, rgba(0,0,0,.035) 96%),
+    var(--bg);
+  background-size: 100% 22px, auto;
+}
+.ornament-soft-aureole:before{
+  content:""; position:fixed; inset:0; pointer-events:none;
+  background:
+    radial-gradient(40% 30% at 50% 20%, rgba(212,175,55,.08), transparent 60%),
+    radial-gradient(30% 20% at 50% 70%, rgba(47,90,158,.06), transparent 70%);
+}
+.ornament-thin-gold *{
+  outline-color: rgba(212,175,55,.25);
+  outline-offset: -1px;
+}
