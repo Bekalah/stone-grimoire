@@ -1,0 +1,29 @@
+{
+  "silent-vigil": {
+    "title": "Silent Vigil",
+    "mode": "Entry",
+    "steps": [
+      "Sit before a pillar or chapel plaque.",
+      "Attend to tone, glyph, light without forcing.",
+      "Open presence — the ‘door’ into the Temple Realm."
+    ]
+  },
+  "rose-ledger": {
+    "title": "Rose Ledger",
+    "mode": "Witness",
+    "steps": [
+      "Open ledger (digital/physical).",
+      "Record glyph + tone + impression.",
+      "Preserve the vigil as scripture."
+    ]
+  },
+  "furnace-breath": {
+    "title": "Furnace Breath",
+    "mode": "Activation",
+    "steps": [
+      "Align breath to one of 7 alchemical phases.",
+      "Exhale fire for Calcination, stillness for Coagulation.",
+      "Mirror inner engine with overlays."
+    ]
+  }
+}
