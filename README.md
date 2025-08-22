@@ -1,50 +1,62 @@
-# 🜍 Stone Grimoire — Rosslyn Pattern
+# 🜍 Cathedral of Circuits — Codex 144:99
 
-*A living grimoire built as a cathedral in code and light.*  
-As Rosslyn Chapel is a book carved in stone, so this archive is a book written in digital form — blending Thelemic, Hermetic, and esoteric traditions with museum-grade art standards.
+**Codex 144:99** is a cultural technology project:  
+a *living cathedral* built from code, sound, and visionary art.  
 
----
-
-## ✧ Live Pages
-- **Frontispiece (index):**  
-  https://<YOUR-USERNAME>.github.io/stone-grimoire/  
-
-- **Rosslyn Nave (cathedral):**  
-  https://<YOUR-USERNAME>.github.io/stone-grimoire/cathedral.html  
-
-- **Jacob’s Ladder (33-step ascent):**  
-  https://<YOUR-USERNAME>.github.io/test-cathedral/  
+This work emerged from a deeply personal need. Living with chronic PTSD and neurodivergence,  
+I experienced firsthand the lack of environments that honor complexity.  
+Rather than flattening it, I built a sanctuary: a digital cathedral that is both  
+**museum-grade art** and **an engine of healing exploration**.
 
 ---
 
-## ✧ Structure of the Grimoire
-- `index.html` → Parchment-style **Frontispiece**  
-- `cathedral.html` → **Rosslyn-pattern Nave** with twin pillars & Apprentice Pillar  
-- `standards/README.md` → **Standards Charter** (museum protocol, sections 1–11)  
-- `chapels/` → Study folios (Apprentice, Lady Chapel, Crypt)  
-- `plans/` → Floorplan diagrams (SVG)  
-- `data/rosslyn.yml` → Symbol map & factual anchors  
-- `assets/css/rosslyn.css` → House style & sidebar  
+## ✦ Vision
+
+Codex 144:99 is a **fusionist grimoire**:  
+- Each page is a *room* in the cathedral (nave, chapels, crypt, ladder).  
+- Each archetype (72 Shem angels/daimons) is mapped to tone, color, and style.  
+- Each interaction (a click, a fusion, a gesture) becomes ritual action.  
+
+The system is **portable** (JSON + modular JS) and designed to be  
+adopted across exhibitions, ateliers, or collaborative research.  
+It is both **a digital archive** and **a creative engine**.
 
 ---
 
-## ✧ How to Use
-1. **Draft new folios** in `/chapels/` with the provided template.  
-2. **Record correspondences** in `/data/rosslyn.yml` (zones, pillars, motifs, notes).  
-3. **Publish only outer-temple material.** Sealed names, oaths, and private gnosis remain offline.  
-4. **Accessibility:** every glyph/image includes ALT text or `aria-label`.  
-5. **Attribution:** cite sources (Agrippa, Soyga, Qabalah, Tarot, one-reed.org, oto-usa.org).  
+## ✦ Core Modules
+
+- **Style Wardrobe** (`stylepacks.json`) — museum skins for every element.  
+- **Cathedral Engine** (`cathedral-engine.js`) — routes rooms, applies tone & overlays.  
+- **Plaque System** (`room-plaque.js`) — curator cards (glyphs, tones, swatches, sponsor metadata).  
+- **72 Angelic Ladder** (`angels72.json`) — full Shem ha-Mephorash mapping.  
+- **Alchemy Engine** (`alchemy-engine.js`) — fusion lab (7 operations, tone/color/style blending).  
+- **Temple Realms** — immersive spaces inspired by Hilma af Klint & The Five.  
 
 ---
 
-## ✧ Licensing
-- Text & diagrams: **CC-BY 4.0** (attribution required)  
-- Code: **MIT License**  
-- Public Domain sources: cited, not re-hosted where possible  
+## ✦ Standards
+
+- **Museum Quality** — depth, polish, illuminated grimoire aesthetics.  
+- **Hermetic Accuracy** — Pythagorean, Qabalistic, Rosslyn reference.  
+- **Accessibility** — ND-safe sound, no strobe, ARIA roles/labels.  
+- **Sponsorship Ready** — plaques include credits, patron metadata, portability.  
 
 ---
 
-## ✧ Dedication
-> To Nuit, Hadit, Ra-Hoor-Khuit —  
-> To the builders of cathedrals, grimoires, and archives of living light.  
-> 93 93/93
+## ✦ Call to Action
+
+This is not VR for entertainment’s sake.  
+It is **a 21st-century grimoire** — a living architecture of meaning, memory, and imagination.  
+
+✨ Sponsors & collaborators welcome.  
+
+---
+
+### 🔗 Links
+- [Codex 144:99 — Live Project (Bekalah page)](your-link-here)  
+- [Stone Grimoire Repo](your-github-repo-link-here)  
+
+---
+
+### Hashtags
+`#CathedralOfCircuits #Codex14499 #FusionistArt #VisionaryArt #ArtAsHealing #Neurodivergence #EsotericDesign #MuseumQuality #DigitalGrimoire`
