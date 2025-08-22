@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Stone Grimoire — Health Check</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../assets/css/engrave.css">
+<style>
+  body{margin:0;background:#f8f5ef;color:#1a1a1a;font:16px/1.5 Georgia,"Iowan Old Style",serif}
+  header{max-width:1100px;margin:12px auto;background:#fff8e7;border:2px solid var(--accent-2,#d4af37);
+         border-radius:12px;padding:10px 14px;text-align:center}
+  .wrap{max-width:1100px;margin:10px auto;padding:0 10px}
+  .card{background:#fff;border:1px solid #d9cfbf;border-radius:12px;padding:12px;margin:10px 0}
+  .ok{color:#19662a;font-weight:700} .bad{color:#8a1f1f;font-weight:700}
+  .warn{color:#8a6d1f;font-weight:700}
+  code{background:#f3efe6;padding:1px 4px;border-radius:4px}
+  ul{margin:.4rem 0 .2rem .9rem}
+  .small{color:#6b6257;font-size:.9rem}
+</style>
+<script type="module" src="../assets/js/components/style-engine.js"></script>
+</head>
+<body>
+<header>
+  <h1>Stone Grimoire — Health Check</h1>
+  <p class="small">Verifies JSON, pages, engines, and plaque wiring. (Tap anywhere to enable sound checks where applicable.)</p>
+</header>
+<div class="wrap">
+  <div id="results" class="card">Running checks…</div>
+</div>
+
+<script type="module">
+const rel = p => ('../' + p);
+const mustJSON = [
+  'assets/data/stylepacks.json',
+  'assets/data/angels72.json',
+  'assets/data/alchemy.json',
+  'assets/data/structure.json'
+];
+const mustPages = [
+  'index.html','cathedral.html',
+  'chapels/apprentice-pillar.html',
+  'chapels/lady-chapel.html',
+  'chapels/crypt.html',
+  'chapels/musical-cubes.html',
+  'chapels/cubes-visual-lab.html',
+  'chapels/angel-lab.html',
+  'chapels/helix-totem.html',
+  'chapels/shem-ladder.html',
+  'images/pd/index.html',
+  'patrons/sinclair-family.html'
+];
+const mustScripts = [
+  'assets/js/components/style-engine.js',
+  'assets/js/cathedral-engine.js',
+  'assets/js/components/room-plaque.js'
+];
+
+async function headOk(path){
+  try{
+    const r = await fetch(rel(path), { method:'HEAD' });
+    return r.ok;
+  }catch{return false}
+}
+async function loadJSON(path){
+  const r = await fetch(rel(path));
+  if(!r.ok) throw new Error(`${path} ${r.status}`);
+  return r.json();
+}
+function li(status,msg){
+  const cls = status==='ok'?'ok':status==='warn'?'warn':'bad';
+  return `<li class="${cls}">${msg}</li>`;
+}
+function section(title,items){ return `<div class="card"><h3>${title}</h3><ul>${items.join('')}</ul></div>`; }
+
+(async function run(){
+  const out = [];
+
+  // JSON presence & shape
+  const jsonItems = [];
+  for (const path of mustJSON){
+    const ok = await headOk(path);
+    jsonItems.push(li(ok?'ok':'bad', `${ok?'Found':'Missing'}: <code>${path}</code>`));
+  }
+  // schema sniff
+  let packs, angels, alch, struct;
+  try{ packs = await loadJSON('assets/data/stylepacks.json');
+       jsonItems.push(li('ok','stylepacks.json parsed'));
+       if (!Array.isArray(packs) || !packs[0]?.id) jsonItems.push(li('warn','stylepacks.json lacks array of packs with ids')); }
+  catch(e){ jsonItems.push(li('bad',`stylepacks.json failed to parse`)); }
+
+  try{ angels = await loadJSON('assets/data/angels72.json');
+       jsonItems.push(li('ok','angels72.json parsed'));
+       if (!Array.isArray(angels) || angels.length!==72) jsonItems.push(li('warn','angels72.json is not 72 entries')); }
+  catch(e){ jsonItems.push(li('bad','angels72.json failed to parse')); }
+
+  try{ alch = await loadJSON('assets/data/alchemy.json');
+       jsonItems.push(li('ok','alchemy.json parsed'));
+       if (!alch.elements?.length || !alch.operations?.length) jsonItems.push(li('warn','alchemy.json missing elements/operations arrays')); }
+  catch(e){ jsonItems.push(li('bad','alchemy.json failed to parse')); }
+
+  try{ struct = await loadJSON('assets/data/structure.json');
+       jsonItems.push(li('ok','structure.json parsed'));
+       if (!Array.isArray(struct.rooms)) jsonItems.push(li('warn','structure.json rooms[] missing'));
+  }catch(e){ jsonItems.push(li('bad','structure.json failed to parse')); }
+
+  out.push(section('Data files', jsonItems));
+
+  // Pages
+  const pageItems = [];
+  for (const p of mustPages){
+    const ok = await headOk(p);
+    pageItems.push(li(ok?'ok':'bad', `${ok?'Found':'Missing'}: <code>${p}</code>`));
+  }
+  out.push(section('Pages', pageItems));
+
+  // Scripts
+  const scriptItems = [];
+  for (const s of mustScripts){
+    const ok = await headOk(s);
+    scriptItems.push(li(ok?'ok':'bad', `${ok?'Found':'Missing'}: <code>${s}</code>`));
+  }
+  // Effects (optional)
+  for (const s of ['assets/js/effects/elements.js','assets/js/alchemy-engine.js']){
+    const ok = await headOk(s);
+    scriptItems.push(li(ok?'ok':'warn', `${ok?'Found (ok)':'Not found (optional)'}: <code>${s}</code>`));
+  }
+  out.push(section('Scripts', scriptItems));
+
+  // Structure ↔ pages consistency
+  const linkItems = [];
+  if
