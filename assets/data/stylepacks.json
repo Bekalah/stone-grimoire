@@ -2,65 +2,137 @@
   {
     "id": "templar_cross",
     "name": "Templar Cross",
-    "palette": ["#6b0f1a", "#d9b382", "#2e2a25", "#e6dfc6"],
-    "symbols": ["✠", "⚔", "✧"],
-    "textures": ["stone-carved", "parchment", "iron-etched"],
-    "theme": "Knights Templar, Crusader cross, stone banners"
+    "palette": ["#6b0f1a", "#e0c9a6", "#2e2a25", "#efe6cf"],
+    "symbols": ["✠","⚔","✧"],
+    "textures": [
+      "assets/textures/templar/stone_carved.jpg",
+      "assets/textures/templar/parchment_fine.jpg",
+      "assets/textures/templar/iron_etched.jpg"
+    ],
+    "glyphFolder": "templar",
+    "motifClass": "motif-shield",
+    "cymatic": "cross",
+    "temperament": "pyth",
+    "notes": "Red/white/black triad; crusader seals; sober carved stone geometry.",
+    "refs": [
+      { "title": "Templar Seals", "type": "PD engravings", "source": "Wikimedia Commons", "why": "Heraldic crosses + armorial context" },
+      { "title": "Viollet-le-Duc Gothic Plates", "type": "19thc PD", "source": "Gallica", "why": "Gothic tracery reference" }
+    ]
   },
   {
     "id": "shekhinah_marian",
-    "name": "Shekhinah Marian",
-    "palette": ["#3056a2", "#ffffff", "#f5d1d1", "#9bb8f0"],
-    "symbols": ["✶", "☽", "✿"],
-    "textures": ["silk", "roses", "marble-light"],
-    "theme": "Mary Magdalene · Lady Chapel · Rose Mysteries"
+    "name": "Shekhinah / Marian Veil",
+    "palette": ["#2e4f9a", "#f8f5f2", "#e9c5c2", "#9db5ea"],
+    "symbols": ["✶","☽","✿"],
+    "textures": [
+      "assets/textures/marian/blue_velvet.jpg",
+      "assets/textures/marian/veil_embroidery.png",
+      "assets/textures/marian/rose_window.jpg"
+    ],
+    "glyphFolder": "marian",
+    "motifClass": "motif-veil",
+    "cymatic": "rose21",
+    "temperament": "lyd",
+    "notes": "Blue/rose/white: Marian apparitions, Shekhinah cloud, 21-petal rose window.",
+    "refs": [
+      { "title": "Rosslyn Lady Chapel Photos", "type": "Historic PD photos", "source": "British Library", "why": "Accurate tracery of Marian rose windows" }
+    ]
   },
   {
-    "id": "hilma_spiral",
-    "name": "Hilma Spiral",
-    "palette": ["#e76f51", "#f4a261", "#e9c46a", "#2a9d8f", "#264653"],
-    "symbols": ["◯", "⟲", "✸"],
-    "textures": ["oil-canvas", "gold-leaf", "swirling-spiral"],
-    "theme": "Hilma af Klint, visionary spirals, abstract gnosis"
+    "id": "alchemy_quadrivium",
+    "name": "Alchemical Quadrivium",
+    "palette": ["#c6a664","#6f4e37","#0f1c2e","#f4ecd8"],
+    "symbols": ["🜁","🜂","🜃","🜄"],
+    "textures": [
+      "assets/textures/alchemy/vellum_diagram.jpg",
+      "assets/textures/alchemy/flask_etching.png",
+      "assets/textures/alchemy/metallic_goldleaf.jpg"
+    ],
+    "glyphFolder": "alchemy",
+    "motifClass": "motif-circle",
+    "cymatic": "squaring_circle",
+    "temperament": "dor",
+    "notes": "Earth/Air/Fire/Water emblems; quadrivial arts; Agrippa’s glyph sets.",
+    "refs": [
+      { "title": "Book of Soyga", "type": "16thc MS", "source": "British Library", "why": "Geometric cosmograms" },
+      { "title": "Agrippa De Occulta Philosophia", "type": "1533", "source": "IA", "why": "Alchemical glyph lexicon" }
+    ]
   },
   {
-    "id": "meso_quetzal",
-    "name": "Mesoamerican Quetzal",
-    "palette": ["#2b9348", "#55a630", "#80b918", "#aacc00", "#bfd200"],
-    "symbols": ["🪶", "☀", "🐍"],
-    "textures": ["feathered", "jade", "volcanic-stone"],
-    "theme": "Quetzalcoatl · feathered serpent · sun-temples"
+    "id": "druidic_greenman",
+    "name": "Druidic Green Man",
+    "palette": ["#305a30", "#97b97d", "#c2d3b5", "#4a2c2a"],
+    "symbols": ["🌿","🍃","🜨"],
+    "textures": [
+      "assets/textures/druid/oak_carving.jpg",
+      "assets/textures/druid/mossy_stone.jpg",
+      "assets/textures/druid/celtic_knotwork.png"
+    ],
+    "glyphFolder": "druid",
+    "motifClass": "motif-vine",
+    "cymatic": "spiral",
+    "temperament": "mix",
+    "notes": "Celtic spirals; folk magicians of Edinburgh; seasonal cycles carved in stone.",
+    "refs": [
+      { "title": "Green Man Foliate Heads", "type": "PD carvings", "source": "Corpus of Anglo-Saxon Stone Sculpture", "why": "Authentic foliate motifs" }
+    ]
   },
   {
-    "id": "druidic_stone",
-    "name": "Druidic Stone",
-    "palette": ["#3a5a40", "#588157", "#a3b18a", "#dad7cd"],
-    "symbols": ["ᚠ", "⚚", "🌿"],
-    "textures": ["lichen-stone", "oak-wood", "mist"],
-    "theme": "Celtic grove · ogham runes · misty standing stones"
+    "id": "enochian_astral",
+    "name": "Enochian Astral Script",
+    "palette": ["#111111", "#444488", "#e6e6e6", "#aaccff"],
+    "symbols": ["𐑄","𐑅","𐑃"],
+    "textures": [
+      "assets/textures/enochian/starfield.jpg",
+      "assets/textures/enochian/black_glass.png",
+      "assets/textures/enochian/parchment_dark.jpg"
+    ],
+    "glyphFolder": "enochian",
+    "motifClass": "motif-tablet",
+    "cymatic": "angelic_square",
+    "temperament": "locrian",
+    "notes": "Tables of practice, Dee’s scrying stone, Crowley’s Enochian calls.",
+    "refs": [
+      { "title": "John Dee’s Angelic Tables", "type": "PD facsimile", "source": "Wellcome Collection", "why": "Canonical Enochian glyphs" }
+    ]
   },
   {
-    "id": "hathor_veil",
-    "name": "Hathoric Veil",
-    "palette": ["#c19a6b", "#ffcf99", "#b07d62", "#6a4e42"],
-    "symbols": ["𓆃", "☉", "𓁐"],
-    "textures": ["papyrus", "bronze-polish", "lotus-veils"],
-    "theme": "Egyptian Hathor · music · ecstatic mystery"
+    "id": "mesoamerican_plumed",
+    "name": "Mesoamerican Plumed Serpent",
+    "palette": ["#7c0a02","#0f6b6b","#f2c14e","#f6f1e1"],
+    "symbols": ["🜍","🐍","☀"],
+    "textures": [
+      "assets/textures/meso/feather_serpent.jpg",
+      "assets/textures/meso/mayan_codex.png",
+      "assets/textures/meso/volcanic_stone.jpg"
+    ],
+    "glyphFolder": "meso",
+    "motifClass": "motif-feather",
+    "cymatic": "serpent_wave",
+    "temperament": "phryg",
+    "notes": "Quetzalcoatl current; feathered plumes; serpent harmonics.",
+    "refs": [
+      { "title": "Mayan Dresden Codex", "type": "Codex facsimile", "source": "IA", "why": "Glyphic authenticity" }
+    ]
   },
   {
-    "id": "asian_silk",
-    "name": "Asian Silk Vision",
-    "palette": ["#a83232", "#e6b422", "#2e86ab", "#d4a5a5"],
-    "symbols": ["☯", "卐", "✥"],
-    "textures": ["silk-brocade", "ink-brush", "jade-smooth"],
-    "theme": "Daoist / Buddhist mandalas · celestial silk"
-  },
-  {
-    "id": "folk_lorian",
-    "name": "English Folk-Lorian",
-    "palette": ["#6a994e", "#386641", "#a7c957", "#f2e8cf"],
-    "symbols": ["🦉", "🪄", "🌕"],
-    "textures": ["wool", "carved-oak", "folk-pattern"],
-    "theme": "Edinburgh cunning folk · Green Man · hedgecraft"
+    "id": "asian_hathor",
+    "name": "Asian Hathor Fusion",
+    "palette": ["#993399","#ffcc33","#336699","#f2f2f2"],
+    "symbols": ["☯","🜇","𓂀"],
+    "textures": [
+      "assets/textures/asian/silk_brocade.jpg",
+      "assets/textures/asian/lotus_paint.png",
+      "assets/textures/asian/temple_lacquer.jpg"
+    ],
+    "glyphFolder": "asian",
+    "motifClass": "motif-lotus",
+    "cymatic": "lotus_bloom",
+    "temperament": "ionian",
+    "notes": "Lotus iconography + Hathoric sistrum resonance; East-West visionary bridge.",
+    "refs": [
+      { "title": "Ajanta Caves Paintings", "type": "PD fresco facsimiles", "source": "IA", "why": "Color + sacred lotus" },
+      { "title": "Hathor Temple Dendera", "type": "PD plates", "source": "NYPL", "why": "Hathoric music links" }
+    ]
   }
 ]
