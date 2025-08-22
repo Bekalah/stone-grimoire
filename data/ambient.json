@@ -1,0 +1,25 @@
+{
+  "defaults": {
+    "volumeDb": -24,
+    "fundamentalHz": 96,
+    "useJustIntonation": true,
+    "overtoneGains": [1.0, 0.42, 0.22],
+    "lpCutoffHz": 9000,
+    "hiSoftDb": -6,
+    "convolutionIR": "./assets/sounds/ir_cathedral.wav",
+    "solfeggioCycle": [396, 417, 528, 639, 741, 852],
+    "cycleSeconds": 180,
+    "binaural": {
+      "enabled": false,
+      "beatHz": 6
+    },
+    "startPaused": true,
+    "visualizeOnlyDefault": false
+  },
+  "rooms": {
+    "frontispiece": { "fundamentalHz": 96,  "solfeggioCycle": [396, 528, 639] },
+    "cathedral":    { "fundamentalHz": 128, "solfeggioCycle": [396, 417, 528, 639, 741] },
+    "sanctum-hilma":{ "fundamentalHz": 144, "solfeggioCycle": [528, 639, 852], "binaural": { "enabled": false, "beatHz": 4 } },
+    "apprentice-pillar": { "fundamentalHz": 128, "solfeggioCycle": [417, 528, 741] }
+  }
+}
