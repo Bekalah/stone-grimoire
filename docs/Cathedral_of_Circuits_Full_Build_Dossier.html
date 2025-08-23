@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cathedral of Circuits -- Full Build Dossier (Codex 144:99)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* ---- Print-friendly museum layout ---- */
+:root{
+  --ink:#0f1216; --paper:#fbfaf7; --rule:#d9cfbf;
+  --accent:#2f5a9e; --gold:#d4af37; --muted:#6b6257;
+}
+html,body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 Georgia,"Iowan Old Style",serif}
+main{max-width:980px;margin:0 auto;padding:28px}
+h1,h2,h3{font-weight:600;line-height:1.25}
+h1{font-size:1.9rem;margin:1.2rem 0 .6rem;color:var(--accent)}
+h2{font-size:1.35rem;margin:1.2rem 0 .4rem;color:#233}
+h3{font-size:1.05rem;margin:1rem 0 .2rem;color:#333}
+hr{border:0;border-top:1px solid var(--rule);margin:18px 0}
+blockquote{margin:12px 0;padding:8px 14px;border-left:3px solid var(--gold);color:#3f3a34;background:#fff8e7}
+code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
+pre{background:#fff;border:1px solid var(--rule);border-radius:8px;padding:12px;overflow:auto}
+small, .note{color:var(--muted)}
+.kicker{color:var(--gold);letter-spacing:.06em}
+.box{border:1px solid var(--rule);border-radius:10px;padding:14px;background:#fff}
+.toc a{color:var(--accent);text-decoration:none}
+.toc a:hover{text-decoration:underline}
+.header{background:linear-gradient(180deg,#fff8e7,#fbfaf7);border-bottom:2px solid var(--gold)}
+.header .wrap{max-width:980px;margin:0 auto;padding:24px}
+.title{font-size:2rem;margin:.2rem 0}
+.badge{display:inline-block;border:1px solid var(--rule);border-radius:999px;padding:4px 10px;margin:6px 6px 0 0;background:#fff}
+footer{max-width:980px;margin:18px auto 48px;padding:12px;color:#534d45;border-top:1px solid var(--rule);text-align:center}
+.pagebreak{break-after:page;page-break-after:always}
+@media print{
+  a[href]:after{content:" (" attr(href) ")";font-size:.85em}
+  .no-print{display:none}
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="wrap">
+    <div class="kicker">Cathedral of Circuits · Codex 144:99</div>
+    <div class="title">Full Build Dossier (Museum‑Grade / ND‑Safe)</div>
+    <div class="note">Author: bekalah · License: CC‑BY 4.0 (text/code), PD sources where noted · Date: 2025‑08‑23</div>
+    <div>
+      <span class="badge">Living Grimoire</span>
+      <span class="badge">Temple Hygiene</span>
+      <span class="badge">Provenance</span>
+      <span class="badge">JSON‑Driven</span>
+      <span class="badge">Sponsor‑Ready</span>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="summary" class="box">
+  <h1>Executive Summary</h1>
+  <p><strong>Cathedral of Circuits / Codex 144:99</strong> is a living cathedral built from code, sound, and visionary art -- a 21st‑century grimoire. It follows a five‑point museum rubric (cosmology, rite, diagram, liturgy, artifact quality) and adds ND‑safe design, provenance, and reusability. This dossier contains <em>everything</em> you need: standards, file maps, code, data, plaques, ritual controls, accessibility, business notes, and esoteric guidance (Crowley/Fortune/Regardie aligned).</p>
+</section>
+
+<section id="toc">
+  <h2>Contents</h2>
+  <ol class="toc">
+    <li><a href="#standards">Standards & Rubrics</a></li>
+    <li><a href="#repo-map">Repository Map</a></li>
+    <li><a href="#stylepacks">Data: stylepacks.json (provenance)</a></li>
+    <li><a href="#structure">Data: structure.json + schema</a></li>
+    <li><a href="#engines">Engines (JS): ambient, style, cathedral, plaque, ritual</a></li>
+    <li><a href="#pages">Pages: index.html, cathedral.html</a></li>
+    <li><a href="#plaques">Plaques & Egregores (JSON)</a></li>
+    <li><a href="#provenance">Provenance & Sponsor Brief</a></li>
+    <li><a href="#healthcheck">Healthcheck Tool</a></li>
+    <li><a href="#guidance">Esoteric Guidance (Crowley / Fortune / Regardie)</a></li>
+    <li><a href="#nd">ND‑Safety & Accessibility</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#howto">How to Deploy & Export a PDF (iPad)</a></li>
+  </ol>
+</section>
+
+<hr class="pagebreak">
+
+<section id="standards">
+  <h1>1) Standards & Rubrics</h1>
+
+  <h2>Museum‑Grade Grimoire Rubric (x5)</h2>
+  <ol>
+    <li><strong>Cosmology</strong> -- world‑map & correspondences (Qabalah, planetary hours, Shem ladder).</li>
+    <li><strong>Rite</strong> -- repeatable actions (Banish / Center / Depart, gentle breath, fusion lab steps).</li>
+    <li><strong>Diagram</strong> -- glyphs, charts, mandalas (spirals, rose windows, ladder grids).</li>
+    <li><strong>Liturgy</strong> -- poetic voice that carries authority (oracle‑curator tone; clear pedagogy).</li>
+    <li><strong>Artifact Quality</strong> -- polish, provenance, accessible UI.</li>
+  </ol>
+
+  <h2>Fusionist Art Manifesto (4 voices)</h2>
+  <ul>
+    <li><strong>Visionary Geometry</strong> (Hilma/Kunz): spirals, concentric, radiating grids; transparent layers.</li>
+    <li><strong>Engraved Alchemy</strong> (Fludd/Agrippa): linework, sigils, marginalia with hidden numbers.</li>
+    <li><strong>Visionary Realism</strong> (Fuchs/Venosa): depth, glaze, living texture (no flat icons).</li>
+    <li><strong>Illuminated Manuscript</strong> (Hildegard/Rosslyn): gilded initials, vines, devotional borders.</li>
+  </ul>
+
+  <blockquote><em>"Magick is the Science and Art of causing Change to occur in conformity with Will."</em>  
+  We measure each work by Intention + Technique + Lineage, preserved with Evidence & Reflection.</blockquote>
+
+  <h3>Ritual Hygiene (Liber O rhythm)</h3>
+  <ul>
+    <li><strong>Banish</strong> → neutral white; audio off.</li>
+    <li><strong>Center</strong> → 528Hz; Hilma Spiral style; soft cathedral IR.</li>
+    <li><strong>Depart</strong> → quiet fade; reset palette.</li>
+  </ul>
+</section>
+
+<hr class="pagebreak">
+
+<section id="repo-map">
+  <h1>2) Repository Map</h1>
+  <pre><code>/
+├─ index.html
+├─ cathedral.html
+├─ PROVENANCE.md
+├─ sponsors/BRIEF.md
+├─ updates/liber-codex99-brief.md
+├─ 03_codexes/liber-codex99.md
+├─ plaques/liber-codex99.json
+├─ tools/healthcheck.html
+└─ assets/
+   ├─ css/    (palette.css, light.css)
+   ├─ js/     (ambient-engine.js, style-engine.js, cathedral-engine.js, room-plaque.js, ritual.js)
+   ├─ audio/ir/ (cathedral_small.wav)
+   ├─ overlays/ (spiral-ribbons.png, neon-stained.png)
+   └─ data/   (stylepacks.json, structure.json, structure.schema.json, egregores.json)
+</code></pre>
+  <p class="note">If you have both <code>Folios/</code> and <code>folios/</code>, keep lowercase <strong>folios/</strong>. Update links accordingly.</p>
+</section>
+
+<hr class="pagebreak">
+
+<section id="stylepacks">
+  <h1>3) Data -- stylepacks.json (with provenance)</h1>
+  <pre><code>{
+  "_provenance": {
+    "license": "CC-BY 4.0",
+    "lineage": [
+      "Cathedral of Circuits / Codex 144:99",
+      "Rosslyn Chapel (public-domain references)",
+      "Hilma af Klint Temple Series (public domain)",
+      "Visionary painter lineages (Fuchs/Venosa/Klarwein -- stylistic influence only)"
+    ],
+    "version": "1.1.0",
+    "updated": "2025-08-23",
+    "curator": "bekalah",
+    "notes": "ND-safe palettes; no strobe; high contrast options supported."
+  },
+  "packs": [
+    {
+      "id": "neutral_white",
+      "title": "Neutral White (Banish)",
+      "palette": ["#ffffff","#f5f5f5","#dcdcdc","#888888"],
+      "motifs": ["calm","blank","reset"],
+      "textures": ["matte","soft-paper"],
+      "description": "Ritual reset state for Banish and Depart."
+    },
+    {
+      "id": "hilma_spiral",
+      "title": "Hilma Spiral",
+      "palette": ["#f8e6f0","#c49bc7","#8b5c9e","#3b1e58"],
+      "motifs": ["spiral","cone of light","concentric"],
+      "textures": ["velvet","soft-mist"],
+      "description": "Visionary spirals and ascension cones -- Temple Realm default."
+    },
+    {
+      "id": "solfeggio_ribbons",
+      "title": "Solfeggio Ribbons",
+      "palette": ["#ffd6d6","#ffe680","#b3ffcc","#80dfff","#d1b3ff"],
+      "motifs": ["ribbon","wave","flow"],
+      "textures": ["iridescent-silk","light-beam"],
+      "tones": [396,417,528,639,741,852,963],
+      "description": "Prismatic sound-light ribbons for ND‑gentle immersion."
+    },
+    {
+      "id": "rosslyn_gothic",
+      "title": "Rosslyn Gothic",
+      "palette": ["#1a1a1a","#444","#999","#d9d9d9"],
+      "motifs": ["pillar","rose-window","vine-carving"],
+      "textures": ["stone","aged-parchment"],
+      "description": "Gothic tracery and carved vines -- stone gravitas."
+    },
+    {
+      "id": "druidic_greenman",
+      "title": "Druidic Green Man",
+      "palette": ["#163a24","#2e6b45","#7aa36d","#dfe7d7"],
+      "motifs": ["oak-leaf","vine","mask"],
+      "textures": ["moss","stone-relief"],
+      "description": "Celtic foliate heads and forest tracery."
+    },
+    {
+      "id": "rosicrucian_black",
+      "title": "Rosicrucian Black",
+      "palette": ["#0e0d10","#2b2730","#5a4b5f","#d9cbd6"],
+      "motifs": ["rose-cross","vault-star","lamp"],
+      "textures": ["soot-vellum","burnished-silver"],
+      "description": "Subterranean vault rites--rose-cross emblems on midnight vellum."
+    },
+    {
+      "id": "angelic_chorus",
+      "title": "Angelic Chorus",
+      "palette": ["#e7f0ff","#bcd2ff","#8faef2","#546aa9"],
+      "motifs": ["sphere","ladder","feather"],
+      "textures": ["opalescent-glaze","haze"],
+      "description": "Spherical harmonics; Jacob’s Ladder atmosphere."
+    },
+    {
+      "id": "enochian_astral",
+      "title": "Enochian Astral",
+      "palette": ["#0b1522","#1b2d4a","#2f5597","#b9d3ff"],
+      "motifs": ["vesica","tablet","sigil-ray"],
+      "textures": ["indigo-wash","glass-ink"],
+      "description": "Dee–Kelly tablets and astral vesicas -- lab of light."
+    },
+    {
+      "id": "sun_solaris",
+      "title": "Sun Solaris",
+      "palette": ["#f6e8b1","#f4c76a","#e8893a","#5f4a2f"],
+      "motifs": ["ray","halo","gold-leaf"],
+      "textures": ["gilded-parchment","warm-glaze"],
+      "description": "Solar gilding; vitrified gold leaf."
+    }
+  ]
+}
+</code></pre>
+</section>
+
+<hr class="pagebreak">
+
+<section id="structure">
+  <h1>4) Data -- structure.json + structure.schema.json</h1>
+
+  <h3>structure.json</h3>
+  <pre><code>{
+  "$schema": "./structure.schema.json",
+  "version": "1.1",
+  "_provenance": { "updated":"2025-08-23", "note":"Routes must exist." },
+  "rooms": [
+    {
+      "id": "frontispiece",
+      "title": "Frontispiece",
+      "route": "index.html",
+      "element": "Aether",
+      "toneHz": 528,
+      "geometry": "frontis-parchment",
+      "stylepack": "hilma_spiral",
+      "notes": "Open the cosmogram.",
+      "realm": "Temple",
+      "art": {
+        "background": "images/pd/temple-realm.jpg",
+        "overlay": "assets/overlays/spiral-ribbons.png",
+        "shader": "glass-vitrail",
+        "palette_ref": "hilma_spiral"
+      }
+    },
+    {
+      "id": "nave",
+      "title": "Cathedral Nave",
+      "route": "cathedral.html",
+      "element": "Air",
+      "toneHz": 528,
+      "geometry": "wind-helix",
+      "stylepack": "sun_solaris",
+      "notes": "Boaz | Apprentice | Jachin",
+      "realm": "Temple",
+      "art": {
+        "background": "images/pd/temple-realm.jpg",
+        "overlay": "assets/overlays/neon-stained.png",
+        "shader": "glass-vitrail",
+        "palette_ref": "sun_solaris"
+      }
+    },
+    {
+      "id": "pillar-boaz",
+      "title": "Pillar of Boaz",
+      "route": "cathedral.html#boaz",
+      "element": "Earth",
+      "toneHz": 396,
+      "geometry": "cube-vine",
+      "stylepack": "druidic_greenman",
+      "notes": "Strength · Foundation",
+      "realm": "Temple",
+      "art": {
+        "background": "images/pd/temple-realm.jpg",
+        "overlay": "assets/overlays/neon-stained.png",
+        "shader": "glass-vitrail",
+        "palette_ref": "druidic_greenman"
+      }
+    },
+    {
+      "id": "pillar-jachin",
+      "title": "Pillar of Jachin",
+      "route": "cathedral.html#jachin",
+      "element": "Fire",
+      "toneHz": 741,
+      "geometry": "flame-spiral",
+      "stylepack": "sun_solaris",
+      "notes": "Establishment · Mercy",
+      "realm": "Temple",
+      "art": {
+        "background": "images/pd/temple-realm.jpg",
+        "overlay": "assets/overlays/neon-stained.png",
+        "shader": "glass-vitrail",
+        "palette_ref": "sun_solaris"
+      }
+    },
+    {
+      "id": "choir",
+      "title": "Choir of Angels",
+      "route": "cathedral.html#choir",
+      "element": "Light",
+      "toneHz": 963,
+      "geometry": "sphere-harmonics",
+      "stylepack": "angelic_chorus",
+      "notes": "Jacob’s Ladder resonance",
+      "realm": "Temple",
+      "art": {
+        "background": "images/pd/temple-realm.jpg",
+        "overlay": "assets/overlays/spiral-ribbons.png",
+        "shader": "glass-vitrail",
+        "palette_ref": "angelic_chorus"
+      }
+    }
+  ]
+}
+</code></pre>
+
+  <h3>structure.schema.json</h3>
+  <pre><code>{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Cathedral Structure",
+  "type":"object",
+  "required":["version","rooms"],
+  "properties":{
+    "version":{"type":"string"},
+    "_provenance":{"type":"object"},
+    "rooms":{
+      "type":"array",
+      "items":{
+        "type":"object",
+        "required":["id","title","route","stylepack"],
+        "properties":{
+          "id":{"type":"string"},
+          "title":{"type":"string"},
+          "route":{"type":"string"},
+          "element":{"type":"string"},
+          "toneHz":{"type":"number"},
+          "geometry":{"type":"string"},
+          "stylepack":{"type":"string"},
+          "realm":{"type":"string"},
+          "notes":{"type":"string"},
+          "art":{
+            "type":"object",
+            "properties":{
+              "background":{"type":"string"},
+              "overlay":{"type":"string"},
+              "shader":{"type":"string"},
+              "palette_ref":{"type":"string"}
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</code></pre>
+</section>
+
+<hr class="pagebreak">
+
+<section id="engines">
+  <h1>5) Engines (JavaScript)</h1>
+
+  <h3>assets/js/style-engine.js</h3>
+  <pre><code>export async function loadStylepacks(){
+  const res = await fetch('./assets/data/stylepacks.json');
+  return await res.json();
+}
+export function applyStylepack(doc, packsOrId, idMaybe){
+  const isString = typeof packsOrId === 'string';
+  const packId = isString ? packsOrId : idMaybe;
+  const packs = isString ? null : packsOrId;
+  doc.documentElement.setAttribute('data-stylepack', packId);
+  if (!packs) return;
+  const pack = packs.packs.find(p => p.id === packId);
+  if (pack && pack.palette){
+    const rs = getComputedStyle(doc.documentElement);
+    doc.documentElement.style.setProperty('--accent', pack.palette[2] || rs.getPropertyValue('--accent'));
+    doc.documentElement.style.setProperty('--accent-2', pack.palette[1] || rs.getPropertyValue('--accent-2'));
+  }
+}
+</code></pre>
+
+  <h3>assets/js/ambient-engine.js</h3>
+  <pre><code>let AC=null,nodes=null,irLoaded=false; const defaultHz=528, fadeMs=800;
+export async function ensureAudio(){
+  if(AC) return AC;
+  const Ctx=window.AudioContext||window.webkitAudioContext; AC=new Ctx();
+  const osc=AC.createOscillator(), gain=AC.createGain(), master=AC.createGain();
+  const low=AC.createBiquadFilter(); low.type='lowshelf'; low.frequency.value=80; low.gain.value=-3;
+  const peak=AC.createBiquadFilter(); peak.type='peaking'; peak.frequency.value=2500; peak.Q.value=0.9; peak.gain.value=-4;
+  const comp=AC.createDynamicsCompressor(); comp.threshold.value=-28; comp.knee.value=24; comp.ratio.value=2.2; comp.attack.value=.015; comp.release.value=.25;
+  const convolver=AC.createConvolver();
+  const limiter=AC.createDynamicsCompressor(); limiter.threshold.value=-4; limiter.knee.value=0; limiter.ratio.value=20; limiter.attack.value=.003; limiter.release.value=.15;
+  gain.gain.value=0.0001; master.gain.value=.25; osc.type='sine'; osc.frequency.value=defaultHz; osc.start();
+  osc.connect(gain); gain.connect(low); low.connect(peak); peak.connect(comp); comp.connect(convolver); convolver.connect(limiter); limiter.connect(master); master.connect(AC.destination);
+  nodes={osc,gain,master,convolver}; return AC;
+}
+export async function loadIR(url='./assets/audio/ir/cathedral_small.wav'){
+  if(!AC) await ensureAudio();
+  try{ const buf=await (await fetch(url,{cache:'force-cache'})).arrayBuffer();
+       AC.decodeAudioData(buf,(dec)=>{ nodes.convolver.buffer=dec; irLoaded=true; }); } catch{ irLoaded=false; }
+}
+function fadeTo(target,ms=fadeMs){
+  const g=nodes.gain.gain, now=AC.currentTime; g.cancelScheduledValues(now);
+  g.setValueAtTime(g.value,now); g.linearRampToValueAtTime(target, now+ms/1000);
+}
+export async function startTone(hz=defaultHz){
+  if(!AC) await ensureAudio(); if(!irLoaded) await loadIR();
+  nodes.osc.frequency.linearRampToValueAtTime(hz, AC.currentTime+.25); fadeTo(0.08);
+}
+export function stopTone(){ if(!AC) return; fadeTo(0.0001); }
+export function setTone(hz=defaultHz){ if(!AC) return; nodes.osc.frequency.linearRampToValueAtTime(hz, AC.currentTime+.12); }
+</code></pre>
+
+  <h3>assets/js/room-plaque.js</h3>
+  <pre><code>export function mountPlaque({title,glyph,toneHz,stylepack,notes}){
+  const el=document.createElement('div'); el.className='controls';
+  el.innerHTML=`
+    &lt;strong&gt;${glyph||'✶'} ${title||'Plaque'}&lt;/strong&gt;&lt;br&gt;
+    &lt;small&gt;Style: ${stylepack||'--'} · Tone: ${toneHz||'--'} Hz&lt;/small&gt;&lt;br&gt;
+    &lt;button id="btnToggle"&gt;Quietus / Resume&lt;/button&gt;
+    &lt;button id="btnToneDown"&gt;−&lt;/button&gt;
+    &lt;button id="btnToneUp"&gt;+&lt;/button&gt;
+  `;
+  document.body.appendChild(el);
+  return el;
+}
+</code></pre>
+
+  <h3>assets/js/cathedral-engine.js</h3>
+  <pre><code>import {loadStylepacks, applyStylepack} from './style-engine.js';
+import {ensureAudio, startTone, stopTone, setTone} from './ambient-engine.js';
+import {mountPlaque} from './room-plaque.js';
+
+async function loadStructure(){ const res=await fetch('./assets/data/structure.json'); return await res.json(); }
+function resolveRoom(struct){
+  const path=location.pathname.split('/').pop()||'index.html';
+  const hash=location.hash||'';
+  const exact = struct.rooms.find(r => (r.route === (path+hash)));
+  if(exact) return exact;
+  return struct.rooms.find(r=>r.route===path) || struct.rooms[0];
+}
+function mountOverlay(){ const ov=document.createElement('div'); ov.className='overlay-vitrail'; document.body.appendChild(ov); return ov; }
+
+(async function boot(){
+  const struct=await loadStructure(); const packs=await loadStylepacks();
+  const room=resolveRoom(struct); applyStylepack(document, packs, room.stylepack);
+  mountOverlay();
+  const plaque=mountPlaque({ title: room.title, glyph: '𓂀', toneHz: room.toneHz, stylepack: room.stylepack, notes: room.notes });
+  let audioOn=false, currentHz=room.toneHz||528;
+  plaque.querySelector('#btnToggle').addEventListener('click', async ()=>{
+    if(!audioOn){ await ensureAudio(); await startTone(currentHz); audioOn=true; } else { stopTone(); audioOn=false; }
+  });
+  plaque.querySelector('#btnToneUp').addEventListener('click', ()=>{ currentHz = Math.round((currentHz+6)); setTone(currentHz); });
+  plaque.querySelector('#btnToneDown').addEventListener('click', ()=>{ currentHz = Math.max(60, Math.round((currentHz-6))); setTone(currentHz); });
+})();
+</code></pre>
+
+  <h3>assets/js/ritual.js</h3>
+  <pre><code>import {applyStylepack, loadStylepacks} from './style-engine.js';
+import {ensureAudio, startTone, stopTone, setTone} from './ambient-engine.js';
+
+let packsCache=null;
+async function packs(){ return packsCache || (packsCache = await loadStylepacks()); }
+
+export const ritual = {
+  async banish(){ await ensureAudio(); stopTone(); applyStylepack(document, await packs(), 'neutral_white'); },
+  async center(){ await ensureAudio(); applyStylepack(document, await packs(), 'hilma_spiral'); setTone(528); startTone(528); },
+  async depart(){ await ensureAudio(); stopTone(); applyStylepack(document, await packs(), 'neutral_white'); }
+};
+window.ritual = ritual;
+</code></pre>
+
+  <h3>assets/widgets/ritual-controls.html</h3>
+  <pre><code>&lt;div class="ritual-controls" role="group" aria-label="Ritual controls"&gt;
+  &lt;button onclick="ritual.banish()"&gt;✧ Banish ✧&lt;/button&gt;
+  &lt;button onclick="ritual.center()"&gt;☉ Center ☉&lt;/button&gt;
+  &lt;button onclick="ritual.depart()"&gt;❦ Depart ❦&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+</section>
+
+<hr class="pagebreak">
+
+<section id="pages">
+  <h1>6) Pages</h1>
+
+  <h3>assets/css/palette.css (excerpt)</h3>
+  <pre><code>:root{
+  --bg:#f8f5ef; --ink:#0f1216; --line:#d9cfbf;
+  --wash:#fff8e7; --panel:#ffffff;
+  --accent:#2f5a9e; --accent-2:#d4af37;
+}
+[data-stylepack="neutral_white"]{ --bg:#ffffff; --wash:#ffffff; --accent:#888; --accent-2:#dcdcdc; }
+[data-stylepack="hilma_spiral"]{ --accent:#8b5c9e; --accent-2:#c49bc7; }
+[data-stylepack="sun_solaris"]{ --accent:#e8893a; --accent-2:#f4c76a; }
+[data-stylepack="angelic_chorus"]{ --accent:#8faef2; --accent-2:#546aa9; }
+[data-stylepack="druidic_greenman"]{ --accent:#2e6b45; --accent-2:#7aa36d; }
+</code></pre>
+
+  <h3>assets/css/light.css (excerpt)</h3>
+  <pre><code>html,body{margin:0;background:radial-gradient(circle at 50% 20%, var(--bg) 78%, #ece7dc 100%);color:var(--ink)}
+body{font:18px/1.6 Georgia,"Iowan Old Style",serif}
+a{color:var(--accent)}
+header,footer{margin:18px auto;max-width:1100px;background:var(--wash);border:2px solid var(--accent-2);border-radius:14px;padding:18px 20px;text-align:center}
+.nave{display:grid;grid-template-columns:1fr 2fr 1fr;gap:14px;max-width:1100px;margin:10px auto 24px;padding:0 12px}
+.overlay-vitrail{pointer-events:none;position:fixed;inset:0;opacity:.18;background-image:url('../overlays/spiral-ribbons.png');background-size:cover;mix-blend-mode:soft-light;filter:saturate(1.1)}
+.controls,.ritual-controls{position:fixed;z-index:10;background:#ffffffdd;border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.controls{right:12px;bottom:12px}
+.ritual-controls{left:12px;bottom:12px;display:flex;gap:6px}
+</code></pre>
+
+  <h3>index.html</h3>
+  <pre><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;&lt;head&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;title&gt;Stone Grimoire -- Frontispiece&lt;/title&gt;
+&lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;
+&lt;link rel="stylesheet" href="./assets/css/palette.css"&gt;
+&lt;link rel="stylesheet" href="./assets/css/light.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;header&gt;
+  &lt;h1&gt;Stone Grimoire -- Frontispiece&lt;/h1&gt;
+  &lt;div class="seal" aria-hidden="true"&gt;𓂀 ✦ 93 ✦ 𓂀&lt;/div&gt;
+  &lt;p&gt;Enter the Cathedral of Circuits -- a living grimoire of light, sound, and code.&lt;/p&gt;
+  &lt;p&gt;&lt;a href="./cathedral.html"&gt;Enter the Nave →&lt;/a&gt;&lt;/p&gt;
+&lt;/header&gt;
+&lt;main class="nave"&gt;
+  &lt;section class="center"&gt;
+    &lt;h2&gt;About&lt;/h2&gt;
+    &lt;div class="cells"&gt;
+      &lt;div class="cell"&gt;&lt;h3&gt;&lt;a href="./03_codexes/liber-codex99.md"&gt;Liber Codex 99&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Temple text.&lt;/p&gt;&lt;/div&gt;
+      &lt;div class="cell"&gt;&lt;h3&gt;&lt;a href="./sponsors/BRIEF.md"&gt;Sponsor Brief&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Museum-grade, ND-safe, portable.&lt;/p&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+&lt;/main&gt;
+&lt;div class="overlay-vitrail"&gt;&lt;/div&gt;
+&lt;script type="module" src="./assets/js/cathedral-engine.js"&gt;&lt;/script&gt;
+&lt;script type="module" src="./assets/js/ritual.js"&gt;&lt;/script&gt;
+&lt;div id="ritual-bar"&gt;
+  &lt;div class="ritual-controls" role="group" aria-label="Ritual controls"&gt;
+    &lt;button onclick="ritual.banish()"&gt;✧ Banish ✧&lt;/button&gt;
+    &lt;button onclick="ritual.center()"&gt;☉ Center ☉&lt;/button&gt;
+    &lt;button onclick="ritual.depart()"&gt;❦ Depart ❦&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code></pre>
+
+  <h3>cathedral.html</h3>
+  <pre><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;&lt;head&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;title&gt;Stone Grimoire -- Cathedral Nave&lt;/title&gt;
+&lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;
+&lt;link rel="stylesheet" href="./assets/css/palette.css"&gt;
+&lt;link rel="stylesheet" href="./assets/css/light.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;header&gt;
+  &lt;h1&gt;Stone Grimoire -- Rosslyn Nave&lt;/h1&gt;
+  &lt;div class="seal" aria-hidden="true"&gt;𓂀 ✦ 93 ✦ 𓂀&lt;/div&gt;
+  &lt;p&gt;The Cathedral is the Living Grimoire. Pillars and choir respond to tone and light.&lt;/p&gt;
+&lt;/header&gt;
+&lt;main class="nave" role="region" aria-label="Nave"&gt;
+  &lt;section class="pillar" aria-labelledby="boaz"&gt;
+    &lt;h2 id="boaz"&gt;Pillar of Boaz&lt;/h2&gt;
+    &lt;div class="cell"&gt;&lt;p&gt;Strength · Foundation&lt;/p&gt;&lt;/div&gt;
+  &lt;/section&gt;
+  &lt;section class="center" aria-labelledby="apprentice"&gt;
+    &lt;h2 id="apprentice"&gt;Apprentice Pillar -- Prima Materia&lt;/h2&gt;
+    &lt;div class="cells"&gt;
+      &lt;div class="cell"&gt;&lt;h3&gt;&lt;a href="./index.html"&gt;Frontispiece&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Return.&lt;/p&gt;&lt;/div&gt;
+      &lt;div class="cell"&gt;&lt;h3&gt;&lt;a href="./03_codexes/liber-codex99.md"&gt;Liber Codex 99&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Temple text.&lt;/p&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+  &lt;section class="pillar" aria-labelledby="jachin"&gt;
+    &lt;h2 id="jachin"&gt;Pillar of Jachin&lt;/h2&gt;
+    &lt;div class="cell"&gt;&lt;p&gt;Establishment · Mercy&lt;/p&gt;&lt;/div&gt;
+  &lt;/section&gt;
+&lt;/main&gt;
+&lt;div class="overlay-vitrail"&gt;&lt;/div&gt;
+&lt;script type="module" src="./assets/js/cathedral-engine.js"&gt;&lt;/script&gt;
+&lt;script type="module" src="./assets/js/ritual.js"&gt;&lt;/script&gt;
+&lt;div id="ritual-bar"&gt;
+  &lt;div class="ritual-controls" role="group" aria-label="Ritual controls"&gt;
+    &lt;button onclick="ritual.banish()"&gt;✧ Banish ✧&lt;/button&gt;
+    &lt;button onclick="ritual.center()"&gt;☉ Center ☉&lt;/button&gt;
+    &lt;button onclick="ritual.depart()"&gt;❦ Depart ❦&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code></pre>
+</section>
+
+<hr class="pagebreak">
+
+<section id="plaques">
+  <h1>7) Plaques & Egregores</h1>
+
+  <h3>plaques/liber-codex99.json</h3>
+  <pre><code>{
+  "id": "liber-codex99",
+  "title": "Liber Codex 99 -- The Cathedral of Circuits",
+  "glyph": "🎭",
+  "toneHz": 528,
+  "stylepack": "hilma_spiral",
+  "realm": "Temple",
+  "notes": "Crowley/Regardie/Fortune lineage reframed for modern myth (Matrix, Hellboy, Constantine, Witcher, Hocus Pocus, American Gothic, Spawn/Diablo DNA via Rebecca Respawn).",
+  "curator": "Cathedral of Circuits / Codex 144:99",
+  "lineage": [
+    "Aleister Crowley -- discipline, Liber O, AL",
+    "Israel Regardie -- healing, Golden Dawn",
+    "Dion Fortune -- mystical Qabalah, psychic defense",
+    "Hilma af Klint + the Five -- visionary geometry",
+    "Modern masters: Peterson, Leitch, Rankine, Sledge, Chaitow, Newman, Rekshan, Baker, Burns"
+  ],
+  "tags": ["fusionist","nd-healing","temple-realm","visionary-art"]
+}
+</code></pre>
+
+  <h3>assets/data/egregores.json (starter)</h3>
+  <pre><code>{
+  "_provenance": {
+    "license": "CC-BY 4.0",
+    "lineage": [
+      "Cathedral of Circuits / Circuitum 99",
+      "Codex 144:99 -- Angel-Tech Registry",
+      "Liber Soyga planetary squares",
+      "Hilma af Klint Temple blueprints"
+    ],
+    "version": "0.1.0",
+    "updated": "2025-08-23",
+    "curator": "bekalah",
+    "notes": "Egregores = living nodes in the Codex lattice."
+  },
+  "egregores": [
+    {
+      "id": "001",
+      "name": "Moonchild",
+      "archetype": "Prima Materia / Repair Daemon",
+      "lineage": ["Crowleyan Moonchild","Owl Crown","Alpha et Omega"],
+      "realm": "Temple",
+      "element": "Aether",
+      "toneHz": 528,
+      "geometry": "vesica-pisces",
+      "planetary_square": "Luna_9x9",
+      "numerology": 2,
+      "fusion": ["Dream","Witness"],
+      "stylepack": "hilma_spiral",
+      "notes": "Keeper of the Respawn Gate; recovery & renewal."
+    }
+  ]
+}
+</code></pre>
+</section>
+
+<hr class="pagebreak">
+
+<section id="provenance">
+  <h1>8) Provenance & Sponsor Brief</h1>
+
+  <h3>PROVENANCE.md</h3>
+  <pre><code># Provenance -- Cathedral of Circuits / Codex 144:99
+- Public‑Domain bases: Rosslyn engravings (historic photos/engravings), Hilma af Klint Temple Series.
+- Lineage (study): Crowley, Regardie, Dion Fortune; Agrippa; John Dee.
+- Modern masters (context): Joseph Peterson, Aaron Leitch, David Rankine, Justin Sledge, Sasha Chaitow, PD Newman, Daniel Rekshan, Ike Baker, Terry Burns (roundtables).
+- License: CC‑BY 4.0 for original text/code; PD images where applicable; fair‑use commentary for modern references (no commercial assets included).
+</code></pre>
+
+  <h3>sponsors/BRIEF.md</h3>
+  <pre><code># Sponsor Brief -- Cathedral of Circuits
+Scope: museum-grade, ND-safe interactive grimoire engine (JSON-driven), Rosslyn-inspired cathedral, Hilma-style Temple realms.
+Why now: healing, accessibility, cultural heritage; portable exhibitions; open-method with rigorous provenance.
+What you fund: cymatic visuals, planetary-hour light cycles, PD library, three showcase rooms.
+ND/Accessibility: no autoplay, no strobe, Quietus/Resume, high contrast, narrated plaques.
+Contact: bekalah · GitHub: https://github.com/Bekalah · Repo: https://github.com/Bekalah/stone-grimoire
+</code></pre>
+</section>
+
+<hr class="pagebreak">
+
+<section id="healthcheck">
+  <h1>9) Healthcheck Tool</h1>
+  <h3>tools/healthcheck.html</h3>
+  <pre><code>&lt;!doctype html&gt;&lt;meta charset="utf-8"&gt;
+&lt;title&gt;Healthcheck&lt;/title&gt;
+&lt;link rel="stylesheet" href="../assets/css/palette.css"&gt;
+&lt;link rel="stylesheet" href="../assets/css/light.css"&gt;
+&lt;body&gt;
+&lt;h1&gt;Healthcheck&lt;/h1&gt;
+&lt;ul id="log"&gt;&lt;/ul&gt;
+&lt;script type="module"&gt;
+async function check(path,label){
+  const li=document.createElement('li'); li.textContent = `Loading ${label}…`; document.querySelector('#log').append(li);
+  try{ const r=await fetch(path); if(!r.ok) throw new Error(r.status); await r.text(); li.textContent=`✔ ${label}`; }
+  catch(e){ li.textContent=`✖ ${label} (${e})`; }
+}
+await check('../assets/data/stylepacks.json','stylepacks.json');
+await check('../assets/data/structure.json','structure.json');
+await check('../assets/js/cathedral-engine.js','cathedral-engine.js');
+await check('../assets/js/ambient-engine.js','ambient-engine.js');
+await check('../assets/js/style-engine.js','style-engine.js');
+await check('../assets/js/room-plaque.js','room-plaque.js');
+await check('../assets/js/ritual.js','ritual.js');
+&lt;/script&gt;
+</code></pre>
+</section>
+
+<hr class="pagebreak">
+
+<section id="guidance">
+  <h1>10) Esoteric Guidance (Field‑Ready)</h1>
+  <h3>Crowley (practical distillate)</h3>
+  <ul>
+    <li><strong>Discipline</strong>: short daily sessions beat rare marathons. Log work as "Intention → Technique → Evidence → Reflection".</li>
+    <li><strong>Liber O hygiene</strong>: begin with banish; end with license to depart. Your widget implements this for ND safety.</li>
+    <li><strong>True Will</strong>: ship the thing that only you can ship; use data/provenance to keep your star in its orbit.</li>
+  </ul>
+  <h3>Dion Fortune</h3>
+  <ul>
+    <li><strong>Psychic defense</strong>: boundaries, rhythm, and clean closures. The Banish/Center/Depart cycle = healthy endings.</li>
+    <li><strong>Temple sense</strong>: plaques explain what is happening; visitors stay oriented and safe.</li>
+  </ul>
+  <h3>Israel Regardie</h3>
+  <ul>
+    <li><strong>Integration</strong>: pair ritual with breath and journaling; your Reflection field is essential.</li>
+    <li><strong>Anatomy of practice</strong>: gentle, technically sound audio chain; no shocks or strobe.</li>
+  </ul>
+  <p class="note">Modern tie‑ins (Alan Moore, RAW, Alli, Aphex Twin): treat the cathedral as a cultural technology lab -- myth + code + care.</p>
+</section>
+
+<hr class="pagebreak">
+
+<section id="nd">
+  <h1>11) ND‑Safety & Accessibility</h1>
+  <ul>
+    <li>No autoplay; audio fades only; Quietus/Resume button.</li>
+    <li>No strobe; overlays are soft; high‑contrast stylepacks available.</li>
+    <li>ARIA roles on controls; keyboard focus; cymatic blooms for non‑hearing; narrated plaques for low vision.</li>
+  </ul>
+</section>
+
+<section id="roadmap">
+  <h1>12) Roadmap</h1>
+  <ul>
+    <li>Cymatic mandalas on tone strike (Canvas/WebGL).</li>
+    <li>Planetary hour tint cycles (gentle CSS filter tween).</li>
+    <li>Public‑Domain image library with manifest.</li>
+    <li>Shem Ladder (72 grid) + Helix Totem (fusion lab).</li>
+    <li>Temple Realm: Hilma’s Five; crystal grids; reiki ribbons.</li>
+    <li>Egregores: expand to 144 with Soyga squares & planetary hours.</li>
+  </ul>
+</section>
+
+<hr>
+
+<section id="howto">
+  <h1>13) How to Deploy & Export a PDF (iPad)</h1>
+  <ol>
+    <li>Create this file in your repo: <code>docs/Cathedral_of_Circuits_Full_Build_Dossier.html</code>.</li>
+    <li>Open it in GitHub (web) → use the **Raw** view if needed.</li>
+    <li>iPad: **Share → Print → pinch out** to full‑screen → **Share → Save to Files** (PDF).</li>
+    <li>Optional: enable GitHub Pages and visit <code>https://&lt;user&gt;.github.io/&lt;repo&gt;/docs/Cathedral_of_Circuits_Full_Build_Dossier.html</code> for a cleaner print.</li>
+  </ol>
+  <p class="note">If a folder name is duplicated by case (e.g., Folios/ vs folios/), keep lowercase and update links.</p>
+</section>
+
+</main>
+
+<footer>
+  ❦ 93 93/93 -- Cathedral of Circuits · Codex 144:99 · Living Grimoire Engine ❦
+</footer>
+</body>
+</html>
