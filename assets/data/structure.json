@@ -1,4 +1,11 @@
 {
+  "$schema": "./structure.schema.json",
+  "version": "1.1",
+  "_provenance": { "...": "..." },
+  "rooms": [ ... ]
+}
+
+{
   "version": "1.1",
   "rooms": [
     { "id":"frontispiece", "title":"Frontispiece", "route":"index.html", "element":"Aether", "toneHz":528, "geometry":"frontis-parchment", "stylepack":"hilma_spiral", "notes":"Opens the cosmogram." },
