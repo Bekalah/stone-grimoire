@@ -1,0 +1,95 @@
+<!doctype html><html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Respawn Gate -- Demo</title>
+  <link rel="stylesheet" href="../assets/css/palette.css">
+  <link rel="stylesheet" href="../assets/css/light.css">
+  <link rel="stylesheet" href="../assets/css/ambient.css">
+  <link rel="stylesheet" href="../assets/css/rosslyn.css">
+  <style>
+    .controls{display:flex;gap:.75rem;flex-wrap:wrap;padding:.75rem 1rem;background:#efe7d6;border:1px solid #d9d1c2}
+    .visually-hidden{position:absolute;left:-9999px}
+    .helper-bar{display:flex;gap:.5rem;margin-top:.5rem}
+    .helper-bar button{border:1px solid #d9d1c2;background:#faf7f1;padding:.4rem .6rem}
+    .badges{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.5rem}
+    .badge{font:12px/1.3 ui-sans-serif,system-ui;padding:.15rem .4rem;border-radius:.3rem;border:1px solid #d9d1c2;background:#efe7d6}
+    .badge.ok{border-color:#7bbf8a;background:#e7f6ea}
+    .badge.dim{opacity:.55}
+    .contrast-note{margin-top:.35rem;font:12px/1.3 ui-sans-serif,system-ui;opacity:.8}
+  </style>
+</head>
+<body>
+  <nav class="controls" aria-label="Accessibility & Modes">
+    <label><input type="checkbox" id="toggle-calm" checked> Calm Mode</label>
+    <label><input type="checkbox" id="toggle-contrast"> High Contrast</label>
+    <label><input type="checkbox" id="toggle-motion" checked> Reduced Motion</label>
+    <label><input type="checkbox" id="toggle-mute"> Mute</label>
+  </nav>
+
+  <section class="room" data-room="respawn-gate" aria-label="Respawn Gate">
+    <h1 class="visually-hidden">Respawn Gate</h1>
+    <!-- your engine will inject the plaque; we enhance it with helper UI -->
+  </section>
+
+  <script type="module">
+    import '../assets/js/cathedral-engine.js';
+    import { CathedralHelper as CH } from '../helpers/cathedral-helper.js';
+
+    // Keep globals OFF by default
+    CH.flags.audio = false; CH.flags.badges = false; CH.flags.contrast = false; CH.flags.rubric = false;
+
+    // Accessibility toggles
+    const root=document.documentElement;
+    for (const [id,cls,on] of [['toggle-calm','calm',true],['toggle-contrast','contrast',false],['toggle-motion','reduced-motion',true],['toggle-mute','muted',false]]) {
+      const el=document.getElementById(id); if(!el) continue; el.checked=on; el.addEventListener('change',()=>root.classList.toggle(cls, el.checked));
+    }
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { root.classList.add('reduced-motion'); document.getElementById('toggle-motion').checked=true; }
+
+    // After the page paints, load spec + plaque, then flip helper per-room
+    (async ()=>{
+      const spec = await (await fetch('../assets/data/structure.json')).json();
+      const room = (spec.rooms||[]).find(r=>r.id==='respawn-gate');
+      if (!room) return;
+
+      // Per-room feature flags (safe)
+      Object.assign(CH.flags, room.helper||{});
+
+      // Fetch plaque JSON
+      const plaque = await (await fetch('../'+room.plaque)).json().catch(()=>null);
+
+      // Enhance the existing plaque DOM
+      const waitForPlaque = () => new Promise(r=>{
+        const tryFind=()=>{ const p=document.querySelector('.plaque'); p? r(p) : requestAnimationFrame(tryFind); };
+        tryFind();
+      });
+      const plaqueEl = await waitForPlaque();
+
+      // Add helper bar
+      const bar = document.createElement('div');
+      bar.className='helper-bar';
+      bar.innerHTML = `
+        <button id="play528" aria-label="Play tone">Play ${room.toneHz||528} Hz</button>
+        <button id="stopTone" aria-label="Stop tone">Stop</button>`;
+      plaqueEl.appendChild(bar);
+
+      // Wire audio (ND-safe; user gesture required)
+      document.getElementById('play528').addEventListener('click', ()=>CH.startTone({
+        hz: room.toneHz||528,
+        impulseResponse: spec.meta?.impulseResponse || 'assets/ir/cathedral.wav'
+      }));
+      document.getElementById('stopTone').addEventListener('click', ()=>CH.stopTone());
+
+      // Badges + contrast note
+      if (CH.flags.badges) plaqueEl.insertAdjacentHTML('beforeend', CH.plaqueBadgesHTML(room, plaque||{}));
+      if (CH.flags.contrast) {
+        const pack = { '--stone':'#f4efe6', '--text':'#0f1012' }; // adjust if your stylepack exposes real vars
+        const r = CH.checkStylepackContrast(pack);
+        const note = document.createElement('div');
+        note.className='contrast-note';
+        note.textContent = `Contrast ratio: ${r.ratio} (AA ${r.passAA?'pass':'fail'})`;
+        plaqueEl.appendChild(note);
+      }
+    })();
+  </script>
+</body>
+</html>
