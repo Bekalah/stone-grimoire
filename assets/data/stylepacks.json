@@ -1,138 +1,105 @@
-[
-  {
-    "id": "templar_cross",
-    "name": "Templar Cross",
-    "palette": ["#6b0f1a", "#e0c9a6", "#2e2a25", "#efe6cf"],
-    "symbols": ["✠","⚔","✧"],
-    "textures": [
-      "assets/textures/templar/stone_carved.jpg",
-      "assets/textures/templar/parchment_fine.jpg",
-      "assets/textures/templar/iron_etched.jpg"
+
+{
+  "_provenance": {
+    "license": "CC-BY 4.0",
+    "lineage": [
+      "Cathedral of Circuits / Codex 144:99",
+      "Visionary Art Standards",
+      "Rosslyn Chapel Patterns",
+      "Hilma af Klint Temple Blueprints"
     ],
-    "glyphFolder": "templar",
-    "motifClass": "motif-shield",
-    "cymatic": "cross",
-    "temperament": "pyth",
-    "notes": "Red/white/black triad; crusader seals; sober carved stone geometry.",
-    "refs": [
-      { "title": "Templar Seals", "type": "PD engravings", "source": "Wikimedia Commons", "why": "Heraldic crosses + armorial context" },
-      { "title": "Viollet-le-Duc Gothic Plates", "type": "19thc PD", "source": "Gallica", "why": "Gothic tracery reference" }
-    ]
+    "version": "1.1.0",
+    "updated": "2025-08-22",
+    "curator": "bekalah",
+    "notes": "Stylepacks are museum-grade; ND-friendly; sources mapped to public-domain or original curation."
   },
-  {
-    "id": "shekhinah_marian",
-    "name": "Shekhinah / Marian Veil",
-    "palette": ["#2e4f9a", "#f8f5f2", "#e9c5c2", "#9db5ea"],
-    "symbols": ["✶","☽","✿"],
-    "textures": [
-      "assets/textures/marian/blue_velvet.jpg",
-      "assets/textures/marian/veil_embroidery.png",
-      "assets/textures/marian/rose_window.jpg"
-    ],
-    "glyphFolder": "marian",
-    "motifClass": "motif-veil",
-    "cymatic": "rose21",
-    "temperament": "lyd",
-    "notes": "Blue/rose/white: Marian apparitions, Shekhinah cloud, 21-petal rose window.",
-    "refs": [
-      { "title": "Rosslyn Lady Chapel Photos", "type": "Historic PD photos", "source": "British Library", "why": "Accurate tracery of Marian rose windows" }
-    ]
-  },
-  {
-    "id": "alchemy_quadrivium",
-    "name": "Alchemical Quadrivium",
-    "palette": ["#c6a664","#6f4e37","#0f1c2e","#f4ecd8"],
-    "symbols": ["🜁","🜂","🜃","🜄"],
-    "textures": [
-      "assets/textures/alchemy/vellum_diagram.jpg",
-      "assets/textures/alchemy/flask_etching.png",
-      "assets/textures/alchemy/metallic_goldleaf.jpg"
-    ],
-    "glyphFolder": "alchemy",
-    "motifClass": "motif-circle",
-    "cymatic": "squaring_circle",
-    "temperament": "dor",
-    "notes": "Earth/Air/Fire/Water emblems; quadrivial arts; Agrippa’s glyph sets.",
-    "refs": [
-      { "title": "Book of Soyga", "type": "16thc MS", "source": "British Library", "why": "Geometric cosmograms" },
-      { "title": "Agrippa De Occulta Philosophia", "type": "1533", "source": "IA", "why": "Alchemical glyph lexicon" }
-    ]
-  },
-  {
-    "id": "druidic_greenman",
-    "name": "Druidic Green Man",
-    "palette": ["#305a30", "#97b97d", "#c2d3b5", "#4a2c2a"],
-    "symbols": ["🌿","🍃","🜨"],
-    "textures": [
-      "assets/textures/druid/oak_carving.jpg",
-      "assets/textures/druid/mossy_stone.jpg",
-      "assets/textures/druid/celtic_knotwork.png"
-    ],
-    "glyphFolder": "druid",
-    "motifClass": "motif-vine",
-    "cymatic": "spiral",
-    "temperament": "mix",
-    "notes": "Celtic spirals; folk magicians of Edinburgh; seasonal cycles carved in stone.",
-    "refs": [
-      { "title": "Green Man Foliate Heads", "type": "PD carvings", "source": "Corpus of Anglo-Saxon Stone Sculpture", "why": "Authentic foliate motifs" }
-    ]
-  },
-  {
-    "id": "enochian_astral",
-    "name": "Enochian Astral Script",
-    "palette": ["#111111", "#444488", "#e6e6e6", "#aaccff"],
-    "symbols": ["𐑄","𐑅","𐑃"],
-    "textures": [
-      "assets/textures/enochian/starfield.jpg",
-      "assets/textures/enochian/black_glass.png",
-      "assets/textures/enochian/parchment_dark.jpg"
-    ],
-    "glyphFolder": "enochian",
-    "motifClass": "motif-tablet",
-    "cymatic": "angelic_square",
-    "temperament": "locrian",
-    "notes": "Tables of practice, Dee’s scrying stone, Crowley’s Enochian calls.",
-    "refs": [
-      { "title": "John Dee’s Angelic Tables", "type": "PD facsimile", "source": "Wellcome Collection", "why": "Canonical Enochian glyphs" }
-    ]
-  },
-  {
-    "id": "mesoamerican_plumed",
-    "name": "Mesoamerican Plumed Serpent",
-    "palette": ["#7c0a02","#0f6b6b","#f2c14e","#f6f1e1"],
-    "symbols": ["🜍","🐍","☀"],
-    "textures": [
-      "assets/textures/meso/feather_serpent.jpg",
-      "assets/textures/meso/mayan_codex.png",
-      "assets/textures/meso/volcanic_stone.jpg"
-    ],
-    "glyphFolder": "meso",
-    "motifClass": "motif-feather",
-    "cymatic": "serpent_wave",
-    "temperament": "phryg",
-    "notes": "Quetzalcoatl current; feathered plumes; serpent harmonics.",
-    "refs": [
-      { "title": "Mayan Dresden Codex", "type": "Codex facsimile", "source": "IA", "why": "Glyphic authenticity" }
-    ]
-  },
-  {
-    "id": "asian_hathor",
-    "name": "Asian Hathor Fusion",
-    "palette": ["#993399","#ffcc33","#336699","#f2f2f2"],
-    "symbols": ["☯","🜇","𓂀"],
-    "textures": [
-      "assets/textures/asian/silk_brocade.jpg",
-      "assets/textures/asian/lotus_paint.png",
-      "assets/textures/asian/temple_lacquer.jpg"
-    ],
-    "glyphFolder": "asian",
-    "motifClass": "motif-lotus",
-    "cymatic": "lotus_bloom",
-    "temperament": "ionian",
-    "notes": "Lotus iconography + Hathoric sistrum resonance; East-West visionary bridge.",
-    "refs": [
-      { "title": "Ajanta Caves Paintings", "type": "PD fresco facsimiles", "source": "IA", "why": "Color + sacred lotus" },
-      { "title": "Hathor Temple Dendera", "type": "PD plates", "source": "NYPL", "why": "Hathoric music links" }
-    ]
-  }
-]
+  "packs": [
+    {
+      "id": "hilma_spiral",
+      "title": "Hilma Spiral",
+      "palette": ["#f8e6f0", "#c49bc7", "#8b5c9e", "#3b1e58"],
+      "motifs": ["spiral", "circle", "cone of light"],
+      "textures": ["velvet", "soft mist"],
+      "source": "Hilma af Klint’s Temple Series (public domain)",
+      "description": "Visionary spirals and ascension cones into the Temple Realm."
+    },
+    {
+      "id": "solfeggio_ribbons",
+      "title": "Solfeggio Ribbons",
+      "palette": ["#ffd6d6", "#ffe680", "#b3ffcc", "#80dfff", "#d1b3ff"],
+      "motifs": ["ribbon", "wave", "flow"],
+      "textures": ["iridescent silk", "light beam"],
+      "tones": [396, 417, 528, 639, 741, 852, 963],
+      "description": "Prismatic ribbons of sound-light corresponding to Solfeggio frequencies."
+    },
+    {
+      "id": "rosslyn_gothic",
+      "title": "Rosslyn Gothic",
+      "palette": ["#1a1a1a", "#444444", "#999999", "#d9d9d9"],
+      "motifs": ["pillar", "rose window", "vine carving"],
+      "textures": ["stone", "aged parchment"],
+      "source": "Rosslyn Chapel architecture (public domain)",
+      "description": "Gothic tracery and carved vines--stone gravitas."
+    },
+    {
+      "id": "alchemical_bloom",
+      "title": "Alchemical Bloom",
+      "palette": ["#ffcc00", "#ff6600", "#cc3300", "#330000"],
+      "motifs": ["rose", "pentacle", "flame"],
+      "textures": ["burnished gold", "alchemical smoke"],
+      "source": "Flamel engravings (public domain)",
+      "description": "Fiery blooms and golden transformations."
+    },
+    {
+      "id": "faery_shadow",
+      "title": "Faery Shadow",
+      "palette": ["#0d1a26", "#1a3340", "#264d59", "#f2e6d9"],
+      "motifs": ["faery figure", "leaf shadow", "lantern flicker"],
+      "textures": ["forest mist", "shadow-play"],
+      "description": "Dreamlike fae presences flickering in light and shadow."
+    },
+
+    // New packs referenced by your rooms:
+
+    {
+      "id": "sun_solaris",
+      "title": "Sun Solaris",
+      "palette": ["#f6e8b1", "#f4c76a", "#e8893a", "#5f4a2f"],
+      "motifs": ["ray", "halo", "gold leaf"],
+      "textures": ["gilded parchment", "warm glaze"],
+      "description": "Solar gilding, warm halos, vitrified gold leaf."
+    },
+    {
+      "id": "druidic_greenman",
+      "title": "Druidic Green Man",
+      "palette": ["#163a24", "#2e6b45", "#7aa36d", "#dfe7d7"],
+      "motifs": ["oak leaf", "vine", "mask"],
+      "textures": ["moss", "stone relief"],
+      "description": "Celtic foliate heads and forest tracery."
+    },
+    {
+      "id": "rosicrucian_black",
+      "title": "Rosicrucian Black",
+      "palette": ["#0e0d10", "#2b2730", "#5a4b5f", "#d9cbd6"],
+      "motifs": ["rose cross", "vault star", "lamp"],
+      "textures": ["soot vellum", "burnished silver"],
+      "description": "Subterranean vault rites--rose-cross emblems on midnight vellum."
+    },
+    {
+      "id": "angelic_chorus",
+      "title": "Angelic Chorus",
+      "palette": ["#e7f0ff", "#bcd2ff", "#8faef2", "#546aa9"],
+      "motifs": ["sphere", "ladder", "feather"],
+      "textures": ["opalescent glaze", "haze"],
+      "description": "Spherical harmonics, feathered glints, Jacob’s Ladder atmosphere."
+    },
+    {
+      "id": "enochian_astral",
+      "title": "Enochian Astral",
+      "palette": ["#0b1522", "#1b2d4a", "#2f5597", "#b9d3ff"],
+      "motifs": ["vesica", "tablet", "sigil ray"],
+      "textures": ["indigo wash", "glass ink"],
+      "description": "Dee–Kelly tablets and astral vesicas--blue‑black laboratory of light."
+    }
+  ]
+}
