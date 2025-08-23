@@ -1,0 +1,47 @@
+<!doctype html><html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Crystal Pavilion</title>
+  <link rel="stylesheet" href="../assets/css/palette.css">
+  <link rel="stylesheet" href="../assets/css/light.css">
+  <link rel="stylesheet" href="../assets/css/ambient.css">
+  <link rel="stylesheet" href="../assets/css/rosslyn.css">
+  <style>
+    .stage{margin:1rem; background:var(--stone); border:1px solid #d9d1c2; position:relative}
+    #grid{display:block; width:100%; height:auto}
+    .legend{position:absolute; right:.5rem; bottom:.5rem; background:#efe7d6; border-left:4px solid var(--gold); padding:.5rem .75rem}
+  </style>
+</head>
+<body>
+  <nav class="controls" aria-label="Accessibility & Modes">
+    <label><input type="checkbox" id="toggle-calm" checked> Calm Mode</label>
+    <label><input type="checkbox" id="toggle-contrast"> High Contrast</label>
+    <label><input type="checkbox" id="toggle-motion" checked> Reduced Motion</label>
+    <label><input type="checkbox" id="toggle-mute"> Mute</label>
+  </nav>
+
+  <section class="room" data-room="crystal-pavilion" aria-label="Crystal Pavilion">
+    <h1 class="visually-hidden">Crystal Pavilion</h1>
+    <div class="stage">
+      <canvas id="grid" width="900" height="700" aria-label="Seed of Life crystal grid"></canvas>
+      <div class="legend" role="note">Tap a node → tone blooms (ND‑safe, no autoplay)</div>
+    </div>
+  </section>
+
+  <script type="module">
+  import '../assets/js/cathedral-engine.js';
+  import { initCrystalGrid } from '../assets/js/effects/crystal-grid.js';
+  initCrystalGrid('#grid', {
+    crystalsUrl: '../assets/data/crystals.json',
+    gridsUrl: '../assets/data/grids.json',
+    gridId: 'seed_of_life_relationships',       // change to try others
+    impulseResponse: '../assets/ir/cathedral.wav'
+  });
+
+  const root=document.documentElement;
+  const bind=(id,cls,on)=>{const el=document.getElementById(id); if(!el)return; el.checked=on; el.addEventListener('change',()=>root.classList.toggle(cls, el.checked));};
+  bind('toggle-calm','calm',true); bind('toggle-contrast','contrast',false);
+  bind('toggle-motion','reduced-motion',true); bind('toggle-mute','muted',false);
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches){ root.classList.add('reduced-motion'); document.getElementById('toggle-motion').checked=true; }
+  </script>
+</body></html>
