@@ -1,32 +1,57 @@
 {
   "$schema": "./structure.schema.json",
-  "version": "1.1",
-  "_provenance": { "...": "..." },
-  "rooms": [ ... ]
-}
-
-{
-  "version": "1.1",
+  "version": "1.2",
+  "_provenance": {
+    "project": "Cathedral of Circuits",
+    "doc": "Stone Grimoire Engines Integration Brief",
+    "updated": "2025-08-22",
+    "curator": "Rebecca Respawn"
+  },
   "rooms": [
-    { "id":"frontispiece", "title":"Frontispiece", "route":"index.html", "element":"Aether", "toneHz":528, "geometry":"frontis-parchment", "stylepack":"hilma_spiral", "notes":"Opens the cosmogram." },
-    { "id":"nave", "title":"Cathedral Nave", "route":"cathedral.html", "element":"Air", "toneHz":528, "geometry":"wind-helix", "stylepack":"sun_solaris", "notes":"Central breathing; organ shimmer." },
+    {
+      "id": "frontispiece",
+      "title": "Frontispiece",
+      "route": "index.html",
+      "element": "Aether",
+      "toneHz": 528,
+      "geometry": "frontis-parchment",
+      "stylepack": "hilma_spiral",
+      "notes": "Opens the cosmogram."
+    },
+    {
+      "id": "nave",
+      "title": "Cathedral Nave",
+      "route": "cathedral.html",
+      "element": "Air",
+      "toneHz": 528,
+      "geometry": "wind-helix",
+      "stylepack": "sun_solaris",
+      "notes": "Central breathing; organ shimmer."
+    },
 
-    { "id":"pillar-boaz", "title":"Pillar of Boaz", "route":"cathedral.html#boaz", "element":"Earth", "toneHz":396, "geometry":"cube-vine", "stylepack":"druidic_greenman", "notes":"Foundation; green stone." },
-    { "id":"pillar-jachin", "title":"Pillar of Jachin", "route":"cathedral.html#jachin", "element":"Fire", "toneHz":741, "geometry":"tetra-ray", "stylepack":"templar_cross", "notes":"Establishment; solar ray." },
+    // Existing chapels + labs here...
+    // New nodes from crystal grids:
+    {
+      "id": "crystal-lab",
+      "title": "Crystal Harmonics Lab",
+      "route": "chapels/crystal-lab.html",
+      "element": "Earth",
+      "toneHz": 639,
+      "geometry": "seed-of-life",
+      "stylepack": "reiki_grid",
+      "notes": "Interactive crystal grids (Seed, Flower, Star). Pulls from crystals.json + grids.json."
+    },
 
-    { "id":"apprentice-pillar", "title":"Apprentice Pillar", "route":"chapels/apprentice-pillar.html", "element":"Air", "toneHz":528, "geometry":"double-helix", "stylepack":"greenman_floral", "notes":"Helical vine; initiation." },
-    { "id":"lady-chapel", "title":"Lady Chapel — Shekhinah", "route":"chapels/lady-chapel.html", "element":"Water", "toneHz":639, "geometry":"rosette", "stylepack":"shekhinah_marian", "notes":"Veil light; contemplative." },
-    { "id":"crypt", "title":"Crypt — Undercroft", "route":"chapels/crypt.html", "element":"Earth", "toneHz":396, "geometry":"cube-nigredo", "stylepack":"druidic_greenman", "notes":"Low bass; candle sputter." },
-
-    { "id":"musical-cubes", "title":"Musical Cubes — Study", "route":"chapels/musical-cubes.html", "element":"Fire", "toneHz":741, "geometry":"cymatic-cubes", "stylepack":"sun_solaris", "notes":"Architecture as score." },
-    { "id":"cubes-visual-lab", "title":"Musical Cubes — Visual Lab", "route":"chapels/cubes-visual-lab.html", "element":"Fire", "toneHz":741, "geometry":"edge-trace", "stylepack":"templar_cross", "notes":"PD overlays + tracings." },
-    { "id":"angel-lab", "title":"Angel‑Cubes Lab", "route":"chapels/angel-lab.html", "element":"Air", "toneHz":528, "geometry":"angelic-network", "stylepack":"enochian_astral", "notes":"Map cube → ratio → tone → angel." },
-    { "id":"helix-totem", "title":"Helix Totem — Fusion", "route":"chapels/helix-totem.html", "element":"Aether", "toneHz":852, "geometry":"twinned-ribbons", "stylepack":"hilma_spiral", "notes":"Fuse currents; iridesce." },
-    { "id":"shem-ladder", "title":"Shem Ladder — 72", "route":"chapels/shem-ladder.html", "element":"Aether", "toneHz":963, "geometry":"ladder-grid", "stylepack":"sun_solaris", "notes":"Grid of 72; rung mapping." },
-
-    { "id":"patrons-sinclair", "title":"Sinclair Patrons", "route":"patrons/sinclair-family.html", "element":"Air", "toneHz":417, "geometry":"heraldic-weave", "stylepack":"folk_lorian", "notes":"Heraldry, stewardship." },
-    { "id":"pd-library", "title":"Public‑Domain Image Library", "route":"images/pd/index.html", "element":"Aether", "toneHz":528, "geometry":"folio-grid", "stylepack":"hilma_spiral", "notes":"Engravings, early photos." },
-
-    { "id":"jacobs-ladder", "title":"Jacob’s Ladder (33)", "route":"https://bekalah.github.io/test-cathedral/", "element":"Aether", "toneHz":963, "geometry":"spiral-ascent", "stylepack":"sun_solaris", "notes":"Public façade; ascent chord." }
+    // Sponsor room
+    {
+      "id": "patrons",
+      "title": "Patron Acknowledgments",
+      "route": "patrons/index.html",
+      "element": "Aether",
+      "toneHz": 417,
+      "geometry": "heraldic-weave",
+      "stylepack": "folk_lorian",
+      "notes": "All sponsors listed as plaques inside cathedral."
+    }
   ]
 }
