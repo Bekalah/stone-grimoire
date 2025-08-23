@@ -41,6 +41,24 @@
       "stylepack": "reiki_grid",
       "notes": "Interactive crystal grids (Seed, Flower, Star). Pulls from crystals.json + grids.json."
     },
+    
+      // Demo room that uses cathedral helper 
+    {
+  "id": "respawn-gate",
+  "title": "Respawn Gate -- Demo",
+  "route": "chapels/respawn-gate.html",
+  "element": "Aether",
+  "toneHz": 528,
+  "geometry": "gate-spiral",
+  "stylepack": "hilma_spiral",
+  "plaque": "assets/data/plaques/respawn-gate.json",
+  "helper": {
+    "audio": true,
+    "badges": true,
+    "contrast": true,
+    "rubric": true
+  }
+}
 
     // Sponsor room
     {
