@@ -11,14 +11,14 @@
   <link rel="stylesheet" href="./assets/css/light.css">
 </head>
 <body>
-<header role="banner">
+<header>
   <h1>Stone Grimoire -- Frontispiece</h1>
   <div class="seal" aria-hidden="true">𓂀 ✦ 93 ✦ 𓂀</div>
   <p>Enter the Cathedral of Circuits -- a living grimoire of light, sound, and code.</p>
   <p><a href="./cathedral.html">Enter the Nave →</a></p>
 </header>
 
-<main class="nave" role="main" aria-label="Frontispiece">
+<main class="nave">
   <section class="center" aria-labelledby="about">
     <h2 id="about">About</h2>
     <div class="cells">
@@ -26,33 +26,29 @@
         <h3><a href="./main/03_codexes/liber-codex99.md">Liber Codex 99</a></h3>
         <p>Temple text.</p>
       </div>
-
       <div class="cell">
         <h3><a href="./main/Thelemic-Alignment-Brief.html">Thelemic Alignment Brief</a></h3>
         <p>93/99/2 harmonics, lineage, reciprocity ethics.</p>
       </div>
-
       <div class="cell">
         <h3><a href="./main/05_ateliers/manifesto.html">Ateliers Manifesto -- Venus Covenant</a></h3>
-        <p>Museum-grade atelier standards and production checklist.</p>
+        <p>Museum‑grade atelier standards and production checklist.</p>
       </div>
-
       <div class="cell">
         <h3><a href="./sponsors/BRIEF.md">Sponsor Brief</a></h3>
-        <p>Museum-grade, ND-safe, portable: what you fund and why.</p>
+        <p>Museum‑grade, ND‑safe, portable: what you fund and why.</p>
       </div>
     </div>
   </section>
 </main>
 
-<!-- Decorative overlay (soft vitrail) -->
 <div class="overlay-vitrail" aria-hidden="true"></div>
 
-<!-- Engines (order matters). These modules handle stylepacks + audio plaque. -->
+<!-- Engines (order matters). We do NOT need ritual here unless you prefer the buttons on frontispiece. -->
 <script type="module" src="./assets/js/cathedral-engine.js"></script>
 <script type="module" src="./assets/js/ritual.js"></script>
 
-<!-- Ritual controls (Banish / Center / Depart) -->
+<!-- Ritual controls (optional on frontispiece; remove if you want it only in the Nave) -->
 <div id="ritual-bar">
   <div class="ritual-controls" role="group" aria-label="Ritual controls">
     <button onclick="ritual.banish()">✧ Banish ✧</button>
