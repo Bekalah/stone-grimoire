@@ -1,64 +1,149 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Stone Grimoire -- Frontispiece</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Frontispiece to the Cathedral of Circuits (Codex 144:99). Enter the nave, read briefs, and visit the ateliers.">
+{
+  "$schema": "./structure.schema.json",
+  "version": "1.3",
+  "_provenance": { "updated": "2025-08-24", "note": "Routes must exist." },
+  "rooms": [
+    {
+      "id": "frontispiece",
+      "title": "Frontispiece",
+      "route": "index.html",
+      "element": "Aether",
+      "toneHz": 528,
+      "geometry": "frontis-parchment",
+      "stylepack": "hilma_spiral",
+      "realm": "Temple",
+      "notes": "Open the cosmogram.",
+      "art": {
+        "background": "images/pd/temple-realm.jpg",
+        "overlay": "assets/overlays/spiral-ribbons.png",
+        "shader": "glass-vitrail",
+        "palette_ref": "hilma_spiral"
+      }
+    },
+    {
+      "id": "nave",
+      "title": "Cathedral Nave",
+      "route": "cathedral.html",
+      "element": "Air",
+      "toneHz": 528,
+      "geometry": "wind-helix",
+      "stylepack": "sun_solaris",
+      "realm": "Temple",
+      "notes": "Boaz | Apprentice | Jachin",
+      "art": {
+        "background": "images/pd/temple-realm.jpg",
+        "overlay": "assets/overlays/neon-stained.png",
+        "shader": "glass-vitrail",
+        "palette_ref": "sun_solaris"
+      }
+    },
+    {
+      "id": "pillar-boaz",
+      "title": "Pillar of Boaz",
+      "route": "cathedral.html#boaz",
+      "element": "Earth",
+      "toneHz": 396,
+      "geometry": "cube-vine",
+      "stylepack": "druidic_greenman",
+      "realm": "Temple",
+      "notes": "Strength · Foundation",
+      "art": {
+        "background": "images/pd/temple-realm.jpg",
+        "overlay": "assets/overlays/neon-stained.png",
+        "shader": "glass-vitrail",
+        "palette_ref": "druidic_greenman"
+      }
+    },
+    {
+      "id": "pillar-jachin",
+      "title": "Pillar of Jachin",
+      "route": "cathedral.html#jachin",
+      "element": "Fire",
+      "toneHz": 741,
+      "geometry": "flame-spiral",
+      "stylepack": "sun_solaris",
+      "realm": "Temple",
+      "notes": "Establishment · Mercy",
+      "art": {
+        "background": "images/pd/temple-realm.jpg",
+        "overlay": "assets/overlays/neon-stained.png",
+        "shader": "glass-vitrail",
+        "palette_ref": "sun_solaris"
+      }
+    },
+    {
+      "id": "choir",
+      "title": "Choir of Angels",
+      "route": "cathedral.html#choir",
+      "element": "Light",
+      "toneHz": 963,
+      "geometry": "sphere-harmonics",
+      "stylepack": "angelic_chorus",
+      "realm": "Temple",
+      "notes": "Jacob's Ladder resonance",
+      "art": {
+        "background": "images/pd/temple-realm.jpg",
+        "overlay": "assets/overlays/spiral-ribbons.png",
+        "shader": "glass-vitrail",
+        "palette_ref": "angelic_chorus"
+      }
+    },
 
-  <!-- Site styles -->
-  <link rel="stylesheet" href="./assets/css/palette.css">
-  <link rel="stylesheet" href="./assets/css/light.css">
-</head>
-<body>
-<header>
-  <h1>Stone Grimoire -- Frontispiece</h1>
-  <div class="seal" aria-hidden="true">𓂀 ✦ 93 ✦ 𓂀</div>
-  <p>Enter the Cathedral of Circuits -- a living grimoire of light, sound, and code.</p>
-  <p><a href="./cathedral.html">Enter the Nave →</a></p>
-</header>
+    /* === Briefs (already in your repo) === */
+    {
+      "id": "thelemic-brief",
+      "title": "Thelemic Alignment Brief",
+      "route": "main/Thelemic-Alignment-Brief.html",
+      "element": "Air",
+      "toneHz": 528,
+      "geometry": "frontis-parchment",
+      "stylepack": "rosslyn_gothic",
+      "realm": "Temple"
+    },
+    {
+      "id": "atelier-manifesto",
+      "title": "Ateliers Manifesto",
+      "route": "main/05_ateliers/manifesto.html",
+      "element": "Water",
+      "toneHz": 639,
+      "geometry": "rose-window",
+      "stylepack": "rosae_illumination",
+      "realm": "Temple"
+    },
 
-<main class="nave" role="region" aria-label="Frontispiece">
-  <section class="center" aria-labelledby="about">
-    <h2 id="about">About</h2>
-    <div class="cells">
-      <div class="cell">
-        <h3><a href="./main/03_codexes/liber-codex99.md">Liber Codex 99</a></h3>
-        <p>Temple text.</p>
-      </div>
-
-      <div class="cell">
-        <h3><a href="./main/Thelemic-Alignment-Brief.html">Thelemic Alignment Brief</a></h3>
-        <p>93/99/2 harmonics, lineage, reciprocity ethics.</p>
-      </div>
-
-      <div class="cell">
-        <h3><a href="./main/05_ateliers/manifesto.html">Ateliers Manifesto -- Venus Covenant</a></h3>
-        <p>Museum‑grade atelier standards and production checklist.</p>
-      </div>
-
-      <div class="cell">
-        <h3><a href="./sponsors/BRIEF.md">Sponsor Brief</a></h3>
-        <p>Museum‑grade, ND‑safe, portable: what you fund and why.</p>
-      </div>
-    </div>
-  </section>
-</main>
-
-<!-- Vitrail wash (style-engine will also mount one; leaving this for instant render) -->
-<div class="overlay-vitrail" aria-hidden="true"></div>
-
-<!-- Engines (order matters). These modules handle stylepacks + audio plaque. -->
-<script type="module" src="./assets/js/cathedral-engine.js"></script>
-<script type="module" src="./assets/js/ritual.js"></script>
-
-<!-- Ritual controls -->
-<div id="ritual-bar">
-  <div class="ritual-controls" role="group" aria-label="Ritual controls">
-    <button onclick="ritual.banish()">✧ Banish ✧</button>
-    <button onclick="ritual.center()">☉ Center ☉</button>
-    <button onclick="ritual.depart()">❦ Depart ❦</button>
-  </div>
-</div>
-</body>
-</html>
+    /* === New Realms === */
+    {
+      "id": "crypt",
+      "title": "The Crypt",
+      "route": "main/07_realms/crypt.html",
+      "element": "Earth",
+      "toneHz": 417,
+      "geometry": "vault-arches",
+      "stylepack": "rosicrucian_black",
+      "realm": "Temple",
+      "notes": "Descent, initiation, rose-cross engravings; 417 Hz."
+    },
+    {
+      "id": "lady-chapel",
+      "title": "Lady Chapel",
+      "route": "main/07_realms/lady-chapel.html",
+      "element": "Venus",
+      "toneHz": 528,
+      "geometry": "rose-window",
+      "stylepack": "rosae_illumination",
+      "realm": "Temple",
+      "notes": "Devotional sanctuary; illuminated manuscripts; 528 Hz."
+    },
+    {
+      "id": "crystal-grid",
+      "title": "Crystal Grid Sanctuary",
+      "route": "main/07_realms/crystal-grid.html",
+      "element": "Aether",
+      "toneHz": 963,
+      "geometry": "platonic-array",
+      "stylepack": "alchemical_bloom",
+      "realm": "Temple",
+      "notes": "Reiki paths; platonic solids mapped to tones; 396–963 Hz."
+    }
+  ]
+}
