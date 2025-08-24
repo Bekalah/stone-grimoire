@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Thelemic Alignment Brief -- Codex 144:99</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Thelemic alignment brief for Codex 144:99 -- mottos, numerology (93/99/2→8), lineage map, thrones/archetypes, and reciprocity over hierarchy." />
+
+  <!-- Site styles (same stack as cathedral.html) -->
+  <link rel="stylesheet" href="../assets/css/palette.css" />
+  <link rel="stylesheet" href="../assets/css/light.css" />
+  <script src="../assets/js/theme.js" defer></script>
+  <script src="../assets/js/planetary-light.js" defer></script>
+
+  <!-- ===== Grimoire Folio Styling (parchment, rubrication, drop-caps) ===== -->
+  <style>
+    :root{
+      --parch-bg: #f8f2e6;
+      --parch-edge: #e7dbc6;
+      --ink-2: #2a2320;
+      --rubric: #8b2b2b;     /* rubrication red */
+      --gold:  #caa44a;      /* gilded accents */
+      --vine:  #9b8b6a;
+    }
+    body.mystic{
+      margin:0;
+      color:var(--ink-2);
+      font: 18px/1.62 Georgia, "Iowan Old Style", serif;
+      background: radial-gradient(circle at 50% 18%, var(--parch-bg) 80%, #efe7d9 100%);
+    }
+    header, footer{
+      margin:18px auto; max-width:1000px; text-align:center;
+      background:#fff8e7; border:1px solid var(--line); border-radius:12px; padding:14px 18px;
+      box-shadow: 0 1px 0 #fff inset, 0 0 0 3px rgba(202,164,74,.08) inset;
+    }
+    header h1{ margin:.2rem 0 .3rem; color:var(--accent) }
+    header .seal{ font-size:1.1rem; color:var(--accent-2); margin:.25rem 0 }
+    .navline{ display:flex; gap:10px; justify-content:space-between; font-size:.95rem }
+    .wrap{ max-width:1000px; margin:0 auto; padding:14px 20px 26px }
+
+    /* Ornate folio frame */
+    .folio{
+      position:relative;
+      background:#fcf6e9;
+      border:1px solid var(--parch-edge);
+      border-radius:14px;
+      padding:26px 24px;
+      box-shadow: 0 0 0 4px rgba(255,255,255,.6) inset, 0 1px 18px rgba(0,0,0,.05);
+    }
+    .folio:before, .folio:after{
+      content:""; position:absolute; width:90px; height:90px; opacity:.22; pointer-events:none
+    }
+    .folio:before{
+      left:-6px; top:-6px;
+      background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="90" height="90"><path d="M8,70 C18,55 30,48 44,40 C56,33 66,24 74,14" fill="none" stroke="%23caa44a" stroke-width="2"/><circle cx="72" cy="16" r="3" fill="%238b2b2b"/></svg>');
+      background-size:90px 90px;
+    }
+    .folio:after{
+      right:-6px; bottom:-6px; transform:scale(-1,-1);
+      background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="90" height="90"><path d="M8,70 C18,55 30,48 44,40 C56,33 66,24 74,14" fill="none" stroke="%23caa44a" stroke-width="2"/><circle cx="72" cy="16" r="3" fill="%238b2b2b"/></svg>');
+      background-size:90px 90px;
+    }
+
+    /* Marginal vine on wide screens */
+    .folio .marginalia{
+      position:absolute; left:-12px; top:40px; bottom:40px; width:10px; opacity:.18; pointer-events:none;
+      background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="400"><path d="M5,0 C6,50 4,90 6,140 C4,190 6,230 5,280 C6,320 4,360 6,400" fill="none" stroke="%239b8b6a" stroke-width="1.2"/><circle cx="5" cy="60" r="1.6" fill="%23caa44a"/><circle cx="5" cy="210" r="1.6" fill="%238b2b2b"/></svg>');
+      background-repeat:repeat-y; display:none;
+    }
+    @media (min-width: 1000px){ .folio .marginalia{ display:block } }
+
+    /* Rubric headings + underline rule */
+    .folio h1,.folio h2,.folio h3,.folio h4{
+      color:var(--ink-2); margin:1rem 0 .4rem;
+      font-variant: small-caps; letter-spacing:.02em; position:relative;
+    }
+    .folio h2{ padding-bottom:.2rem }
+    .folio h2:after{
+      content:""; position:absolute; left:0; bottom:-.2rem; width:140px; height:3px;
+      background: linear-gradient(90deg, var(--rubric), transparent);
+      border-radius:2px;
+    }
+
+    /* Dropcap on first paragraph */
+    .folio .dropcap:first-letter{
+      float:left; font-size:3.05rem; line-height:.9; margin:.12rem .45rem 0 0;
+      font-weight:700; color:var(--rubric); text-shadow:0 1px 0 #fff;
+    }
+
+    /* Body + callouts */
+    .folio p{ margin:.7rem 0 }
+    .folio ul{ margin:.5rem 0 .9rem 1.3rem }
+    .folio ul li{ margin:.25rem 0 }
+    .folio ul li::marker{ content:"❧  "; color:var(--rubric); font-size:1rem }
+    .folio dl{ margin:.5rem 0 0 } .folio dt{ font-weight:700; margin-top:.4rem } .folio dd{ margin:0 0 .4rem 0 }
+    .folio blockquote{
+      margin:.7rem 0; padding:.5rem .8rem;
+      border-left:4px solid var(--gold);
+      background:#fffaf0; color:#5a534b;
+    }
+
+    .panel{ background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px; margin:10px 0 }
+    .note{ background:var(--wash); border:1px solid var(--line); border-radius:12px; padding:12px; margin:8px 0 }
+    .badges{ display:flex; gap:6px; flex-wrap:wrap; margin:.3rem 0 }
+    .badge{ display:inline-block; padding:.1rem .5rem; border:1px solid var(--line); border-radius:999px; font-size:.82rem; background:#fff }
+
+    .plaque{
+      margin-top:14px; font-size:.92rem; color:#6b6257; background:#fff;
+      border:1px solid var(--line); border-radius:10px; padding:10px 12px
+    }
+
+    a{ color:var(--accent); text-decoration:none } a:hover{ text-decoration:underline }
+
+    @media (prefers-reduced-motion: reduce){
+      *{ animation:none !important; transition:none !important }
+    }
+  </style>
+</head>
+<body class="mystic" data-theme="tiphereth">
+  <header>
+    <div class="navline">
+      <div><a href="../cathedral.html">⟵ Back to Cathedral</a></div>
+      <div><a href="./05_ateliers/manifesto.html">Ateliers Manifesto</a></div>
+    </div>
+    <h1>Thelemic Alignment Brief -- <span style="font-variant:small-caps;letter-spacing:.03em">Codex 144:99</span></h1>
+    <div class="seal" aria-hidden="true">𓂀 ✦ 93 ✦ 𓂀</div>
+    <p>93 / 99 / 2 → 8 · Reciprocity over hierarchy · Magdalene wisdom‑current · Living atelier‑coven.</p>
+  </header>
+
+  <div class="wrap">
+    <article class="folio" aria-label="Thelemic Alignment Brief">
+      <div class="marginalia" aria-hidden="true"></div>
+
+      <section class="note" role="note" aria-label="Curatorial Note">
+        <p class="dropcap"><strong>Curatorial Note:</strong> This brief sets the numerological and doctrinal spine of the Stone Grimoire. It aligns the Codex with Thelemic principle (Will + Love), Hermetic lineage, and a modern ethic of <em>reciprocity</em> (collaboration, witness, adaptive angel‑tech) rather than rigid hierarchy. Number attributions are traditional or author‑declared and clearly labeled as interpretive where applicable.</p>
+        <div class="badges" aria-hidden="true">
+          <span class="badge">Museum Layer</span>
+          <span class="badge">Esoteric (Interpretive)</span>
+          <span class="badge">Accessible</span>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="mottos">
+        <h2 id="mottos">Core Mottos (Number Keys)</h2>
+        <dl>
+          <dt>Codex Motto</dt>
+          <dd><em>Ordo in aeternum resonat</em> -- "Order resounds forever." → <strong>99</strong> (angel mirror, infinite resonance).</dd>
+          <dt>Atelier Motto</dt>
+          <dd><em>Ex umbris in lucem artis</em> -- "From shadows into the light of art." → <strong>93</strong> (Thelema: Love/Will) → reduces to <strong>3</strong> (Hermetic triad, creative synthesis).</dd>
+          <dt>Seal Motto</dt>
+          <dd><em>In umbris clavis vigilat</em> -- "In the shadows the Key keeps watch." → isopsephy <strong>1496 → 2</strong> (duality, guardianship, Watchtower).</dd>
+        </dl>
+        <p><strong>Triad Harmony:</strong> 99 (Codex) + 93 (Atelier) + 2 (Seal) = <strong>8</strong> (Balance, Justice, Infinity).</p>
+      </section>
+
+      <section class="panel" aria-labelledby="lineage">
+        <h2 id="lineage">Lineage Map</h2>
+        <ul>
+          <li><strong>Ancient:</strong> <em>Picatrix, Key of Solomon, Abramelin, Goetia, Corpus Hermeticum</em>.</li>
+          <li><strong>Modern:</strong> Crowley, Regardie, Chaos Magicians (Carroll, Hine), Robert Anton Wilson, Leary, Antero Alli, EJ Gold, Alan Moore, Hilma af Klint.</li>
+          <li><strong>Parallel:</strong> where tradition sought hierarchy/control, Codex <strong>144:99</strong> seeks <strong>reciprocity</strong>, witness, and adaptive <em>angel‑tech</em>.</li>
+        </ul>
+      </section>
+
+      <section class="panel" aria-labelledby="thrones">
+        <h2 id="thrones">Thrones / Archetypes</h2>
+        <ul>
+          <li><strong>Moonchild 2000</strong> → prima materia spark.</li>
+          <li><strong>Ann Abyss</strong> → Nigredo (sacred grief, void).</li>
+          <li><strong>IGNI</strong> → Rubedo (fire, completion).</li>
+          <li><strong>Gemini</strong> → Albedo (flood‑sigil, balance).</li>
+          <li><strong>Virelai Ezra Lux</strong> → Violet Sophia current.</li>
+          <li><strong>Zidaryen</strong> → forest trickster, Green Man parallel.</li>
+          <li><strong>Bea Betwixted</strong> → Raven Codex, paradox writer.</li>
+          <li><strong>Mirror Witch</strong> → Hermetic reflection pillar.</li>
+          <li><strong>Ledger of 21 Pillars</strong> → (1: Gnosis7 · 2: Sophia7 · 3: Winnie Reweave …).</li>
+        </ul>
+      </section>
+
+      <section class="panel" aria-labelledby="short">
+        <h2 id="short">In Short</h2>
+        <p>Codex <strong>144:99</strong> sits naturally in the Thelemic current: <strong>93/99/2</strong> harmonics, structured around Moonchild’s spark, and designed as a <strong>living, adaptive spine</strong> rather than a rigid hierarchy. It is Thelemic in <em>number</em>, Hermetic in <em>root</em>, and visionary in <em>art</em>.</p>
+      </section>
+
+      <aside class="plaque" role="note" aria-label="Curator Plaque">
+        <strong>Plaque -- Provenance</strong><br />
+        Intention: Clarify the Codex’s numerical + doctrinal alignment for public pages.<br />
+        Technique: Museum folio frame; rubric headings; fleurons; ND‑safe contrast.<br />
+        Lineage: Thelema (A∴A∴), Hermetic Qabalah, Rosicrucian manuscript traditions, visionary art lineages.<br />
+        Evidence: This brief; linked standards; cross‑refs in <code>standards/README.md</code>.<br />
+        Reflection: Reciprocity over hierarchy maintains safety and honors lived gnosis.
+      </aside>
+    </article>
+  </div>
+
+  <footer>
+    ❦ Green Man’s vine entwines; the Choir resounds. ❦<br>
+    93 93/93 -- Stone Grimoire · Rosslyn Pattern
+  </footer>
+
+  <noscript>
+    <div class="wrap"><p>This page uses light scripting for theme overlays. You can still read all content with JavaScript disabled.</p></div>
+  </noscript>
+
+  <script>
+    // Add dropcap to the first paragraph within the folio
+    window.addEventListener("DOMContentLoaded", () => {
+      const firstP = document.querySelector(".folio p");
+      if (firstP) firstP.classList.add("dropcap");
+    });
+  </script>
+</body>
+</html>
