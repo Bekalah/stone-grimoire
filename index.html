@@ -6,58 +6,59 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Frontispiece to the Cathedral of Circuits (Codex 144:99). Enter the nave, read briefs, and visit the ateliers.">
 
-  <!-- Site styles -->
+  <!-- Core styles -->
   <link rel="stylesheet" href="./assets/css/palette.css">
   <link rel="stylesheet" href="./assets/css/light.css">
 </head>
 <body>
-<header>
-  <h1>Stone Grimoire -- Frontispiece</h1>
-  <div class="seal" aria-hidden="true">𓂀 ✦ 93 ✦ 𓂀</div>
-  <p>Enter the Cathedral of Circuits -- a living grimoire of light, sound, and code.</p>
-  <p><a href="./cathedral.html">Enter the Nave →</a></p>
-</header>
+  <header>
+    <h1>Stone Grimoire -- Frontispiece</h1>
+    <div class="seal" aria-hidden="true">𓂀 ✦ 93 ✦ 𓂀</div>
+    <p>Enter the Cathedral of Circuits -- a living grimoire of light, sound, and code.</p>
+    <p><a href="./cathedral.html">Enter the Nave →</a></p>
+  </header>
 
-<main class="nave">
-  <section class="center" aria-labelledby="about">
-    <h2 id="about">About</h2>
-    <div class="cells">
-      <div class="cell">
-        <h3><a href="./main/03_codexes/liber-codex99.md">Liber Codex 99</a></h3>
-        <p>Temple text.</p>
-      </div>
+  <main class="nave">
+    <section class="center" aria-labelledby="about">
+      <h2 id="about">About</h2>
 
-      <div class="cell">
-        <h3><a href="./main/Thelemic-Alignment-Brief.html">Thelemic Alignment Brief</a></h3>
-        <p>93/99/2 harmonics, lineage, reciprocity ethics.</p>
-      </div>
+      <div class="cells">
+        <div class="cell">
+          <h3><a href="./main/03_codexes/liber-codex99.md">Liber Codex 99</a></h3>
+          <p>Temple text.</p>
+        </div>
 
-      <div class="cell">
-        <h3><a href="./main/05_ateliers/manifesto.html">Ateliers Manifesto -- Venus Covenant</a></h3>
-        <p>Museum-grade atelier standards and production checklist.</p>
-      </div>
+        <div class="cell">
+          <h3><a href="./main/Thelemic-Alignment-Brief.html">Thelemic Alignment Brief</a></h3>
+          <p>93/99/2 harmonics, lineage, reciprocity ethics.</p>
+        </div>
 
-      <div class="cell">
-        <h3><a href="./sponsors/BRIEF.md">Sponsor Brief</a></h3>
-        <p>Museum-grade, ND-safe, portable: what you fund and why.</p>
+        <div class="cell">
+          <h3><a href="./main/05_ateliers/manifesto.html">Ateliers Manifesto -- Venus Covenant</a></h3>
+          <p>Museum‑grade atelier standards and production checklist.</p>
+        </div>
+
+        <div class="cell">
+          <h3><a href="./sponsors/BRIEF.md">Sponsor Brief</a></h3>
+          <p>Museum‑grade, ND‑safe, portable: what you fund and why.</p>
+        </div>
       </div>
+    </section>
+  </main>
+
+  <div class="overlay-vitrail" aria-hidden="true"></div>
+
+  <!-- Engines (order matters) -->
+  <script type="module" src="./assets/js/cathedral-engine.js"></script>
+  <script type="module" src="./assets/js/ritual.js"></script>
+
+  <!-- Ritual controls -->
+  <div id="ritual-bar">
+    <div class="ritual-controls" role="group" aria-label="Ritual controls">
+      <button onclick="ritual.banish()">✧ Banish ✧</button>
+      <button onclick="ritual.center()">☉ Center ☉</button>
+      <button onclick="ritual.depart()">❦ Depart ❦</button>
     </div>
-  </section>
-</main>
-
-<div class="overlay-vitrail" aria-hidden="true"></div>
-
-<!-- Engines -->
-<script type="module" src="./assets/js/cathedral-engine.js"></script>
-<script type="module" src="./assets/js/ritual.js"></script>
-
-<!-- Ritual controls -->
-<div id="ritual-bar">
-  <div class="ritual-controls" role="group" aria-label="Ritual controls">
-    <button onclick="ritual.banish()">✧ Banish ✧</button>
-    <button onclick="ritual.center()">☉ Center ☉</button>
-    <button onclick="ritual.depart()">❦ Depart ❦</button>
   </div>
-</div>
 </body>
 </html>
