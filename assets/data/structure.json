@@ -41,6 +41,27 @@
       "stylepack": "reiki_grid",
       "notes": "Interactive crystal grids (Seed, Flower, Star). Pulls from crystals.json + grids.json."
     },
+   
+   
+   // Register the MANIESTO in structure.json 
+    {
+  "id": "atelier-manifesto",
+  "title": "Ateliers Manifesto",
+  "route": "main/05_ateliers/MANIFESTO.md",
+  "element": "Aether",
+  "toneHz": 528,
+  "geometry": "scroll-unfurl",
+  "stylepack": "hilma_spiral",
+  "notes": "Foundational standards and fusion code for the Venus Covenant.",
+  "slug": "atelier-manifesto",
+  "realm": "Ateliers",
+  "art": {
+    "background": "images/pd/temple-realm.jpg",
+    "overlay": "assets/overlays/neon-stained.png",
+    "shader": "glass-vitrail",
+    "palette_ref": "hilma_spiral"
+  }
+}
     
       // Demo room that uses cathedral helper 
     {
