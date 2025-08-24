@@ -7,10 +7,10 @@
       "Hilma af Klint Temple Series (public domain)",
       "Visionary painter lineages (Fuchs/Venosa/Klarwein -- stylistic influence only)"
     ],
-    "version": "1.2.0",
+    "version": "1.3.0",
     "updated": "2025-08-24",
     "curator": "bekalah",
-    "notes": "ND-safe palettes; no strobe; high contrast options supported."
+    "notes": "ND-safe palettes; no strobe; high-contrast options supported."
   },
   "packs": [
     {
@@ -68,7 +68,7 @@
       "palette": ["#e7f0ff","#bcd2ff","#8faef2","#546aa9"],
       "motifs": ["sphere","ladder","feather"],
       "textures": ["opalescent-glaze","haze"],
-      "description": "Spherical harmonics; Jacob's Ladder atmosphere."
+      "description": "Spherical harmonics; Jacob’s Ladder atmosphere."
     },
     {
       "id": "enochian_astral",
@@ -92,7 +92,7 @@
       "palette": ["#fff8e7","#f0e2c2","#caa44a","#8b2b2b"],
       "motifs": ["gold-initial","vine-border","rose-window"],
       "textures": ["vellum","leaf-gild","ink-wash"],
-      "description": "Gilt manuscript light: Marian/Venus sanctuary."
+      "description": "Gilt manuscript light for the Lady Chapel -- Marian/Venus sanctuary."
     },
     {
       "id": "alchemical_bloom",
@@ -100,7 +100,7 @@
       "palette": ["#ece9ff","#c7b8ff","#89a4ff","#3a2f5f"],
       "motifs": ["cymatic","glaze","mandala-bloom"],
       "textures": ["opalescent-glaze","thin-lacquer"],
-      "description": "Luminous glaze for cymatic / crystal sanctuaries."
+      "description": "Luminous glaze for cymatic and crystal sanctuaries."
     }
   ]
 }
