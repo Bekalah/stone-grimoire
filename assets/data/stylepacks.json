@@ -1,105 +1,106 @@
-
 {
   "_provenance": {
     "license": "CC-BY 4.0",
     "lineage": [
       "Cathedral of Circuits / Codex 144:99",
-      "Visionary Art Standards",
-      "Rosslyn Chapel Patterns",
-      "Hilma af Klint Temple Blueprints"
+      "Rosslyn Chapel (public-domain references)",
+      "Hilma af Klint Temple Series (public domain)",
+      "Visionary painter lineages (Fuchs/Venosa/Klarwein -- stylistic influence only)"
     ],
-    "version": "1.1.0",
-    "updated": "2025-08-22",
+    "version": "1.2.0",
+    "updated": "2025-08-24",
     "curator": "bekalah",
-    "notes": "Stylepacks are museum-grade; ND-friendly; sources mapped to public-domain or original curation."
+    "notes": "ND-safe palettes; no strobe; high contrast options supported."
   },
   "packs": [
     {
+      "id": "neutral_white",
+      "title": "Neutral White (Banish)",
+      "palette": ["#ffffff","#f5f5f5","#dcdcdc","#888888"],
+      "motifs": ["calm","blank","reset"],
+      "textures": ["matte","soft-paper"],
+      "description": "Ritual reset state for Banish and Depart."
+    },
+    {
       "id": "hilma_spiral",
       "title": "Hilma Spiral",
-      "palette": ["#f8e6f0", "#c49bc7", "#8b5c9e", "#3b1e58"],
-      "motifs": ["spiral", "circle", "cone of light"],
-      "textures": ["velvet", "soft mist"],
-      "source": "Hilma af Klint’s Temple Series (public domain)",
-      "description": "Visionary spirals and ascension cones into the Temple Realm."
+      "palette": ["#f8e6f0","#c49bc7","#8b5c9e","#3b1e58"],
+      "motifs": ["spiral","cone of light","concentric"],
+      "textures": ["velvet","soft-mist"],
+      "description": "Visionary spirals and ascension cones -- Temple Realm default."
     },
     {
       "id": "solfeggio_ribbons",
       "title": "Solfeggio Ribbons",
-      "palette": ["#ffd6d6", "#ffe680", "#b3ffcc", "#80dfff", "#d1b3ff"],
-      "motifs": ["ribbon", "wave", "flow"],
-      "textures": ["iridescent silk", "light beam"],
-      "tones": [396, 417, 528, 639, 741, 852, 963],
-      "description": "Prismatic ribbons of sound-light corresponding to Solfeggio frequencies."
+      "palette": ["#ffd6d6","#ffe680","#b3ffcc","#80dfff","#d1b3ff"],
+      "motifs": ["ribbon","wave","flow"],
+      "textures": ["iridescent-silk","light-beam"],
+      "tones": [396,417,528,639,741,852,963],
+      "description": "Prismatic sound-light ribbons for ND-gentle immersion."
     },
     {
       "id": "rosslyn_gothic",
       "title": "Rosslyn Gothic",
-      "palette": ["#1a1a1a", "#444444", "#999999", "#d9d9d9"],
-      "motifs": ["pillar", "rose window", "vine carving"],
-      "textures": ["stone", "aged parchment"],
-      "source": "Rosslyn Chapel architecture (public domain)",
-      "description": "Gothic tracery and carved vines--stone gravitas."
-    },
-    {
-      "id": "alchemical_bloom",
-      "title": "Alchemical Bloom",
-      "palette": ["#ffcc00", "#ff6600", "#cc3300", "#330000"],
-      "motifs": ["rose", "pentacle", "flame"],
-      "textures": ["burnished gold", "alchemical smoke"],
-      "source": "Flamel engravings (public domain)",
-      "description": "Fiery blooms and golden transformations."
-    },
-    {
-      "id": "faery_shadow",
-      "title": "Faery Shadow",
-      "palette": ["#0d1a26", "#1a3340", "#264d59", "#f2e6d9"],
-      "motifs": ["faery figure", "leaf shadow", "lantern flicker"],
-      "textures": ["forest mist", "shadow-play"],
-      "description": "Dreamlike fae presences flickering in light and shadow."
-    },
-
-    // New packs referenced by your rooms:
-
-    {
-      "id": "sun_solaris",
-      "title": "Sun Solaris",
-      "palette": ["#f6e8b1", "#f4c76a", "#e8893a", "#5f4a2f"],
-      "motifs": ["ray", "halo", "gold leaf"],
-      "textures": ["gilded parchment", "warm glaze"],
-      "description": "Solar gilding, warm halos, vitrified gold leaf."
+      "palette": ["#1a1a1a","#444444","#999999","#d9d9d9"],
+      "motifs": ["pillar","rose-window","vine-carving"],
+      "textures": ["stone","aged-parchment"],
+      "description": "Gothic tracery and carved vines -- stone gravitas."
     },
     {
       "id": "druidic_greenman",
       "title": "Druidic Green Man",
-      "palette": ["#163a24", "#2e6b45", "#7aa36d", "#dfe7d7"],
-      "motifs": ["oak leaf", "vine", "mask"],
-      "textures": ["moss", "stone relief"],
+      "palette": ["#163a24","#2e6b45","#7aa36d","#dfe7d7"],
+      "motifs": ["oak-leaf","vine","mask"],
+      "textures": ["moss","stone-relief"],
       "description": "Celtic foliate heads and forest tracery."
     },
     {
       "id": "rosicrucian_black",
       "title": "Rosicrucian Black",
-      "palette": ["#0e0d10", "#2b2730", "#5a4b5f", "#d9cbd6"],
-      "motifs": ["rose cross", "vault star", "lamp"],
-      "textures": ["soot vellum", "burnished silver"],
-      "description": "Subterranean vault rites--rose-cross emblems on midnight vellum."
+      "palette": ["#0e0d10","#2b2730","#5a4b5f","#d9cbd6"],
+      "motifs": ["rose-cross","vault-star","lamp"],
+      "textures": ["soot-vellum","burnished-silver"],
+      "description": "Subterranean vault rites -- rose-cross emblems on midnight vellum."
     },
     {
       "id": "angelic_chorus",
       "title": "Angelic Chorus",
-      "palette": ["#e7f0ff", "#bcd2ff", "#8faef2", "#546aa9"],
-      "motifs": ["sphere", "ladder", "feather"],
-      "textures": ["opalescent glaze", "haze"],
-      "description": "Spherical harmonics, feathered glints, Jacob’s Ladder atmosphere."
+      "palette": ["#e7f0ff","#bcd2ff","#8faef2","#546aa9"],
+      "motifs": ["sphere","ladder","feather"],
+      "textures": ["opalescent-glaze","haze"],
+      "description": "Spherical harmonics; Jacob's Ladder atmosphere."
     },
     {
       "id": "enochian_astral",
       "title": "Enochian Astral",
-      "palette": ["#0b1522", "#1b2d4a", "#2f5597", "#b9d3ff"],
-      "motifs": ["vesica", "tablet", "sigil ray"],
-      "textures": ["indigo wash", "glass ink"],
-      "description": "Dee–Kelly tablets and astral vesicas--blue‑black laboratory of light."
+      "palette": ["#0b1522","#1b2d4a","#2f5597","#b9d3ff"],
+      "motifs": ["vesica","tablet","sigil-ray"],
+      "textures": ["indigo-wash","glass-ink"],
+      "description": "Dee–Kelly tablets and astral vesicas -- lab of light."
+    },
+    {
+      "id": "sun_solaris",
+      "title": "Sun Solaris",
+      "palette": ["#f6e8b1","#f4c76a","#e8893a","#5f4a2f"],
+      "motifs": ["ray","halo","gold-leaf"],
+      "textures": ["gilded-parchment","warm-glaze"],
+      "description": "Solar gilding; vitrified gold leaf."
+    },
+    {
+      "id": "rosae_illumination",
+      "title": "Rosae Illumination",
+      "palette": ["#fff8e7","#f0e2c2","#caa44a","#8b2b2b"],
+      "motifs": ["gold-initial","vine-border","rose-window"],
+      "textures": ["vellum","leaf-gild","ink-wash"],
+      "description": "Gilt manuscript light: Marian/Venus sanctuary."
+    },
+    {
+      "id": "alchemical_bloom",
+      "title": "Alchemical Bloom",
+      "palette": ["#ece9ff","#c7b8ff","#89a4ff","#3a2f5f"],
+      "motifs": ["cymatic","glaze","mandala-bloom"],
+      "textures": ["opalescent-glaze","thin-lacquer"],
+      "description": "Luminous glaze for cymatic / crystal sanctuaries."
     }
   ]
 }
