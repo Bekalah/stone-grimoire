@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>The Crypt -- Cathedral of Circuits</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Subterranean vault of initiation: rose-cross engravings, lantern light, transformation (417 Hz).">
+  <link rel="stylesheet" href="../../assets/css/palette.css">
+  <link rel="stylesheet" href="../../assets/css/light.css">
+  <link rel="stylesheet" href="../../assets/css/folio.css">
+</head>
+<body class="mystic" data-theme="geburah">
+  <header>
+    <div class="navline">
+      <div><a href="../../cathedral.html">⟵ Back to Cathedral</a></div>
+      <div><a href="../06_bookshelf/README.md">Codex Shelf</a></div>
+    </div>
+    <h1>The Crypt</h1>
+    <div class="seal" aria-hidden="true">𓂀 ✦ Rose-Cross ✦ 𓂀</div>
+    <p>Descent and initiation. Stone, lamp, and vow.</p>
+  </header>
+
+  <div class="wrap">
+    <article class="folio" aria-label="Crypt">
+      <div class="marginalia" aria-hidden="true"></div>
+      <p class="dropcap"><strong>Below the nave,</strong> a soot‑vellum vault opens. Lantern light falls across rose‑cross engravings. Touch the plaque to sound <em>417 Hz</em> (dissolving, transmutation).</p>
+
+      <section class="panel">
+        <h2>Reliquaries</h2>
+        <ul>
+          <li><a href="../06_bookshelf/crowley-liber-al.md">Liber AL vel Legis -- Altar Text</a></li>
+          <li><a href="../06_bookshelf/crowley-liber-o.md">Liber O / Ritual of the Pentagram</a></li>
+          <li><a href="../06_bookshelf/crowley-magick-without-tears.md">Magick Without Tears -- Letters</a></li>
+          <li><a href="../06_bookshelf/regardie-middle-pillar.md">Regardie -- The Middle Pillar</a></li>
+        </ul>
+      </section>
+
+      <aside class="plaque" role="note" aria-label="Plaque">
+        <strong>Plaque -- The Crypt</strong><br>
+        Intention: Descent and renewal. Tone: 417 Hz. Stylepack: rosicrucian_black.<br>
+        Technique: Stone relief + lamp; audio engine on demand (Quietus/Resume).<br>
+        Lineage: Rosicrucian vaults; Golden Dawn star maps.
+      </aside>
+    </article>
+  </div>
+
+  <div class="overlay-vitrail" aria-hidden="true"></div>
+
+  <script type="module">
+    import { applyStylepack, loadStylepacks } from "../../assets/js/style-engine.js";
+    import { ensureAudio, startTone, stopTone } from "../../assets/js/ambient-engine.js";
+    (async () => {
+      const packs = await loadStylepacks();
+      applyStylepack(document, packs, "rosicrucian_black");
+      const btn = document.createElement("button");
+      btn.textContent = "Quietus / Resume (417 Hz)";
+      btn.style.position="fixed"; btn.style.right="12px"; btn.style.bottom="12px";
+      btn.className="plaque";
+      document.body.appendChild(btn);
+      let on=false;
+      btn.addEventListener("click", async () => {
+        await ensureAudio();
+        if(on){ stopTone(); on=false; } else { startTone(417); on=true; }
+      });
+    })();
+  </script>
+</body>
+</html>
