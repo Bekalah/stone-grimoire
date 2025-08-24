@@ -1,159 +1,108 @@
-// Minimal pretty Markdown renderer for Codex 144:99
-// Features: strip YAML front matter, headings, paragraphs, lists, code fences,
-// inline code, links, blockquotes. ND-safe (no autoplay, no scripts injected).
+// Minimal, ND-safe Markdown → HTML renderer with pretty mode.
+// Supports: headings, bold/italic, inline code, code blocks, lists, links, blockquotes.
+// Strips YAML front matter. Escapes HTML by default to avoid injection.
 
-export async function renderMarkdownPretty(url, targetSel) {
-  const res = await fetch(url, { cache: "no-cache" });
-  const raw = await res.text();
+function escapeHtml(s){
+  return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
 
-  // 1) Strip simple YAML front matter (--- ... --- at file start)
-  const md = raw.replace(/^---[\s\S]*?---\s*/m, "");
-
-  // 2) Tokenize by lines
-  const lines = md.replace(/\r\n/g, "\n").split("\n");
-
-  // State
-  let html = "";
-  let inCode = false;
-  let codeLang = "";
-  let listMode = null; // "ul" | "ol"
-  let inBlockquote = false;
-
-  const esc = (s) =>
-    s
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;");
-
-  const closeList = () => {
-    if (listMode === "ul") html += "</ul>\n";
-    if (listMode === "ol") html += "</ol>\n";
-    listMode = null;
-  };
-
-  const closeBlockquote = () => {
-    if (inBlockquote) {
-      html += "</blockquote>\n";
-      inBlockquote = false;
-    }
-  };
-
-  // Inline transforms: code `x`, links [txt](url)
-  const inline = (s) => {
-    // escape first to avoid HTML injection
-    s = esc(s);
-    // inline code
-    s = s.replace(/`([^`]+)`/g, "<code>$1</code>");
-    // links
-    s = s.replace(
-      /$begin:math:display$([^$end:math:display$]+)\]$begin:math:text$([^)]+)$end:math:text$/g,
-      (_m, t, u) => `<a href="${u}">${t}</a>`
-    );
-    return s;
-  };
-
-  for (let i = 0; i < lines.length; i++) {
-    let line = lines[i];
-
-    // Code fences ```lang?
-    const fence = line.match(/^```(\w+)?\s*$/);
-    if (fence) {
-      if (!inCode) {
-        inCode = true;
-        codeLang = fence[1] || "";
-        closeList();
-        closeBlockquote();
-        html += `<pre><code${codeLang ? ` class="lang-${esc(codeLang)}"` : ""}>`;
-      } else {
-        inCode = false;
-        html += "</code></pre>\n";
-      }
-      continue;
-    }
-
-    if (inCode) {
-      html += esc(line) + "\n";
-      continue;
-    }
-
-    // Headings
-    const h = line.match(/^(#{1,6})\s+(.*)$/);
-    if (h) {
-      closeList();
-      closeBlockquote();
-      const level = h[1].length;
-      const text = inline(h[2].trim());
-      html += `<h${level}>${text}</h${level}>\n`;
-      continue;
-    }
-
-    // Blockquote
-    if (/^\s*>/.test(line)) {
-      const body = line.replace(/^\s*>\s?/, "");
-      if (!inBlockquote) {
-        closeList();
-        inBlockquote = true;
-        html += "<blockquote>\n";
-      }
-      html += `<p>${inline(body)}</p>\n`;
-      continue;
-    } else {
-      // close blockquote when leaving
-      if (inBlockquote && line.trim() === "") {
-        closeBlockquote();
-        continue;
-      }
-    }
-
-    // Ordered list
-    if (/^\s*\d+\.\s+/.test(line)) {
-      const item = line.replace(/^\s*\d+\.\s+/, "");
-      if (listMode !== "ol") {
-        closeList();
-        html += "<ol>\n";
-        listMode = "ol";
-      }
-      html += `<li>${inline(item)}</li>\n`;
-      continue;
-    }
-
-    // Unordered list
-    if (/^\s*[-*]\s+/.test(line)) {
-      const item = line.replace(/^\s*[-*]\s+/, "");
-      if (listMode !== "ul") {
-        closeList();
-        html += "<ul>\n";
-        listMode = "ul";
-      }
-      html += `<li>${inline(item)}</li>\n`;
-      continue;
-    }
-
-    // Blank line
-    if (line.trim() === "") {
-      closeList();
-      closeBlockquote();
-      html += "\n";
-      continue;
-    }
-
-    // Paragraph
-    closeList();
-    closeBlockquote();
-    html += `<p>${inline(line)}</p>\n`;
+function stripFrontMatter(md){
+  if (md.startsWith("---")) {
+    const parts = md.split(/\n---\s*\n/);
+    if (parts.length > 1) return parts.slice(1).join("\n---\n");
   }
+  return md;
+}
 
-  // Final closures
-  closeList();
-  closeBlockquote();
+function mdToHtml(md){
+  // Normalize line endings
+  md = md.replace(/\r\n?/g,"\n");
 
-  // Inject into target; add dropcap to first non-empty paragraph
+  // Code fences (triple backticks)
+  md = md.replace(/```([\s\S]*?)```/g, (m, code) => {
+    return `<pre><code>${escapeHtml(code.trim())}</code></pre>`;
+  });
+
+  // Blockquotes
+  md = md.replace(/(^|\n)>\s?(.*)(?=\n|$)/g, (m, pre, text) => {
+    return `${pre}<blockquote>${text}</blockquote>`;
+  });
+
+  // Headings #..######
+  md = md.replace(/^(#{1,6})\s*(.+)$/gm, (m, hashes, text) => {
+    const level = hashes.length;
+    return `<h${level}>${escapeHtml(text)}</h${level}>`;
+  });
+
+  // Lists (unordered)
+  // Merge consecutive lines into <ul><li>..</li></ul>
+  md = md.replace(/(?:^|\n)(?:-|\*)\s+.+(?:\n(?:-|\*)\s+.+)*/g, block => {
+    const items = block.trim().split("\n").map(line => {
+      const txt = line.replace(/^(-|\*)\s+/, "");
+      return `<li>${inline(txt)}</li>`;
+    }).join("");
+    return `\n<ul>${items}</ul>`;
+  });
+
+  // Ordered lists: 1. 2. ...
+  md = md.replace(/(?:^|\n)\d+\.\s+.+(?:\n\d+\.\s+.+)*/g, block => {
+    const items = block.trim().split("\n").map(line => {
+      const txt = line.replace(/^\d+\.\s+/, "");
+      return `<li>${inline(txt)}</li>`;
+    }).join("");
+    return `\n<ol>${items}</ol>`;
+  });
+
+  // Paragraphs (anything not already wrapped)
+  // Split by blank lines, wrap in <p> unless starts with <h|<ul|<ol|<pre|<blockquote
+  const chunks = md.split(/\n{2,}/).map(chunk => {
+    const trimmed = chunk.trim();
+    if (!trimmed) return "";
+    if (/^<(h\d|ul|ol|pre|blockquote)/.test(trimmed)) return trimmed;
+    return `<p>${inline(trimmed)}</p>`;
+  }).join("\n");
+
+  return chunks;
+
+  // Inline transforms
+  function inline(t){
+    // links [text](url)
+    t = t.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (m, txt, url) => {
+      const safeUrl = escapeHtml(url);
+      return `<a href="${safeUrl}">${escapeHtml(txt)}</a>`;
+    });
+    // bold **text**
+    t = t.replace(/\*\*([^*]+)\*\*/g, (m, x) => `<strong>${escapeHtml(x)}</strong>`);
+    // italics *text*
+    t = t.replace(/\*([^*]+)\*/g, (m, x) => `<em>${escapeHtml(x)}</em>`);
+    // inline code `x`
+    t = t.replace(/`([^`]+)`/g, (m, x) => `<code>${escapeHtml(x)}</code>`);
+    return t;
+  }
+}
+
+export async function renderMarkdown(url, targetSel){
+  const res = await fetch(url);
+  const raw = await res.text();
+  const md = stripFrontMatter(raw);
+  const html = mdToHtml(md);
   const target = document.querySelector(targetSel);
-  if (!target) return;
   target.innerHTML = html;
+}
 
-  const firstP = target.querySelector("p");
+export async function renderMarkdownPretty(url, targetSel){
+  await renderMarkdown(url, targetSel);
+  const host = document.querySelector(targetSel);
+  // Apply dropcap to the first paragraph, if any
+  const firstP = host.querySelector("p");
   if (firstP && !firstP.classList.contains("dropcap")) {
     firstP.classList.add("dropcap");
+  }
+  // Small ornament: add marginalia DIV if missing
+  if (!host.querySelector(".marginalia")) {
+    const vine = document.createElement("div");
+    vine.className = "marginalia";
+    vine.setAttribute("aria-hidden","true");
+    host.prepend(vine);
   }
 }
