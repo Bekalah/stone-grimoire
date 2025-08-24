@@ -5,21 +5,8 @@
   <title>Stone Grimoire -- Cathedral Nave</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="The Cathedral is the Living Grimoire. Pillars and choir respond to tone and light.">
-
-  <!-- Site styles -->
   <link rel="stylesheet" href="./assets/css/palette.css">
   <link rel="stylesheet" href="./assets/css/light.css">
-
-  <!-- Local style for cymatics canvas (kept minimal here to avoid extra CSS edits) -->
-  <style>
-    .cymatics-canvas{
-      position: fixed; inset: 0; z-index: 0;
-      width: 100vw; height: 100vh; display: block;
-      pointer-events: none; opacity: 0.28; /* soft */
-      mix-blend-mode: soft-light; /* ND-gentle */
-    }
-    header, main, #ritual-bar { position: relative; z-index: 1; }
-  </style>
 </head>
 <body>
 <header>
@@ -46,7 +33,19 @@
       </div>
       <div class="cell">
         <h3><a href="./main/05_ateliers/manifesto.html">Ateliers Manifesto -- Venus Covenant</a></h3>
-        <p>Museum‑grade atelier standards & production checklist.</p>
+        <p>Museum‑grade atelier standards and checklist.</p>
+      </div>
+      <div class="cell">
+        <h3><a href="./crypt.html">The Crypt</a></h3>
+        <p>Descent, initiation -- 417 Hz vault star.</p>
+      </div>
+      <div class="cell">
+        <h3><a href="./lady-chapel.html">Lady Chapel</a></h3>
+        <p>Venus sanctuary -- illuminated devotion at 639 Hz.</p>
+      </div>
+      <div class="cell">
+        <h3><a href="./crystal-grid.html">Crystal Grid Sanctuary</a></h3>
+        <p>Platonic solids + gentle tones; harmonize the grid.</p>
       </div>
     </div>
   </section>
@@ -57,22 +56,10 @@
   </section>
 </main>
 
-<!-- Soft stained overlay stays -->
 <div class="overlay-vitrail" aria-hidden="true"></div>
-
-<!-- Cymatic mandala canvas (under content, above background) -->
-<canvas id="cymatics" class="cymatics-canvas" aria-hidden="true"></canvas>
-
-<!-- Engines (order matters) -->
 <script type="module" src="./assets/js/cathedral-engine.js"></script>
 <script type="module" src="./assets/js/ritual.js"></script>
-<script type="module">
-  import { mountCymaticsCanvas } from './assets/js/cymatics.js';
-  // Mount visuals; they will animate when user toggles sound via the plaque button.
-  window.addEventListener('DOMContentLoaded', () => { mountCymaticsCanvas('#cymatics'); });
-</script>
 
-<!-- Ritual controls -->
 <div id="ritual-bar">
   <div class="ritual-controls" role="group" aria-label="Ritual controls">
     <button onclick="ritual.banish()">✧ Banish ✧</button>
