@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>Stone Grimoire -- Cathedral Nave</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Cathedral of Circuits -- central nave for the living grimoire (Codex 144:99). Rosslyn pattern, pillars, choir, and links to folios.">
+  <meta name="description" content="The Cathedral Nave of Circuits -- Boaz, Apprentice, Jachin, Choir. Living grimoire responsive to tone and light.">
 
   <!-- Site styles -->
   <link rel="stylesheet" href="./assets/css/palette.css">
@@ -18,60 +18,48 @@
 </header>
 
 <main class="nave" role="region" aria-label="Nave">
-  <!-- Left pillar -->
   <section class="pillar" aria-labelledby="boaz">
     <h2 id="boaz">Pillar of Boaz</h2>
     <div class="cell"><p>Strength · Foundation</p></div>
   </section>
 
-  <!-- Center aisle (navigation cells) -->
   <section class="center" aria-labelledby="apprentice">
     <h2 id="apprentice">Apprentice Pillar -- Prima Materia</h2>
     <div class="cells">
       <div class="cell">
         <h3><a href="./index.html">Frontispiece</a></h3>
-        <p>Return to the front page.</p>
+        <p>Return.</p>
       </div>
-
       <div class="cell">
         <h3><a href="./main/03_codexes/liber-codex99.md">Liber Codex 99</a></h3>
         <p>Temple text.</p>
       </div>
-
-      <!-- NEW: Thelemic Alignment Brief link -->
       <div class="cell">
         <h3><a href="./main/Thelemic-Alignment-Brief.html">Thelemic Alignment Brief</a></h3>
-        <p>93/99/2 keys, reciprocity over hierarchy, doctrinal spine for the Codex.</p>
+        <p>93/99/2 harmonics, lineage, reciprocity ethics.</p>
       </div>
-
-      <!-- NEW: Ateliers Manifesto tile (Venus Covenant) -->
       <div class="cell">
         <h3><a href="./main/05_ateliers/manifesto.html">Ateliers Manifesto -- Venus Covenant</a></h3>
-        <p>Fusion art standards for museum‑grade ateliers (Lux · Rosae · Somnium · Venosa · Luxuria).</p>
-      </div>
-
-      <!-- Optional: Standards hub -->
-      <div class="cell">
-        <h3><a href="./standards/README.md">Standards Index</a></h3>
-        <p>Museum rubric, provenance, accessibility, licensing.</p>
+        <p>Atelier standards and fusion covenant.</p>
       </div>
     </div>
   </section>
 
-  <!-- Right pillar -->
   <section class="pillar" aria-labelledby="jachin">
     <h2 id="jachin">Pillar of Jachin</h2>
     <div class="cell"><p>Establishment · Mercy</p></div>
   </section>
+
+  <section class="pillar" aria-labelledby="choir">
+    <h2 id="choir">Choir of Angels</h2>
+    <div class="cell"><p>Jacob’s Ladder resonance</p></div>
+  </section>
 </main>
 
-<div class="overlay-vitrail" aria-hidden="true"></div>
-
-<!-- Engines (order matters) -->
+<div class="overlay-vitrail"></div>
 <script type="module" src="./assets/js/cathedral-engine.js"></script>
 <script type="module" src="./assets/js/ritual.js"></script>
 
-<!-- Ritual controls -->
 <div id="ritual-bar">
   <div class="ritual-controls" role="group" aria-label="Ritual controls">
     <button onclick="ritual.banish()">✧ Banish ✧</button>
