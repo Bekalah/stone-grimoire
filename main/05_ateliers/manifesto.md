@@ -15,7 +15,6 @@
   <style>
     /* ===== Grimoire Folio Styling ===== */
 
-    /* Parchment palette (re-uses your CSS vars for harmony) */
     :root{
       —parch-bg: #f8f2e6;
       —parch-edge: #e7dbc6;
@@ -57,7 +56,7 @@
         0 1px 18px rgba(0,0,0,.05);
     }
 
-    /* Corner ornaments (inline SVG, no extra files) */
+    /* Corner ornaments */
     .folio:before, .folio:after{
       content:””;
       position:absolute; width:90px; height:90px; opacity:.22; pointer-events:none
@@ -73,34 +72,32 @@
       background-size:90px 90px;
     }
 
-    /* Marginal vine (subtle, PD-manuscript vibe) */
+    /* Marginal vine */
     .folio .marginalia{
       position:absolute; left:-12px; top:40px; bottom:40px; width:10px; opacity:.18; pointer-events:none;
       background-image:url(‘data:image/svg+xml;utf8,<svg xmlns=“http://www.w3.org/2000/svg” width=“10” height=“400”><path d=“M5,0 C6,50 4,90 6,140 C4,190 6,230 5,280 C6,320 4,360 6,400” fill=“none” stroke=“%239b8b6a” stroke-width=“1.2”/><circle cx=“5” cy=“60” r=“1.6” fill=“%23caa44a”/><circle cx=“5” cy=“210” r=“1.6” fill=“%238b2b2b”/></svg>’);
       background-repeat:repeat-y;
-      display:none; /* turned on by wide screens */
+      display:none;
     }
     @media (min-width: 1000px){
       .folio .marginalia{ display:block; }
     }
 
-    /* Rubricated headings (red smallcaps underline) */
+    /* Rubricated headings */
     .folio h1,.folio h2,.folio h3,.folio h4{
       color:var(—ink-2); margin:1rem 0 .4rem;
       font-variant: small-caps;
       letter-spacing:.02em;
       position:relative;
     }
-    .folio h2{
-      padding-bottom:.2rem;
-    }
+    .folio h2{ padding-bottom:.2rem; }
     .folio h2:after{
       content:””; position:absolute; left:0; bottom:-.2rem; width:140px; height:3px;
       background: linear-gradient(90deg, var(—rubric), transparent);
       border-radius:2px;
     }
 
-    /* Drop cap on first paragraph */
+    /* Drop cap */
     .folio .dropcap:first-letter{
       float:left; font-size:3.1rem; line-height:.9; margin:.12rem .45rem 0 0;
       font-weight:700; color:var(—rubric);
@@ -116,7 +113,6 @@
       box-shadow: inset 0 0 4px rgba(202,164,74,.35);
     }
 
-    /* Body copy */
     .folio p{ margin:.7rem 0; }
     .folio blockquote{
       margin:.7rem 0; padding:.5rem .8rem;
@@ -125,7 +121,7 @@
       color:#5a534b;
     }
 
-    /* Lists with fleurons (❧) instead of bullets */
+    /* Lists with fleurons */
     .folio ul{ margin:.5rem 0 .9rem 1.3rem }
     .folio ul li{ margin:.25rem 0; }
     .folio ul li::marker{
@@ -137,12 +133,8 @@
       border:1px solid var(—line); border-radius:10px; padding:10px 12px
     }
 
-    a{ color:var(—accent); text-decoration:none } a:hover{ text-decoration:underline }
-
-    /* Prefer-reduced-motion: no glitter shifts */
-    @media (prefers-reduced-motion: reduce){
-      *{ animation: none !important; transition: none !important }
-    }
+    a{ color:var(—accent); text-decoration:none } 
+    a:hover{ text-decoration:underline }
   </style>
 </head>
 <body class=“mystic” data-theme=“netzach”>
@@ -153,7 +145,7 @@
     </div>
     <h1>Ateliers Manifesto — Venus Covenant</h1>
     <div class=“seal” aria-hidden=“true”>𓂀 ✦ 93 ✦ 𓂀</div>
-    <p>Fusion art standards for museum‑grade visionary work in Codex 144:99.</p>
+    <p>Fusion art standards for museum-grade visionary work in Codex 144:99.</p>
   </header>
 
   <div class=“wrap”>
@@ -165,7 +157,7 @@
     <aside class=“plaque” role=“note” aria-label=“Curator Plaque”>
       <strong>Plaque — Provenance</strong><br />
       Intention: Publish atelier standards (Venus current) in a readable, actionable form.<br />
-      Technique: Markdown → in‑page render; parchment & rubric via inline CSS; palette from <code>palette.css</code> + <code>light.css</code>.<br />
+      Technique: Markdown → in-page render; parchment & rubric via inline CSS; palette from <code>palette.css</code> + <code>light.css</code>.<br />
       Lineage: Hilma af Klint / Emma Kunz (geometry), Rosicrucian manuscripts (illumination), visionary realism (Fuchs/Venosa).<br />
       Evidence: <code>main/05_ateliers/MANIFESTO.md</code> (this page renders it live).<br />
       Reflection: Ritual quality without image spam; grimoire feel from typography, frame, and rubric motifs.
@@ -186,14 +178,11 @@
     import { applyRoom } from “../../assets/js/cathedral-engine.js”;
     import { renderMarkdownPretty } from “../../assets/js/markdown-render.js”;
 
-    // After render: apply dropcap to the first paragraph and minor ornaments
     function ornamentAfterRender(container){
       const firstP = container.querySelector(“p”);
       if(firstP && !firstP.classList.contains(“dropcap”)){
         firstP.classList.add(“dropcap”);
       }
-      // Optional: make the very first letter an illuminated initial if user wraps it in [*A*] style later
-      // (kept simple for now; your markdown stays unchanged)
     }
 
     window.addEventListener(“DOMContentLoaded”, async () => {
