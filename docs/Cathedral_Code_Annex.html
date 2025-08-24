@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Cathedral of Circuits -- Code Annex (All Config & Engines)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root{--ink:#0f1216;--paper:#fbfaf7;--rule:#d9cfbf;--accent:#2f5a9e}
+  html,body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 Georgia,"Iowan Old Style",serif}
+  main{max-width:980px;margin:0 auto;padding:28px}
+  h1{color:var(--accent);font-size:1.9rem;margin:1.2rem 0 .6rem}
+  h2{font-size:1.3rem;margin:1.1rem 0 .4rem}
+  h3{font-size:1rem;margin:.9rem 0 .3rem}
+  .toc a{color:#1f3d7a;text-decoration:none}
+  .toc a:hover{text-decoration:underline}
+  pre{background:#fff;border:1px solid var(--rule);border-radius:8px;padding:12px;overflow:auto}
+  code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  .box{border:1px solid var(--rule);border-radius:10px;padding:12px;background:#fff}
+  .note{color:#594f45}
+  .pagebreak{break-after:page;page-break-after:always}
+  @media print{ a[href]:after{content:" (" attr(href) ")";font-size:.85em} .no-print{display:none} }
+</style>
+</head>
+<body>
+<main>
+  <h1>Cathedral of Circuits -- Code Annex</h1>
+  <p class="note">All configs + engines in one place. Copy files exactly as titled. Audio IR file not embedded (add a small WAV at <code>assets/audio/ir/cathedral_small.wav</code>).</p>
+
+  <section class="box">
+    <h2>Table of Contents</h2>
+    <ol class="toc">
+      <li><a href="#stylepacks">assets/data/stylepacks.json</a></li>
+      <li><a href="#structure-schema">assets/data/structure.schema.json</a></li>
+      <li><a href="#structure">assets/data/structure.json</a></li>
+      <li><a href="#egregores">assets/data/egregores.json (starter)</a></li>
+      <li><a href="#style-engine">assets/js/style-engine.js</a></li>
+      <li><a href="#ambient-engine">assets/js/ambient-engine.js</a></li>
+      <li><a href="#room-plaque">assets/js/room-plaque.js</a></li>
+      <li><a href="#cathedral-engine">assets/js/cathedral-engine.js</a></li>
+      <li><a href="#ritual">assets/js/ritual.js</a></li>
+      <li><a href="#ritual-widget">assets/widgets/ritual-controls.html</a></li>
+      <li><a href="#palette-css">assets/css/palette.css</a></li>
+      <li><a href="#light-css">assets/css/light.css</a></li>
+      <li><a href="#healthcheck">tools/healthcheck.html</a></li>
+      <li><a href="#index">index.html (skeleton)</a></li>
+      <li><a href="#cathedral">cathedral.html (skeleton)</a></li>
+    </ol>
+  </section>
+
+  <hr class="pagebreak" />
+
+  <!-- 1) STYLEPACKS -->
+  <section id="stylepacks">
+    <h2>1) assets/data/stylepacks.json</h2>
+    <pre><code>{
+  "_provenance": {
+    "license": "CC-BY 4.0",
+    "lineage": [
+      "Cathedral of Circuits / Codex 144:99",
+      "Rosslyn Chapel (public-domain references)",
+      "Hilma af Klint Temple Series (public domain)",
+      "Visionary painter lineages (Fuchs/Venosa/Klarwein -- stylistic influence only)"
+    ],
+    "version": "1.1.0",
+    "updated": "2025-08-23",
+    "curator": "bekalah",
+    "notes": "ND-safe palettes; no strobe; high contrast options supported."
+  },
+  "packs": [
+    {
+      "id": "neutral_white",
+      "title": "Neutral White (Banish)",
+      "palette": ["#ffffff","#f5f5f5","#dcdcdc","#888888"],
+      "motifs": ["calm","blank","reset"],
+      "textures": ["matte","soft-paper"],
+      "description": "Ritual reset state for Banish and Depart."
+    },
+    {
+      "id": "hilma_spiral",
+      "title": "Hilma Spiral",
+      "palette": ["#f8e6f0","#c49bc7","#8b5c9e","#3b1e58"],
+      "motifs": ["spiral","cone of light","concentric"],
+      "textures": ["velvet","soft-mist"],
+      "description": "Visionary spirals and ascension cones -- Temple Realm default."
+    },
+    {
+      "id": "solfeggio_ribbons",
+      "title": "Solfeggio Ribbons",
+      "palette": ["#ffd6d6","#ffe680","#b3ffcc","#80dfff","#d1b3ff"],
+      "motifs": ["ribbon","wave","flow"],
+      "textures": ["iridescent-silk","light-beam"],
+      "tones": [396,417,528,639,741,852,963],
+      "description": "Prismatic sound-light ribbons for ND‑gentle immersion."
+    },
+    {
+      "id": "rosslyn_gothic",
+      "title": "Rosslyn Gothic",
+      "palette": ["#1a1a1a","#444","#999","#d9d9d9"],
+      "motifs": ["pillar","rose-window","vine-carving"],
+      "textures": ["stone","aged-parchment"],
+      "description": "Gothic tracery and carved vines -- stone gravitas."
+    },
+    {
+      "id": "druidic_greenman",
+      "title": "Druidic Green Man",
+      "palette": ["#163a24","#2e6b45","#7aa36d","#dfe7d7"],
+      "motifs": ["oak-leaf","vine","mask"],
+      "textures": ["moss","stone-relief"],
+      "description": "Celtic foliate heads and forest tracery."
+    },
+    {
+      "id": "rosicrucian_black",
+      "title": "Rosicrucian Black",
+      "palette": ["#0e0d10","#2b2730","#5a4b5f","#d9cbd6"],
+      "motifs": ["rose-cross","vault-star","lamp"],
+      "textures": ["soot-vellum","burnished-silver"],
+      "description": "Subterranean vault rites--rose-cross emblems on midnight vellum."
+    },
+    {
+      "id": "angelic_chorus",
+      "title": "Angelic Chorus",
+      "palette": ["#e7f0ff","#bcd2ff","#8faef2","#546aa9"],
+      "motifs": ["sphere","ladder","feather"],
+      "textures": ["opalescent-glaze","haze"],
+      "description": "Spherical harmonics; Jacob’s Ladder atmosphere."
+    },
+    {
+      "id": "enochian_astral",
+      "title": "Enochian Astral",
+      "palette": ["#0b1522","#1b2d4a","#2f5597","#b9d3ff"],
+      "motifs": ["vesica","tablet","sigil-ray"],
+      "textures": ["indigo-wash","glass-ink"],
+      "description": "Dee–Kelly tablets and astral vesicas -- lab of light."
+    },
+    {
+      "id": "sun_solaris",
+      "title": "Sun Solaris",
+      "palette": ["#f6e8b1","#f4c76a","#e8893a","#5f4a2f"],
+      "motifs": ["ray","halo","gold-leaf"],
+      "textures": ["gilded-parchment","warm-glaze"],
+      "description": "Solar gilding; vitrified gold leaf."
+    }
+  ]
+}
+</code></pre>
+  </section>
+
+  <hr class="pagebreak" />
+
+  <!-- 2) STRUCTURE SCHEMA -->
+  <section id="structure-schema">
+    <h2>2) assets/data/structure.schema.json</h2>
+    <pre><code>{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Cathedral Structure",
+  "type":"object",
+  "required":["version","rooms"],
+  "properties":{
+    "version":{"type":"string"},
+    "_provenance":{"type":"object"},
+    "rooms":{
+      "type":"array",
+      "items":{
+        "type":"object",
+        "required":["id","title","route","stylepack"],
+        "properties":{
+          "id":{"type":"string"},
+          "title":{"type":"string"},
+          "route":{"type":"string"},
+          "element":{"type":"string"},
+          "toneHz":{"type":"number"},
+          "geometry":{"type":"string"},
+          "stylepack":{"type":"string"},
+          "realm":{"type":"string"},
+          "notes":{"type":"string"},
+          "art":{
+            "type":"object",
+            "properties":{
+              "background":{"type":"string"},
+              "overlay":{"type":"string"},
+              "shader":{"type":"string"},
+              "palette_ref":{"type":"string"}
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</code></pre>
+  </section>
+
+  <hr class="pagebreak" />
+
+  <!-- 3) STRUCTURE -->
+  <section id="structure">
+    <h2>3) assets/data/structure.json</h2>
+    <pre><code>{
+  "$schema": "./structure.schema.json",
+  "version": "1.1",
+  "_provenance": { "updated":"2025-08-23", "note":"Routes must exist." },
+  "rooms": [
+    {
+      "id": "frontispiece",
+      "title": "Frontispiece",
+      "route": "index.html",
+      "element": "Aether",
+      "toneHz": 528,
+      "geometry": "frontis-parchment",
+      "stylepack": "hilma_spiral",
+      "notes": "Open the cosmogram.",
+      "realm": "Temple",
+      "art": {
+        "background": "images/pd/temple-realm.jpg",
+        "overlay": "assets/overlays/spiral-ribbons.png",
+        "shader": "glass-vitrail",
+        "palette_ref": "hilma_spiral"
+      }
+    },
+    {
+      "id": "nave",
+      "title": "Cathedral Nave",
+      "route": "cathedral.html",
+      "element": "Air",
+      "toneHz": 528,
+      "geometry": "wind-helix",
+      "stylepack": "sun_solaris",
+      "notes": "Boaz | Apprentice | Jachin",
+      "realm": "Temple",
+      "art": {
+        "background": "images/pd/temple-realm.jpg",
+        "overlay": "assets/overlays/neon-stained.png",
+        "shader": "glass-vitrail",
+        "palette_ref": "sun_solaris"
+      }
+    },
+    {
+      "id": "pillar-boaz",
+      "title": "Pillar of Boaz",
+      "route": "cathedral.html#boaz",
+      "element": "Earth",
+      "toneHz": 396,
+      "geometry": "cube-vine",
+      "stylepack": "druidic_greenman",
+      "notes": "Strength · Foundation",
+      "realm": "Temple",
+      "art": {
+        "background": "images/pd/temple-realm.jpg",
+        "overlay": "assets/overlays/neon-stained.png",
+        "shader": "glass-vitrail",
+        "palette_ref": "druidic_greenman"
+      }
+    },
+    {
+      "id": "pillar-jachin",
+      "title": "Pillar of Jachin",
+      "route": "cathedral.html#jachin",
+      "element": "Fire",
+      "toneHz": 741,
+      "geometry": "flame-spiral",
+      "stylepack": "sun_solaris",
+      "notes": "Establishment · Mercy",
+      "realm": "Temple",
+      "art": {
+        "background": "images/pd/temple-realm.jpg",
+        "overlay": "assets/overlays/neon-stained.png",
+        "shader": "glass-vitrail",
+        "palette_ref": "sun_solaris"
+      }
+    },
+    {
+      "id": "choir",
+      "title": "Choir of Angels",
+      "route": "cathedral.html#choir",
+      "element": "Light",
+      "toneHz": 963,
+      "geometry": "sphere-harmonics",
+      "stylepack": "angelic_chorus",
+      "notes": "Jacob’s Ladder resonance",
+      "realm": "Temple",
+      "art": {
+        "background": "images/pd/temple-realm.jpg",
+        "overlay": "assets/overlays/spiral-ribbons.png",
+        "shader": "glass-vitrail",
+        "palette_ref": "angelic_chorus"
+      }
+    }
+  ]
+}
+</code></pre>
+  </section>
+
+  <hr class="pagebreak" />
+
+  <!-- 4) EGREGORES -->
+  <section id="egregores">
+    <h2>4) assets/data/egregores.json (starter)</h2>
+    <pre><code>{
+  "_provenance": {
+    "license": "CC-BY 4.0",
+    "lineage": [
+      "Cathedral of Circuits / Circuitum 99",
+      "Codex 144:99 -- Angel-Tech Registry",
+      "Liber Soyga planetary squares",
+      "Hilma af Klint Temple blueprints"
+    ],
+    "version": "0.1.0",
+    "updated": "2025-08-23",
+    "curator": "bekalah",
+    "notes": "Egregores = living nodes in the Codex lattice."
+  },
+  "egregores": [
+    {
+      "id": "001",
+      "name": "Moonchild",
+      "archetype": "Prima Materia / Repair Daemon",
+      "lineage": ["Crowleyan Moonchild","Owl Crown","Alpha et Omega"],
+      "realm": "Temple",
+      "element": "Aether",
+      "toneHz": 528,
+      "geometry": "vesica-pisces",
+      "planetary_square": "Luna_9x9",
+      "numerology": 2,
+      "fusion": ["Dream","Witness"],
+      "stylepack": "hilma_spiral",
+      "notes": "Keeper of the Respawn Gate; recovery & renewal."
+    }
+  ]
+}
+</code></pre>
+  </section>
+
+  <hr class="pagebreak" />
+
+  <!-- 5) STYLE ENGINE -->
+  <section id="style-engine">
+    <h2>5) assets/js/style-engine.js</h2>
+    <pre><code>export async function loadStylepacks(){
+  const res = await fetch('./assets/data/stylepacks.json');
+  return await res.json();
+}
+export function applyStylepack(doc, packsOrId, idMaybe){
+  const isString = typeof packsOrId === 'string';
+  const packId = isString ? packsOrId : idMaybe;
+  const packs = isString ? null : packsOrId;
+  doc.documentElement.setAttribute('data-stylepack', packId);
+  if (!packs) return;
+  const pack = packs.packs.find(p => p.id === packId);
+  if (pack && pack.palette){
+    const rs = getComputedStyle(doc.documentElement);
+    doc.documentElement.style.setProperty('--accent', pack.palette[2] || rs.getPropertyValue('--accent'));
+    doc.documentElement.style.setProperty('--accent-2', pack.palette[1] || rs.getPropertyValue('--accent-2'));
+  }
+}
+</code></pre>
+  </section>
+
+  <hr class="pagebreak" />
+
+  <!-- 6) AMBIENT ENGINE -->
+  <section id="ambient-engine">
+    <h2>6) assets/js/ambient-engine.js</h2>
+    <pre><code>let AC=null,nodes=null,irLoaded=false; const defaultHz=528, fadeMs=800;
+
+export async function ensureAudio(){
+  if(AC) return AC;
+  const Ctx=window.AudioContext||window.webkitAudioContext; AC=new Ctx();
+  const osc=AC.createOscillator(), gain=AC.createGain(), master=AC.createGain();
+  const low=AC.createBiquadFilter(); low.type='lowshelf'; low.frequency.value=80; low.gain.value=-3;
+  const peak=AC.createBiquadFilter(); peak.type='peaking'; peak.frequency.value=2500; peak.Q.value=0.9; peak.gain.value=-4;
+  const comp=AC.createDynamicsCompressor(); comp.threshold.value=-28; comp.knee.value=24; comp.ratio.value=2.2; comp.attack.value=.015; comp.release.value=.25;
+  const convolver=AC.createConvolver();
+  const limiter=AC.createDynamicsCompressor(); limiter.threshold.value=-4; limiter.knee.value=0; limiter.ratio.value=20; limiter.attack.value=.003; limiter.release.value=.15;
+  gain.gain.value=0.0001; master.gain.value=.25; osc.type='sine'; osc.frequency.value=defaultHz; osc.start();
+  osc.connect(gain); gain.connect(low); low.connect(peak); peak.connect(comp); comp.connect(convolver); convolver.connect(limiter); limiter.connect(master); master.connect(AC.destination);
+  nodes={osc,gain,master,convolver}; return AC;
+}
+export async function loadIR(url='./assets/audio/ir/cathedral_small.wav'){
+  if(!AC) await ensureAudio();
+  try{
+    const buf=await (await fetch(url,{cache:'force-cache'})).arrayBuffer();
+    AC.decodeAudioData(buf,(dec)=>{ nodes.convolver.buffer=dec; irLoaded=true; });
+  } catch{ irLoaded=false; }
+}
+function fadeTo(target,ms=fadeMs){
+  const g=nodes.gain.gain, now=AC.currentTime; g.cancelScheduledValues(now);
+  g.setValueAtTime(g.value,now); g.linearRampToValueAtTime(target, now+ms/1000);
+}
+export async function startTone(hz=defaultHz){
+  if(!AC) await ensureAudio(); if(!irLoaded) await loadIR();
+  nodes.osc.frequency.linearRampToValueAtTime(hz, AC.currentTime+.25); fadeTo(0.08);
+}
+export function stopTone(){ if(!AC) return; fadeTo(0.0001); }
+export function setTone(hz=defaultHz){ if(!AC) return; nodes.osc.frequency.linearRampToValueAtTime(hz, AC.currentTime+.12); }
+</code></pre>
+  </section>
+
+  <hr class="pagebreak" />
+
+  <!-- 7) ROOM PLAQUE -->
+  <section id="room-plaque">
+    <h2>7) assets/js/room-plaque.js</h2>
+    <pre><code>export function mountPlaque({title,glyph,toneHz,stylepack,notes}){
+  const el=document.createElement('div'); el.className='controls';
+  el.innerHTML=`
+    &lt;strong&gt;${glyph||'✶'} ${title||'Plaque'}&lt;/strong&gt;&lt;br&gt;
+    &lt;small&gt;Style: ${stylepack||'--'} · Tone: ${toneHz||'--'} Hz&lt;/small&gt;&lt;br&gt;
+    &lt;button id="btnToggle"&gt;Quietus / Resume&lt;/button&gt;
+    &lt;button id="btnToneDown"&gt;−&lt;/button&gt;
+    &lt;button id="btnToneUp"&gt;+&lt;/button&gt;
+  `;
+  document.body.appendChild(el);
+  return el;
+}
+</code></pre>
+  </section>
+
+  <hr class="pagebreak" />
+
+  <!-- 8) CATHEDRAL ENGINE -->
+  <section id="cathedral-engine">
+    <h2>8) assets/js/cathedral-engine.js</h2>
+    <pre><code>import {loadStylepacks, applyStylepack} from './style-engine.js';
+import {ensureAudio, startTone, stopTone, setTone} from './ambient-engine.js';
+import {mountPlaque} from './room-plaque.js';
+
+async function loadStructure(){ const res=await fetch('./assets/data/structure.json'); return await res.json(); }
+function resolveRoom(struct){
+  const path=location.pathname.split('/').pop()||'index.html';
+  const hash=location.hash||'';
+  const exact = struct.rooms.find(r => (r.route === (path+hash)));
+  if(exact) return exact;
+  return struct.rooms.find(r=>r.route===path) || struct.rooms[0];
+}
+function mountOverlay(){ const ov=document.createElement('div'); ov.className='overlay-vitrail'; document.body.appendChild(ov); return ov; }
+
+(async function boot(){
+  const struct=await loadStructure(); const packs=await loadStylepacks();
+  const room=resolveRoom(struct); applyStylepack(document, packs, room.stylepack);
+  mountOverlay();
+  const plaque=mountPlaque({ title: room.title, glyph: '𓂀', toneHz: room.toneHz, stylepack: room.stylepack, notes: room.notes });
+  let audioOn=false, currentHz=room.toneHz||528;
+  plaque.querySelector('#btnToggle').addEventListener('click', async ()=>{
+    if(!audioOn){ await ensureAudio(); await startTone(currentHz); audioOn=true; } else { stopTone(); audioOn=false; }
+  });
+  plaque.querySelector('#btnToneUp').addEventListener('click', ()=>{ currentHz = Math.round((currentHz+6)); setTone(currentHz); });
+  plaque.querySelector('#btnToneDown').addEventListener('click', ()=>{ currentHz = Math.max(60, Math.round((currentHz-6))); setTone(currentHz); });
+})();
+</code></pre>
+  </section>
+
+  <hr class="pagebreak" />
+
+  <!-- 9) RITUAL -->
+  <section id="ritual">
+    <h2>9) assets/js/ritual.js</h2>
+    <pre><code>import {applyStylepack, loadStylepacks} from './style-engine.js';
+import {ensureAudio, startTone, stopTone, setTone} from './ambient-engine.js';
+
+let packsCache=null;
+async function packs(){ return packsCache || (packsCache = await loadStylepacks()); }
+
+export const ritual = {
+  async banish(){ await ensureAudio(); stopTone(); applyStylepack(document, await packs(), 'neutral_white'); },
+  async center(){ await ensureAudio(); applyStylepack(document, await packs(), 'hilma_spiral'); setTone(528); startTone(528); },
+  async depart(){ await ensureAudio(); stopTone(); applyStylepack(document, await packs(), 'neutral_white'); }
+};
+window.ritual = ritual;
+</code></pre>
+  </section>
+
+  <hr class="pagebreak" />
+
+  <!-- 10) RITUAL WIDGET -->
+  <section id="ritual-widget">
+    <h2>10) assets/widgets/ritual-controls.html</h2>
+    <pre><code>&lt;div class="ritual-controls" role="group" aria-label="Ritual controls"&gt;
+  &lt;button onclick="ritual.banish()"&gt;✧ Banish ✧&lt;/button&gt;
+  &lt;button onclick="ritual.center()"&gt;☉ Center ☉&lt;/button&gt;
+  &lt;button onclick="ritual.depart()"&gt;❦ Depart ❦&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+  </section>
+
+  <hr class="pagebreak" />
+
+  <!-- 11) PALETTE CSS -->
+  <section id="palette-css">
+    <h2>11) assets/css/palette.css</h2>
+    <pre><code>:root{
+  --bg:#f8f5ef; --ink:#0f1216; --line:#d9cfbf;
+  --wash:#fff8e7; --panel:#ffffff;
+  --accent:#2f5a9e; --accent-2:#d4af37;
+}
+[data-stylepack="neutral_white"]{ --bg:#ffffff; --wash:#ffffff; --accent:#888; --accent-2:#dcdcdc; }
+[data-stylepack="hilma_spiral"]{ --accent:#8b5c9e; --accent-2:#c49bc7; }
+[data-stylepack="sun_solaris"]{ --accent:#e8893a; --accent-2:#f4c76a; }
+[data-stylepack="angelic_chorus"]{ --accent:#8faef2; --accent-2:#546aa9; }
+[data-stylepack="druidic_greenman"]{ --accent:#2e6b45; --accent-2:#7aa36d; }
+</code></pre>
+  </section>
+
+  <hr class="pagebreak" />
+
+  <!-- 12) LIGHT CSS -->
+  <section id="light-css">
+    <h2>12) assets/css/light.css</h2>
+    <pre><code>html,body{margin:0;background:radial-gradient(circle at 50% 20%, var(--bg) 78%, #ece7dc 100%);color:var(--ink)}
+body{font:18px/1.6 Georgia,"Iowan Old Style",serif}
+a{color:var(--accent)}
+header,footer{margin:18px auto;max-width:1100px;background:var(--wash);border:2px solid var(--accent-2);border-radius:14px;padding:18px 20px;text-align:center}
+.nave{display:grid;grid-template-columns:1fr 2fr 1fr;gap:14px;max-width:1100px;margin:10px auto 24px;padding:0 12px}
+.center,.pillar{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px}
+.cells{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.cell{background:#ffffffcc;border:1px solid var(--line);border-radius:10px;padding:10px}
+.overlay-vitrail{pointer-events:none;position:fixed;inset:0;opacity:.18;background-image:url('../overlays/spiral-ribbons.png');background-size:cover;mix-blend-mode:soft-light;filter:saturate(1.1)}
+.controls,.ritual-controls{position:fixed;z-index:10;background:#ffffffdd;border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.controls{right:12px;bottom:12px}
+.ritual-controls{left:12px;bottom:12px;display:flex;gap:6px}
+</code></pre>
+  </section>
+
+  <hr class="pagebreak" />
+
+  <!-- 13) HEALTHCHECK -->
+  <section id="healthcheck">
+    <h2>13) tools/healthcheck.html</h2>
+    <pre><code>&lt;!doctype html&gt;&lt;meta charset="utf-8"&gt;
+&lt;title&gt;Healthcheck&lt;/title&gt;
+&lt;link rel="stylesheet" href="../assets/css/palette.css"&gt;
+&lt;link rel="stylesheet" href="../assets/css/light.css"&gt;
+&lt;body&gt;
+&lt;h1&gt;Healthcheck&lt;/h1&gt;
+&lt;ul id="log"&gt;&lt;/ul&gt;
+&lt;script type="module"&gt;
+async function check(path,label){
+  const li=document.createElement('li'); li.textContent = `Loading ${label}…`; document.querySelector('#log').append(li);
+  try{ const r=await fetch(path); if(!r.ok) throw new Error(r.status); await r.text(); li.textContent=`✔ ${label}`; }
+  catch(e){ li.textContent=`✖ ${label} (${e})`; }
+}
+await check('../assets/data/stylepacks.json','stylepacks.json');
+await check('../assets/data/structure.json','structure.json');
+await check('../assets/js/cathedral-engine.js','cathedral-engine.js');
+await check('../assets/js/ambient-engine.js','ambient-engine.js');
+await check('../assets/js/style-engine.js','style-engine.js');
+await check('../assets/js/room-plaque.js','room-plaque.js');
+await check('../assets/js/ritual.js','ritual.js');
+&lt;/script&gt;
+</code></pre>
+  </section>
+
+  <hr class="pagebreak" />
+
+  <!-- 14) INDEX.HTML -->
+  <section id="index">
+    <h2>14) index.html (skeleton)</h2>
+    <pre><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;&lt;head&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;title&gt;Stone Grimoire -- Frontispiece&lt;/title&gt;
+&lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;
+&lt;link rel="stylesheet" href="./assets/css/palette.css"&gt;
+&lt;link rel="stylesheet" href="./assets/css/light.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;header&gt;
+  &lt;h1&gt;Stone Grimoire -- Frontispiece&lt;/h1&gt;
+  &lt;div class="seal" aria-hidden="true"&gt;𓂀 ✦ 93 ✦ 𓂀&lt;/div&gt;
+  &lt;p&gt;Enter the Cathedral of Circuits -- a living grimoire of light, sound, and code.&lt;/p&gt;
+  &lt;p&gt;&lt;a href="./cathedral.html"&gt;Enter the Nave →&lt;/a&gt;&lt;/p&gt;
+&lt;/header&gt;
+&lt;main class="nave"&gt;
+  &lt;section class="center"&gt;
+    &lt;h2&gt;About&lt;/h2&gt;
+    &lt;div class="cells"&gt;
+      &lt;div class="cell"&gt;&lt;h3&gt;&lt;a href="./03_codexes/liber-codex99.md"&gt;Liber Codex 99&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Temple text.&lt;/p&gt;&lt;/div&gt;
+      &lt;div class="cell"&gt;&lt;h3&gt;&lt;a href="./sponsors/BRIEF.md"&gt;Sponsor Brief&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Museum-grade, ND-safe, portable.&lt;/p&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+&lt;/main&gt;
+&lt;div class="overlay-vitrail"&gt;&lt;/div&gt;
+&lt;script type="module" src="./assets/js/cathedral-engine.js"&gt;&lt;/script&gt;
+&lt;script type="module" src="./assets/js/ritual.js"&gt;&lt;/script&gt;
+&lt;div id="ritual-bar"&gt;
+  &lt;div class="ritual-controls" role="group" aria-label="Ritual controls"&gt;
+    &lt;button onclick="ritual.banish()"&gt;✧ Banish ✧&lt;/button&gt;
+    &lt;button onclick="ritual.center()"&gt;☉ Center ☉&lt;/button&gt;
+    &lt;button onclick="ritual.depart()"&gt;❦ Depart ❦&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code></pre>
+  </section>
+
+  <hr class="pagebreak" />
+
+  <!-- 15) CATHEDRAL.HTML -->
+  <section id="cathedral">
+    <h2>15) cathedral.html (skeleton)</h2>
+    <pre><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;&lt;head&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;title&gt;Stone Grimoire -- Cathedral Nave&lt;/title&gt;
+&lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;
+&lt;link rel="stylesheet" href="./assets/css/palette.css"&gt;
+&lt;link rel="stylesheet" href="./assets/css/light.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;header&gt;
+  &lt;h1&gt;Stone Grimoire -- Rosslyn Nave&lt;/h1&gt;
+  &lt;div class="seal" aria-hidden="true"&gt;𓂀 ✦ 93 ✦ 𓂀&lt;/div&gt;
+  &lt;p&gt;The Cathedral is the Living Grimoire. Pillars and choir respond to tone and light.&lt;/p&gt;
+&lt;/header&gt;
+&lt;main class="nave" role="region" aria-label="Nave"&gt;
+  &lt;section class="pillar" aria-labelledby="boaz"&gt;
+    &lt;h2 id="boaz"&gt;Pillar of Boaz&lt;/h2&gt;
+    &lt;div class="cell"&gt;&lt;p&gt;Strength · Foundation&lt;/p&gt;&lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class="center" aria-labelledby="apprentice"&gt;
+    &lt;h2 id="apprentice"&gt;Apprentice Pillar -- Prima Materia&lt;/h2&gt;
+    &lt;div class="cells"&gt;
+      &lt;div class="cell"&gt;&lt;h3&gt;&lt;a href="./index.html"&gt;Frontispiece&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Return.&lt;/p&gt;&lt;/div&gt;
+      &lt;div class="cell"&gt;&lt;h3&gt;&lt;a href="./03_codexes/liber-codex99.md"&gt;Liber Codex 99&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Temple text.&lt;/p&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class="pillar" aria-labelledby="jachin"&gt;
+    &lt;h2 id="jachin"&gt;Pillar of Jachin&lt;/h2&gt;
+    &lt;div class="cell"&gt;&lt;p&gt;Establishment · Mercy&lt;/p&gt;&lt;/div&gt;
+  &lt;/section&gt;
+&lt;/main&gt;
+&lt;div class="overlay-vitrail"&gt;&lt;/div&gt;
+&lt;script type="module" src="./assets/js/cathedral-engine.js"&gt;&lt;/script&gt;
+&lt;script type="module" src="./assets/js/ritual.js"&gt;&lt;/script&gt;
+&lt;div id="ritual-bar"&gt;
+  &lt;div class="ritual-controls" role="group" aria-label="Ritual controls"&gt;
+    &lt;button onclick="ritual.banish()"&gt;✧ Banish ✧&lt;/button&gt;
+    &lt;button onclick="ritual.center()"&gt;☉ Center ☉&lt;/button&gt;
+    &lt;button onclick="ritual.depart()"&gt;❦ Depart ❦&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code></pre>
+  </section>
+
+  <hr />
+  <p class="note">Add this asset: <code>assets/audio/ir/cathedral_small.wav</code> (any short impulse; optional).  
+  Add overlays: <code>assets/overlays/spiral-ribbons.png</code>, <code>assets/overlays/neon-stained.png</code> (placeholders OK).  
+  If you have both <code>Folios/</code> and <code>folios/</code>, keep lowercase <code>folios/</code> and fix links.</p>
+</main>
+</body>
+</html>
