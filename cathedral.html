@@ -2,95 +2,113 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Stone Grimoire -- Cathedral Nave (Codex 144:99)</title>
+  <title>Stone Grimoire -- Cathedral Nave</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Cathedral of Circuits -- living grimoire nave. Enter pillars, read briefs, visit the ateliers.">
+  <meta name="description" content="The living nave of the Cathedral of Circuits (Codex 144:99). Pillars, choir, and links to briefs and ateliers.">
 
-  <!-- Core styles -->
+  <!-- Site styles -->
   <link rel="stylesheet" href="./assets/css/palette.css">
   <link rel="stylesheet" href="./assets/css/light.css">
 </head>
 <body>
-  <header>
-    <h1>Stone Grimoire -- Rosslyn Nave</h1>
-    <div class="seal" aria-hidden="true">𓂀 ✦ 93 ✦ 𓂀</div>
-    <p>The Cathedral is the Living Grimoire. Pillars and choir respond to tone and light.</p>
-  </header>
+<header role="banner">
+  <h1>Stone Grimoire -- Rosslyn Nave</h1>
+  <div class="seal" aria-hidden="true">𓂀 ✦ 93 ✦ 𓂀</div>
+  <p>The Cathedral is the Living Grimoire. Pillars and choir respond to tone and light.</p>
+  <p><a href="./index.html">⟵ Return to Frontispiece</a></p>
+</header>
 
-  <main class="nave" role="region" aria-label="Nave">
-    <!-- Left Pillar: Boaz -->
-    <section class="pillar" aria-labelledby="boaz">
-      <h2 id="boaz">Pillar of Boaz</h2>
-      <div class="cell"><p>Strength · Foundation</p></div>
+<main class="nave" role="main" aria-label="Nave">
+  <!-- Left Pillar: Boaz -->
+  <section class="pillar" aria-labelledby="boaz">
+    <h2 id="boaz">Pillar of Boaz</h2>
+    <div class="cell"><p>Strength · Foundation</p></div>
+    <div class="cells">
+      <div class="cell">
+        <h3><a href="./main/Thelemic-Alignment-Brief.html">Thelemic Alignment Brief</a></h3>
+        <p>93/99/2 → 8; lineage, mottos, reciprocity ethics.</p>
+      </div>
+      <div class="cell">
+        <h3><a href="./standards/README.md">Standards Index</a></h3>
+        <p>Provenance rules, accessibility, PD sources.</p>
+      </div>
+    </div>
+  </section>
 
+  <!-- Center: Apprentice / Hub tiles -->
+  <section class="center" aria-labelledby="apprentice">
+    <h2 id="apprentice">Apprentice Pillar -- Prima Materia</h2>
+    <div class="cells">
       <div class="cell">
         <h3><a href="./main/03_codexes/liber-codex99.md">Liber Codex 99</a></h3>
-        <p>Temple text -- living spine and rites.</p>
+        <p>Temple text.</p>
+      </div>
+
+      <div class="cell">
+        <h3><a href="./main/05_ateliers/manifesto.html">Ateliers Manifesto -- Venus Covenant</a></h3>
+        <p>Fusion-art standards (Lux · Rosae · Somnium · Venosa · Luxuria).</p>
+      </div>
+
+      <div class="cell">
+        <h3><a href="./tools/healthcheck.html">Healthcheck</a></h3>
+        <p>Quick loader test for data and engines.</p>
       </div>
 
       <div class="cell">
         <h3><a href="./sponsors/BRIEF.md">Sponsor Brief</a></h3>
-        <p>Museum‑grade, ND‑safe, portable: what you fund and why.</p>
+        <p>Museum-grade, ND-safe, portable: what you fund and why.</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Center: Apprentice / Hub -->
-    <section class="center" aria-labelledby="apprentice">
-      <h2 id="apprentice">Apprentice Pillar -- Prima Materia</h2>
-      <div class="cells">
-        <div class="cell">
-          <h3><a href="./index.html">Frontispiece</a></h3>
-          <p>Enter · Return · Reset (Respawn Gate).</p>
-        </div>
-
-        <div class="cell">
-          <h3><a href="./main/Thelemic-Alignment-Brief.html">Thelemic Alignment Brief</a></h3>
-          <p>93/99/2 harmonics, lineage & reciprocity ethic.</p>
-        </div>
-
-        <div class="cell">
-          <!-- Prefer the HTML renderer page if present; if not, the .md still opens on GitHub Pages raw -->
-          <h3><a href="./main/05_ateliers/manifesto.html">Ateliers Manifesto -- Venus Covenant</a></h3>
-          <p>Museum‑grade atelier standards (Lux · Rosæ · Somnium · Venosa · Luxuria).</p>
-        </div>
-
-        <div class="cell">
-          <h3><a href="./tools/healthcheck.html">Healthcheck</a></h3>
-          <p>Verify data & engine files are reachable.</p>
-        </div>
+  <!-- Right Pillar: Jachin -->
+  <section class="pillar" aria-labelledby="jachin">
+    <h2 id="jachin">Pillar of Jachin</h2>
+    <div class="cell"><p>Establishment · Mercy</p></div>
+    <div class="cells">
+      <div class="cell">
+        <h3><a href="./main/01_main-narrative/">Main Narrative</a></h3>
+        <p>Living story spine (33 nodes) -- folder entry.</p>
       </div>
-    </section>
-
-    <!-- Right Pillar: Jachin -->
-    <section class="pillar" aria-labelledby="jachin">
-      <h2 id="jachin">Pillar of Jachin</h2>
-      <div class="cell"><p>Establishment · Mercy</p></div>
-
       <div class="cell">
         <h3><a href="./archive/index.html">Temple Archive</a></h3>
-        <p>Past plates, folios, and experimental scenes.</p>
+        <p>Older folios and snapshots.</p>
       </div>
-
-      <div class="cell">
-        <h3><a href="./standards/README.md">Standards</a></h3>
-        <p>Provenance, licensing, ND‑safety, accessibility.</p>
-      </div>
-    </section>
-  </main>
-
-  <div class="overlay-vitrail" aria-hidden="true"></div>
-
-  <!-- Engines (order matters) -->
-  <script type="module" src="./assets/js/cathedral-engine.js"></script>
-  <script type="module" src="./assets/js/ritual.js"></script>
-
-  <!-- Ritual controls -->
-  <div id="ritual-bar">
-    <div class="ritual-controls" role="group" aria-label="Ritual controls">
-      <button onclick="ritual.banish()">✧ Banish ✧</button>
-      <button onclick="ritual.center()">☉ Center ☉</button>
-      <button onclick="ritual.depart()">❦ Depart ❦</button>
     </div>
+  </section>
+
+  <!-- Choir: resonance and orientation -->
+  <section class="pillar" aria-labelledby="choir">
+    <h2 id="choir">Choir of Angels</h2>
+    <div class="cell"><p>Jacob's Ladder resonance · gentle tones · stylepacks.</p></div>
+    <div class="cells">
+      <div class="cell">
+        <h3><a href="./assets/data/stylepacks.json">Stylepacks JSON</a></h3>
+        <p>Palettes and motifs used by the engines.</p>
+      </div>
+      <div class="cell">
+        <h3><a href="./assets/data/structure.json">Structure JSON</a></h3>
+        <p>Room routing for style/audio plaques.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Decorative overlay (soft vitrail) -->
+<div class="overlay-vitrail" aria-hidden="true"></div>
+
+<!-- Engines (order matters) -->
+<script type="module" src="./assets/js/cathedral-engine.js"></script>
+<script type="module" src="./assets/js/ritual.js"></script>
+
+<!-- Ritual controls (Banish / Center / Depart) -->
+<div id="ritual-bar">
+  <div class="ritual-controls" role="group" aria-label="Ritual controls">
+    <button onclick="ritual.banish()">✧ Banish ✧</button>
+    <button onclick="ritual.center()">☉ Center ☉</button>
+    <button onclick="ritual.depart()">❦ Depart ❦</button>
   </div>
+</div>
+
 </body>
 </html>
