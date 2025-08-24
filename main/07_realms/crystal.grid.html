@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Crystal Grid Sanctuary -- Cathedral of Circuits</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Platonic solids mapped to tones; reiki paths; harmonized chord activation.">
+  <link rel="stylesheet" href="../../assets/css/palette.css">
+  <link rel="stylesheet" href="../../assets/css/light.css">
+  <link rel="stylesheet" href="../../assets/css/folio.css">
+  <style>
+    .grid { display:grid; grid-template-columns: repeat(5,1fr); gap:10px; margin:14px 0 }
+    .node { border:1px solid var(--line); background:#fff; border-radius:12px; padding:12px; text-align:center; cursor:pointer }
+    .node small { display:block; color:#6b6257 }
+    @media (max-width: 640px){ .grid{ grid-template-columns: repeat(2,1fr) } }
+  </style>
+</head>
+<body class="mystic" data-theme="kether">
+  <header>
+    <div class="navline">
+      <div><a href="../../cathedral.html">⟵ Back to Cathedral</a></div>
+      <div><a href="../06_bookshelf/README.md">Codex Shelf</a></div>
+    </div>
+    <h1>Crystal Grid Sanctuary</h1>
+    <div class="seal" aria-hidden="true">𓂀 ✦ Cymatic Bloom ✦ 𓂀</div>
+    <p>Activate the Platonic array. Each solid sounds its tone; the chord harmonizes the field.</p>
+  </header>
+
+  <div class="wrap">
+    <article class="folio" aria-label="Crystal Grid">
+      <div class="marginalia" aria-hidden="true"></div>
+
+      <section class="panel">
+        <h2>Platonic Array</h2>
+        <div class="grid" id="platonic">
+          <button class="node" data-hz="741"><strong>Tetrahedron</strong><small>Fire · 741 Hz</small></button>
+          <button class="node" data-hz="396"><strong>Cube</strong><small>Earth · 396 Hz</small></button>
+          <button class="node" data-hz="528"><strong>Octahedron</strong><small>Air · 528 Hz</small></button>
+          <button class="node" data-hz="639"><strong>Icosahedron</strong><small>Water · 639 Hz</small></button>
+          <button class="node" data-hz="963"><strong>Dodecahedron</strong><small>Aether · 963 Hz</small></button>
+        </div>
+        <p><button id="chord" class="plaque">Activate Harmonized Chord</button></p>
+      </section>
+
+      <aside class="plaque" role="note" aria-label="Plaque">
+        <strong>Plaque -- Crystal Grid Sanctuary</strong><br>
+        Intention: Reiki lattice; cymatic bloom. Stylepack: alchemical_bloom.<br>
+        Technique: On-demand tones; gentle limiter; IR optional.<br>
+        Lineage: Pythagorean solids; visionary cymatics.
+      </aside>
+    </article>
+  </div>
+
+  <div class="overlay-vitrail" aria-hidden="true"></div>
+
+  <script type="module">
+    import { applyStylepack, loadStylepacks } from "../../assets/js/style-engine.js";
+    import { ensureAudio, startTone, stopTone, setTone } from "../../assets/js/ambient-engine.js";
+
+    (async () => {
+      const packs = await loadStylepacks();
+      applyStylepack(document, packs, "alchemical_bloom");
+
+      await ensureAudio();
+
+      const nodes = Array.from(document.querySelectorAll(".node"));
+      let soloOn = false, lastHz = 528;
+
+      nodes.forEach(btn => {
+        btn.addEventListener("click", async () => {
+          const hz = parseInt(btn.getAttribute("data-hz"), 10) || 528;
+          lastHz = hz;
+          if(!soloOn){ startTone(hz); soloOn = true; } else { setTone(hz); }
+        });
+      });
+
+      document.getElementById("chord").addEventListener("click", async () => {
+        // simple chord sweep: step through each hz briefly
+        let i = 0;
+        const seq = nodes.map(n => parseInt(n.getAttribute("data-hz"),10));
+        const playNext = () => {
+          if(i >= seq.length){ setTone(lastHz); return; }
+          setTone(seq[i]); i++;
+          setTimeout(playNext, 500);
+        };
+        startTone(seq[0]); i = 1;
+        setTimeout(playNext, 500);
+      });
+    })();
+  </script>
+</body>
+</html>
