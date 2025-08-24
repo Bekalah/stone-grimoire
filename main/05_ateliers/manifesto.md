@@ -85,3 +85,23 @@
 - [ ] Commit; update PD manifest.
 
 **Motto:** _Lux et Amor in aeternum resonat._  (Light and Love resound forever.)
+
+<!DOCTYPE html>
+<html lang=“en”>
+<head>
+  <meta charset=“UTF-8”>
+  <title>Ateliers Manifesto</title>
+  <link rel=“stylesheet” href=“../../assets/css/style.css”>
+  <script type=“module”>
+    import { applyRoom } from “../../assets/js/cathedral-engine.js”;
+    import { renderMarkdown } from “../../assets/js/markdown-render.js”;
+    window.addEventListener(“DOMContentLoaded”, () => {
+      applyRoom(“atelier-manifesto”);
+      renderMarkdown(“../../main/05_ateliers/MANIFESTO.md”, “#content”);
+    });
+  </script>
+</head>
+<body>
+  <div id=“content” class=“folio-text”></div>
+</body>
+</html>
