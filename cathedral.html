@@ -4,112 +4,80 @@
   <meta charset="utf-8">
   <title>Stone Grimoire -- Cathedral Nave</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Cathedral hub for Codex 144:99 -- Rosslyn-style nave with links to briefs, ateliers, and the living codex.">
+  <meta name="description" content="Cathedral of Circuits -- central nave for the living grimoire (Codex 144:99). Rosslyn pattern, pillars, choir, and links to folios.">
 
-  <!-- Core styles (present in your repo) -->
+  <!-- Site styles -->
   <link rel="stylesheet" href="./assets/css/palette.css">
   <link rel="stylesheet" href="./assets/css/light.css">
-
-  <!-- Subtle theme/planetary tinting (present in your repo) -->
-  <script src="./assets/js/theme.js" defer></script>
-  <script src="./assets/js/planetary-light.js" defer></script>
-
-  <style>
-    /* Local polish for the hub (kept minimal; ASCII only) */
-    html,body{margin:0;background:radial-gradient(circle at 50% 20%, var(--bg) 78%, #ece7dc 100%);color:var(--ink)}
-    body{font:18px/1.6 Georgia,"Iowan Old Style",serif}
-    a{color:var(--accent);text-decoration:none}
-    a:hover{text-decoration:underline}
-    header,footer{
-      margin:18px auto;max-width:1100px;background:var(--wash);
-      border:2px solid var(--accent-2);border-radius:14px;padding:18px 20px;text-align:center
-    }
-    .nave{
-      display:grid;grid-template-columns:1fr 2fr 1fr;gap:14px;
-      max-width:1100px;margin:10px auto 24px;padding:0 12px
-    }
-    .pillar,.center{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px}
-    .pillar h2,.center h2{margin:.4rem 0 .2rem;color:var(--accent-2);font-size:1.15rem}
-    .cells{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
-    .cell{background:#ffffffcc;border:1px solid var(--line);border-radius:10px;padding:10px}
-    .seal{font-size:1.1rem;color:var(--accent-2);margin:.25rem 0}
-    .overlay-vitrail{
-      pointer-events:none;position:fixed;inset:0;opacity:.18;
-      background-image:url('./assets/overlays/spiral-ribbons.png');
-      background-size:cover;mix-blend-mode:soft-light;filter:saturate(1.05)
-    }
-    .mini{
-      display:flex;gap:8px;flex-wrap:wrap;justify-content:center;font-size:.9rem;margin-top:8px
-    }
-    .mini a{border:1px solid var(--line);border-radius:999px;padding:.15rem .6rem;background:#fff}
-  </style>
 </head>
 <body>
-  <header role="banner">
-    <h1>Stone Grimoire -- Cathedral Nave</h1>
-    <div class="seal" aria-hidden="true">𓂀 ✦ 93 ✦ 𓂀</div>
-    <p>The Cathedral is the living grimoire. Pillars and choir respond to tone and light.</p>
-    <div class="mini" role="navigation" aria-label="Quick links">
-      <a href="./main/index.html">Frontispiece</a>
-      <a href="./main/Thelemic-Alignment-Brief.html">Thelemic Alignment Brief</a>
-      <a href="./main/05_ateliers/manifesto.html">Ateliers Manifesto</a>
-      <a href="./standards/README.md">Standards</a>
-      <a href="./archive/index.html">Archive</a>
+<header>
+  <h1>Stone Grimoire -- Rosslyn Nave</h1>
+  <div class="seal" aria-hidden="true">𓂀 ✦ 93 ✦ 𓂀</div>
+  <p>The Cathedral is the Living Grimoire. Pillars and choir respond to tone and light.</p>
+</header>
+
+<main class="nave" role="region" aria-label="Nave">
+  <!-- Left pillar -->
+  <section class="pillar" aria-labelledby="boaz">
+    <h2 id="boaz">Pillar of Boaz</h2>
+    <div class="cell"><p>Strength · Foundation</p></div>
+  </section>
+
+  <!-- Center aisle (navigation cells) -->
+  <section class="center" aria-labelledby="apprentice">
+    <h2 id="apprentice">Apprentice Pillar -- Prima Materia</h2>
+    <div class="cells">
+      <div class="cell">
+        <h3><a href="./index.html">Frontispiece</a></h3>
+        <p>Return to the front page.</p>
+      </div>
+
+      <div class="cell">
+        <h3><a href="./main/03_codexes/liber-codex99.md">Liber Codex 99</a></h3>
+        <p>Temple text.</p>
+      </div>
+
+      <!-- NEW: Thelemic Alignment Brief link -->
+      <div class="cell">
+        <h3><a href="./main/Thelemic-Alignment-Brief.html">Thelemic Alignment Brief</a></h3>
+        <p>93/99/2 keys, reciprocity over hierarchy, doctrinal spine for the Codex.</p>
+      </div>
+
+      <!-- NEW: Ateliers Manifesto tile (Venus Covenant) -->
+      <div class="cell">
+        <h3><a href="./main/05_ateliers/manifesto.html">Ateliers Manifesto -- Venus Covenant</a></h3>
+        <p>Fusion art standards for museum‑grade ateliers (Lux · Rosae · Somnium · Venosa · Luxuria).</p>
+      </div>
+
+      <!-- Optional: Standards hub -->
+      <div class="cell">
+        <h3><a href="./standards/README.md">Standards Index</a></h3>
+        <p>Museum rubric, provenance, accessibility, licensing.</p>
+      </div>
     </div>
-  </header>
+  </section>
 
-  <main class="nave" role="region" aria-label="Nave">
-    <!-- Left Pillar: Boaz -->
-    <section class="pillar" aria-labelledby="boaz">
-      <h2 id="boaz">Pillar of Boaz</h2>
-      <div class="cell"><p>Strength · Foundation</p></div>
-      <div class="cell">
-        <h3><a href="./main/index.html">Frontispiece</a></h3>
-        <p>Begin at the cosmogram and return safely.</p>
-      </div>
-    </section>
+  <!-- Right pillar -->
+  <section class="pillar" aria-labelledby="jachin">
+    <h2 id="jachin">Pillar of Jachin</h2>
+    <div class="cell"><p>Establishment · Mercy</p></div>
+  </section>
+</main>
 
-    <!-- Central Column: Apprentice / Links Hub -->
-    <section class="center" aria-labelledby="apprentice">
-      <h2 id="apprentice">Apprentice Pillar -- Prima Materia</h2>
+<div class="overlay-vitrail" aria-hidden="true"></div>
 
-      <div class="cells">
-        <div class="cell">
-          <h3><a href="./main/Thelemic-Alignment-Brief.html">Thelemic Alignment Brief</a></h3>
-          <p>93/99/2 harmonics; reciprocity over hierarchy; living spine.</p>
-        </div>
+<!-- Engines (order matters) -->
+<script type="module" src="./assets/js/cathedral-engine.js"></script>
+<script type="module" src="./assets/js/ritual.js"></script>
 
-        <div class="cell">
-          <h3><a href="./main/05_ateliers/manifesto.html">Ateliers Manifesto -- Venus Covenant</a></h3>
-          <p>Fusion art standards for museum-grade ateliers (Lux · Rosae · Somnium · Venosa · Luxuria).</p>
-        </div>
-
-        <div class="cell">
-          <h3><a href="./standards/README.md">Standards & Provenance</a></h3>
-          <p>Intention · Technique · Lineage · Evidence · Reflection.</p>
-        </div>
-
-        <div class="cell">
-          <h3><a href="./archive/index.html">Temple Archive</a></h3>
-          <p>Past plates, notes, and experimental folios.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Right Pillar: Jachin -->
-    <section class="pillar" aria-labelledby="jachin">
-      <h2 id="jachin">Pillar of Jachin</h2>
-      <div class="cell"><p>Establishment · Mercy</p></div>
-      <div class="cell">
-        <h3><a href="./main/03_codexes/">Codexes</a></h3>
-        <p>System texts and living concordances.</p>
-      </div>
-    </section>
-  </main>
-
-  <div class="overlay-vitrail" aria-hidden="true"></div>
-
-  <!-- Cathedral boot: gently styles the page based on structure.json if present -->
-  <script type="module" src="./assets/js/cathedral-engine.js"></script>
+<!-- Ritual controls -->
+<div id="ritual-bar">
+  <div class="ritual-controls" role="group" aria-label="Ritual controls">
+    <button onclick="ritual.banish()">✧ Banish ✧</button>
+    <button onclick="ritual.center()">☉ Center ☉</button>
+    <button onclick="ritual.depart()">❦ Depart ❦</button>
+  </div>
+</div>
 </body>
 </html>
