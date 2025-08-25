@@ -29,8 +29,13 @@
     import { applyStylepack } from "../assets/js/style-engine.js";
     import { ensureAudio, loadIR, setBloomTone } from "../assets/js/bloom.js";
 
+    function decanLabel(d, s){
+      // Your data has 6 segments per sign; you also give a simple decan number (1–3).
+      // We’ll show both so it’s transparent.
+      return `Decan ${d} · Segment ${s}`;
+    }
+
     async function loadAngels() {
-      // IMPORTANT: this now points to your JSON data file in /assets/data/
       const res = await fetch("../assets/data/angels72.json", { cache: "no-cache" });
       const angels = await res.json();
 
@@ -43,15 +48,15 @@
       // prep audio (dry is fine if IR missing)
       ensureAudio(); loadIR("../assets/audio/ir/cathedral_small.wav");
 
-      angels.forEach((a, idx) => {
+      angels.forEach((a) => {
         const cell = document.createElement("button");
         cell.className = "cell";
         cell.type = "button";
         cell.setAttribute("aria-label", `${a.name}: ${a.element}, ${a.toneHz} Hz`);
         cell.innerHTML = `
-          <div class="name">${idx+1}. ${a.name}</div>
-          <div class="meta">${a.sign ?? ""} ${a.decan ?? ""} · ${a.element} · ${a.toneHz} Hz</div>
-          <div class="meta">Style: ${a.stylepack}</div>
+          <div class="name">${a.n}. ${a.name}</div>
+          <div class="meta">${a.sign} · ${decanLabel(a.decan, a.segment)}</div>
+          <div class="meta">${a.element} · ${a.toneHz} Hz · Style: ${a.stylepack}</div>
         `;
         cell.addEventListener("click", () => {
           applyStylepack(a.stylepack);
@@ -59,8 +64,8 @@
           setBloomTone(a.toneHz, { color, level: 0.18 });
           plaque.innerHTML = `
             <strong>Plaque -- Activation</strong><br/>
-            Angel: <em>${a.name}</em> · ${a.sign ?? ""} ${a.decan ?? ""} · ${a.element}<br/>
-            Tone: ${a.toneHz} Hz · Stylepack: <code>${a.stylepack}</code>${a.cymatic ? " · Pattern: "+a.cymatic : ""}
+            Angel: <em>${a.name}</em> (#${a.n}) · ${a.sign} · ${decanLabel(a.decan, a.segment)} · ${a.element}<br/>
+            Tone: ${a.toneHz} Hz · Stylepack: <code>${a.stylepack}</code>${a.pattern ? " · Pattern: "+a.pattern : ""}
           `;
         });
         grid.appendChild(cell);
