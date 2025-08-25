@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="1000" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+  <title>Codex 144:99 -- Φ Spiral (Quarter-Arc Scaffold, To Be Slotted)</title>
+  <desc>Quarter-arc Fibonacci spiral scaffold for composition flow. This is the annotated source plate for refinement.</desc>
+  <metadata>{ "role":"geometry_scaffold", "status":"to_be_slotted", "notes":"Replace with exact quarter-arc sequence if you want pillar dots = 21." }</metadata>
+  <defs>
+    <style type="text/css"><![CDATA[
+      .g { fill: none; stroke: #222; stroke-opacity: 0.18; stroke-linecap: round; stroke-linejoin: round }
+      .r { stroke-opacity: 0.10 }
+      .b { stroke-opacity: 0.28 }
+    ]]></style>
+  </defs>
+
+  <!-- frame -->
+  <rect class="g r" x="40" y="40" width="920" height="920" rx="8"/>
+
+  <!-- approximate Fibonacci squares (scaled to fit 920px) -->
+  <!-- 1,1,2,3,5,8,13,21,34,55,89,144 (grouped) -->
+  <!-- outer 610x610 square bottom-left -->
+  <rect class="g r" x="40" y="350" width="610" height="610"/>
+  <!-- 377x377 above -->
+  <rect class="g r" x="273" y="40" width="377" height="377"/>
+  <!-- 233x233 top-right -->
+  <rect class="g r" x="650" y="184" width="233" height="233"/>
+  <!-- 144x144 right -->
+  <rect class="g r" x="883" y="350" width="77" height="77"/>
+
+  <!-- quarter-arc spiral (approximate flow through the squares) -->
+  <path class="g b" d="
+    M 650 960
+    A 610 610 0 0 1 650 350
+    A 377 377 0 0 1 273 350
+    A 233 233 0 0 1 273 117
+    A 144 144 0 0 1 417 117
+  "/>
+</svg>
