@@ -31,6 +31,11 @@
   --accent:#153b7a; --accent-2:#b89020;
 }
 
+/* existing variables ... */
+[data-stylepack="rosae"]{ --accent:#8b2b2b; --accent-2:#caa44a; }
+[data-stylepack="rosae_illumination"]{ --accent:#8b2b2b; --accent-2:#caa44a; }
+[data-stylepack="alchemical_bloom"]{ --accent:#89a4ff; --accent-2:#c7b8ff; }
+
 /* Planetary/Sephirotic tints (you can pick any you like) */
 :root[data-theme="kether"]{
   --wash:#fbfaf6; --panel:#ffffff; --accent:#7a6aa1; --accent-2:#d8c9ff;
