@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>72 Angelic Ladder -- Codex 144:99</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="The 72 Shem ha-Mephorash angels as tones, colors, and stylepacks. Click to activate their resonance." />
+
+  <link rel="stylesheet" href="../assets/css/palette.css" />
+  <link rel="stylesheet" href="../assets/css/light.css" />
+  <script src="../assets/js/theme.js" defer></script>
+  <script type="module">
+    import { applyStylepack } from "../assets/js/cathedral-engine.js";
+    import { setBloomTone } from "../cathedral.html"; // we’ll explain this below
+
+    async function loadAngels(){
+      const res = await fetch("./angels72.json");
+      const angels = await res.json();
+      const grid = document.getElementById("angel-grid");
+
+      angels.forEach(angel=>{
+        const cell = document.createElement("div");
+        cell.className = "angel-cell";
+        cell.innerHTML = `
+          <strong>${angel.name}</strong><br>
+          <small>${angel.toneHz} Hz · ${angel.element}</small>
+        `;
+        cell.addEventListener("click",()=>{
+          applyStylepack(angel.stylepack);
+          if(typeof setBloomTone === "function"){
+            setBloomTone(angel.toneHz);
+          }
+        });
+        grid.appendChild(cell);
+      });
+    }
+    window.addEventListener("DOMContentLoaded", loadAngels);
+  </script>
+  <style>
+    body { font: 16px/1.5 Georgia, serif; padding: 20px; }
+    h1 { text-align:center; margin-bottom:20px; }
+    #angel-grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap:10px;
+    }
+    .angel-cell {
+      background: var(--panel);
+      border:1px solid var(--line);
+      border-radius:8px;
+      padding:10px;
+      text-align:center;
+      cursor:pointer;
+      transition:.2s;
+    }
+    .angel-cell:hover {
+      background: var(--wash);
+      transform:scale(1.03);
+    }
+  </style>
+</head>
+<body class="mystic">
+  <h1>72 Angelic Ladder</h1>
+  <div id="angel-grid"></div>
+</body>
+</html>
