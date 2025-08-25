@@ -137,6 +137,23 @@
 </body>
 </html>
 
+  <!-- Planetary Hour Tint -->
+  <div id="hourTint"
+    style="position:fixed;top:0;left:0;width:100%;height:100%;
+           z-index:-2;mix-blend-mode:overlay;pointer-events:none;"></div>
+  <script>
+    const tint=document.getElementById("hourTint");
+    const hues=[0,40,120,180,220,280,320]; // sun→moon scale
+    function updateTint(){
+      const h=new Date().getHours();
+      tint.style.background=`hsla(${hues[h%7]},60%,70%,.18)`;
+    }
+    updateTint(); setInterval(updateTint,5*60*1000);
+  </script>
+</body>
+</html>
+
+
 <!-- Ritual controls (always present, ND-safe). -->
 <div id="ritual-bar">
   <div class="ritual-controls" role="group" aria-label="Ritual controls">
