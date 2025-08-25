@@ -103,6 +103,40 @@
 <script type="module" src="./assets/js/cathedral-engine.js"></script>
 <script type="module" src="./assets/js/ritual.js"></script>
 
+  <!-- Cymatic Bloom Canvas -->
+  <canvas id="bloomCanvas"
+    style="position:fixed;top:0;left:0;width:100%;height:100%;
+           z-index:-1;opacity:.28;pointer-events:none;"></canvas>
+  <script type="module">
+    const canvas = document.getElementById("bloomCanvas");
+    const ctx = canvas.getContext("2d");
+    function resize(){canvas.width=innerWidth;canvas.height=innerHeight;}
+    window.addEventListener("resize",resize);resize();
+
+    let hz = 528;
+    export function setBloomTone(freq){
+      hz=freq; phase=0;
+    }
+
+    let phase=0;
+    function draw(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      const cx=canvas.width/2, cy=canvas.height/2;
+      ctx.strokeStyle="rgba(200,180,120,.5)";
+      ctx.beginPath();
+      for(let a=0;a<Math.PI*2;a+=.05){
+        let r=150+40*Math.sin(hz*a/200+phase);
+        ctx.lineTo(cx+Math.cos(a)*r, cy+Math.sin(a)*r);
+      }
+      ctx.closePath();ctx.stroke();
+      phase+=0.015;
+      requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
+</body>
+</html>
+
 <!-- Ritual controls (always present, ND-safe). -->
 <div id="ritual-bar">
   <div class="ritual-controls" role="group" aria-label="Ritual controls">
