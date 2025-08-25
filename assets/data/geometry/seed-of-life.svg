@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="1000" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+  <title>Codex 144:99 -- Seed of Life</title>
+  <desc>Seven-circle rosette (central + 6 around), hexagonal symmetry. Faint engraving for sacred proportion scaffolding.</desc>
+  <metadata>{ "role":"geometry_scaffold", "notes":"Use under figures or as watermark lattice." }</metadata>
+  <defs>
+    <style type="text/css"><![CDATA[
+      .g { fill: none; stroke: #222; stroke-opacity: 0.18; stroke-linecap: round; stroke-linejoin: round }
+      .r { stroke-opacity: 0.10 }
+      .b { stroke-opacity: 0.28 }
+    ]]></style>
+  </defs>
+
+  <!-- frame -->
+  <circle class="g r" cx="500" cy="500" r="480"/>
+
+  <!-- seed (R=180) -->
+  <g class="g">
+    <circle cx="500" cy="500" r="180"/>
+    <circle cx="500" cy="320" r="180"/>
+    <circle cx="500" cy="680" r="180"/>
+    <circle cx="356" cy="410" r="180"/>
+    <circle cx="644" cy="410" r="180"/>
+    <circle cx="356" cy="590" r="180"/>
+    <circle cx="644" cy="590" r="180"/>
+  </g>
+
+  <!-- light guides -->
+  <line class="g r" x1="500" y1="60" x2="500" y2="940"/>
+  <line class="g r" x1="60" y1="500" x2="940" y2="500"/>
+</svg>
