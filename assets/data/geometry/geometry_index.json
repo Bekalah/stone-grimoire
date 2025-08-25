@@ -1,0 +1,19 @@
+{
+  "_provenance": {
+    "project": "Cathedral of Circuits / Codex 144:99",
+    "role": "geometry_registry",
+    "version": "1.0.0",
+    "updated": "2025-08-24",
+    "notes": "Registry of all scaffold SVG plates. Keep filenames stable."
+  },
+  "plates": [
+    { "id": "compass",        "file": "assets/data/geometry/compass.svg",       "desc": "Cardinals + ring scaffold" },
+    { "id": "vesica",         "file": "assets/data/geometry/vesica.svg",        "desc": "Vesica Piscis lens" },
+    { "id": "seed-of-life",   "file": "assets/data/geometry/seed-of-life.svg",  "desc": "7-circle rosette" },
+    { "id": "rose-window",    "file": "assets/data/geometry/rose-window.svg",   "desc": "12-spoke cathedral lattice" },
+    { "id": "tree-of-life",   "file": "assets/data/geometry/tree-of-life.svg",  "desc": "Kircher arrangement (light paths)" },
+    { "id": "jacobs-ladder",  "file": "assets/data/geometry/jacobs-ladder.svg", "desc": "33 rungs ascent rails" },
+    { "id": "phi-spiral",     "file": "assets/data/geometry/phi-spiral.svg",    "desc": "Clean golden spiral (quarter-arc)" },
+    { "id": "phi-spiral-src", "file": "assets/data/geometry/phi-spiral.src.svg","desc": "Annotated atelier source (not public)" }
+  ]
+}
