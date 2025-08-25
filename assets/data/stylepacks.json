@@ -1,4 +1,4 @@
-{
+  {
   "_provenance": {
     "license": "CC-BY 4.0",
     "lineage": [
@@ -60,7 +60,7 @@
       "palette": ["#0e0d10","#2b2730","#5a4b5f","#d9cbd6"],
       "motifs": ["rose-cross","vault-star","lamp"],
       "textures": ["soot-vellum","burnished-silver"],
-      "description": "Subterranean vault rites -- rose-cross emblems on midnight vellum."
+      "description": "Subterranean vault rites--rose-cross emblems on midnight vellum."
     },
     {
       "id": "angelic_chorus",
@@ -85,14 +85,6 @@
       "motifs": ["ray","halo","gold-leaf"],
       "textures": ["gilded-parchment","warm-glaze"],
       "description": "Solar gilding; vitrified gold leaf."
-    },
-    {
-      "id": "rosae",
-      "title": "Rosæ (Lady Chapel)",
-      "palette": ["#f9efe2","#caa44a","#8b2b2b","#506b7a"],
-      "motifs": ["rose","gold initial","vine border"],
-      "textures": ["vellum","gold leaf"],
-      "description": "Illuminated manuscript palette -- rose and gold with cool stone accents."
     },
     {
       "id": "rosae_illumination",
