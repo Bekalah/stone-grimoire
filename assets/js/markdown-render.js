@@ -1,61 +1,61 @@
-// Minimal pretty Markdown renderer (headings, lists, code, links) with safe paths.
-// Auto-falls-back across ./, ../, ../../ to find the Markdown file.
+// assets/js/markdown-render.js
+// Simple MD → HTML renderer (no external deps). Handles headings, bold/italic, lists, code blocks.
+// For full fidelity later, you can swap to marked.js, but this is zero-dependency and safe for GH Pages.
 
-const MD_BASES = ["./", "../", "../../", "../../../"];
-
-function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
-
-function mdToHtml(md){
-  // strip YAML front matter
-  md = md.replace(/^---[\s\S]*?---\n/, "");
-
-  // code fences
-  md = md.replace(/```([\s\S]*?)```/g, (m, code)=> `<pre><code>${esc(code)}</code></pre>`);
-
-  // headings
-  md = md.replace(/^###### (.*)$/gm, "<h6>$1</h6>");
-  md = md.replace(/^##### (.*)$/gm, "<h5>$1</h5>");
-  md = md.replace(/^#### (.*)$/gm, "<h4>$1</h4>");
-  md = md.replace(/^### (.*)$/gm, "<h3>$1</h3>");
-  md = md.replace(/^## (.*)$/gm, "<h2>$1</h2>");
-  md = md.replace(/^# (.*)$/gm, "<h1>$1</h1>");
-
-  // bold / italics
-  md = md.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
-  md = md.replace(/\*(.+?)\*/g, "<em>$1</em>");
-
-  // links [text](url)
-  md = md.replace(/\[([^\]]+?)\]\(([^)]+?)\)/g, `<a href="$2">$1</a>`);
-
-  // unordered lists
-  md = md.replace(/(^|\n)\s*[-*]\s+(.+)(?=(\n[-*]\s+)|\n\n|$)/g, (m, start, item)=> `${start}<ul><li>${item}</li></ul>`);
-  md = md.replace(/<\/ul>\s*<ul>/g, ""); // collapse adjacent
-
-  // paragraphs (naive but workable)
-  md = md.replace(/(^|\n)(?!<h\d|<ul>|<pre>|<\/li>|<\/ul>|<blockquote>)([^\n<][^\n]*)/g, (m, s, p)=> `${s}<p>${p}</p>`);
-
-  return md;
+export async function renderMarkdownPretty(url, targetSelector) {
+  const el = document.querySelector(targetSelector);
+  if (!el) return;
+  try {
+    const res = await fetch(url, { cache: "no-cache" });
+    const md = await res.text();
+    el.innerHTML = mdToHtml(md);
+  } catch (e) {
+    el.innerHTML = `<pre class="md-fallback">${escapeHtml(String(e))}\n\nOpen raw: ${url}</pre>`;
+  }
 }
 
-export async function renderMarkdownPretty(url, targetSel){
-  const target = document.querySelector(targetSel);
-  if (!target) throw new Error("renderMarkdownPretty: target not found: "+targetSel);
+function mdToHtml(md) {
+  // Protect code fences first
+  const codeBlocks = [];
+  const fenced = md.replace(/```([a-zA-Z0-9_-]*)\n([\s\S]*?)```/g, (_, lang, code) => {
+    const i = codeBlocks.length;
+    codeBlocks.push({ lang, code });
+    return `@@CODEBLOCK_${i}@@`;
+  });
 
-  let text=null;
-  for (const base of MD_BASES){
-    try{
-      const r = await fetch(base + url, { cache: "no-cache" });
-      if (r.ok){ text = await r.text(); break; }
-    }catch(_){}
-  }
-  if (!text){ target.innerHTML = "<p>Unable to load document.</p>"; return; }
+  // Basic rules
+  let html = fenced
+    .replace(/^###### (.*)$/gm, "<h6>$1</h6>")
+    .replace(/^##### (.*)$/gm, "<h5>$1</h5>")
+    .replace(/^#### (.*)$/gm, "<h4>$1</h4>")
+    .replace(/^### (.*)$/gm, "<h3>$1</h3>")
+    .replace(/^## (.*)$/gm, "<h2>$1</h2>")
+    .replace(/^# (.*)$/gm, "<h1>$1</h1>")
+    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*(.*?)\*/g, "<em>$1</em>")
+    .replace(/`([^`]+)`/g, "<code>$1</code>");
 
-  const html = mdToHtml(text);
-  target.innerHTML = html;
+  // Lists
+  html = html
+    .replace(/^\s*-\s+(.*)$/gm, "<li>$1</li>")
+    .replace(/(<li>.*<\/li>)(?!\s*<li>)/gs, "<ul>$1</ul>");
 
-  // ornaments: first paragraph dropcap if not code-first
-  const firstP = target.querySelector("p");
-  if (firstP && !firstP.textContent.trim().startsWith("```")){
-    firstP.classList.add("dropcap");
-  }
+  // Paragraphs (simple)
+  html = html
+    .replace(/^(?!<h\d|<ul>|<li>|<pre>|<blockquote>|<\/li>|<\/ul>|<p>|<hr>|@@CODEBLOCK_).+$/gm, "<p>$&</p>");
+
+  // Restore code blocks
+  html = html.replace(/@@CODEBLOCK_(\d+)@@/g, (_, i) => {
+    const { lang, code } = codeBlocks[Number(i)];
+    return `<pre><code class="language-${lang || "text"}">${escapeHtml(code)}</code></pre>`;
+  });
+
+  return html;
+}
+
+function escapeHtml(s) {
+  return s
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;").replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
