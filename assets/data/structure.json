@@ -1,149 +1,114 @@
 {
-  "$schema": "./structure.schema.json",
-  "version": "1.3",
-  "_provenance": { "updated": "2025-08-24", "note": "Routes must exist." },
-  "rooms": [
+  "_provenance": {
+    "license": "CC-BY 4.0",
+    "lineage": [
+      "Cathedral of Circuits / Codex 144:99",
+      "Rosslyn Chapel (public-domain references)",
+      "Hilma af Klint Temple Series (public domain)",
+      "Visionary painter lineages (Fuchs/Venosa/Klarwein -- stylistic influence only)"
+    ],
+    "version": "1.2.0",
+    "updated": "2025-08-24",
+    "curator": "bekalah",
+    "notes": "ND-safe palettes; no strobe; high contrast options supported."
+  },
+  "packs": [
     {
-      "id": "frontispiece",
-      "title": "Frontispiece",
-      "route": "index.html",
-      "element": "Aether",
-      "toneHz": 528,
-      "geometry": "frontis-parchment",
-      "stylepack": "hilma_spiral",
-      "realm": "Temple",
-      "notes": "Open the cosmogram.",
-      "art": {
-        "background": "images/pd/temple-realm.jpg",
-        "overlay": "assets/overlays/spiral-ribbons.png",
-        "shader": "glass-vitrail",
-        "palette_ref": "hilma_spiral"
-      }
+      "id": "neutral_white",
+      "title": "Neutral White (Banish)",
+      "palette": ["#ffffff","#f5f5f5","#dcdcdc","#888888"],
+      "motifs": ["calm","blank","reset"],
+      "textures": ["matte","soft-paper"],
+      "description": "Ritual reset state for Banish and Depart."
     },
     {
-      "id": "nave",
-      "title": "Cathedral Nave",
-      "route": "cathedral.html",
-      "element": "Air",
-      "toneHz": 528,
-      "geometry": "wind-helix",
-      "stylepack": "sun_solaris",
-      "realm": "Temple",
-      "notes": "Boaz | Apprentice | Jachin",
-      "art": {
-        "background": "images/pd/temple-realm.jpg",
-        "overlay": "assets/overlays/neon-stained.png",
-        "shader": "glass-vitrail",
-        "palette_ref": "sun_solaris"
-      }
+      "id": "hilma_spiral",
+      "title": "Hilma Spiral",
+      "palette": ["#f8e6f0","#c49bc7","#8b5c9e","#3b1e58"],
+      "motifs": ["spiral","cone of light","concentric"],
+      "textures": ["velvet","soft-mist"],
+      "description": "Visionary spirals and ascension cones -- Temple Realm default."
     },
     {
-      "id": "pillar-boaz",
-      "title": "Pillar of Boaz",
-      "route": "cathedral.html#boaz",
-      "element": "Earth",
-      "toneHz": 396,
-      "geometry": "cube-vine",
-      "stylepack": "druidic_greenman",
-      "realm": "Temple",
-      "notes": "Strength · Foundation",
-      "art": {
-        "background": "images/pd/temple-realm.jpg",
-        "overlay": "assets/overlays/neon-stained.png",
-        "shader": "glass-vitrail",
-        "palette_ref": "druidic_greenman"
-      }
+      "id": "solfeggio_ribbons",
+      "title": "Solfeggio Ribbons",
+      "palette": ["#ffd6d6","#ffe680","#b3ffcc","#80dfff","#d1b3ff"],
+      "motifs": ["ribbon","wave","flow"],
+      "textures": ["iridescent-silk","light-beam"],
+      "tones": [396,417,528,639,741,852,963],
+      "description": "Prismatic sound-light ribbons for ND‑gentle immersion."
     },
     {
-      "id": "pillar-jachin",
-      "title": "Pillar of Jachin",
-      "route": "cathedral.html#jachin",
-      "element": "Fire",
-      "toneHz": 741,
-      "geometry": "flame-spiral",
-      "stylepack": "sun_solaris",
-      "realm": "Temple",
-      "notes": "Establishment · Mercy",
-      "art": {
-        "background": "images/pd/temple-realm.jpg",
-        "overlay": "assets/overlays/neon-stained.png",
-        "shader": "glass-vitrail",
-        "palette_ref": "sun_solaris"
-      }
+      "id": "rosslyn_gothic",
+      "title": "Rosslyn Gothic",
+      "palette": ["#1a1a1a","#444444","#999999","#d9d9d9"],
+      "motifs": ["pillar","rose-window","vine-carving"],
+      "textures": ["stone","aged-parchment"],
+      "description": "Gothic tracery and carved vines -- stone gravitas."
     },
     {
-      "id": "choir",
-      "title": "Choir of Angels",
-      "route": "cathedral.html#choir",
-      "element": "Light",
-      "toneHz": 963,
-      "geometry": "sphere-harmonics",
-      "stylepack": "angelic_chorus",
-      "realm": "Temple",
-      "notes": "Jacob's Ladder resonance",
-      "art": {
-        "background": "images/pd/temple-realm.jpg",
-        "overlay": "assets/overlays/spiral-ribbons.png",
-        "shader": "glass-vitrail",
-        "palette_ref": "angelic_chorus"
-      }
-    },
-
-    /* === Briefs (already in your repo) === */
-    {
-      "id": "thelemic-brief",
-      "title": "Thelemic Alignment Brief",
-      "route": "main/Thelemic-Alignment-Brief.html",
-      "element": "Air",
-      "toneHz": 528,
-      "geometry": "frontis-parchment",
-      "stylepack": "rosslyn_gothic",
-      "realm": "Temple"
+      "id": "druidic_greenman",
+      "title": "Druidic Green Man",
+      "palette": ["#163a24","#2e6b45","#7aa36d","#dfe7d7"],
+      "motifs": ["oak-leaf","vine","mask"],
+      "textures": ["moss","stone-relief"],
+      "description": "Celtic foliate heads and forest tracery."
     },
     {
-      "id": "atelier-manifesto",
-      "title": "Ateliers Manifesto",
-      "route": "main/05_ateliers/manifesto.html",
-      "element": "Water",
-      "toneHz": 639,
-      "geometry": "rose-window",
-      "stylepack": "rosae_illumination",
-      "realm": "Temple"
-    },
-
-    /* === New Realms === */
-    {
-      "id": "crypt",
-      "title": "The Crypt",
-      "route": "main/07_realms/crypt.html",
-      "element": "Earth",
-      "toneHz": 417,
-      "geometry": "vault-arches",
-      "stylepack": "rosicrucian_black",
-      "realm": "Temple",
-      "notes": "Descent, initiation, rose-cross engravings; 417 Hz."
+      "id": "rosicrucian_black",
+      "title": "Rosicrucian Black",
+      "palette": ["#0e0d10","#2b2730","#5a4b5f","#d9cbd6"],
+      "motifs": ["rose-cross","vault-star","lamp"],
+      "textures": ["soot-vellum","burnished-silver"],
+      "description": "Subterranean vault rites -- rose-cross emblems on midnight vellum."
     },
     {
-      "id": "lady-chapel",
-      "title": "Lady Chapel",
-      "route": "main/07_realms/lady-chapel.html",
-      "element": "Venus",
-      "toneHz": 528,
-      "geometry": "rose-window",
-      "stylepack": "rosae_illumination",
-      "realm": "Temple",
-      "notes": "Devotional sanctuary; illuminated manuscripts; 528 Hz."
+      "id": "angelic_chorus",
+      "title": "Angelic Chorus",
+      "palette": ["#e7f0ff","#bcd2ff","#8faef2","#546aa9"],
+      "motifs": ["sphere","ladder","feather"],
+      "textures": ["opalescent-glaze","haze"],
+      "description": "Spherical harmonics; Jacob’s Ladder atmosphere."
     },
     {
-      "id": "crystal-grid",
-      "title": "Crystal Grid Sanctuary",
-      "route": "main/07_realms/crystal-grid.html",
-      "element": "Aether",
-      "toneHz": 963,
-      "geometry": "platonic-array",
-      "stylepack": "alchemical_bloom",
-      "realm": "Temple",
-      "notes": "Reiki paths; platonic solids mapped to tones; 396–963 Hz."
+      "id": "enochian_astral",
+      "title": "Enochian Astral",
+      "palette": ["#0b1522","#1b2d4a","#2f5597","#b9d3ff"],
+      "motifs": ["vesica","tablet","sigil-ray"],
+      "textures": ["indigo-wash","glass-ink"],
+      "description": "Dee–Kelly tablets and astral vesicas -- lab of light."
+    },
+    {
+      "id": "sun_solaris",
+      "title": "Sun Solaris",
+      "palette": ["#f6e8b1","#f4c76a","#e8893a","#5f4a2f"],
+      "motifs": ["ray","halo","gold-leaf"],
+      "textures": ["gilded-parchment","warm-glaze"],
+      "description": "Solar gilding; vitrified gold leaf."
+    },
+    {
+      "id": "rosae",
+      "title": "Rosæ (Lady Chapel)",
+      "palette": ["#f9efe2","#caa44a","#8b2b2b","#506b7a"],
+      "motifs": ["rose","gold initial","vine border"],
+      "textures": ["vellum","gold leaf"],
+      "description": "Illuminated manuscript palette -- rose and gold with cool stone accents."
+    },
+    {
+      "id": "rosae_illumination",
+      "title": "Rosæ Illumination",
+      "palette": ["#fff8e7","#f0e2c2","#caa44a","#8b2b2b"],
+      "motifs": ["gold-initial","vine-border","rose-window"],
+      "textures": ["vellum","leaf-gild","ink-wash"],
+      "description": "Gilt manuscript light: Marian/Venus sanctuary."
+    },
+    {
+      "id": "alchemical_bloom",
+      "title": "Alchemical Bloom",
+      "palette": ["#ece9ff","#c7b8ff","#89a4ff","#3a2f5f"],
+      "motifs": ["cymatic","glaze","mandala-bloom"],
+      "textures": ["opalescent-glaze","thin-lacquer"],
+      "description": "Luminous glaze for cymatic / crystal sanctuaries."
     }
   ]
 }
