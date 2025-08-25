@@ -1,90 +1,131 @@
 {
-  "version": "1.2.1",
-  "_provenance": {
-    "updated": "2025-08-24",
-    "curator": "bekalah",
-    "notes": "Unified living-grimoire map; ND-safe; tones only on user action."
-  },
+  "$schema": "./structure.schema.json",
+  "version": "1.2",
+  "_provenance": { "updated": "2025-08-24", "note": "Canonical data root is assets/data/." },
   "rooms": [
     {
       "id": "frontispiece",
       "title": "Frontispiece",
       "route": "index.html",
-      "stylepack": "hilma_spiral",
       "element": "Aether",
       "toneHz": 528,
-      "geometry": "opening",
+      "geometry": "frontis-parchment",
+      "stylepack": "hilma_spiral",
+      "notes": "Open the cosmogram.",
       "realm": "Temple",
-      "notes": "Gateway into the Cathedral of Circuits."
+      "art": {
+        "background": "images/pd/temple-realm.jpg",
+        "overlay": "assets/overlays/spiral-ribbons.png",
+        "shader": "glass-vitrail",
+        "palette_ref": "hilma_spiral"
+      }
     },
     {
       "id": "nave",
-      "title": "Rosslyn Nave",
+      "title": "Cathedral Nave",
       "route": "cathedral.html",
-      "stylepack": "rosslyn_gothic",
       "element": "Air",
       "toneHz": 528,
-      "geometry": "tracery-grid",
+      "geometry": "wind-helix",
+      "stylepack": "sun_solaris",
+      "notes": "Boaz | Apprentice | Jachin",
       "realm": "Temple",
-      "notes": "Central hall; links to Brief, Ateliers, and chapels."
+      "art": {
+        "background": "images/pd/temple-realm.jpg",
+        "overlay": "assets/overlays/neon-stained.png",
+        "shader": "glass-vitrail",
+        "palette_ref": "sun_solaris"
+      }
+    },
+    {
+      "id": "pillar-boaz",
+      "title": "Pillar of Boaz",
+      "route": "cathedral.html#boaz",
+      "element": "Earth",
+      "toneHz": 396,
+      "geometry": "cube-vine",
+      "stylepack": "druidic_greenman",
+      "notes": "Strength · Foundation",
+      "realm": "Temple",
+      "art": {
+        "background": "images/pd/temple-realm.jpg",
+        "overlay": "assets/overlays/neon-stained.png",
+        "shader": "glass-vitrail",
+        "palette_ref": "druidic_greenman"
+      }
+    },
+    {
+      "id": "pillar-jachin",
+      "title": "Pillar of Jachin",
+      "route": "cathedral.html#jachin",
+      "element": "Fire",
+      "toneHz": 741,
+      "geometry": "flame-spiral",
+      "stylepack": "sun_solaris",
+      "notes": "Establishment · Mercy",
+      "realm": "Temple",
+      "art": {
+        "background": "images/pd/temple-realm.jpg",
+        "overlay": "assets/overlays/neon-stained.png",
+        "shader": "glass-vitrail",
+        "palette_ref": "sun_solaris"
+      }
+    },
+    {
+      "id": "fountain-sophia",
+      "title": "Fountain of Sophia",
+      "route": "cathedral.html#fountain",
+      "element": "Water",
+      "toneHz": 639,
+      "geometry": "rose-fountain",
+      "stylepack": "rosae_illumination",
+      "notes": "Lady Chapel current; devotional light and healing flow.",
+      "realm": "Temple",
+      "art": {
+        "background": "images/pd/lady-chapel.jpg",
+        "overlay": "assets/overlays/spiral-ribbons.png",
+        "shader": "glass-vitrail",
+        "palette_ref": "rosae_illumination"
+      }
+    },
+    {
+      "id": "choir",
+      "title": "Choir of Angels",
+      "route": "cathedral.html#choir",
+      "element": "Light",
+      "toneHz": 963,
+      "geometry": "sphere-harmonics",
+      "stylepack": "angelic_chorus",
+      "notes": "Jacob's Ladder resonance",
+      "realm": "Temple",
+      "art": {
+        "background": "images/pd/temple-realm.jpg",
+        "overlay": "assets/overlays/spiral-ribbons.png",
+        "shader": "glass-vitrail",
+        "palette_ref": "angelic_chorus"
+      }
     },
     {
       "id": "thelemic-brief",
       "title": "Thelemic Alignment Brief",
-      "route": "main/Thelemic-Alignment-Brief.html",
-      "stylepack": "angelic_chorus",
+      "route": "main/thelemic-alignment-brief.html",
       "element": "Air",
       "toneHz": 528,
       "geometry": "frontis-parchment",
+      "stylepack": "rosslyn_gothic",
+      "notes": "Numerical/doctrinal spine; method over dogma.",
       "realm": "Temple",
-      "notes": "93/99/2→8 numerology; reciprocity over hierarchy."
+      "plaqueRef": "assets/data/plaques/thelemic-brief.json"
     },
     {
       "id": "atelier-manifesto",
-      "title": "Ateliers Manifesto -- Venus Covenant",
+      "title": "Ateliers Manifesto",
       "route": "main/05_ateliers/manifesto.html",
-      "stylepack": "rosae_illumination",
       "element": "Water",
       "toneHz": 639,
       "geometry": "rose-window",
-      "realm": "Ateliers",
-      "notes": "Museum-grade atelier standards (Lux · Rosæ · Somnium · Venosa · Luxuria)."
-    },
-
-    /* ===== Chapels / Realms ===== */
-
-    {
-      "id": "crypt",
-      "title": "The Crypt -- Subterranean Vault",
-      "route": "chapels/crypt.html",
-      "stylepack": "rosicrucian_black",
-      "element": "Earth",
-      "toneHz": 417,
-      "geometry": "vault-arches",
-      "realm": "Temple",
-      "notes": "Descent/Initiation; rose‑cross engravings; dim lanterns."
-    },
-    {
-      "id": "lady-chapel",
-      "title": "Lady Chapel -- Rosæ Sanctum",
-      "route": "chapels/lady-chapel.html",
       "stylepack": "rosae_illumination",
-      "element": "Water",
-      "toneHz": 639,
-      "geometry": "gold-initials",
-      "realm": "Temple",
-      "notes": "Venus sanctuary; manuscripts, rose windows, Marian current."
-    },
-    {
-      "id": "crystal-grid",
-      "title": "Crystal Grid Sanctuary",
-      "route": "chapels/crystal-grid.html",
-      "stylepack": "alchemical_bloom",
-      "element": "Aether",
-      "toneHz": 528,
-      "geometry": "platonic-array",
-      "realm": "Temple",
-      "notes": "Reiki + Platonic solids; hover/click to fade in tones; ‘Activate Grid’ harmonic chord."
+      "realm": "Temple"
     }
   ]
 }
