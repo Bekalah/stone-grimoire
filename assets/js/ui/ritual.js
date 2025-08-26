@@ -1,82 +1,77 @@
-// Ritual UI -- Cathedral of Circuits
-// Purpose: small, explicit "Opening / Center / Closing" helpers that match your
-// ND-safe rhythm (banish, center, license to depart), without overwriting engines.
+// Ritual Controls -- Circuitum 99
+// Purpose: give every page a clean "Opening/Closing" hygiene:
+// BANISH (neutralize visuals + mute), CENTER (528 Hz soft), CONSECRATE (room tone),
+// LICENSE (stop + clear UI state). No dogma -- just safe, predictable UX.
 //
-// Dependencies: engines/cathedral-engine.js, assets/data/style_packs/stylepacks.json
-// Styling hint: define CSS for [data-ritual="banish|center|work|depart"] to tint gently.
+// Works without needing to import private engine internals; relies only on
+// startTone/stopTone/setTone from cathedral-engine. Visual neutralization
+// is handled by toggling data attributes your CSS can style.
+//
+// Usage:
+//   <div id="ritual"></div>
+//   <script type="module">
+//     import { applyRoom } from "../engines/cathedral-engine.js";
+//     import { mountRitual } from "../ui/ritual.js";
+//     const room = await applyRoom(); // already set stylepack + geometry
+//     mountRitual("#ritual", { defaultHz: room.toneHz || 528 });
+//   </script>
 
-import { applyRoom, startTone, stopTone, setTone } from "../engines/cathedral-engine.js";
+import { startTone, stopTone, setTone } from "../engines/cathedral-engine.js";
 
-// Stylepack toggles use the document data attribute already set by the engine.
-// For banish/center we just set a marker data-ritual to let CSS soften the scene.
+function $(sel, root=document){ return root.querySelector(sel); }
+function el(tag, cls){ const n=document.createElement(tag); if(cls) n.className=cls; return n; }
 
-function setRitualState(state){
-  document.documentElement.setAttribute("data-ritual", state);
+function setState(state){
+  // states: "", "banished", "centered", "consecrated"
+  const de = document.documentElement;
+  de.setAttribute("data-ritual", state||"");
 }
 
-export async function opening(roomIdOptional){
-  // Prep the space; do not start audio yet
-  setRitualState("center");
-  if (roomIdOptional) await applyRoom(roomIdOptional);
-  // Optional: gentle hint tone on first tap only (leave to user action)
-  // User presses a "Begin" button to start the tone, preserving ND-safety.
+export function mountRitual(target, opts={}){
+  const root = (typeof target==="string") ? $(target) : target;
+  if(!root) throw new Error("ritual: target not found");
+
+  const defaultHz = Number(opts.defaultHz||528);
+
+  const box = el("div","c99-ritual");
+  box.innerHTML = [
+    `<div class="c99-ritual__row">`,
+      `<button id="rBanish" type="button" title="Neutralize visuals & mute">Banish</button>`,
+      `<button id="rCenter" type="button" title="Calm 528 Hz">Center</button>`,
+      `<button id="rConsecrate" type="button" title="Room tone & glow">Consecrate</button>`,
+      `<button id="rLicense" type="button" title="Stop & clear">License</button>`,
+    `</div>`
+  ].join("");
+
+  root.innerHTML = "";
+  root.appendChild(box);
+
+  $("#rBanish", box).addEventListener("click", async ()=>{
+    setState("banished");
+    stopTone();
+    // Optional: drop to an ultra-low level rather than hard mute:
+    // await startTone(120); setTone(120); setTimeout(()=>stopTone(), 300);
+    box.dispatchEvent(new CustomEvent("c99:ritual", { detail:{state:"banished"} }));
+  });
+
+  $("#rCenter", box).addEventListener("click", async ()=>{
+    setState("centered");
+    await startTone(528); // gentle center
+    box.dispatchEvent(new CustomEvent("c99:ritual", { detail:{state:"centered", hz:528} }));
+  });
+
+  $("#rConsecrate", box).addEventListener("click", async ()=>{
+    const hz = defaultHz || 528;
+    setState("consecrated");
+    await startTone(hz);
+    box.dispatchEvent(new CustomEvent("c99:ritual", { detail:{state:"consecrated", hz} }));
+  });
+
+  $("#rLicense", box).addEventListener("click", ()=>{
+    setState("");
+    stopTone();
+    box.dispatchEvent(new CustomEvent("c99:ritual", { detail:{state:"license"} }));
+  });
+
+  return box;
 }
-
-export async function beginWork(targetHz){
-  // User consented: start tone and enter work state
-  setRitualState("work");
-  if (typeof targetHz === "number"){ await startTone(targetHz); }
-  else { await startTone(); }
-}
-
-export function centerBreath(){
-  // Keep session running but soften; useful between segments
-  setRitualState("center");
-  setTone(432); // mild centering suggestion; safe and gentle
-}
-
-export function banish(){
-  // Visual and audio hush
-  setRitualState("banish");
-  stopTone();
-}
-
-export function licenseToDepart(){
-  // Clean close; return UI to neutral_white if that stylepack exists
-  setRitualState("depart");
-  stopTone();
-  // Page remains styled by current room; your CSS can fade overlays here.
-}
-
-// Minimal, accessible buttons builder (optional use)
-export function mountRitualBar(opts={}){
-  const bar = document.createElement("nav");
-  bar.className = "c99-ritualbar";
-  bar.setAttribute("role","navigation");
-  bar.innerHTML =
-    '<button type="button" id="c99_open">Open</button> ' +
-    '<button type="button" id="c99_begin">Begin</button> ' +
-    '<button type="button" id="c99_center">Center</button> ' +
-    '<button type="button" id="c99_banish">Banish</button> ' +
-    '<button type="button" id="c99_depart">Depart</button>';
-  document.body.appendChild(bar);
-
-  const hz = typeof opts.hz === "number" ? opts.hz : undefined;
-  document.getElementById("c99_open").addEventListener("click", ()=> opening(opts.roomId));
-  document.getElementById("c99_begin").addEventListener("click", ()=> beginWork(hz));
-  document.getElementById("c99_center").addEventListener("click", centerBreath);
-  document.getElementById("c99_banish").addEventListener("click", banish);
-  document.getElementById("c99_depart").addEventListener("click", licenseToDepart);
-
-  return bar;
-}
-
-// Auto-mount if explicitly requested via data attribute
-(function auto(){
-  const host = document.querySelector("[data-c99-ritualbar]");
-  if (!host) return;
-  const hzAttr = host.getAttribute("data-tone");
-  const roomId = host.getAttribute("data-room");
-  const hz = hzAttr ? parseFloat(hzAttr) : undefined;
-  mountRitualBar({ hz, roomId });
-})();
