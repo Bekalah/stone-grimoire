@@ -1,76 +1,58 @@
-// Room Plaque (curator UI) -- Circuitum 99
-// Purpose: small, elegant control that shows the current room title,
-// stylepack id, and tone. It lets you start/stop audio and nudge the tone.
-// Depends on ambient hooks exported by cathedral-engine.js.
-//
-// Usage in an HTML page:
-//   <div id="plaque"></div>
-//   <script type="module">
-//     import { applyRoom } from "../engines/cathedral-engine.js";
-//     import { mountRoomPlaque } from "../ui/room-plaque.js";
-//     const room = await applyRoom(/* optional roomId */);
-//     mountRoomPlaque("#plaque", room);
-//   </script>
+// Room Plaque -- curator voice (title, stylepack, tone controls)
+// Works with assets/data/structure.json and cathedral-engine ambient.
 
-import { startTone, stopTone, setTone } from "../engines/cathedral-engine.js";
+import { applyRoom, ensureAudio, startTone, stopTone, setTone } from "../engines/cathedral-engine.js";
 
-function $(sel, root=document){ return root.querySelector(sel); }
-function el(tag, cls){ const n=document.createElement(tag); if(cls) n.className=cls; return n; }
+export async function mountRoomPlaque(selectorOrNull){
+  const container = selectorOrNull
+    ? (typeof selectorOrNull === "string" ? document.querySelector(selectorOrNull) : selectorOrNull)
+    : null;
 
-export function mountRoomPlaque(target, room, opts={}){
-  const root = (typeof target==="string") ? $(target) : target;
-  if(!root) throw new Error("room-plaque: target not found");
+  const room = await applyRoom(); // resolve by current route
+  const el = document.createElement("div");
+  el.className = "controls plaque";
+  el.innerHTML = ""
+    + "<strong>" + (room.title || "Plaque") + "</strong><br>"
+    + "<small>"
+    + "Style: " + (room.stylepack || "--")
+    + " &middot; Tone: <span data-tone>" + (room.toneHz || "--") + "</span> Hz"
+    + "</small><br>"
+    + '<button type="button" data-act="toggle">Quietus / Resume</button> '
+    + '<button type="button" data-act="down">-</button> '
+    + '<button type="button" data-act="up">+</button>';
 
-  const box = el("div","c99-plaque");
-  box.innerHTML = [
-    `<div class="c99-plaque__title">${room.title||"Untitled Room"}</div>`,
-    `<div class="c99-plaque__meta">`,
-    `<span>Style: <b>${room.stylepack||"--"}</b></span>`,
-    `<span>· Tone: <b id="c99ToneLbl">${room.toneHz||"--"}</b> Hz</span>`,
-    `</div>`,
-    `<div class="c99-plaque__controls">`,
-      `<button type="button" id="c99Toggle">Quietus / Resume</button>`,
-      `<button type="button" id="c99Down">-</button>`,
-      `<button type="button" id="c99Up">+</button>`,
-      `<input id="c99Tone" type="number" inputmode="numeric" step="1" min="60" max="1200" aria-label="Tone (Hz)" value="${room.toneHz||528}">`,
-    `</div>`
-  ].join("");
+  (container || document.body).appendChild(el);
 
-  root.innerHTML = "";
-  root.appendChild(box);
+  let audioOn = false;
+  let currentHz = room.toneHz || 528;
 
-  let audioOn=false;
-  let hz = Number(room.toneHz||528);
+  el.addEventListener("click", async (e)=>{
+    const btn = e.target.closest("button[data-act]");
+    if(!btn) return;
+    const act = btn.getAttribute("data-act");
 
-  const lbl = $("#c99ToneLbl", box);
-  const num = $("#c99Tone", box);
-
-  $("#c99Toggle", box).addEventListener("click", async ()=>{
-    if(!audioOn){ await startTone(hz); audioOn=true; box.classList.add("is-on"); }
-    else { stopTone(); audioOn=false; box.classList.remove("is-on"); }
-    if (opts.onToggle) opts.onToggle(audioOn);
+    if(act === "toggle"){
+      if(!audioOn){ await ensureAudio(); await startTone(currentHz); audioOn = true; }
+      else { stopTone(); audioOn = false; }
+    }
+    if(act === "up"){
+      currentHz = Math.round(currentHz + 6);
+      setTone(currentHz);
+      el.querySelector("[data-tone]").textContent = currentHz;
+    }
+    if(act === "down"){
+      currentHz = Math.max(60, Math.round(currentHz - 6));
+      setTone(currentHz);
+      el.querySelector("[data-tone]").textContent = currentHz;
+    }
   });
 
-  $("#c99Up", box).addEventListener("click", ()=>{
-    hz = Math.min(1200, Math.round(hz + 6));
-    setTone(hz); num.value = String(hz); lbl.textContent = String(hz);
-    if (opts.onToneChange) opts.onToneChange(hz);
-    box.dispatchEvent(new CustomEvent("c99:tone", { detail:{hz} }));
-  });
-
-  $("#c99Down", box).addEventListener("click", ()=>{
-    hz = Math.max(60, Math.round(hz - 6));
-    setTone(hz); num.value = String(hz); lbl.textContent = String(hz);
-    if (opts.onToneChange) opts.onToneChange(hz);
-    box.dispatchEvent(new CustomEvent("c99:tone", { detail:{hz} }));
-  });
-
-  num.addEventListener("change", ()=>{
-    const v = Math.max(60, Math.min(1200, Math.round(Number(num.value)||hz)));
-    hz = v; setTone(hz); lbl.textContent = String(hz);
-    if (opts.onToneChange) opts.onToneChange(hz);
-    box.dispatchEvent(new CustomEvent("c99:tone", { detail:{hz} }));
-  });
-
-  return box;
+  return el;
 }
+
+// auto-mount if a data flag is present
+(function auto(){
+  const hook = document.querySelector("[data-c99-autoplaque]");
+  if(!hook) return;
+  mountRoomPlaque(hook);
+})();
