@@ -5,189 +5,55 @@
   <title>Stone Grimoire -- Cathedral Nave</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="The Cathedral is the Living Grimoire. Pillars and choir respond to tone and light.">
-
-  <!-- Core styles (shared) -->
   <link rel="stylesheet" href="./assets/css/palette.css">
   <link rel="stylesheet" href="./assets/css/light.css">
 </head>
-
 <body>
 <header>
   <h1>Stone Grimoire -- Rosslyn Nave</h1>
-  <div class="seal" aria-hidden="true">93 · 99 · 2 → 8</div>
   <p>The Cathedral is the Living Grimoire. Pillars and choir respond to tone and light.</p>
 </header>
 
 <main class="nave" role="region" aria-label="Nave">
-  <!-- Left pillar -->
   <section class="pillar" aria-labelledby="boaz">
     <h2 id="boaz">Pillar of Boaz</h2>
     <div class="cell"><p>Strength · Foundation</p></div>
   </section>
 
-  <!-- Center column: tiles -->
   <section class="center" aria-labelledby="apprentice">
     <h2 id="apprentice">Apprentice Pillar -- Prima Materia</h2>
     <div class="cells">
-      <div class="cell">
-        <h3><a href="./index.html">Frontispiece</a></h3>
-        <p>Return.</p>
-      </div>
-
-      <div class="cell">
-        <h3><a href="./main/Thelemic-Alignment-Brief.html">Thelemic Alignment Brief</a></h3>
-        <p>93/99/2 harmonics, lineage, reciprocity.</p>
-      </div>
-
-      <div class="cell">
-        <h3><a href="./main/05_ateliers/manifesto.html">Ateliers Manifesto -- Venus Covenant</a></h3>
-        <p>Museum-grade atelier standards and checklist.</p>
-      </div>
-
-      <!-- Rooms (match assets/data/structure.json routes) -->
-      <div class="cell">
-        <h3><a href="./chapels/crypt.html">The Crypt</a></h3>
-        <p>Descent, initiation -- 417 Hz vault star.</p>
-      </div>
-
-      <div class="cell">
-        <h3><a href="./chapels/lady-chapel.html">Lady Chapel</a></h3>
-        <p>Marian sanctuary -- illuminated devotion at 639 Hz.</p>
-      </div>
-
-      <div class="cell">
-        <h3><a href="./chapels/crystal-grid.html">Crystal Grid Sanctuary</a></h3>
-        <p>Platonic solids + gentle tones; harmonize the grid.</p>
-      </div>
-
-      <div class="cell">
-        <h3><a href="./chapels/musical-cubes.html">Musical Cubes</a></h3>
-        <p>Make music with cubes; ND-gentle tones.</p>
-      </div>
-
-      <div class="cell">
-        <h3><a href="./chapels/cubes-visual-lab.html">Cubes Visual Lab</a></h3>
-        <p>Geometry, shaders, ribbon overlays.</p>
-      </div>
-
-      <div class="cell">
-        <h3><a href="./chapels/angel-lab.html">Angel Lab</a></h3>
-        <p>72 Shem lookup; plaque-driven explorer.</p>
-      </div>
-
-      <div class="cell">
-        <h3><a href="./chapels/helix-totem.html">Helix Totem</a></h3>
-        <p>Jacob's Ladder animations; ascent and descent.</p>
-      </div>
-
-      <div class="cell">
-        <h3><a href="./chapels/shem-ladder.html">Shem Ladder</a></h3>
-        <p>Angelic steps mapped to tones and numbers.</p>
-      </div>
+      <div class="cell"><h3><a href="./index.html">Frontispiece</a></h3><p>Return.</p></div>
+      <div class="cell"><h3><a href="./main/Thelemic-Alignment-Brief.html">Thelemic Alignment Brief</a></h3><p>93/99/2 harmonics, lineage, reciprocity.</p></div>
+      <div class="cell"><h3><a href="./main/05_ateliers/manifesto.html">Ateliers Manifesto -- Venus Covenant</a></h3><p>Museum-grade standards.</p></div>
+      <div class="cell"><h3><a href="./chapels/crypt.html">The Crypt</a></h3><p>417 Hz vault star.</p></div>
+      <div class="cell"><h3><a href="./chapels/lady-chapel.html">Lady Chapel</a></h3><p>639 Hz illuminated devotion.</p></div>
+      <div class="cell"><h3><a href="./chapels/crystal-grid.html">Crystal Grid Sanctuary</a></h3><p>Platonic solids + tones.</p></div>
+      <div class="cell"><h3><a href="./chapels/musical-cubes.html">Musical Cubes</a></h3><p>ND-gentle tones.</p></div>
+      <div class="cell"><h3><a href="./chapels/cubes-visual-lab.html">Cubes Visual Lab</a></h3><p>Geometry and shaders.</p></div>
+      <div class="cell"><h3><a href="./chapels/angel-lab.html">Angel Lab</a></h3><p>72 Shem explorer.</p></div>
+      <div class="cell"><h3><a href="./chapels/helix-totem.html">Helix Totem</a></h3><p>Jacob’s Ladder.</p></div>
+      <div class="cell"><h3><a href="./chapels/shem-ladder.html">Shem Ladder</a></h3><p>Angelic steps and tones.</p></div>
     </div>
   </section>
 
-  <!-- Right pillar -->
   <section class="pillar" aria-labelledby="jachin">
     <h2 id="jachin">Pillar of Jachin</h2>
     <div class="cell"><p>Establishment · Mercy</p></div>
   </section>
 </main>
 
-<!-- Geometry and stained glass sit behind content -->
 <div class="overlay-vitrail" aria-hidden="true"></div>
 
-<!-- Optional cymatic bloom canvas (background, ND-gentle) -->
-<canvas id="bloomCanvas"
-  style="position:fixed;top:0;left:0;width:100%;height:100%;
-         z-index:-1;opacity:.25;pointer-events:none;"></canvas>
+<!-- Engines first -->
+<script type="module" src="./assets/js/engines/cathedral-engine.js"></script>
 
-<!-- Planetary hour tint (very subtle) -->
-<div id="hourTint"
-  style="position:fixed;top:0;left:0;width:100%;height:100%;
-         z-index:-2;mix-blend-mode:overlay;pointer-events:none;"></div>
-
-<!-- Curator mounts go here -->
-<div id="plaque"></div>
-<div id="ritual"></div>
-
-<!-- Engines: order matters. -->
+<!-- UI helpers -->
 <script type="module">
-  // Core engines (match your repo layout)
-  import { applyRoom, startTone, stopTone, setTone } from "./assets/js/engines/cathedral-engine.js";
   import { mountRoomPlaque } from "./assets/js/ui/room-plaque.js";
-  import { mountRitual } from "./assets/js/ui/ritual.js";
-
-  // Resolve current room from assets/data/structure.json and apply style/geometry
-  const room = await applyRoom(); // auto-resolves by route
-
-  // Mount curator plaque (tone toggle + fine control)
-  mountRoomPlaque("#plaque", {
-    title: room.title,
-    toneHz: room.toneHz || 528,
-    stylepack: room.stylepack,
-    onStart: async () => { await startTone(room.toneHz || 528); },
-    onStop: () => { stopTone(); },
-    onNudge: (hz) => { setTone(hz); }
-  });
-
-  // Ritual hygiene bar: Banish (mute + neutral skin), Center (room defaults), Depart (fade out)
-  mountRitual("#ritual", {
-    defaultHz: room.toneHz || 528,
-    onBanish: () => {
-      document.documentElement.setAttribute("data-stylepack", "neutral_white");
-      stopTone();
-    },
-    onCenter: async () => {
-      await startTone(room.toneHz || 528);
-      document.documentElement.setAttribute("data-stylepack", room.stylepack || "");
-    },
-    onDepart: () => {
-      stopTone();
-      // light fade or navigate away hook optional
-    }
-  });
-
-  // Subtle cymatic bloom (client-only, iPad-safe)
-  const canvas = document.getElementById("bloomCanvas");
-  const ctx = canvas.getContext("2d");
-  function resize(){ canvas.width = innerWidth; canvas.height = innerHeight; }
-  window.addEventListener("resize", resize); resize();
-
-  let hz = room.toneHz || 528;
-  let phase = 0;
-
-  // simple API so plaque or ritual can retune bloom
-  window.setBloomTone = function(freq){ hz = freq; phase = 0; };
-
-  function draw(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    const cx = canvas.width/2, cy = canvas.height/2;
-    ctx.beginPath();
-    ctx.strokeStyle = "rgba(200,180,120,0.45)";
-    for(let a=0; a<Math.PI*2; a+=0.045){
-      const r = 160 + 42 * Math.sin((hz * a)/200 + phase);
-      const x = cx + Math.cos(a) * r;
-      const y = cy + Math.sin(a) * r;
-      if(a===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
-    }
-    ctx.closePath();
-    ctx.stroke();
-    phase += 0.015;
-    requestAnimationFrame(draw);
-  }
-  draw();
-
-  // Planetary-hour tint (subtle 7-tone hue)
-  const tint = document.getElementById("hourTint");
-  const hues = [0, 40, 120, 180, 220, 280, 320]; // sun→moon wheel
-  function updateTint(){
-    const h = new Date().getHours();
-    tint.style.background = "hsla(" + hues[h % 7] + ",60%,70%,0.18)";
-  }
-  updateTint();
-  setInterval(updateTint, 5 * 60 * 1000);
+  import { mountRitualBar } from "./assets/js/ui/ritual.js";
+  await mountRoomPlaque();           // resolve current room and show small plaque
+  mountRitualBar({ hz: 528 });       // simple banish/center/depart
 </script>
-
 </body>
 </html>
