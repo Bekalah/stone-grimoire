@@ -1,69 +1,94 @@
-(currentHz); }catch(e){} }
+// assets/js/engines/ambient-engine.js
+// ND-safe WebAudio core with tiny pub/sub. ASCII-only; iPad-safe (requires first tap).
 
-async function loadIR(ac){
-  try{
-    const candidates = [
-      "assets/audio/ir/cathedral_small.wav",
-      "assets/audio/ir/cathedral.wav"
-    ];
-    for(const u of candidates){
-      const res = await fetch(u, {cache:"force-cache"});
-      if(!res.ok) continue;
-      const buf = await res.arrayBuffer();
-      const audioBuf = await ac.decodeAudioData(buf);
-      return audioBuf;
+let ctx = null;
+let master = null;
+let osc = null;
+let gain = null;
+let analyser = null;
+let convolver = null;
+let muted = false;
+let currentHz = 0;
+
+const subs = new Set();
+
+export async function ensureAudio(){
+  if (ctx) return ctx;
+  ctx = new (window.AudioContext || window.webkitAudioContext)();
+  master = ctx.createGain(); master.gain.value = 0.9;
+
+  // mild comp for headroom
+  const comp = ctx.createDynamicsCompressor();
+  comp.threshold.value = -24; comp.knee.value = 30; comp.ratio.value = 6;
+  comp.attack.value = 0.005; comp.release.value = 0.25;
+
+  // analyser for visuals
+  analyser = ctx.createAnalyser();
+  analyser.fftSize = 512;
+
+  // optional IR (silent if missing; you can wire later)
+  convolver = ctx.createConvolver();
+  // fetch lightly; if 404, just skip
+  try {
+    const r = await fetch("../assets/ir/cathedral.wav");
+    if (r.ok) {
+      const buf = await r.arrayBuffer();
+      ctx.decodeAudioData(buf, b => convolver.buffer = b);
     }
-  }catch(_){}
-  return null;
+  } catch(_){ /* non-fatal */ }
+
+  master.connect(comp).connect(analyser).connect(ctx.destination);
+  return ctx;
 }
 
-export async function start(){
-  if(AC) return;
-  const Ctx = window.AudioContext || window.webkitAudioContext;
-  AC = new Ctx();
-
-  osc  = AC.createOscillator();
-  gain = AC.createGain();
-  const low  = AC.createBiquadFilter(); low.type="lowshelf"; low.frequency.value=80;  low.gain.value=-3;
-  const peak = AC.createBiquadFilter(); peak.type="peaking"; peak.frequency.value=2500; peak.Q.value=.9; peak.gain.value=-4;
-  const comp = AC.createDynamicsCompressor(); comp.threshold.value=-28; comp.knee.value=24; comp.ratio.value=2.2; comp.attack.value=.015; comp.release.value=.25;
-  convolver  = AC.createConvolver();
-  limiter    = AC.createDynamicsCompressor(); limiter.threshold.value=-4; limiter.knee.value=0; limiter.ratio.value=20; limiter.attack.value=.003; limiter.release.value=.15;
-  analyser   = AC.createAnalyser(); analyser.fftSize = 1024;
-
-  osc.type="sine"; osc.frequency.value = currentHz;
-  gain.gain.value = 0.0001;
-
-  // chain
+function buildOsc() {
+  if (osc) { try { osc.stop(0); } catch(_){ } osc.disconnect(); }
+  if (gain) { gain.disconnect(); }
+  osc = ctx.createOscillator();
+  osc.type = "sine";
+  gain = ctx.createGain();
+  gain.gain.value = 0.0001;          // start silent; ramp in
+  // convolver may be empty; connect gain->master always
+  gain.connect(master);
   osc.connect(gain);
-  gain.connect(low); low.connect(peak); peak.connect(comp);
-  comp.connect(convolver); convolver.connect(limiter);
-  limiter.connect(analyser); analyser.connect(AC.destination);
-
-  // optional IR
-  const ir = await loadIR(AC);
-  if(ir) convolver.buffer = ir;
-
   osc.start();
-  fadeTo(0.08, 600);
 }
 
-export function stop(){
-  if(!AC) return;
-  fadeTo(0.0001, 600);
+export function setMuted(on){
+  muted = !!on;
+  if (gain) gain.gain.value = 0.0001;
 }
 
-export function setToneHz(hz){
-  if(!AC){ currentHz = hz; notify(); return; }
-  const t = AC.currentTime + 0.12;
-  osc.frequency.linearRampToValueAtTime(hz, t);
-  currentHz = hz; notify();
+export async function setToneHz(hz){
+  await ensureAudio();
+  if (!osc) buildOsc();
+  if (ctx.state === "suspended") await ctx.resume();
+
+  currentHz = hz;
+  const now = ctx.currentTime;
+  try {
+    osc.frequency.setTargetAtTime(hz, now, 0.03);
+  } catch(_){
+    osc.frequency.value = hz;
+  }
+  const target = muted ? 0.0001 : 0.12; // ND-safe loudness
+  gain.gain.cancelScheduledValues(now);
+  gain.gain.setTargetAtTime(target, now, 0.06);
+
+  subs.forEach(fn => { try { fn(hz); } catch(_){ } });
+}
+
+export function stopTone(){
+  if (!ctx || !gain) return;
+  const now = ctx.currentTime;
+  gain.gain.setTargetAtTime(0.0001, now, 0.06);
 }
 
 export function getAnalyser(){ return analyser; }
-function fadeTo(v, ms){
-  const now = AC.currentTime;
-  gain.gain.cancelScheduledValues(now);
-  gain.gain.setValueAtTime(gain.gain.value, now);
-  gain.gain.linearRampToValueAtTime(v, now + ms/1000);
+
+export function onToneChange(fn){
+  subs.add(fn);
+  return () => subs.delete(fn);
 }
+
+export function currentTone(){ return currentHz; }
