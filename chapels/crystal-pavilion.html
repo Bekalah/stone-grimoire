@@ -1,68 +1,82 @@
-<!doctype html><html lang="en">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Crystal Pavilion</title>
+  <meta charset="utf-8">
+  <title>Crystal Pavilion -- Seed of Life Grid</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Crystal Pavilion -- interactive crystal grid with tones, reiki colors, and cymatic bloom. ND-safe, iPad-friendly.">
+
+  <!-- Site styles -->
   <link rel="stylesheet" href="../assets/css/palette.css">
   <link rel="stylesheet" href="../assets/css/light.css">
   <link rel="stylesheet" href="../assets/css/ambient.css">
   <link rel="stylesheet" href="../assets/css/rosslyn.css">
+  <link rel="stylesheet" href="../assets/css/folio.css">
+
   <style>
-    .stage{margin:1rem; background:var(--stone); border:1px solid #d9d1c2; position:relative}
-    #grid{display:block; width:100%; height:auto}
-    .legend{position:absolute; right:.5rem; bottom:.5rem; background:#efe7d6; border-left:4px solid var(--gold); padding:.5rem .75rem}
+    body{ margin:0; background:var(--bg); color:var(--ink); font:18px/1.6 Georgia,"Iowan Old Style",serif }
+    header, footer{
+      max-width:1000px; margin:14px auto; background:var(--wash); border:1px solid var(--line);
+      border-radius:12px; padding:14px 16px; text-align:center
+    }
+    header h1{ margin:.2rem 0 .35rem; color:var(--accent) }
+    .wrap{ max-width:1100px; margin:0 auto; padding:8px 10px 20px }
+    .stage{
+      position:relative; background:#fcf6e9; border:1px solid var(--line); border-radius:14px;
+      padding:10px; box-shadow:0 1px 18px rgba(0,0,0,.05);
+    }
+    .toolbar{
+      display:flex; gap:8px; flex-wrap:wrap; align-items:center; justify-content:space-between;
+      margin:10px 0 8px; background:#fff; border:1px solid var(--line); border-radius:10px; padding:8px 10px;
+    }
+    .toolbar .left,.toolbar .right{ display:flex; gap:8px; align-items:center; flex-wrap:wrap }
+    .toolbar label{ font-size:.95rem }
+    .toolbar button{ border:1px solid var(--line); background:var(--panel); border-radius:8px; padding:6px 10px; cursor:pointer }
+    .toolbar button:hover{ background:#fffdf9 }
+    canvas{ width:100%; height:auto; display:block; border-radius:10px; background:#fff }
+    .legend{
+      position:absolute; right:8px; bottom:8px; background:#fffaf0; color:#5a534b; border-left:4px solid var(--accent-2);
+      padding:.45rem .6rem; border-radius:8px; font-size:.92rem
+    }
+    .note{ margin-top:8px; font-size:.92rem; color:#6b6257 }
+    .key{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; font-size:.92rem }
+    .sw{ width:16px; height:16px; border-radius:50%; border:1px solid var(--line) }
+    .footgrid{ margin-top:10px; font-size:.92rem; color:#6b6257 }
   </style>
 </head>
-<body>
-  <nav class="controls" aria-label="Accessibility & Modes">
-    <label><input type="checkbox" id="toggle-calm" checked> Calm Mode</label>
-    <label><input type="checkbox" id="toggle-contrast"> High Contrast</label>
-    <label><input type="checkbox" id="toggle-motion" checked> Reduced Motion</label>
-    <label><input type="checkbox" id="toggle-mute"> Mute</label>
-  </nav>
-
-  <section class="room" data-room="crystal-pavilion" aria-label="Crystal Pavilion">
-    <h1 class="visually-hidden">Crystal Pavilion</h1>
-    <div class="stage">
-      <canvas id="grid" width="900" height="700" aria-label="Seed of Life crystal grid"></canvas>
-      <div class="legend" role="note">Tap a node → tone blooms (ND‑safe, no autoplay)</div>
+<body class="mystic" data-theme="yesod" data-stylepack="alchemical_bloom">
+  <header>
+    <div class="navline" style="display:flex;justify-content:space-between">
+      <div><a href="../cathedral.html">⟵ Back to Cathedral</a></div>
+      <div><a href="../main/05_ateliers/manifesto.html">Ateliers Manifesto</a></div>
     </div>
-  </section>
+    <h1>Crystal Pavilion -- Seed of Life Grid</h1>
+    <p class="small">Tap a node to place a crystal and bloom its tone. Hold to remove. Use "Harmonize" to play the chord. ND-safe (no autoplay).</p>
+  </header>
 
-  <script type="module">
-  import '../assets/js/cathedral-engine.js';
-  import { initCrystalGrid } from '../assets/js/effects/crystal-grid.js';
-  initCrystalGrid('#grid', {
-    crystalsUrl: '../assets/data/crystals.json',
-    gridsUrl: '../assets/data/grids.json',
-    gridId: 'seed_of_life_relationships',       // change to try others
-    impulseResponse: '../assets/ir/cathedral.wav'
-  });
-
-  const root=document.documentElement;
-  const bind=(id,cls,on)=>{const el=document.getElementById(id); if(!el)return; el.checked=on; el.addEventListener('change',()=>root.classList.toggle(cls, el.checked));};
-  bind('toggle-calm','calm',true); bind('toggle-contrast','contrast',false);
-  bind('toggle-motion','reduced-motion',true); bind('toggle-mute','muted',false);
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches){ root.classList.add('reduced-motion'); document.getElementById('toggle-motion').checked=true; }
-  </script>
-  
-  <footer class="site-footer" role="contentinfo">
-  <nav aria-label="Site links">
-    <ul>
-      <li><a href="../index.html">✦ Frontispiece (Door)</a></li>
-      <li><a href="../cathedral.html">✦ Cathedral Nave</a></li>
-      <li><a href="../chapels/apprentice-pillar.html">Apprentice Pillar</a></li>
-      <li><a href="../chapels/crypt.html">Crypt</a></li>
-      <li><a href="../chapels/lady-chapel.html">Lady Chapel</a></li>
-      <li><a href="../chapels/crystal-grid.html">Crystal Grid</a></li>
-      <li><a href="../chapels/musical-cubes.html">Musical Cubes</a></li>
-      <li><a href="../chapels/cubes-visual-lab.html">Cubes Visual Lab</a></li>
-      <li><a href="../chapels/helix-totem.html">Jacob’s Ladder</a></li>
-      <li><a href="../chapels/shem-ladder.html">Shem Ladder (72)</a></li>
-      <li><a href="../main/Thelemic-Alignment-Brief.html">Thelemic Alignment</a></li>
-      <li><a href="../main/05_ateliers/manifesto.html">Ateliers Manifesto</a></li>
-    </ul>
-  </nav>
-  <p class="seal">𓂀 ✦ Codex 144:99 ✦ 𓂀</p>
-</footer>
-  
-</body></html>
+  <div class="wrap">
+    <div class="toolbar" role="group" aria-label="Grid controls">
+      <div class="left">
+        <label>
+          Grid
+          <select id="grid-select" aria-label="Choose grid preset">
+            <option value="seed_of_life_relationships">Seed of Life (relationships)</option>
+            <option value="metatron_balance">Metatron Balance</option>
+            <option value="flower_of_life_small">Flower of Life (small)</option>
+          </select>
+        </label>
+        <label>
+          Mode
+          <select id="mode-select" aria-label="Interaction mode">
+            <option value="place">Place crystal</option>
+            <option value="remove">Remove crystal</option>
+            <option value="listen">Listen only</option>
+          </select>
+        </label>
+        <label>
+          Base Tone
+          <select id="tone-select" aria-label="Base tone (law of octaves)">
+            <option value="396">396 Hz (Earth)</option>
+            <option value="417">417 Hz (Dissolve)</option>
+            <option value="528" selected>528 Hz (Venus • Healing)</option>
+            <option value="639">639 Hz (Heart
