@@ -103,6 +103,23 @@
 <script type="module" src="./assets/js/cathedral-engine.js"></script>
 <script type="module" src="./assets/js/ritual.js"></script>
 
+
+<script type="module">
+  import { mountRoomPlaque } from "./assets/js/ui/room-plaque.js";
+  import { mountRitualBar } from "./assets/js/ui/ritual.js";
+
+  // Auto-resolve current room from structure.json and mount plaque
+  const plaque = await mountRoomPlaque(); // no args = resolve by route
+
+  // Mount ritual bar with optional defaults (e.g., room anchor and tone)
+  mountRitualBar({ roomId: "nave", hz: 528 });
+</script>
+
+<!-- Or, zero-code auto-mount via data flags: -->
+<div data-c99-autoplaque></div>
+<div data-c99-ritualbar data-room="nave" data-tone="528"></div>
+
+
   <!-- Cymatic Bloom Canvas -->
   <canvas id="bloomCanvas"
     style="position:fixed;top:0;left:0;width:100%;height:100%;
