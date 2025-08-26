@@ -1,105 +1,76 @@
-// Room Plaque UI -- Cathedral of Circuits (Codex 144:99)
-// Purpose: mounts a curator plaque for the current room,
-// pulls an optional plaque JSON, and wires tone/style controls.
+// Room Plaque (curator UI) -- Circuitum 99
+// Purpose: small, elegant control that shows the current room title,
+// stylepack id, and tone. It lets you start/stop audio and nudge the tone.
+// Depends on ambient hooks exported by cathedral-engine.js.
 //
-// Dependencies: engines/cathedral-engine.js, data under assets/data/*
-// Safe for iPad Safari, no autoplay, ASCII only.
+// Usage in an HTML page:
+//   <div id="plaque"></div>
+//   <script type="module">
+//     import { applyRoom } from "../engines/cathedral-engine.js";
+//     import { mountRoomPlaque } from "../ui/room-plaque.js";
+//     const room = await applyRoom(/* optional roomId */);
+//     mountRoomPlaque("#plaque", room);
+//   </script>
 
-import { applyRoom, startTone, stopTone, setTone } from "../engines/cathedral-engine.js";
+import { startTone, stopTone, setTone } from "../engines/cathedral-engine.js";
 
-// Small helpers
-async function firstOk(urls){
-  for (const u of urls){
-    try { const r = await fetch(u, { cache: "no-store" }); if (r.ok) return await r.json(); } catch(_) {}
-  }
-  return null;
-}
-async function loadPlaque(roomId){
-  const tries = [
-    `./assets/data/plaques/${roomId}.json`,
-    `./assets/data/plaques/${roomId.toLowerCase()}.json`
-  ];
-  return await firstOk(tries);
-}
+function $(sel, root=document){ return root.querySelector(sel); }
+function el(tag, cls){ const n=document.createElement(tag); if(cls) n.className=cls; return n; }
 
-// Minimal DOM builder
-function el(tag, attrs={}, html=""){
-  const n = document.createElement(tag);
-  for (const k in attrs){ if (attrs[k] != null) n.setAttribute(k, attrs[k]); }
-  if (html) n.innerHTML = html;
-  return n;
-}
+export function mountRoomPlaque(target, room, opts={}){
+  const root = (typeof target==="string") ? $(target) : target;
+  if(!root) throw new Error("room-plaque: target not found");
 
-// Mount plaque container and content
-export async function mountRoomPlaque(room){
-  // If a page passed only an id, resolve via engine
-  if (typeof room === "string") room = await applyRoom(room);
+  const box = el("div","c99-plaque");
+  box.innerHTML = [
+    `<div class="c99-plaque__title">${room.title||"Untitled Room"}</div>`,
+    `<div class="c99-plaque__meta">`,
+    `<span>Style: <b>${room.stylepack||"--"}</b></span>`,
+    `<span>· Tone: <b id="c99ToneLbl">${room.toneHz||"--"}</b> Hz</span>`,
+    `</div>`,
+    `<div class="c99-plaque__controls">`,
+      `<button type="button" id="c99Toggle">Quietus / Resume</button>`,
+      `<button type="button" id="c99Down">-</button>`,
+      `<button type="button" id="c99Up">+</button>`,
+      `<input id="c99Tone" type="number" inputmode="numeric" step="1" min="60" max="1200" aria-label="Tone (Hz)" value="${room.toneHz||528}">`,
+    `</div>`
+  ].join("");
 
-  // Container
-  const wrap = el("section", { class: "c99-plaque", role: "region", "aria-label": "Curator Plaque" });
+  root.innerHTML = "";
+  root.appendChild(box);
 
-  // Title line
-  const h = el("header", { class: "c99-plaque__head" });
-  h.appendChild(el("h2", {}, room.title || "Room"));
-  h.appendChild(el("p", { class: "c99-plaque__sub" },
-    `Style: ${room.stylepack || "--"} · Tone: ${room.toneHz || "--"} Hz`
-  ));
-  wrap.appendChild(h);
+  let audioOn=false;
+  let hz = Number(room.toneHz||528);
 
-  // Controls row
-  const controls = el("div", { class: "c99-plaque__controls" });
-  controls.appendChild(el("button", { type: "button", id: "c99_audio_toggle" }, "Quietus / Resume"));
-  controls.appendChild(el("button", { type: "button", id: "c99_tone_down", "aria-label": "Tone down" }, "−"));
-  controls.appendChild(el("button", { type: "button", id: "c99_tone_up", "aria-label": "Tone up" }, "+"));
-  wrap.appendChild(controls);
+  const lbl = $("#c99ToneLbl", box);
+  const num = $("#c99Tone", box);
 
-  // Text blocks (from plaque JSON if available)
-  const body = el("div", { class: "c99-plaque__body" });
-  const data = await loadPlaque(room.id || "room");
-  if (data){
-    // data fields: title?, what, why, how, lineage, safety, patrons
-    if (data.what)     body.appendChild(el("p", {}, `<strong>What:</strong> ${data.what}`));
-    if (data.why)      body.appendChild(el("p", {}, `<strong>Why:</strong> ${data.why}`));
-    if (data.how)      body.appendChild(el("p", {}, `<strong>How:</strong> ${data.how}`));
-    if (data.lineage)  body.appendChild(el("p", {}, `<strong>Lineage:</strong> ${data.lineage}`));
-    if (data.safety)   body.appendChild(el("p", {}, `<strong>Safety:</strong> ${data.safety}`));
-    if (data.patrons)  body.appendChild(el("p", {}, `<strong>Patrons:</strong> ${data.patrons}`));
-  } else {
-    // Graceful fallback if plaque JSON not present yet
-    body.appendChild(el("p", {}, "This folio is staged. Add a curator plaque JSON under assets/data/plaques/<roomId>.json to populate these notes (What / Why / How / Lineage / Safety / Patrons)."));
-  }
-  wrap.appendChild(body);
-
-  // Mount once
-  document.body.appendChild(wrap);
-
-  // Wire controls (ND-safe: no autoplay)
-  let audioOn = false;
-  let currentHz = room.toneHz || 528;
-
-  document.getElementById("c99_audio_toggle").addEventListener("click", async ()=>{
-    if (!audioOn){ await startTone(currentHz); audioOn = true; }
-    else { stopTone(); audioOn = false; }
-  });
-  document.getElementById("c99_tone_up").addEventListener("click", ()=>{
-    currentHz = Math.round(currentHz + 6);
-    setTone(currentHz);
-  });
-  document.getElementById("c99_tone_down").addEventListener("click", ()=>{
-    currentHz = Math.max(60, Math.round(currentHz - 6));
-    setTone(currentHz);
+  $("#c99Toggle", box).addEventListener("click", async ()=>{
+    if(!audioOn){ await startTone(hz); audioOn=true; box.classList.add("is-on"); }
+    else { stopTone(); audioOn=false; box.classList.remove("is-on"); }
+    if (opts.onToggle) opts.onToggle(audioOn);
   });
 
-  return wrap;
-}
+  $("#c99Up", box).addEventListener("click", ()=>{
+    hz = Math.min(1200, Math.round(hz + 6));
+    setTone(hz); num.value = String(hz); lbl.textContent = String(hz);
+    if (opts.onToneChange) opts.onToneChange(hz);
+    box.dispatchEvent(new CustomEvent("c99:tone", { detail:{hz} }));
+  });
 
-// Optional: auto-mount when script is included directly with type="module"
-(async function auto(){
-  // Only auto if a marker is present to avoid double UI on some pages
-  if (document.querySelector("[data-c99-autoplaque]")){
-    try {
-      const room = await applyRoom(); // resolves current route/hash
-      await mountRoomPlaque(room);
-    } catch(e){ console.error("room-plaque auto error:", e); }
-  }
-})();
+  $("#c99Down", box).addEventListener("click", ()=>{
+    hz = Math.max(60, Math.round(hz - 6));
+    setTone(hz); num.value = String(hz); lbl.textContent = String(hz);
+    if (opts.onToneChange) opts.onToneChange(hz);
+    box.dispatchEvent(new CustomEvent("c99:tone", { detail:{hz} }));
+  });
+
+  num.addEventListener("change", ()=>{
+    const v = Math.max(60, Math.min(1200, Math.round(Number(num.value)||hz)));
+    hz = v; setTone(hz); lbl.textContent = String(hz);
+    if (opts.onToneChange) opts.onToneChange(hz);
+    box.dispatchEvent(new CustomEvent("c99:tone", { detail:{hz} }));
+  });
+
+  return box;
+}
