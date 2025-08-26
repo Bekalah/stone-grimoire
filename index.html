@@ -5,8 +5,6 @@
   <title>Stone Grimoire -- Frontispiece</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Frontispiece to the Cathedral of Circuits (Codex 144:99). Enter the nave, read briefs, and visit the ateliers.">
-
-  <!-- Core styles -->
   <link rel="stylesheet" href="./assets/css/palette.css">
   <link rel="stylesheet" href="./assets/css/light.css">
 </head>
@@ -18,7 +16,7 @@
   <p><a href="./cathedral.html">Enter the Nave →</a></p>
 </header>
 
-<main class="nave" role="main" aria-label="Frontispiece">
+<main class="nave">
   <section class="center" aria-labelledby="about">
     <h2 id="about">About</h2>
     <div class="cells">
@@ -45,35 +43,21 @@
   </section>
 </main>
 
-<!-- Decorative overlay -->
 <div class="overlay-vitrail" aria-hidden="true"></div>
-
-<!-- Engines -->
-<script type="module" src="./assets/js/cathedral-engine.js"></script>
-<script type="module" src="./assets/js/ritual.js"></script>
-
-<!-- Ritual controls -->
-<div id="ritual-bar">
-  <div class="ritual-controls" role="group" aria-label="Ritual controls">
-    <button onclick="ritual.banish()">✧ Banish ✧</button>
-    <button onclick="ritual.center()">☉ Center ☉</button>
-    <button onclick="ritual.depart()">❦ Depart ❦</button>
-  </div>
-</div>
-
 
 <footer class="site-footer" role="contentinfo">
   <nav aria-label="Site links">
     <ul>
-      <li><a href="./index.html">✦ Frontispiece (Door)</a></li>
-      <li><a href="./cathedral.html">✦ Cathedral Nave</a></li>
+      <li><a href="./index.html">Frontispiece (Door)</a></li>
+      <li><a href="./cathedral.html">Cathedral Nave</a></li>
       <li><a href="./chapels/apprentice-pillar.html">Apprentice Pillar</a></li>
       <li><a href="./chapels/crypt.html">Crypt</a></li>
       <li><a href="./chapels/lady-chapel.html">Lady Chapel</a></li>
       <li><a href="./chapels/musical-cubes.html">Musical Cubes</a></li>
       <li><a href="./chapels/cubes-visual-lab.html">Cubes Visual Lab</a></li>
-      <li><a href="./chapels/jacobs-ladder.html">Jacob’s Ladder</a></li>
+      <li><a href="./chapels/jacobs-ladder.html">Jacob's Ladder</a></li>
       <li><a href="./chapels/respawn-gate.html">Respawn Gate</a></li>
+      <li><a href="./angels72.html">Angels 72</a></li>
     </ul>
   </nav>
   <p class="seal">𓂀 ✦ Codex 144:99 ✦ 𓂀</p>
@@ -87,5 +71,8 @@
   .site-footer a:hover{text-decoration:underline}
   .site-footer .seal{margin-top:.8rem;color:var(--accent-2)}
 </style>
+
+<!-- Engines (optional for the door page) -->
+<script type="module" src="./assets/js/engines/cathedral-engine.js"></script>
 </body>
 </html>
