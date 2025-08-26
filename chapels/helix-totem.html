@@ -1,103 +1,118 @@
-
-
-
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Helix Totem -- Jacob's Ladder (72)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="A 3D Apprentice-Pillar helix with 72 angelic steps. Tap a step to reskin the cathedral, sound the tone, and make living art.">
+  <meta name="description" content="A helical Jacob's Ladder with 72 angelic steps; touch a step to shift tone, style, and cymatic bloom.">
+  <!-- House styles -->
   <link rel="stylesheet" href="../assets/css/palette.css">
   <link rel="stylesheet" href="../assets/css/light.css">
+  <link rel="stylesheet" href="../assets/css/folio.css">
   <style>
-    :root { --hud: rgba(255,248,231,.92); }
-    body { margin:0; background:var(--bg,#f8f5ef); color:var(--ink,#2b2520); font:16px/1.45 Georgia,"Iowan Old Style",serif; }
-    header, footer { max-width:1000px; margin:12px auto; background:var(--wash,#fff8e7);
-      border:1px solid var(--line,#d9cfbf); border-radius:12px; padding:10px 14px; text-align:center; }
-    a { color:var(--accent,#2f5a9e); text-decoration:none; } a:hover { text-decoration:underline; }
-    .wrap { max-width:1100px; margin:0 auto; padding:8px; }
+    body.mystic{ background: radial-gradient(circle at 50% 18%, var(--wash) 78%, #ece7dc 100%); color: var(--ink); }
 
-    /* 3D stage */
-    .stage { position:relative; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:#f9f6ee; box-shadow:var(--shadow,0 6px 20px rgba(0,0,0,.08)); }
-    canvas.webgl { display:block; width:100%; height:70vh; touch-action:none; }
+    header, footer{
+      margin:18px auto; max-width:1000px; text-align:center;
+      background:var(--wash); border:1px solid var(--line); border-radius:12px; padding:14px 18px;
+      box-shadow: 0 1px 0 #fff inset, 0 0 0 3px rgba(212,175,55,.08) inset;
+    }
+    header h1{ margin:.2rem 0 .3rem; color:var(--accent) }
 
-    /* HUD and plaque */
-    .hud { position:absolute; left:10px; top:10px; background:var(--hud); border:1px solid var(--line);
-      border-radius:10px; padding:8px 10px; backdrop-filter: blur(4px); max-width:360px; }
-    .hud h2 { margin:.2rem 0 .35rem; font-size:1.05rem; color:var(--accent-2,#d4af37); }
-    .hud .row { display:flex; gap:6px; flex-wrap:wrap; margin:.25rem 0 .1rem; }
-    .hud button, .hud select, .hud label { font:14px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial; }
-    .hud button { padding:.35rem .55rem; border:1px solid var(--line); border-radius:8px; background:#fff; cursor:pointer; }
-    .hud button:hover { background:#f4efe2; }
-    .hud .badge { display:inline-block; padding:.1rem .45rem; border:1px solid var(--line); border-radius:999px; background:#fff; font-size:.8rem; }
-    .hud .field { font-size:.92rem; margin:.15rem 0; }
+    .wrap{ max-width:1100px; margin:0 auto; padding:10px 12px 24px }
 
-    .plaque { position:absolute; right:10px; top:10px; background:#fff; border:1px solid var(--line); border-radius:10px;
-      padding:10px 12px; max-width:340px; box-shadow:inset 0 0 40px rgba(0,0,0,.04); }
-    .plaque h3 { margin:.2rem 0 .25rem; color:var(--accent); font-size:1.05rem; }
-    .plaque .kv { font-size:.92rem; color:#5a534b; }
-    .plaque .thumb { width:100%; height:170px; border:1px solid var(--line); border-radius:8px; background:#faf8f1 center/cover no-repeat; margin-bottom:8px; }
+    /* Stage */
+    .stage{
+      position:relative; overflow:hidden;
+      border:1px solid var(--line); border-radius:14px; background:#fff;
+      min-height:540px; box-shadow: var(--shadow);
+    }
+    .helix{
+      position:relative; height:540px; perspective:1100px; background:linear-gradient(#ffffff, #fbf8f0);
+    }
+    .spindle{
+      position:absolute; inset:0; transform-style:preserve-3d;
+      animation: spin 40s linear infinite;
+    }
+    @keyframes spin{
+      from{ transform: rotateY(0deg); }
+      to{   transform: rotateY(360deg); }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .spindle{ animation:none }
+    }
+
+    .step{
+      --r: 220px; /* helix radius */
+      position:absolute; top:50%; left:50%;
+      width:220px; transform-style:preserve-3d; will-change:transform,opacity;
+      text-align:left;
+    }
+    .step button{
+      display:block; width:100%;
+      background:#ffffffcc; backdrop-filter: blur(1px);
+      border:1px solid var(--line); border-radius:10px; padding:8px 10px;
+      font: 15px/1.35 Georgia, "Iowan Old Style", serif; color:var(--ink);
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+      cursor:pointer;
+    }
+    .step .meta{ display:block; font-size:.82rem; color:#6b6257; margin-top:2px }
+    .step[aria-current="true"] button{ border-color: var(--accent-2); box-shadow: 0 0 0 2px rgba(212,175,55,.25) }
+
+    .panel{
+      padding:14px; background:#fff; border:1px solid var(--line);
+      border-radius:12px; margin-top:10px;
+    }
+
+    /* Cymatics canvas sits behind the helix as aureole */
+    .cymatic-wrap{
+      position:absolute; inset:0; pointer-events:none; opacity:.55;
+    }
+    #cymatics{ width:100%; height:100% }
+
+    /* Controls */
+    .controls{
+      display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:10px 0;
+    }
+    .controls label{ display:inline-flex; align-items:center; gap:6px; font-size:.95rem; }
+    .controls input[type="checkbox"]{ transform: translateY(1px) }
 
     /* Footer nav */
-    .site-footer{margin:1rem auto;max-width:1000px;padding:12px;background:var(--wash);border-top:2px solid var(--accent-2);text-align:center}
+    .site-footer{margin:2rem auto;max-width:1000px;padding:12px;
+      background:var(--wash);border-top:2px solid var(--accent-2);text-align:center}
     .site-footer ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
     .site-footer a{color:var(--accent);text-decoration:none;font-size:.95rem}
     .site-footer a:hover{text-decoration:underline}
     .site-footer .seal{margin-top:.8rem;color:var(--accent-2)}
-
-    /* iPad perf */
-    @media (max-width: 900px){
-      .hud, .plaque { max-width: 46vw; }
-    }
   </style>
 </head>
-<body>
+<body class="mystic" data-theme="yesod">
 <header>
-  <h1>Helix Totem -- Jacob's Ladder (72)</h1>
-  <p>Apprentice Pillar as a living helix. Tap a step to invoke an angel: the cathedral reskins, tones bloom, art awakens.</p>
+  <h1>Helix Totem -- Jacob's Ladder</h1>
+  <p class="small">72 angelic steps woven as a pillar. Tap a step to shift style, tone, and bloom. ND-safe: no autoplay.</p>
 </header>
 
 <div class="wrap">
-  <div class="stage" id="stage">
-    <canvas class="webgl" id="pillar"></canvas>
-
-    <!-- Controls HUD -->
-    <div class="hud" id="hud" role="group" aria-label="Helix controls">
-      <h2>Controls</h2>
-      <div class="row">
-        <button id="btn-center">Center View</button>
-        <button id="btn-reset">Reset Skin</button>
-        <button id="btn-snap">Save PNG</button>
-        <button id="btn-export">Export JSON</button>
-      </div>
-      <div class="row">
-        <label><input type="checkbox" id="toggle-labels" checked> Show Labels</label>
-        <label><input type="checkbox" id="toggle-autospin"> Slow Spin</label>
-        <label><input type="checkbox" id="toggle-wire"> Wireframe</label>
-      </div>
-      <div class="field">Art Set:
-        <select id="artset">
-          <option value="angels" selected>Angels (Shem 72)</option>
-          <option value="demons">Demons (if present)</option>
-        </select>
-      </div>
-      <div class="row">
-        <span class="badge">No autoplay</span>
-        <span class="badge">iPad-safe</span>
-        <span class="badge">ND-gentle</span>
-      </div>
-    </div>
-
-    <!-- Angel Plaque -->
-    <aside class="plaque" id="plaque" role="note" aria-label="Angel plaque">
-      <div class="thumb" id="thumb"></div>
-      <h3 id="p-name">Tap a step to begin</h3>
-      <div class="kv" id="p-lines">
-        Select an angel step to sound its tone and apply its stylepack.
-      </div>
-    </aside>
+  <div class="controls" role="group" aria-label="View and audio">
+    <label><input id="toggle-motion" type="checkbox" checked> Reduced Motion</label>
+    <label><input id="toggle-mute" type="checkbox"> Mute</label>
   </div>
+
+  <section class="stage" aria-label="Helix Totem">
+    <div class="cymatic-wrap"><canvas id="cymatics" aria-hidden="true"></canvas></div>
+    <div class="helix">
+      <div id="spindle" class="spindle" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <aside class="panel plaque" role="note" aria-label="Curator Plaque" id="plaque">
+    <strong>Plaque -- Provenance</strong><br>
+    Intention: Climb the Ladder by resonance (tone, color, form).<br>
+    Technique: angels72.json → stylepack + toneHz → cymatic bloom; helix layout with CSS 3D; ND-safe audio.<br>
+    Lineage: Shem ha-Mephorash (72), Hermetic Qabalah, Dee/Enochian, Agrippan correspondences.<br>
+    Evidence: assets/data/angels72.json · assets/data/stylepacks.json.<br>
+    Reflection: Each step is an archetype lens; selection updates aura without forcing sound.
+  </aside>
 </div>
 
 <footer class="site-footer" role="contentinfo">
@@ -120,344 +135,101 @@
   <p class="seal">𓂀 ✦ Codex 144:99 ✦ 𓂀</p>
 </footer>
 
-<!-- Three.js (CDN modules) -->
 <script type="module">
-import * as THREE from "https://unpkg.com/three@0.160.0/build/three.module.js";
-import { OrbitControls } from "https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js";
+  import { setToneHz, onToneChange, setMuted, getAnalyser } from "../assets/js/ambient-engine.js";
+  import { mountCymaticsCanvas } from "../assets/js/engines/cymatic-engine.js";
 
-/* Optional local engines (robust if missing) */
-let ambient = null;
-let setToneHz = (hz)=>{};
-let applyStylepack = (id)=>{ document.documentElement.setAttribute("data-stylepack", id); };
-try {
-  const mod = await import("../assets/js/ambient-engine.js");
-  ambient = mod;
-  if (mod && typeof mod.setToneHz === "function") setToneHz = mod.setToneHz;
-} catch(err){ /* no ambient-engine.js, continue silently */ }
-try {
-  const mod2 = await import("../assets/js/engines/cathedral-engine.js");
-  if (mod2 && typeof mod2.applyStylepack === "function") applyStylepack = mod2.applyStylepack;
-} catch(err){ /* no cathedral-engine.js applyStylepack, fallback uses data-stylepack */ }
+  // iPad-safe motion + mute toggles
+  const root = document.documentElement;
+  const motion = document.getElementById("toggle-motion");
+  const mute = document.getElementById("toggle-mute");
+  const applyMotion = () => root.classList.toggle("reduced-motion", motion.checked);
+  motion.addEventListener("change", applyMotion); applyMotion();
+  mute.addEventListener("change", () => setMuted(!!mute.checked));
 
-/* Data sources */
-const ANGELS_URL = "../assets/data/angels72.json";
-const DEMONS_URL = "../assets/data/daimons72.json"; // optional
-const STYLEPACKS_URL = "../assets/data/stylepacks.json";
+  // Cymatic bloom (behind the helix)
+  const cym = document.getElementById("cymatics");
+  mountCymaticsCanvas(cym, { analyser: getAnalyser(), petals: 24, aureole: true });
 
-/* iPad DPR cap for perf */
-const DPR = Math.min(window.devicePixelRatio || 1, 1.5);
+  // Build the helix from angels72.json
+  const spindle = document.getElementById("spindle");
+  const plaque = document.getElementById("plaque");
 
-/* Scene setup */
-const canvas = document.getElementById("pillar");
-const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf9f6ee);
+  const dataUrl = "../assets/data/angels72.json";
+  const packsUrl = "../assets/data/stylepacks.json";
 
-const camera = new THREE.PerspectiveCamera(45, 16/9, 0.1, 200);
-camera.position.set(6.5, 4.5, 10);
-
-const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true, preserveDrawingBuffer:true });
-renderer.setPixelRatio(DPR);
-resize();
-window.addEventListener("resize", resize);
-
-const controls = new OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
-
-const hemi = new THREE.HemisphereLight(0xffffff, 0x888888, 0.85);
-scene.add(hemi);
-const key = new THREE.DirectionalLight(0xffffff, 0.9);
-key.position.set(6,10,6);
-scene.add(key);
-
-/* Pillar core */
-const columnMat = new THREE.MeshStandardMaterial({ color:0xede7d8, roughness:0.55, metalness:0.05 });
-const columnGeo = new THREE.CylinderGeometry(0.6, 0.85, 10.5, 18, 1, true);
-const column = new THREE.Mesh(columnGeo, columnMat);
-scene.add(column);
-
-/* Steps helix */
-const stepsGroup = new THREE.Group();
-scene.add(stepsGroup);
-
-/* Labels */
-const labelGroup = new THREE.Group();
-scene.add(labelGroup);
-
-/* Runtime state */
-let autospin = false;
-let wireframe = false;
-let showLabels = true;
-let currentSet = "angels";
-let angels = [];
-let demons = null;
-let stylepacks = [];
-let texturesCache = new Map();
-
-/* Helpers */
-function resize(){
-  const w = canvas.clientWidth || canvas.parentElement.clientWidth || 1100;
-  const h = Math.min(window.innerHeight*0.7, 820);
-  renderer.setSize(w, h, false);
-  camera.aspect = w / h;
-  camera.updateProjectionMatrix();
-}
-function slugify(s){
-  return String(s || "").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"");
-}
-async function fetchJSON(url){
-  const r = await fetch(url);
-  if (!r.ok) throw new Error("Failed: " + url);
-  return r.json();
-}
-async function loadTextureFor(name){
-  const slug = slugify(name);
-  const key = "angels/" + slug + ".png";
-  if (texturesCache.has(key)) return texturesCache.get(key);
-  const url = "../assets/images/" + key;
-  try {
-    const tex = await new THREE.TextureLoader().loadAsync(url);
-    tex.colorSpace = THREE.SRGBColorSpace;
-    texturesCache.set(key, tex);
-    return tex;
-  } catch(err){
-    // fallback: generate simple canvas with initials
-    const cnv = document.createElement("canvas");
-    cnv.width = 256; cnv.height = 256;
-    const g = cnv.getContext("2d");
-    g.fillStyle = "#f5efe1"; g.fillRect(0,0,256,256);
-    g.strokeStyle = "#caa44a"; g.lineWidth = 6; g.strokeRect(8,8,240,240);
-    g.fillStyle = "#8b2b2b";
-    g.font = "bold 64px Georgia";
-    const init = (name||"").trim().split(/\s+/).map(w=>w[0]).join("").slice(0,3).toUpperCase() || "AN";
-    const tw = g.measureText(init).width;
-    g.fillText(init, 128 - tw/2, 150);
-    const tex = new THREE.CanvasTexture(cnv);
-    tex.colorSpace = THREE.SRGBColorSpace;
-    texturesCache.set(key, tex);
-    return tex;
-  }
-}
-
-/* Build helix with N items */
-async function buildHelix(items){
-  // clear
-  stepsGroup.clear();
-  labelGroup.clear();
-
-  const N = items.length;
-  const turns = 6.0;
-  const height = 9.6;
-  const radius = 2.3;
-  const y0 = -height/2;
-
-  const spriteMatBase = new THREE.MeshStandardMaterial({
-    color:0xffffff, roughness:0.45, metalness:0.08, transparent:true, opacity:0.98, side:THREE.DoubleSide
-  });
-  const borderGeo = new THREE.RingGeometry(0.31, 0.34, 32);
-  const borderMat = new THREE.MeshBasicMaterial({ color:0xcaa44a, transparent:true, opacity:0.8 });
-
-  for (let i=0;i<N;i++){
-    const t = i / (N-1);
-    const angle = t * turns * Math.PI * 2;
-    const y = y0 + t * height;
-    const x = Math.cos(angle) * radius;
-    const z = Math.sin(angle) * radius;
-
-    // card plane
-    const tex = await loadTextureFor(items[i].name);
-    const geo = new THREE.PlaneGeometry(0.8, 0.8);
-    const mat = spriteMatBase.clone();
-    mat.map = tex;
-    const plane = new THREE.Mesh(geo, mat);
-    plane.position.set(x,y,z);
-    plane.lookAt(0,y,0); // face center axis
-    plane.userData.index = i;
-
-    // halo border
-    const ring = new THREE.Mesh(borderGeo, borderMat.clone());
-    ring.position.copy(plane.position);
-    ring.lookAt(0,y,0);
-
-    stepsGroup.add(plane);
-    stepsGroup.add(ring);
-
-    // label
-    const lbl = makeLabel(items[i].short || items[i].name || ("Angel " + (i+1)));
-    lbl.position.set(x*1.02, y+0.55, z*1.02);
-    labelGroup.add(lbl);
-  }
-}
-
-/* Simple label as flat plane */
-function makeLabel(text){
-  const cnv = document.createElement("canvas");
-  cnv.width = 512; cnv.height = 128;
-  const g = cnv.getContext("2d");
-  g.fillStyle = "rgba(255,248,231,.95)"; g.fillRect(0,0,512,128);
-  g.strokeStyle = "#d4af37"; g.lineWidth = 6; g.strokeRect(4,4,504,120);
-  g.fillStyle = "#2b2520";
-  g.font = "bold 36px Georgia";
-  const tw = g.measureText(text).width;
-  g.fillText(text, 256 - tw/2, 78);
-  const tex = new THREE.CanvasTexture(cnv);
-  tex.colorSpace = THREE.SRGBColorSpace;
-  const mat = new THREE.SpriteMaterial({ map: tex, transparent:true });
-  const sp = new THREE.Sprite(mat);
-  sp.scale.set(1.8, 0.45, 1);
-  return sp;
-}
-
-/* Raycast selection */
-const raycaster = new THREE.Raycaster();
-const pointer = new THREE.Vector2();
-canvas.addEventListener("pointerdown", onPick, { passive:true });
-
-function onPick(ev){
-  const rect = canvas.getBoundingClientRect();
-  pointer.x = ((ev.clientX - rect.left) / rect.width) * 2 - 1;
-  pointer.y = -((ev.clientY - rect.top) / rect.height) * 2 + 1;
-  raycaster.setFromCamera(pointer, camera);
-  const hits = raycaster.intersectObjects(stepsGroup.children.filter(m => m.isMesh && m.geometry.type === "PlaneGeometry"));
-  if (hits.length){
-    const idx = hits[0].object.userData.index;
-    if (typeof idx === "number") selectIndex(idx);
-  }
-}
-
-/* Selection handling */
-function choosePaletteColor(packId){
-  const p = stylepacks.find(s => s.id === packId);
-  if (p && Array.isArray(p.palette) && p.palette.length){
-    return p.palette[2] || p.palette[0];
-  }
-  return "#caa44a";
-}
-
-function updatePlaque(item){
-  const thumb = document.getElementById("thumb");
-  const pName = document.getElementById("p-name");
-  const pLines = document.getElementById("p-lines");
-  const slug = slugify(item.name);
-  const imgUrl = "../assets/images/angels/" + slug + ".png";
-  thumb.style.backgroundImage = "url('" + imgUrl + "'), linear-gradient(#faf8f1,#f4efe2)";
-  pName.textContent = (item.name || "Angel") + " -- Step " + (item.index+1);
-  const lines = [];
-  if (item.decan) lines.push("Decan: " + item.decan);
-  if (item.sign) lines.push("Zodiac: " + item.sign);
-  if (item.toneHz) lines.push("Tone: " + item.toneHz + " Hz");
-  if (item.stylepack) lines.push("Stylepack: " + item.stylepack);
-  pLines.innerHTML = lines.join("<br>");
-}
-
-function highlightStep(i, colorHex){
-  // subtle bloom around selected ring
-  const ringMeshes = stepsGroup.children.filter(m => m.geometry && m.geometry.type === "RingGeometry");
-  ringMeshes.forEach((r, j) => {
-    const m = r.material;
-    if (j === i) { m.color.set(colorHex); m.opacity = 1.0; }
-    else { m.color.set(0xcaa44a); m.opacity = 0.55; }
-    m.needsUpdate = true;
-  });
-}
-
-function safeApplyStylepack(packId){
-  try { applyStylepack(packId); }
-  catch(e){ document.documentElement.setAttribute("data-stylepack", packId); }
-}
-
-function safeSetTone(hz){
-  try { setToneHz(Number(hz)); } catch(e){}
-}
-
-function selectIndex(i){
-  const items = (currentSet === "angels" ? angels : demons) || angels;
-  const item = Object.assign({}, items[i] || {}, { index:i });
-  const pal = choosePaletteColor(item.stylepack || "rosslyn_gothic");
-  highlightStep(i, pal);
-  updatePlaque(item);
-  safeApplyStylepack(item.stylepack || "rosslyn_gothic");
-  if (item.toneHz) safeSetTone(item.toneHz);
-}
-
-/* UI wiring */
-document.getElementById("btn-center").addEventListener("click", () => {
-  controls.target.set(0,0,0);
-  camera.position.set(6.5, 4.5, 10);
-  controls.update();
-});
-document.getElementById("btn-reset").addEventListener("click", () => {
-  document.documentElement.removeAttribute("data-stylepack");
-  highlightStep(-1, 0xcaa44a);
-  document.getElementById("p-name").textContent = "Tap a step to begin";
-  document.getElementById("p-lines").textContent = "Select an angel step to sound its tone and apply its stylepack.";
-  document.getElementById("thumb").style.backgroundImage = "none";
-  safeSetTone(0);
-});
-document.getElementById("btn-snap").addEventListener("click", () => {
-  const url = renderer.domElement.toDataURL("image/png");
-  const a = document.createElement("a");
-  a.href = url; a.download = "helix-totem.png";
-  document.body.appendChild(a); a.click(); a.remove();
-});
-document.getElementById("btn-export").addEventListener("click", () => {
-  const payload = {
-    when: new Date().toISOString(),
-    set: currentSet,
-    stylepack: document.documentElement.getAttribute("data-stylepack") || null
+  const stylepackApply = (id) => {
+    // lightweight apply: expose chosen pack id to CSS and engines
+    document.documentElement.setAttribute("data-stylepack", id);
+    // if your cathedral engine exposes a function like applyStylepack(id), you can call it here
+    // window.applyStylepack && window.applyStylepack(id);
   };
-  const blob = new Blob([JSON.stringify(payload,null,2)], { type:"application/json" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url; a.download = "helix-totem-export.json";
-  document.body.appendChild(a); a.click(); a.remove();
-  URL.revokeObjectURL(url);
-});
 
-document.getElementById("toggle-labels").addEventListener("change", ev => {
-  showLabels = ev.target.checked;
-  labelGroup.visible = showLabels;
-});
-document.getElementById("toggle-autospin").addEventListener("change", ev => autospin = ev.target.checked);
-document.getElementById("toggle-wire").addEventListener("change", ev => {
-  wireframe = ev.target.checked;
-  column.material.wireframe = wireframe;
-  stepsGroup.traverse(n => { if (n.isMesh && n.material) n.material.wireframe = wireframe; });
-});
-
-document.getElementById("artset").addEventListener("change", ev => {
-  currentSet = ev.target.value;
-  const items = (currentSet === "angels" ? angels : demons) || angels;
-  buildHelix(items); // rebuild to refresh labels
-});
-
-/* Load data and go */
-(async function init(){
-  try {
-    stylepacks = (await fetchJSON(STYLEPACKS_URL)).packs || [];
-  } catch(e){ stylepacks = []; }
-
-  angels = await fetchJSON(ANGELS_URL);
-
-  try {
-    demons = await fetchJSON(DEMONS_URL);
-  } catch(e){
-    demons = null;
-    const opt = document.querySelector('#artset option[value="demons"]');
-    if (opt) opt.textContent = "Demons (not installed)";
+  function updatePlaque(a){
+    plaque.innerHTML =
+      "<strong>Plaque -- Jacob's Ladder</strong><br>" +
+      "Angel: <b>" + (a.name || a.id) + "</b> · Sign/Decan: " + (a.sign || "?") + " " + (a.decan || "") + "<br>" +
+      "Tone: " + (a.toneHz || "--") + " Hz · Style: " + (a.stylepack || "--") + "<br>" +
+      "Soyga: " + (a.soyga || "--") + " · Number: " + (a.num || "--");
   }
 
-  await buildHelix(angels);
-  animate();
-})();
+  function makeStep(a, i, total){
+    const el = document.createElement("div");
+    el.className = "step";
+    const theta = (i / total) * Math.PI * 2 * 3;     // 3 full turns
+    const y = -240 + (i * (480 / total));            // distribute vertically
+    const x = Math.cos(theta) * 220;
+    const z = Math.sin(theta) * 220;
+    el.style.transform =
+      "translate3d(" + x + "px," + y + "px," + z + "px) rotateY(" + (theta * 180/Math.PI) + "deg)";
 
-/* Animation loop */
-function animate(){
-  requestAnimationFrame(animate);
-  if (autospin) stepsGroup.rotation.y += 0.0025;
-  controls.update();
-  renderer.render(scene, camera);
-}
+    const btn = document.createElement("button");
+    btn.setAttribute("type", "button");
+    btn.innerHTML =
+      (String(i+1).padStart(2,"0")) + ". " + (a.name || a.id || "Angel") +
+      "<span class=\"meta\">" +
+      (a.sign || "") + (a.decan?(" " + a.decan):"") + " · " +
+      (a.toneHz? (a.toneHz + " Hz"):"") +
+      "</span>";
+    btn.addEventListener("click", () => {
+      // Focus this step
+      document.querySelectorAll(".step[aria-current='true']").forEach(s => s.removeAttribute("aria-current"));
+      el.setAttribute("aria-current","true");
 
+      // Apply visual skin and tone
+      if (a.stylepack) stylepackApply(a.stylepack);
+      if (!mute.checked && a.toneHz) setToneHz(a.toneHz);
+
+      // Update plaque
+      updatePlaque(a);
+    });
+
+    el.appendChild(btn);
+    return el;
+  }
+
+  async function boot(){
+    // Warm audio with a user gesture: first tap anywhere will start the context inside ambient-engine
+    window.addEventListener("touchstart", () => setToneHz(0), { once:true });
+    window.addEventListener("mousedown", () => setToneHz(0), { once:true });
+
+    const [angelsRes, packsRes] = await Promise.all([fetch(dataUrl), fetch(packsUrl)]);
+    const angels = await angelsRes.json();
+    await packsRes.json(); // not used directly here but ensures file is present
+
+    spindle.innerHTML = "";
+    angels.forEach((a, i) => spindle.appendChild(makeStep(a, i, angels.length)));
+
+    // Select a friendly default (Moonchild or first)
+    const defaultIndex = angels.findIndex(a => (a.id||"").toLowerCase().includes("moonchild"));
+    const pick = angels[defaultIndex >= 0 ? defaultIndex : 0];
+    if (pick){
+      const firstBtn = spindle.querySelectorAll(".step button")[defaultIndex >=0 ? defaultIndex : 0];
+      firstBtn && firstBtn.click();
+    }
+  }
+
+  boot();
 </script>
 </body>
 </html>
