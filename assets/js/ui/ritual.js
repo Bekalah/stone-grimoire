@@ -1,77 +1,82 @@
-// UI: Ritual Hygiene (Banish, Center, License to Depart)
-// Pairs with ambient-engine and stylepacks to keep sessions clean.
+// Ritual UI -- Cathedral of Circuits
+// Purpose: small, explicit "Opening / Center / Closing" helpers that match your
+// ND-safe rhythm (banish, center, license to depart), without overwriting engines.
+//
+// Dependencies: engines/cathedral-engine.js, assets/data/style_packs/stylepacks.json
+// Styling hint: define CSS for [data-ritual="banish|center|work|depart"] to tint gently.
 
-import { stopTone, setTone, startTone } from "../engines/ambient-engine.js";
+import { applyRoom, startTone, stopTone, setTone } from "../engines/cathedral-engine.js";
 
-// Small helpers ------------------------------------------------------
-function el(tag, attrs = {}, html = "") {
-  const n = document.createElement(tag);
-  for (const k in attrs) n.setAttribute(k, attrs[k]);
-  if (html) n.innerHTML = html;
-  return n;
-}
-function applyBanishTheme() {
-  // Neutral white reset (matches your "neutral_white" stylepack intent)
-  document.documentElement.style.setProperty("--accent", "#888888");
-  document.documentElement.style.setProperty("--accent-2", "#dcdcdc");
-  document.body.classList.add("banish-on");
-}
-function clearBanishTheme() {
-  document.body.classList.remove("banish-on");
+// Stylepack toggles use the document data attribute already set by the engine.
+// For banish/center we just set a marker data-ritual to let CSS soften the scene.
+
+function setRitualState(state){
+  document.documentElement.setAttribute("data-ritual", state);
 }
 
-// Public mount -------------------------------------------------------
-/**
- * mountRitualControls(container, opts)
- * opts: { centerHz?: number, onCenter?: fn, onDepart?: fn }
- */
-export function mountRitualControls(container, opts = {}) {
-  const centerHz = Number(opts.centerHz || 528);
-
-  const bar = el("div", { class: "c-ritual" });
-  const title = el("div", { class: "c-ritual__title" }, "Ritual Controls");
-  const btnBanish = el("button", { type: "button", class: "btn btn-ritual" }, "Banish");
-  const btnCenter = el("button", { type: "button", class: "btn btn-ritual" }, "Center");
-  const btnDepart = el("button", { type: "button", class: "btn btn-ritual" }, "License to Depart");
-
-  bar.appendChild(title);
-  bar.appendChild(btnBanish);
-  bar.appendChild(btnCenter);
-  bar.appendChild(btnDepart);
-  container.appendChild(bar);
-
-  // Actions
-  btnBanish.addEventListener("click", () => {
-    // Silence and neutralize visuals
-    stopTone();
-    applyBanishTheme();
-    // Optionally dim overlays you may have
-    const ov = document.querySelector(".overlay-vitrail");
-    if (ov) ov.style.opacity = "0.15";
-  });
-
-  btnCenter.addEventListener("click", async () => {
-    // Gentle reset to center tone, clear banish skin
-    clearBanishTheme();
-    const ov = document.querySelector(".overlay-vitrail");
-    if (ov) ov.style.opacity = "";
-    setTone(centerHz);
-    await startTone(centerHz);
-    if (typeof opts.onCenter === "function") opts.onCenter(centerHz);
-  });
-
-  btnDepart.addEventListener("click", () => {
-    // Fade down, clear states, ready to leave page
-    stopTone();
-    clearBanishTheme();
-    const ov = document.querySelector(".overlay-vitrail");
-    if (ov) ov.style.opacity = "";
-    if (typeof opts.onDepart === "function") opts.onDepart();
-  });
-
-  // Tiny API back to caller
-  return {
-    setCenterHz(hz) { /* live update center frequency */ },
-    destroy() { bar.remove(); }
-  };
+export async function opening(roomIdOptional){
+  // Prep the space; do not start audio yet
+  setRitualState("center");
+  if (roomIdOptional) await applyRoom(roomIdOptional);
+  // Optional: gentle hint tone on first tap only (leave to user action)
+  // User presses a "Begin" button to start the tone, preserving ND-safety.
 }
+
+export async function beginWork(targetHz){
+  // User consented: start tone and enter work state
+  setRitualState("work");
+  if (typeof targetHz === "number"){ await startTone(targetHz); }
+  else { await startTone(); }
+}
+
+export function centerBreath(){
+  // Keep session running but soften; useful between segments
+  setRitualState("center");
+  setTone(432); // mild centering suggestion; safe and gentle
+}
+
+export function banish(){
+  // Visual and audio hush
+  setRitualState("banish");
+  stopTone();
+}
+
+export function licenseToDepart(){
+  // Clean close; return UI to neutral_white if that stylepack exists
+  setRitualState("depart");
+  stopTone();
+  // Page remains styled by current room; your CSS can fade overlays here.
+}
+
+// Minimal, accessible buttons builder (optional use)
+export function mountRitualBar(opts={}){
+  const bar = document.createElement("nav");
+  bar.className = "c99-ritualbar";
+  bar.setAttribute("role","navigation");
+  bar.innerHTML =
+    '<button type="button" id="c99_open">Open</button> ' +
+    '<button type="button" id="c99_begin">Begin</button> ' +
+    '<button type="button" id="c99_center">Center</button> ' +
+    '<button type="button" id="c99_banish">Banish</button> ' +
+    '<button type="button" id="c99_depart">Depart</button>';
+  document.body.appendChild(bar);
+
+  const hz = typeof opts.hz === "number" ? opts.hz : undefined;
+  document.getElementById("c99_open").addEventListener("click", ()=> opening(opts.roomId));
+  document.getElementById("c99_begin").addEventListener("click", ()=> beginWork(hz));
+  document.getElementById("c99_center").addEventListener("click", centerBreath);
+  document.getElementById("c99_banish").addEventListener("click", banish);
+  document.getElementById("c99_depart").addEventListener("click", licenseToDepart);
+
+  return bar;
+}
+
+// Auto-mount if explicitly requested via data attribute
+(function auto(){
+  const host = document.querySelector("[data-c99-ritualbar]");
+  if (!host) return;
+  const hzAttr = host.getAttribute("data-tone");
+  const roomId = host.getAttribute("data-room");
+  const hz = hzAttr ? parseFloat(hzAttr) : undefined;
+  mountRitualBar({ hz, roomId });
+})();
