@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Core -- Cathedral of Circuits</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Core hub for Codex 144:99 -- health check, dossiers, and build notes.">
+
+  <!-- Use the same stack you already ship -->
+  <link rel="stylesheet" href="../assets/css/palette.css">
+  <link rel="stylesheet" href="../assets/css/light.css">
+  <link rel="stylesheet" href="../assets/css/folio.css">
+
+  <style>
+    body{margin:0;background:var(--wash);color:var(--ink);font:16px/1.55 Georgia,"Iowan Old Style",serif}
+    header,footer{max-width:1100px;margin:14px auto;background:#fff8e7;border:1px solid var(--line);
+      border-radius:12px;padding:14px 18px;text-align:center;box-shadow:var(--shadow)}
+    h1{margin:.2rem 0 .3rem;color:var(--accent)}
+    .wrap{max-width:1100px;margin:0 auto;padding:10px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+    .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px}
+    .card h3{margin:.4rem 0;color:var(--accent-2)}
+    a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+    .note{background:var(--wash);border:1px solid var(--line);border-radius:12px;padding:12px;margin:10px 0}
+  </style>
+</head>
+<body class="mystic" data-theme="yesod">
+  <header>
+    <h1>Core -- Cathedral of Circuits</h1>
+    <div class="seal" aria-hidden="true">𓂀 ✦ 93 ✦ 𓂀</div>
+    <p>Health, docs, and build tools for Codex 144:99.</p>
+    <p><a href="../cathedral.html">⟵ Back to the Cathedral</a></p>
+  </header>
+
+  <main class="wrap">
+    <section class="note">
+      <strong>How to use:</strong> run the Health Check first. If anything is missing or mis-pathed,
+      fix those files, then return here. Core keeps your repo consistent across iPad, desktop, and deploys.
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h3>Health Check</h3>
+        <p>Verify JSON presence, page wiring, and engine files.</p>
+        <p><a href="./health-check.html">Open Health Check →</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Front Door</h3>
+        <p>Visitor entrance.</p>
+        <p><a href="../index.html">Open Frontispiece →</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Cathedral (Nave)</h3>
+        <p>The living hub -- rooms, plaques, tones.</p>
+        <p><a href="../cathedral.html">Enter the Cathedral →</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Angelic Ladder (72)</h3>
+        <p>Interactive grid: tone + stylepack + plaque.</p>
+        <p><a href="../angels72.html">Open Angels Ladder →</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Docs -- Bridge Dossier</h3>
+        <p>Build notes for engines and data flow.</p>
+        <p><a href="../docs/bridge_dossier.md">Open bridge_dossier.md →</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Docs -- Bridge Code</h3>
+        <p>Implementation crib sheet.</p>
+        <p><a href="../docs/bridge_code.md">Open bridge_code.md →</a></p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    ❦ Core keeps the temple healthy ❦ -- 93 93/93
+  </footer>
+</body>
+</html>
