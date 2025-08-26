@@ -1,133 +1,105 @@
-// UI: Room Plaque (museum label + tone controls)
-// ASCII-only, iPad-safe. Works with your data/structure + data/plaques.
+// Room Plaque UI -- Cathedral of Circuits (Codex 144:99)
+// Purpose: mounts a curator plaque for the current room,
+// pulls an optional plaque JSON, and wires tone/style controls.
 //
-// Imports
-import { startTone, stopTone, setTone } from "../engines/ambient-engine.js";
+// Dependencies: engines/cathedral-engine.js, data under assets/data/*
+// Safe for iPad Safari, no autoplay, ASCII only.
 
-// Helpers ------------------------------------------------------------
-async function fetchJSON(url) {
-  const r = await fetch(url, { cache: "no-store" });
-  if (!r.ok) throw new Error("Fetch failed: " + url);
-  return await r.json();
-}
-function el(tag, attrs = {}, html = "") {
-  const n = document.createElement(tag);
-  for (const k in attrs) n.setAttribute(k, attrs[k]);
-  if (html) n.innerHTML = html;
-  return n;
-}
-function safe(str, fallback = "--") {
-  return (str === 0 || str) ? String(str) : fallback;
-}
+import { applyRoom, startTone, stopTone, setTone } from "../engines/cathedral-engine.js";
 
-// Load plaque data (curator label) -----------------------------------
-async function loadPlaqueData(roomId) {
-  // Try dedicated plaque json first
-  const candidates = [
+// Small helpers
+async function firstOk(urls){
+  for (const u of urls){
+    try { const r = await fetch(u, { cache: "no-store" }); if (r.ok) return await r.json(); } catch(_) {}
+  }
+  return null;
+}
+async function loadPlaque(roomId){
+  const tries = [
     `./assets/data/plaques/${roomId}.json`,
     `./assets/data/plaques/${roomId.toLowerCase()}.json`
   ];
-  for (const u of candidates) {
-    try { return await fetchJSON(u); } catch(_) {}
-  }
-  // Fallback: synthesize a minimal plaque if none found
-  return {
-    title: "Plaque",
-    what: "This room has no dedicated curator plaque yet.",
-    why: "Use assets/data/plaques/<roomId>.json to add museum labels.",
-    how: "Document intention, technique, lineage, evidence, reflection.",
-    lineage: [],
-    patrons: []
-  };
+  return await firstOk(tries);
 }
 
-// Public mount -------------------------------------------------------
-/**
- * mountRoomPlaque(container, room)
- * container: HTMLElement to mount into
- * room: { id, title, stylepack, toneHz, notes }
- */
-export async function mountRoomPlaque(container, room) {
-  const wrap = el("section", { class: "c-plaque", "aria-labelledby": "plaque-title" });
+// Minimal DOM builder
+function el(tag, attrs={}, html=""){
+  const n = document.createElement(tag);
+  for (const k in attrs){ if (attrs[k] != null) n.setAttribute(k, attrs[k]); }
+  if (html) n.innerHTML = html;
+  return n;
+}
 
-  // Title row
-  const h = el("h3", { id: "plaque-title", class: "c-plaque__title" },
-    safe(room.title, "Room")
-  );
-  const meta = el("div", { class: "c-plaque__meta" },
-    `Style: ${safe(room.stylepack)} &middot; Tone: ${safe(room.toneHz)} Hz`
-  );
+// Mount plaque container and content
+export async function mountRoomPlaque(room){
+  // If a page passed only an id, resolve via engine
+  if (typeof room === "string") room = await applyRoom(room);
 
-  // Curator fields
-  const plaque = await loadPlaqueData(room.id || "room");
-  const grid = el("div", { class: "c-plaque__grid" });
-  const mkField = (label, value) => {
-    const blk = el("div", { class: "c-plaque__field" });
-    blk.appendChild(el("strong", {}, label));
-    blk.appendChild(el("p", {}, safe(value)));
-    return blk;
-  };
-  grid.appendChild(mkField("What", plaque.what));
-  grid.appendChild(mkField("Why", plaque.why));
-  grid.appendChild(mkField("How", plaque.how));
-  if (plaque.lineage && plaque.lineage.length) {
-    grid.appendChild(mkField("Lineage", plaque.lineage.join("; ")));
+  // Container
+  const wrap = el("section", { class: "c99-plaque", role: "region", "aria-label": "Curator Plaque" });
+
+  // Title line
+  const h = el("header", { class: "c99-plaque__head" });
+  h.appendChild(el("h2", {}, room.title || "Room"));
+  h.appendChild(el("p", { class: "c99-plaque__sub" },
+    `Style: ${room.stylepack || "--"} · Tone: ${room.toneHz || "--"} Hz`
+  ));
+  wrap.appendChild(h);
+
+  // Controls row
+  const controls = el("div", { class: "c99-plaque__controls" });
+  controls.appendChild(el("button", { type: "button", id: "c99_audio_toggle" }, "Quietus / Resume"));
+  controls.appendChild(el("button", { type: "button", id: "c99_tone_down", "aria-label": "Tone down" }, "−"));
+  controls.appendChild(el("button", { type: "button", id: "c99_tone_up", "aria-label": "Tone up" }, "+"));
+  wrap.appendChild(controls);
+
+  // Text blocks (from plaque JSON if available)
+  const body = el("div", { class: "c99-plaque__body" });
+  const data = await loadPlaque(room.id || "room");
+  if (data){
+    // data fields: title?, what, why, how, lineage, safety, patrons
+    if (data.what)     body.appendChild(el("p", {}, `<strong>What:</strong> ${data.what}`));
+    if (data.why)      body.appendChild(el("p", {}, `<strong>Why:</strong> ${data.why}`));
+    if (data.how)      body.appendChild(el("p", {}, `<strong>How:</strong> ${data.how}`));
+    if (data.lineage)  body.appendChild(el("p", {}, `<strong>Lineage:</strong> ${data.lineage}`));
+    if (data.safety)   body.appendChild(el("p", {}, `<strong>Safety:</strong> ${data.safety}`));
+    if (data.patrons)  body.appendChild(el("p", {}, `<strong>Patrons:</strong> ${data.patrons}`));
+  } else {
+    // Graceful fallback if plaque JSON not present yet
+    body.appendChild(el("p", {}, "This folio is staged. Add a curator plaque JSON under assets/data/plaques/<roomId>.json to populate these notes (What / Why / How / Lineage / Safety / Patrons)."));
   }
-  if (plaque.evidence) grid.appendChild(mkField("Evidence", plaque.evidence));
-  if (plaque.reflection) grid.appendChild(mkField("Reflection", plaque.reflection));
-  if (room.notes) grid.appendChild(mkField("Notes", room.notes));
-  if (plaque.patrons && plaque.patrons.length) {
-    grid.appendChild(mkField("Patrons", plaque.patrons.join(", ")));
-  }
+  wrap.appendChild(body);
 
-  // Tone controls
-  const controls = el("div", { class: "c-plaque__controls" });
-  const btnToggle = el("button", { type: "button", class: "btn" }, "Quietus / Resume");
-  const btnDown   = el("button", { type: "button", class: "btn" }, "−");
-  const btnUp     = el("button", { type: "button", class: "btn" }, "+");
+  // Mount once
+  document.body.appendChild(wrap);
 
-  controls.appendChild(btnToggle);
-  controls.appendChild(btnDown);
-  controls.appendChild(btnUp);
-
-  // Wire audio
+  // Wire controls (ND-safe: no autoplay)
   let audioOn = false;
-  let currentHz = Number(room.toneHz || 528);
-  btnToggle.addEventListener("click", async () => {
-    if (!audioOn) { await startTone(currentHz); audioOn = true; }
+  let currentHz = room.toneHz || 528;
+
+  document.getElementById("c99_audio_toggle").addEventListener("click", async ()=>{
+    if (!audioOn){ await startTone(currentHz); audioOn = true; }
     else { stopTone(); audioOn = false; }
   });
-  btnUp.addEventListener("click", () => {
+  document.getElementById("c99_tone_up").addEventListener("click", ()=>{
     currentHz = Math.round(currentHz + 6);
     setTone(currentHz);
-    meta.innerHTML = `Style: ${safe(room.stylepack)} &middot; Tone: ${safe(currentHz)} Hz`;
   });
-  btnDown.addEventListener("click", () => {
+  document.getElementById("c99_tone_down").addEventListener("click", ()=>{
     currentHz = Math.max(60, Math.round(currentHz - 6));
     setTone(currentHz);
-    meta.innerHTML = `Style: ${safe(room.stylepack)} &middot; Tone: ${safe(currentHz)} Hz`;
   });
 
-  // Assemble
-  wrap.appendChild(h);
-  wrap.appendChild(meta);
-  wrap.appendChild(grid);
-  wrap.appendChild(controls);
-  container.appendChild(wrap);
-
-  // Return a tiny API if you need to refresh tone/style live
-  return {
-    setStylepackName(name) {
-      room.stylepack = name;
-      meta.innerHTML = `Style: ${safe(room.stylepack)} &middot; Tone: ${safe(currentHz)} Hz`;
-    },
-    setToneHz(hz) {
-      currentHz = Number(hz || currentHz);
-      setTone(currentHz);
-      meta.innerHTML = `Style: ${safe(room.stylepack)} &middot; Tone: ${safe(currentHz)} Hz`;
-    }
-  };
+  return wrap;
 }
 
-// Back-compat shim: if something imports "room-plague.js", re-export here.
-export default { mountRoomPlaque };
+// Optional: auto-mount when script is included directly with type="module"
+(async function auto(){
+  // Only auto if a marker is present to avoid double UI on some pages
+  if (document.querySelector("[data-c99-autoplaque]")){
+    try {
+      const room = await applyRoom(); // resolves current route/hash
+      await mountRoomPlaque(room);
+    } catch(e){ console.error("room-plaque auto error:", e); }
+  }
+})();
