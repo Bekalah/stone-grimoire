@@ -1,230 +1,271 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Stone Grimoire — Helix Totem (Angel ✕ Daimon/Folk)</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Dual-strand allegory pillar: fuse Angel with Daimon/Folk currents. Museum-grade, ND-friendly, sound+color+geometry.">
-<link rel="stylesheet" href="../assets/css/palette.css">
-<link rel="stylesheet" href="../assets/css/light.css">
+  <meta charset="utf-8">
+  <title>Helix Totem -- Jacob's Ladder (72)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="The Rosslyn-inspired helix pillar. 72 rungs mapped to the Shem ha-Mephorash. Tone, color, and stylepack respond on tap.">
 
-<!-- Import map for component deps -->
-<script type="importmap">
-{
-  "imports": {
-    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
-    "tone": "https://esm.sh/tone@14.8.39"
-  }
-}
-</script>
+  <!-- Core styles (parchment + palette) -->
+  <link rel="stylesheet" href="../assets/css/palette.css">
+  <link rel="stylesheet" href="../assets/css/light.css">
+  <link rel="stylesheet" href="../assets/css/folio.css">
 
-<!-- Components -->
-<script type="module" src="../assets/js/components/sg-pillar.js"></script>
-<script type="module" src="../assets/js/components/sg-layer-toggle.js"></script>
+  <style>
+    /* Chapel layout */
+    body{ margin:0; background: var(--bg); color: var(--ink); font: 18px/1.6 Georgia,"Iowan Old Style",serif; }
+    header{ max-width: 1100px; margin: 14px auto; padding: 10px 14px; text-align: center;
+      background: var(--wash); border: 1px solid var(--line); border-radius: var(--radius); }
+    header h1{ margin:.2rem 0 .4rem; color: var(--accent); }
+    header .meta{ color:#6b6257; font-size:.95rem }
+    .wrap{ max-width: 1100px; margin: 0 auto; padding: 12px; }
+    .folio{ position:relative; }
+    .grid{ display:grid; grid-template-columns: 1fr 340px; gap: 14px; }
+    @media (max-width: 980px){ .grid{ grid-template-columns: 1fr } }
 
-<style>
-  :root{ --panel: rgba(248,245,239,.95); --ink:#2b2520; --line:#d9cfbf; }
-  body{margin:0;background:#0a0a0d;color:#f8f5ef;font:18px/1.6 Georgia,"Iowan Old Style",serif}
-  header{position:sticky;top:0;z-index:3;background:rgba(10,10,13,.6);backdrop-filter:blur(6px);
-    border-bottom:1px solid rgba(212,175,55,.25);padding:.6rem 1rem}
-  h1{margin:0;font-size:1.05rem;color:#d4af37}
-  .controls{
-    position:fixed;left:12px;top:72px;z-index:4;max-width:400px;
-    background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:12px
-  }
-  label{display:block;margin:.35rem 0 .15rem;color:#2f5a9e;font-weight:bold}
-  select,button,input[type="checkbox"]{font:inherit}
-  .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-  .note{font-size:.9rem;color:#5a534b}
-  .back{color:#ddd;text-decoration:none}
-  /* Dual-strand overlay canvas */
-  #ribbons{position:fixed;inset:0;pointer-events:none;z-index:2; mix-blend-mode:screen;}
-  /* Accessibility note bar */
-  .a11y{position:fixed;right:12px;top:72px;z-index:4;max-width:320px;background:var(--panel);color:var(--ink);
-    border:1px solid var(--line);border-radius:12px;padding:10px;font-size:.92rem}
-</style>
+    /* Ladder canvas + controls */
+    #ladder-wrap{ background:#fcf6e9; border:1px solid var(--parch-edge,#e7dbc6);
+      border-radius: 14px; padding: 12px; box-shadow: 0 0 0 4px rgba(255,255,255,.6) inset, 0 1px 18px rgba(0,0,0,.05); }
+    #ladder{ display:block; width:100%; height:480px; background: #fff; border:1px solid var(--line); border-radius: 10px; }
+    .controls{ display:flex; flex-wrap:wrap; gap:8px; margin:10px 0; }
+    .controls button{ padding:.45rem .8rem; border:1px solid var(--line); border-radius:999px; background:#fff; cursor:pointer; }
+    .controls button:hover{ background: var(--wash); }
+    .legend{ font-size:.92rem; color:#5a534b }
+
+    /* Side plaque */
+    aside.plaque{ background:#fff; border:1px solid var(--line); border-radius: 12px; padding: 12px; }
+    aside.plaque h3{ margin:.2rem 0 .6rem; color: var(--accent-2); font-size:1.05rem; }
+    dl{ margin:.3rem 0 } dt{ font-weight:700; margin-top:.3rem } dd{ margin:0 0 .35rem }
+
+    /* Step list */
+    .steps{ margin-top:10px; max-height: 360px; overflow:auto; border:1px solid var(--line); border-radius:10px; background:#fff }
+    .steps button{ display:block; width:100%; text-align:left; padding:.45rem .6rem; border:0; border-bottom:1px solid var(--line); background:transparent; cursor:pointer; font: inherit }
+    .steps button:hover{ background: var(--wash) }
+    .steps .k{ color:#6b6257; font-size:.9rem }
+    .steps .hz{ float:right; color:#6b6257; font-size:.9rem }
+
+    /* Footer (shared look) */
+    .site-footer{margin:2rem auto;max-width:1000px;padding:12px;
+      background:var(--wash);border-top:2px solid var(--accent-2);text-align:center}
+    .site-footer ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+    .site-footer a{color:var(--accent);text-decoration:none;font-size:.95rem}
+    .site-footer a:hover{text-decoration:underline}
+    .site-footer .seal{margin-top:.8rem;color:var(--accent-2)}
+  </style>
 </head>
-<body>
+<body data-stylepack="angelic_chorus" data-theme="yesod">
   <header>
-    <a class="back" href="../cathedral.html">⟵ Back to Cathedral</a>
-    <h1>Helix Totem — Angel ✕ Daimon/Folk Fusion</h1>
+    <h1>Helix Totem -- Jacob's Ladder</h1>
+    <p class="meta">A Rosslyn-inspired pillar. 72 rungs mirror the Shem ladder. Tap a rung to shift tone, color, and style.</p>
+    <p class="meta"><a href="../cathedral.html">⟵ Return to Cathedral Nave</a></p>
   </header>
 
-  <!-- Accessibility guidance -->
-  <aside class="a11y" aria-label="Accessibility">
-    <strong>Sensory Controls:</strong> Volume & Calm Mode are in the pillar HUD (bottom right). No strobe; gentle fades. Keyboard: Space (strike), ↑/↓ (rungs). A “Calm On” toggle softens light/reverb.
-  </aside>
+  <div class="wrap">
+    <article class="folio" role="region" aria-label="Helix Totem">
+      <div class="marginalia" aria-hidden="true"></div>
+      <div class="grid">
+        <!-- Left: interactive ladder + cymatics -->
+        <section id="ladder-wrap" aria-labelledby="ladder-title">
+          <h2 id="ladder-title" style="margin:.2rem 0 .6rem;color:var(--accent-2)">The Pillar in Motion</h2>
 
-  <!-- Fusion controls -->
-  <section class="controls" aria-label="Totem Fusion Controls">
-    <label for="angel">Angel Strand</label>
-    <select id="angel" aria-label="Angel strand"></select>
+          <canvas id="ladder" aria-label="Helix pillar visualization"></canvas>
 
-    <label for="other">Other Strand (Daimon or Folk)</label>
-    <select id="other" aria-label="Daimon or Folk strand"></select>
+          <div class="controls" role="group" aria-label="Ladder controls">
+            <button id="btn-start">Start Tone</button>
+            <button id="btn-stop">Silence</button>
+            <button id="btn-next">Next Rung</button>
+            <button id="btn-prev">Prev Rung</button>
+            <button id="btn-style">Cycle Stylepack</button>
+          </div>
+          <p class="legend">Tip: tap any rung in the list at right. First tap unlocks audio on iPad.</p>
+        </section>
 
-    <div class="row" style="margin-top:.6rem">
-      <button id="fuse">Fuse</button>
-      <button id="strike">Strike</button>
-      <button id="auto">Auto</button>
-      <label><input type="checkbox" id="ribbonToggle" checked> Show dual ribbons</label>
-    </div>
-    <p class="note">
-      Angel sets planetary palette & rung; Daimon/Folk sets temperament & pattern. “Fuse” reweaves the pillar and dual ribbons. “Strike” plays the harmonic chord.
-    </p>
-    <p class="note">
-      <em>Lineage:</em> Hermetic Qabalah (Tree), British/Scots folk‑lore (cunning craft, Green Man, selkie), angelology (planetary archangels).
-    </p>
-  </section>
+        <!-- Right: curator plaque + 72 step list -->
+        <aside class="plaque" role="note" aria-label="Curator Plaque">
+          <h3>Plaque -- Provenance</h3>
+          <dl>
+            <dt>Intention</dt>
+            <dd>Make Jacob's Ladder a living pillar; one tap changes tone, skin, and aura.</dd>
+            <dt>Technique</dt>
+            <dd>Canvas helix + ambient engine + cymatic bloom; stylepacks apply palette/motif.</dd>
+            <dt>Lineage</dt>
+            <dd>Rosslyn helix pillar; Shem ha-Mephorash 72; Hermetic ladder of ascent.</dd>
+            <dt>Reflection</dt>
+            <dd>ND-safe: no autoplay; gentle volume; visible controls; museum text first.</dd>
+          </dl>
 
-  <!-- Dual-strand visual overlay (independent of 3D pillar) -->
-  <canvas id="ribbons" aria-hidden="true"></canvas>
+          <div id="now-playing" class="note" style="margin-top:8px">
+            <strong>Now Playing:</strong>
+            <div id="np-name">None</div>
+            <div class="k" id="np-meta">Select a rung to begin.</div>
+          </div>
 
-  <!-- Pillar instrument -->
-  <sg-pillar
-    id="pillar"
-    map-src="../data/ladder-map.json"
-    palettes="Sun,Moon,Mercury,Venus,Mars,Jupiter,Saturn,Magdalene,Green Man,Hilma Spiral"
-    base="A3"
-    temperament="pyth"
-    calm="false">
-  </sg-pillar>
+          <div class="steps" aria-label="72 Rungs" id="steps"></div>
+        </aside>
+      </div>
+    </article>
+  </div>
 
-  <!-- Optional layer presets -->
-  <sg-layer-toggle for="pillar"></sg-layer-toggle>
-
+  <!-- Engines -->
   <script type="module">
-    // ====== Data load ======
-    const pillar = document.getElementById('pillar');
-    const angelSel = document.getElementById('angel');
-    const otherSel = document.getElementById('other');
-    const fuseBtn  = document.getElementById('fuse');
-    const strikeBtn= document.getElementById('strike');
-    const autoBtn  = document.getElementById('auto');
-    const ribbonToggle = document.getElementById('ribbonToggle');
+    import { applyStylepack } from "../assets/js/engines/cathedral-engine.js";
+    import { setToneHz, onToneChange, getAnalyser } from "../assets/js/ambient-engine.js";
+    import { mountCymaticsCanvas } from "../assets/js/engines/cymatic-engine.js";
 
-    const ribbons = document.getElementById('ribbons');
-    const ctx = ribbons.getContext('2d');
-
-    let ANGELS=[], DAIMONS=[], FOLK=[];
-    let A_CUR = null, O_CUR = null; // current choices
-
-    async function loadArchetypes(){
-      const res = await fetch('../assets/data/archetypes.json');
-      const data = await res.json();
-      ANGELS = data.angels||[];
-      DAIMONS = (data.daimons||[]).map(x=>({...x, group:'daimon'}));
-      FOLK    = (data.folk||[]).map(x=>({...x, group:'folk'}));
-
-      angelSel.innerHTML = ANGELS.map(a=>`<option value="${a.id}">${a.name} — ${a.planet}</option>`).join('');
-      otherSel.innerHTML = [
-        `<optgroup label="Daimon">`,
-        ...DAIMONS.map(x=>`<option value="D:${x.id}">${x.name} — ${x.planet}</option>`),
-        `</optgroup>`,
-        `<optgroup label="Folk">`,
-        ...FOLK.map(x=>`<option value="F:${x.id}">${x.name} — ${x.origin}</option>`),
-        `</optgroup>`
-      ].join('');
-      // defaults
-      A_CUR = ANGELS[0]; O_CUR = DAIMONS[0] || FOLK[0];
+    // Data fetch helpers (local JSON from assets/data)
+    async function fetchJSON(path){
+      const r = await fetch(path);
+      if(!r.ok) throw new Error(path + " " + r.status);
+      return r.json();
     }
 
-    function findAngel(id){ return ANGELS.find(a=>a.id===id) || null; }
-    function findDaimon(id){ return DAIMONS.find(d=>d.id===id) || null; }
-    function findFolk(id){ return FOLK.find(f=>f.id===id) || null; }
+    // Render the simple helix pillar paths
+    function drawHelix(ctx, w, h, progress){
+      ctx.clearRect(0,0,w,h);
+      // soft aureole
+      const g = ctx.createRadialGradient(w*0.5, h*0.15, 20, w*0.5, h*0.15, h*0.6);
+      g.addColorStop(0, "rgba(212,175,55,0.10)");
+      g.addColorStop(1, "rgba(212,175,55,0.00)");
+      ctx.fillStyle = g;
+      ctx.fillRect(0,0,w,h);
 
-    // ====== Pillar HUD bridge ======
-    function hud(){ return pillar.shadowRoot; }
-    function setRange(id,v){ const el = hud()?.getElementById(id); if(!el) return; el.value=v; el.dispatchEvent(new Event('input',{bubbles:true})); }
-    function setSel(id,v){ const el = hud()?.getElementById(id); if(!el) return;
-      [...el.options].forEach(o=>o.selected = (o.textContent===v || o.value===v));
-      el.dispatchEvent(new Event('change',{bubbles:true}));
-    }
-    function click(id){ const el=hud()?.getElementById(id); el&&el.click(); }
+      // twin helices
+      ctx.lineWidth = 1.6;
+      ctx.lineCap = "round";
 
-    const planetPalette = { Sun:'Sun', Moon:'Moon', Mercury:'Mercury', Venus:'Venus', Mars:'Mars', Jupiter:'Jupiter', Saturn:'Saturn', 'Earth/Saturn':'Saturn', Crown:'Sun' };
+      const turns = 4;
+      const amp = w * 0.18;
+      const cx = w * 0.5;
+      const y0 = h * 0.06;
+      const y1 = h * 0.94;
 
-    function fuse(){
-      // read selection
-      const aId = angelSel.value;
-      const oVal= otherSel.value;
-      const A = findAngel(aId);
-      let O=null, kind=null;
-      if(!A) return;
-      if(oVal?.startsWith('D:')) { kind='daimon'; O = findDaimon(oVal.slice(2)); }
-      if(oVal?.startsWith('F:')) { kind='folk';   O = findFolk(oVal.slice(2)); }
-      if(!O) return;
-      A_CUR = A; O_CUR = O;
-
-      // Angel sets rung + planetary palette
-      if(A.rung) setRange('rung', A.rung);
-      if(A.planet) setSel('palette', planetPalette[A.planet] || 'Sun');
-
-      // Other sets temperament + pattern
-      if(kind==='daimon'){
-        setSel('temper', (O.planet==='Saturn'||O.planet==='Mars')?'just':'pyth');
-        setSel('pattern', (O.planet==='Mars'||O.planet==='Mercury')?'star':'lattice');
-      } else if(kind==='folk'){
-        setSel('temper', 'pyth');
-        if(O.pattern) setSel('pattern', O.pattern);
+      const colors = ["rgba(47,90,158,0.75)","rgba(202,175,71,0.85)"];
+      for (let k=0;k<2;k++){
+        ctx.beginPath();
+        ctx.strokeStyle = colors[k];
+        for(let i=0;i<=220;i++){
+          const t = i/220;
+          const y = y0 + (y1 - y0) * t;
+          const phase = (t * turns * Math.PI * 2) + (k ? Math.PI : 0) + progress*0.06;
+          const x = cx + Math.sin(phase) * amp * (0.85 + 0.15*Math.cos(t*Math.PI*2));
+          if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+        }
+        ctx.stroke();
       }
 
-      // Refresh visuals (palette/pattern handlers run on change)
-      // Strike so the user hears/feels the weave
-      click('strike');
-
-      // Update dual ribbons overlay
-      drawRibbons();
-    }
-
-    function strike(){ click('strike'); }
-    function toggleAuto(){
-      click('auto');
-      // Sync external button label to inner
-      const label = hud()?.getElementById('auto')?.textContent || 'Auto';
-      autoBtn.textContent = label;
-    }
-
-    // ====== Dual Ribbons Overlay (angel vs other) ======
-    function resize(){
-      ribbons.width = innerWidth; ribbons.height = innerHeight;
-      drawRibbons();
-    }
-    window.addEventListener('resize', resize);
-
-    function hexToRGBA(hex, alpha){
-      const s = hex.replace('#',''); const n = parseInt(s,16);
-      const r = (n>>16)&255, g = (n>>8)&255, b = n&255;
-      return `rgba(${r},${g},${b},${alpha})`;
-    }
-
-    function drawRibbons(){
-      const W = ribbons.width, H = ribbons.height;
-      ctx.clearRect(0,0,W,H);
-      if(!ribbonToggle.checked || !A_CUR || !O_CUR) return;
-
-      // Two intertwined sinusoids with gentle glow — dreamlike, not flashy
-      const cx = W/2, top = H*0.12, bottom = H*0.88, height = bottom-top;
-      const turns = 3.5; // number of waves
-      const amp = Math.min(W,H)*0.08;
-      const steps = 720;
-
-      // Colors (angel warm gold, other literal color)
-      const angelC = hexToRGBA(A_CUR.color || '#f6c453', 0.22);
-      const otherC = hexToRGBA(O_CUR.color || '#7a7fb2', 0.22);
-
-      // Soft gradient background hint
-      const grad = ctx.createLinearGradient(0, top, 0, bottom);
-      grad.addColorStop(0, 'rgba(255,255,240,0.04)');
-      grad.addColorStop(1, 'rgba(0,0,0,0.0)');
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, top, W, height);
-
-      // Draw one ribbon
-      function ribbon(color, phase=0){
-        ctx.lineWidth = 8;
-        ctx.strokeStyle = color;
+      // vertebrae rungs (33 main ticks)
+      ctx.strokeStyle = "rgba(0,0,0,0.15)";
+      for(let v=0; v<33; v++){
+        const t = v/32;
+        const y = y0 + (y1 - y0) * t;
         ctx.beginPath();
-        for(let i=0;i<=steps;i++){
-          const t =
+        ctx.moveTo(cx-amp*0.55, y);
+        ctx.lineTo(cx+amp*0.55, y);
+        ctx.stroke();
+      }
+    }
+
+    // Mounts and interactions
+    (async function init(){
+      // Load angels and a fallback list of stylepacks we like for cycling
+      const angels = await fetchJSON("../assets/data/angels72.json");
+      const packs  = await fetchJSON("../assets/data/stylepacks.json");
+
+      // Prepare the helix canvas
+      const canvas = document.getElementById("ladder");
+      const ctx = canvas.getContext("2d");
+      function fit(){ canvas.width = canvas.clientWidth * window.devicePixelRatio; canvas.height = canvas.clientHeight * window.devicePixelRatio; }
+      fit(); window.addEventListener("resize", fit);
+
+      // Simple animation loop (driven gently, analyser optional)
+      let raf = null, t0 = 0;
+      function loop(ts){
+        if(!t0) t0 = ts;
+        const p = ts - t0;
+        drawHelix(ctx, canvas.width, canvas.height, p);
+        raf = requestAnimationFrame(loop);
+      }
+      raf = requestAnimationFrame(loop);
+
+      // Cymatics bloom listening to Ambient analyser
+      const cymCanvas = canvas; // reuse; cymatic-engine draws with additive petals
+      mountCymaticsCanvas(cymCanvas, { analyser: getAnalyser(), opacity: 0.65 });
+
+      // Build the 72-rung list
+      const steps = document.getElementById("steps");
+      const npName = document.getElementById("np-name");
+      const npMeta = document.getElementById("np-meta");
+
+      let index = 0;
+      const ringPacks = ["angelic_chorus","hilma_spiral","rosae_illumination","alchemical_bloom","rosslyn_gothic"];
+
+      function applyAngel(i){
+        const a = angels[i];
+        if(!a) return;
+        index = i;
+        // Style + tone + plaque now-playing
+        applyStylepack(a.stylepack || "angelic_chorus");
+        setToneHz(a.toneHz || 528);
+        npName.textContent = (a.name || "Unknown") + " (" + (a.key || "--") + ")";
+        npMeta.textContent = (a.sign || "Zodiac") + " • " + (a.decan || "Decan") + " • " + (a.toneHz || 528) + " Hz";
+        // focus current button visually
+        steps.querySelectorAll("button").forEach((b,bi)=>{ b.style.background = (bi===i) ? "var(--wash)" : "transparent"; });
+      }
+
+      angels.forEach((a, i) => {
+        const btn = document.createElement("button");
+        btn.innerHTML = "<strong>"+(a.name||"Angel")+"</strong> <span class=\"k\">"+(a.sign||"")+"</span> <span class=\"hz\">"+(a.toneHz||"")+" Hz</span>";
+        btn.addEventListener("click", ()=>applyAngel(i));
+        steps.appendChild(btn);
+      });
+      // Default to first
+      applyAngel(0);
+
+      // Controls
+      const btnStart = document.getElementById("btn-start");
+      const btnStop  = document.getElementById("btn-stop");
+      const btnNext  = document.getElementById("btn-next");
+      const btnPrev  = document.getElementById("btn-prev");
+      const btnStyle = document.getElementById("btn-style");
+
+      btnStart.addEventListener("click", ()=> setToneHz(angels[index]?.toneHz || 528));
+      btnStop.addEventListener("click", ()=> setToneHz(0));
+      btnNext.addEventListener("click", ()=> applyAngel((index+1) % angels.length));
+      btnPrev.addEventListener("click", ()=> applyAngel((index-1+angels.length) % angels.length));
+
+      let sIdx = 0;
+      btnStyle.addEventListener("click", ()=>{
+        sIdx = (sIdx+1) % ringPacks.length;
+        applyStylepack(ringPacks[sIdx]);
+      });
+
+      // If any other page sets a tone, reflect in plaque
+      onToneChange((hz)=>{
+        if (!hz) { npMeta.textContent = "Silenced"; return; }
+        npMeta.textContent = npMeta.textContent.replace(/\d+\s?Hz/g, hz + " Hz");
+      });
+    })();
+  </script>
+
+  <!-- Shared footer nav (chapel-relative paths) -->
+  <footer class="site-footer" role="contentinfo">
+    <nav aria-label="Site links">
+      <ul>
+        <li><a href="../index.html">✦ Frontispiece (Door)</a></li>
+        <li><a href="../cathedral.html">✦ Cathedral Nave</a></li>
+        <li><a href="../chapels/apprentice-pillar.html">Apprentice Pillar</a></li>
+        <li><a href="../chapels/crypt.html">Crypt</a></li>
+        <li><a href="../chapels/lady-chapel.html">Lady Chapel</a></li>
+        <li><a href="../chapels/crystal-grid.html">Crystal Grid</a></li>
+        <li><a href="../chapels/musical-cubes.html">Musical Cubes</a></li>
+        <li><a href="../chapels/cubes-visual-lab.html">Cubes Visual Lab</a></li>
+        <li><a href="../chapels/helix-totem.html">Jacob's Ladder</a></li>
+        <li><a href="../chapels/shem-ladder.html">Shem Ladder (72)</a></li>
+        <li><a href="../main/Thelemic-Alignment-Brief.html">Thelemic Alignment</a></li>
+        <li><a href="../main/05_ateliers/manifesto.html">Ateliers Manifesto</a></li>
+      </ul>
+    </nav>
+    <p class="seal">𓂀 ✦ Codex 144:99 ✦ 𓂀</p>
+  </footer>
+</body>
+</html>
