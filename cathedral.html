@@ -26,14 +26,18 @@
       <div class="cell"><h3><a href="./index.html">Frontispiece</a></h3><p>Return.</p></div>
       <div class="cell"><h3><a href="./main/Thelemic-Alignment-Brief.html">Thelemic Alignment Brief</a></h3><p>93/99/2 harmonics, lineage, reciprocity.</p></div>
       <div class="cell"><h3><a href="./main/05_ateliers/manifesto.html">Ateliers Manifesto -- Venus Covenant</a></h3><p>Museum-grade standards.</p></div>
+
       <div class="cell"><h3><a href="./chapels/crypt.html">The Crypt</a></h3><p>417 Hz vault star.</p></div>
       <div class="cell"><h3><a href="./chapels/lady-chapel.html">Lady Chapel</a></h3><p>639 Hz illuminated devotion.</p></div>
       <div class="cell"><h3><a href="./chapels/crystal-grid.html">Crystal Grid Sanctuary</a></h3><p>Platonic solids + tones.</p></div>
+
       <div class="cell"><h3><a href="./chapels/musical-cubes.html">Musical Cubes</a></h3><p>ND-gentle tones.</p></div>
       <div class="cell"><h3><a href="./chapels/cubes-visual-lab.html">Cubes Visual Lab</a></h3><p>Geometry and shaders.</p></div>
       <div class="cell"><h3><a href="./chapels/angel-lab.html">Angel Lab</a></h3><p>72 Shem explorer.</p></div>
-      <div class="cell"><h3><a href="./chapels/helix-totem.html">Helix Totem</a></h3><p>Jacob’s Ladder.</p></div>
+
+      <div class="cell"><h3><a href="./chapels/helix-totem.html">Helix Totem</a></h3><p>Jacob's Ladder.</p></div>
       <div class="cell"><h3><a href="./chapels/shem-ladder.html">Shem Ladder</a></h3><p>Angelic steps and tones.</p></div>
+      <div class="cell"><h3><a href="./angels72.html">Angels 72</a></h3><p>Interactive ladder + cymatics.</p></div>
     </div>
   </section>
 
@@ -52,21 +56,30 @@
 <script type="module">
   import { mountRoomPlaque } from "./assets/js/ui/room-plaque.js";
   import { mountRitualBar } from "./assets/js/ui/ritual.js";
-  await mountRoomPlaque();           // resolve current room and show small plaque
-  
-  
-  <footer class="site-footer" role="contentinfo">
+
+  // Small safety: only call if modules exist
+  if (typeof mountRoomPlaque === "function") {
+    await mountRoomPlaque();
+  }
+  if (typeof mountRitualBar === "function") {
+    mountRitualBar({ hz: 528 }); // center tone default
+  }
+</script>
+
+<!-- FOOTER lives OUTSIDE of scripts -->
+<footer class="site-footer" role="contentinfo">
   <nav aria-label="Site links">
     <ul>
-      <li><a href="./index.html">✦ Frontispiece (Door)</a></li>
-      <li><a href="./cathedral.html">✦ Cathedral Nave</a></li>
+      <li><a href="./index.html">Frontispiece (Door)</a></li>
+      <li><a href="./cathedral.html">Cathedral Nave</a></li>
       <li><a href="./chapels/apprentice-pillar.html">Apprentice Pillar</a></li>
       <li><a href="./chapels/crypt.html">Crypt</a></li>
       <li><a href="./chapels/lady-chapel.html">Lady Chapel</a></li>
       <li><a href="./chapels/musical-cubes.html">Musical Cubes</a></li>
       <li><a href="./chapels/cubes-visual-lab.html">Cubes Visual Lab</a></li>
-      <li><a href="./chapels/jacobs-ladder.html">Jacob’s Ladder</a></li>
+      <li><a href="./chapels/jacobs-ladder.html">Jacob's Ladder</a></li>
       <li><a href="./chapels/respawn-gate.html">Respawn Gate</a></li>
+      <li><a href="./angels72.html">Angels 72</a></li>
     </ul>
   </nav>
   <p class="seal">𓂀 ✦ Codex 144:99 ✦ 𓂀</p>
@@ -80,8 +93,5 @@
   .site-footer a:hover{text-decoration:underline}
   .site-footer .seal{margin-top:.8rem;color:var(--accent-2)}
 </style>
-
-  mountRitualBar({ hz: 528 });       // simple banish/center/depart
-</script>
 </body>
 </html>
