@@ -1,10 +1,6 @@
 {
-  "$schema": "./structure.schema.json",
   "version": "1.3",
-  "_provenance": {
-    "updated": "2025-08-24",
-    "note": "Single source of truth for rooms. Geometry values are ids resolved via geometry/geometry_index.json."
-  },
+  "_provenance": { "updated": "2025-08-24", "note": "Routes span /, /chapels, /temple, /main/07_realms." },
   "rooms": [
     {
       "id": "frontispiece",
@@ -12,16 +8,10 @@
       "route": "index.html",
       "element": "Aether",
       "toneHz": 528,
-      "geometry": "rose-window",
+      "geometry": "frontis-parchment",
       "stylepack": "hilma_spiral",
       "notes": "Open the cosmogram.",
-      "realm": "Temple",
-      "art": {
-        "background": "images/pd/temple-realm.jpg",
-        "overlay": "assets/overlays/spiral-ribbons.png",
-        "shader": "glass-vitrail",
-        "palette_ref": "hilma_spiral"
-      }
+      "realm": "Temple"
     },
     {
       "id": "nave",
@@ -29,106 +19,150 @@
       "route": "cathedral.html",
       "element": "Air",
       "toneHz": 528,
-      "geometry": "compass",
+      "geometry": "wind-helix",
       "stylepack": "sun_solaris",
       "notes": "Boaz | Apprentice | Jachin",
-      "realm": "Temple",
-      "art": {
-        "background": "images/pd/temple-realm.jpg",
-        "overlay": "assets/overlays/neon-stained.png",
-        "shader": "glass-vitrail",
-        "palette_ref": "sun_solaris"
-      }
+      "realm": "Temple"
+    },
+
+    /* ------------ Chapels (same folder names you shared) ------------ */
+    {
+      "id": "crypt",
+      "title": "The Crypt",
+      "route": "chapels/crypt.html",
+      "element": "Aether",
+      "toneHz": 417,
+      "geometry": "vault-star",
+      "stylepack": "rosicrucian_black",
+      "notes": "Descent; undercroft hush.",
+      "realm": "Temple"
     },
     {
-      "id": "pillar-boaz",
-      "title": "Pillar of Boaz",
-      "route": "cathedral.html#boaz",
+      "id": "lady-chapel",
+      "title": "Lady Chapel (Fountain of Sophia)",
+      "route": "chapels/lady-chapel.html",
+      "element": "Water",
+      "toneHz": 639,
+      "geometry": "rose-fountain",
+      "stylepack": "rosae_illumination",
+      "notes": "Marian sanctuary; devotional light.",
+      "realm": "Temple"
+    },
+    {
+      "id": "crystal-grid",
+      "title": "Crystal Grid Sanctuary",
+      "route": "chapels/crystal-grid.html",
       "element": "Earth",
       "toneHz": 396,
       "geometry": "seed-of-life",
       "stylepack": "druidic_greenman",
-      "notes": "Strength · Foundation",
-      "realm": "Temple",
-      "art": {
-        "background": "images/pd/temple-realm.jpg",
-        "overlay": "assets/overlays/neon-stained.png",
-        "shader": "glass-vitrail",
-        "palette_ref": "druidic_greenman"
-      }
+      "notes": "Platonic solids; gentle harmonics.",
+      "realm": "Temple"
     },
     {
-      "id": "pillar-jachin",
-      "title": "Pillar of Jachin",
-      "route": "cathedral.html#jachin",
-      "element": "Fire",
-      "toneHz": 741,
-      "geometry": "jacobs-ladder",
-      "stylepack": "sun_solaris",
-      "notes": "Establishment · Mercy",
-      "realm": "Temple",
-      "art": {
-        "background": "images/pd/temple-realm.jpg",
-        "overlay": "assets/overlays/neon-stained.png",
-        "shader": "glass-vitrail",
-        "palette_ref": "sun_solaris"
-      }
-    },
-    {
-      "id": "fountain-sophia",
-      "title": "Fountain of Sophia",
-      "route": "cathedral.html#fountain",
-      "element": "Water",
-      "toneHz": 639,
-      "geometry": "phi-spiral",
-      "stylepack": "rosae_illumination",
-      "notes": "Lady Chapel current; devotional light and healing flow.",
-      "realm": "Temple",
-      "art": {
-        "background": "images/pd/lady-chapel.jpg",
-        "overlay": "assets/overlays/spiral-ribbons.png",
-        "shader": "glass-vitrail",
-        "palette_ref": "rosae_illumination"
-      }
-    },
-    {
-      "id": "choir",
-      "title": "Choir of Angels",
-      "route": "cathedral.html#choir",
-      "element": "Light",
-      "toneHz": 963,
-      "geometry": "rose-window",
+      "id": "musical-cubes",
+      "title": "Musical Cubes",
+      "route": "chapels/musical-cubes.html",
+      "element": "Air",
+      "toneHz": 528,
+      "geometry": "cube-harmonics",
       "stylepack": "angelic_chorus",
-      "notes": "Jacob's Ladder resonance",
-      "realm": "Temple",
-      "art": {
-        "background": "images/pd/temple-realm.jpg",
-        "overlay": "assets/overlays/spiral-ribbons.png",
-        "shader": "glass-vitrail",
-        "palette_ref": "angelic_chorus"
-      }
+      "notes": "Museum charter; ND-gentle tones.",
+      "realm": "Lab"
+    },
+    {
+      "id": "cubes-visual-lab",
+      "title": "Cubes Visual Lab",
+      "route": "chapels/cubes-visual-lab.html",
+      "element": "Light",
+      "toneHz": 852,
+      "geometry": "cymatic-bloom",
+      "stylepack": "alchemical_bloom",
+      "notes": "Edge extraction + overlays.",
+      "realm": "Lab"
+    },
+    {
+      "id": "angel-lab",
+      "title": "Angel Lab (72 Ladder)",
+      "route": "chapels/angel-lab.html",
+      "element": "Aether",
+      "toneHz": 528,
+      "geometry": "vesica-pentacle",
+      "stylepack": "enochian_astral",
+      "notes": "Shem explorer; plaque-driven.",
+      "realm": "Lab"
     },
 
-    /* ------ linked folios already in your repo ------ */
+    /* ------------ Temple realm outside /chapels ------------ */
+    {
+      "id": "cosmogenesis",
+      "title": "Cosmogenesis",
+      "route": "temple/cosmogenesis.html",
+      "element": "Light",
+      "toneHz": 963,
+      "geometry": "phi-spiral",
+      "stylepack": "hilma_spiral",
+      "notes": "Fractal-beat engine; Aeon selector.",
+      "realm": "Temple"
+    },
+
+    /* ------------ Main narrative realms (you said: main/07_realms/) ------------ */
+    {
+      "id": "realm-rose-hermetica",
+      "title": "Realm: Rose Hermetica",
+      "route": "main/07_realms/rose-hermetica.html",
+      "element": "Water",
+      "toneHz": 639,
+      "geometry": "rose-window",
+      "stylepack": "rosae_illumination",
+      "notes": "Alchemical rose, illuminated vows.",
+      "realm": "Realm"
+    },
+    {
+      "id": "realm-abyssia",
+      "title": "Realm: Abyssia",
+      "route": "main/07_realms/abyssia.html",
+      "element": "Earth",
+      "toneHz": 417,
+      "geometry": "labyrinth-rose",
+      "stylepack": "rosslyn_gothic",
+      "notes": "Underworld twin; daimon politics.",
+      "realm": "Realm"
+    },
+    {
+      "id": "realm-spiral-garden",
+      "title": "Realm: Spiral Garden",
+      "route": "main/07_realms/spiral-garden.html",
+      "element": "Air",
+      "toneHz": 528,
+      "geometry": "spiral-grid",
+      "stylepack": "hilma_spiral",
+      "notes": "Walkable Hilma grid; crystals and guides.",
+      "realm": "Realm"
+    },
+
+    /* ------------ Docs you referenced ------------ */
     {
       "id": "thelemic-brief",
       "title": "Thelemic Alignment Brief",
       "route": "main/Thelemic-Alignment-Brief.html",
       "element": "Air",
       "toneHz": 528,
-      "geometry": "compass",
+      "geometry": "frontis-parchment",
       "stylepack": "rosslyn_gothic",
-      "realm": "Temple"
+      "notes": "93/99/2 harmonics; lineage; reciprocity.",
+      "realm": "Canon"
     },
     {
       "id": "atelier-manifesto",
-      "title": "Ateliers Manifesto",
+      "title": "Ateliers Manifesto -- Venus Covenant",
       "route": "main/05_ateliers/manifesto.html",
       "element": "Water",
       "toneHz": 639,
       "geometry": "rose-window",
       "stylepack": "rosae_illumination",
-      "realm": "Temple"
+      "notes": "Museum-grade atelier standards and checklist.",
+      "realm": "Canon"
     }
   ]
 }
