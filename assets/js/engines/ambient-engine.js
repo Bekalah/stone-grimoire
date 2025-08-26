@@ -1,12 +1,4 @@
-// Ambient Engine (audio core + pub/sub) -- ASCII-only, iPad-safe
-// Exposes: start(), stop(), setToneHz(hz), onToneChange(fn), getAnalyser()
-
-const listeners = new Set();
-let AC=null, osc=null, gain=null, analyser=null, convolver=null, limiter=null;
-let currentHz = 528;
-
-export function onToneChange(fn){ listeners.add(fn); return ()=>listeners.delete(fn); }
-function notify(){ for(const fn of listeners) try{ fn(currentHz); }catch(e){} }
+(currentHz); }catch(e){} }
 
 async function loadIR(ac){
   try{
