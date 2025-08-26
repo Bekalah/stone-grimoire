@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Stone Grimoire -- Angel Cubes Lab</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Rosslyn musical cubes reimagined: click a cube to sound its tone, reveal its angel, bloom cymatics, and reskin the cathedral.">
+  <link rel="stylesheet" href="../assets/css/palette.css">
+  <link rel="stylesheet" href="../assets/css/light.css">
+  <script src="../assets/js/theme.js" defer></script>
+
+  <style>
+    /* ============== Epic Gothic + Museum Folio ============== */
+    :root{
+      --parch: #fcf6e9;
+      --ink-2:#201a17;
+      --rubric:#8b2b2b;
+      --gold:#caa44a;
+      --veil:#0b0f14;
+    }
+    html,body{margin:0}
+    body.mystic{
+      color:var(--ink-2);
+      background:
+        radial-gradient(1200px 700px at 50% -10%, rgba(202,164,74,.16), transparent 60%),
+        radial-gradient(1400px 820px at 50% 120%, rgba(84,106,169,.12), transparent 58%),
+        linear-gradient(#0e0d10, #0c0f12 40%, #12161b 100%);
+      font:18px/1.6 Georgia, "Iowan Old Style", serif;
+    }
+    a{color:var(--accent); text-decoration:none} a:hover{text-decoration:underline}
+
+    header, footer{
+      max-width:1100px; margin:18px auto; padding:14px 18px; text-align:center;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(212,175,55,.25);
+      border-radius:12px;
+      backdrop-filter: blur(4px);
+      color:#e9e5df;
+    }
+    header h1{ margin:.2rem 0 .4rem; color:#e9e5df }
+    header .navline{display:flex;justify-content:space-between;gap:12px; font-size:.95rem}
+    header .navline a{color:#d7c794}
+
+    .wrap{max-width:1100px; margin:0 auto; padding:12px 14px 24px}
+
+    /* Folio frame (museum parchment floating over neon goth) */
+    .folio{
+      position:relative; background:linear-gradient(#fffdf7,var(--parch));
+      border:1px solid #e7dbc6; border-radius:14px; padding:20px;
+      box-shadow:
+        0 0 0 4px rgba(255,255,255,.6) inset,
+        0 1px 18px rgba(0,0,0,.15),
+        0 0 90px rgba(202,164,74,.18);
+    }
+    .folio h2{ font-variant:small-caps; letter-spacing:.02em; color:#2f5a9e; margin:.8rem 0 .4rem }
+    .folio p{ margin:.6rem 0 }
+
+    /* Cube grid */
+    .grid{
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:12px;
+      margin:10px 0 14px;
+    }
+    .cube{
+      display:flex; align-items:center; justify-content:center; flex-direction:column;
+      height:120px; border:1px solid var(--line); border-radius:12px;
+      background:#fffffff0; cursor:pointer; transition: transform .15s ease, box-shadow .15s ease;
+      position:relative; overflow:hidden;
+    }
+    .cube:focus{ outline:2px solid var(--gold) }
+    .cube:hover{ transform:translateY(-1px); box-shadow:0 4px 18px rgba(0,0,0,.08) }
+    .cube .n{ font-weight:700; color:#3b2f29; font-size:1.15rem }
+    .cube .meta{ font-size:.88rem; color:#6b6257 }
+
+    /* Plaque + Console */
+    .panel{
+      display:grid; grid-template-columns: 1.1fr .9fr; gap:12px;
+    }
+    @media (max-width:900px){ .panel{ grid-template-columns: 1fr } }
+    .plaque{
+      background:#fff; border:1px solid var(--line); border-radius:12px; padding:12px;
+      font-size:.95rem; color:#3a332e;
+    }
+    .plaque strong{ color:#2f5a9e }
+    .console{
+      background:#0d1116; border:1px solid rgba(212,175,55,.35);
+      border-radius:12px; padding:12px; color:#eae7e0;
+      box-shadow: inset 0 0 24px rgba(0,0,0,.35);
+    }
+    .console h3{ margin:.2rem 0 .5rem; color:#d7c794; font-size:1rem; font-variant:small-caps; letter-spacing:.03em }
+    .row{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:.25rem 0 .5rem }
+    .btn{
+      appearance:none; border:1px solid rgba(212,175,55,.5); background:#11161c; color:#e9e5df;
+      padding:.45rem .7rem; border-radius:9px; cursor:pointer; font:600 0.92rem system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    }
+    .btn.secondary{ border-color:#44506a; color:#c8d2ee }
+    .btn.ghost{ border-color:#3a3f46; color:#b9c0ca; background:#0f1318 }
+    .btn:disabled{ opacity:.55; cursor:not-allowed }
+    .hz{ min-width:6ch; display:inline-block; text-align:right }
+
+    /* Cymatic canvas frame */
+    .scope{
+      margin-top:10px; background:linear-gradient(#0a0f13,#0e1318);
+      border:1px solid rgba(212,175,55,.25); border-radius:10px; padding:10px;
+    }
+    #cymatics{ width:100%; height:220px; display:block; background: #0b0f14; border-radius:8px }
+
+    footer .seal{ color:#d7c794; margin-top:.4rem }
+  </style>
+</head>
+
+<body class="mystic" data-theme="netzach">
+  <header>
+    <div class="navline">
+      <a href="../cathedral.html">⟵ Back to Cathedral</a>
+      <span>Angel-Tech Workshop · Rosslyn Cubes → Harmonics → Egregores</span>
+      <a href="../main/05_ateliers/manifesto.html">Ateliers Manifesto</a>
+    </div>
+    <h1>Angel Cubes Lab</h1>
+    <p style="color:#d7c794">Click a cube. Hear its tone. Watch a cymatic mandala bloom. The page re-skins to its lineage -- Templar, Rosicrucian, Marian, or Astral. ND-safe: nothing plays until you tap.</p>
+  </header>
+
+  <div class="wrap">
+    <section class="folio" aria-label="Angel Cubes Worktable">
+      <h2>Choose a Cube</h2>
+      <p class="lead">This folio translates <em>Rosslyn’s musical cubes</em> into harmonic seeds. Each cube maps to a Shem angel, a tone (Hz), and a stylepack. The result is both sound and light -- <em>architecture as score</em>.</p>
+
+      <div id="cube-grid" class="grid" role="list" aria-label="Rosslyn cubes"></div>
+
+      <div class="panel" style="margin-top:12px">
+        <aside id="plaque" class="plaque" role="note" aria-label="Curator Plaque">
+          <strong>Plaque -- Activation</strong><br>
+          Choose any cube to display its angel, tone, and lineage here. Tone is ND-safe and can be muted at any time.
+        </aside>
+
+        <aside class="console" aria-label="Console">
+          <h3>Console</h3>
+          <div class="row">
+            <button id="btn-start" class="btn">Start Sound</button>
+            <button id="btn-stop" class="btn ghost">Mute</button>
+            <button id="btn-calm" class="btn secondary" aria-pressed="false">Calm Mode</button>
+          </div>
+          <div class="row" aria-live="polite">
+            Tone: <span class="hz" id="hz">--</span> Hz • Style: <code id="stylepack">--</code>
+          </div>
+          <div class="scope">
+            <canvas id="cymatics" aria-label="Cymatic petals visualization"></canvas>
+          </div>
+          <div class="row" style="margin-top:.6rem">
+            <button id="btn-save" class="btn">Save to Folio</button>
+            <button id="btn-export" class="btn ghost">Export JSON</button>
+            <button id="btn-copy" class="btn secondary">Copy JSON</button>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    ❦ Green Man’s vine entwines; the Choir resounds. ❦<br>
+    <span class="seal">93 93/93 -- Stone Grimoire · Rosslyn Pattern</span>
+  </footer>
+
+  <script type="module">
+    import { ensureAudio, setToneHz, stopTone, getAnalyser, onToneChange } from "../assets/js/engines/ambient-engine.js";
+    import { mountCymaticsCanvas, cymaticsOn, cymaticsOff } from "../assets/js/engines/cymatic-engine.js";
+
+    // -------- data caches --------
+    let ANGELS = [];
+    let STYLEPACKS = null;
+    let active = null; // last activation record
+
+    async function loadJSON(url){
+      const r = await fetch(url, {cache:"no-cache"});
+      if(!r.ok) throw new Error("Fetch failed: "+url);
+      return await r.json();
+    }
+
+    async function loadData(){
+      // Angels + stylepacks from your repo
+      ANGELS = await loadJSON("../assets/data/angels72.json");
+      STYLEPACKS = await loadJSON("../assets/data/stylepacks.json");
+    }
+
+    // -------- stylepack application (no external helper required) --------
+    function findPack(id){
+      if(!STYLEPACKS) return null;
+      return (STYLEPACKS.packs||[]).find(p=>p.id===id) || null;
+    }
+    function applyStylepack(id){
+      const p = findPack(id);
+      const root = document.documentElement;
+      if(!p){ return; }
+      // Very simple mapping: we set accent inks from palette. Keeps harmony with palette.css/light.css
+      const pal = p.palette || [];
+      const a  = pal[2] || "#2f5a9e";
+      const a2 = pal[3] || "#caa44a";
+      const bg = pal[0] || "#fffaf0";
+      root.style.setProperty("--accent", a);
+      root.style.setProperty("--accent-2", a2);
+      root.style.setProperty("--bg", bg);
+      // Optional: add body data-stylepack for CSS hooks if you want later
+      document.body.setAttribute("data-stylepack", id);
+    }
+
+    // -------- cube layout (16 curated samplers spanning the ladder) --------
+    const CUBES = [
+      { cube: 1,  angelN: 1,  ratio:"1:1"  },
+      { cube: 2,  angelN: 6,  ratio:"3:2"  },
+      { cube: 3,  angelN: 12, ratio:"4:3"  },
+      { cube: 4,  angelN: 18, ratio:"5:4"  },
+      { cube: 5,  angelN: 24, ratio:"6:5"  },
+      { cube: 6,  angelN: 25, ratio:"9:8"  },
+      { cube: 7,  angelN: 30, ratio:"15:8" },
+      { cube: 8,  angelN: 31, ratio:"2:1"  },
+      { cube: 9,  angelN: 36, ratio:"3:1"  },
+      { cube: 10, angelN: 42, ratio:"4:1"  },
+      { cube: 11, angelN: 48, ratio:"5:2"  },
+      { cube: 12, angelN: 49, ratio:"5:3"  },
+      { cube: 13, angelN: 54, ratio:"7:4"  },
+      { cube: 14, angelN: 60, ratio:"8:5"  },
+      { cube: 15, angelN: 66, ratio:"9:5"  },
+      { cube: 16, angelN: 72, ratio:"9:4"  }
+    ];
+
+    function angelByN(n){ return ANGELS.find(a => a.n === n) || null; }
+
+    function makeCubeEl(entry){
+      const a = angelByN(entry.angelN) || {};
+      const el = document.createElement("button");
+      el.className = "cube";
+      el.setAttribute("type","button");
+      el.setAttribute("role","listitem");
+      el.setAttribute("aria-label", `Cube ${entry.cube}: ${a.name || "Angel"}, ${a.element||"?"}, ${a.toneHz||"--"} Hz`);
+
+      el.innerHTML = `
+        <div class="n">Cube ${entry.cube}</div>
+        <div class="meta">${a.name || "Angel"}${a.sign ? " · "+a.sign : ""}</div>
+        <div class="meta">${entry.ratio} · ${a.toneHz||"--"} Hz</div>
+      `;
+      el.addEventListener("click", () => activate(entry));
+      return el;
+    }
+
+    // -------- activation: tone + stylepack + cymatics + plaque --------
+    async function activate(entry){
+      const a = angelByN(entry.angelN);
+      if(!a) return;
+
+      // Style
+      applyStylepack(a.stylepack || "angelic_chorus");
+
+      // Audio
+      await ensureAudio();
+      setToneHz(a.toneHz || 528);
+
+      // Visuals
+      cymaticsOn();
+
+      // Plaque + console
+      const p = document.getElementById("plaque");
+      p.innerHTML = `
+        <strong>Plaque -- Activation</strong><br>
+        Cube <em>${entry.cube}</em> → Ratio ${entry.ratio}<br>
+        Angel: <em>${a.name}</em>${a.sign ? " ("+a.sign+(a.decan? " · decan "+a.decan : "")+")" : ""}<br>
+        Element: ${a.element || "--"} · Tone: ${a.toneHz||"--"} Hz · Stylepack: <code>${a.stylepack||"--"}</code>
+      `;
+      document.getElementById("hz").textContent = a.toneHz || "--";
+      document.getElementById("stylepack").textContent = a.stylepack || "--";
+
+      // Remember for Save to Folio
+      active = {
+        ts: new Date().toISOString(),
+        cube: entry.cube,
+        ratio: entry.ratio,
+        angel: a.name,
+        angelId: a.id || a.name?.toLowerCase() || "",
+        sign: a.sign || "",
+        decan: a.decan || "",
+        element: a.element || "",
+        toneHz: a.toneHz || 0,
+        stylepack: a.stylepack || ""
+      };
+    }
+
+    // -------- folio storage (localStorage) + export/copy --------
+    function getFolio(){
+      try{
+        return JSON.parse(localStorage.getItem("codex_folio")||"[]");
+      }catch(_){ return []; }
+    }
+    function setFolio(arr){
+      localStorage.setItem("codex_folio", JSON.stringify(arr));
+    }
+    function saveActive(){
+      if(!active) return;
+      const folio = getFolio();
+      folio.push(active);
+      setFolio(folio);
+    }
+    function exportJSON(){
+      const data = JSON.stringify(getFolio(), null, 2);
+      const blob = new Blob([data], {type:"application/json"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = "codex_folio.json";
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+    }
+    async function copyJSON(){
+      const data = JSON.stringify(getFolio(), null, 2);
+      try{
+        await navigator.clipboard.writeText(data);
+        alert("Folio JSON copied.");
+      }catch(_){
+        prompt("Copy your folio JSON:", data);
+      }
+    }
+
+    // -------- calm mode (ND-safe toggle to pause visuals quickly) --------
+    let calm = false;
+    function setCalm(on){
+      calm = !!on;
+      const btn = document.getElementById("btn-calm");
+      btn.setAttribute("aria-pressed", calm ? "true" : "false");
+      if(calm){ cymaticsOff(); } else { cymaticsOn(); }
+    }
+
+    // -------- boot --------
+    window.addEventListener("DOMContentLoaded", async () => {
+      // Mount cymatics canvas (does nothing until cymaticsOn)
+      mountCymaticsCanvas("#cymatics");
+
+      await loadData();
+
+      // build grid
+      const grid = document.getElementById("cube-grid");
+      CUBES.forEach(c => grid.appendChild(makeCubeEl(c)));
+
+      // wire buttons
+      document.getElementById("btn-start").addEventListener("click", async ()=>{
+        await ensureAudio();
+        if(!active){
+          // If nothing clicked yet, pick the first cube as a gentle start
+          activate(CUBES[0]);
+        }else{
+          setToneHz(active.toneHz || 528);
+        }
+      });
+      document.getElementById("btn-stop").addEventListener("click", ()=>{ stopTone(); });
+      document.getElementById("btn-calm").addEventListener("click", (e)=>{
+        setCalm(!calm);
+      });
+      document.getElementById("btn-save").addEventListener("click", ()=>{ saveActive(); });
+      document.getElementById("btn-export").addEventListener("click", ()=>{ exportJSON(); });
+      document.getElementById("btn-copy").addEventListener("click", ()=>{ copyJSON(); });
+
+      // keep Hz display in sync if other parts change tone
+      onToneChange(hz => {
+        document.getElementById("hz").textContent = Math.round(hz);
+      });
+    });
+  </script>
+</body>
+</html>
