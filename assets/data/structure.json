@@ -1,252 +1,45 @@
 {
   "_provenance": {
-    "version": "1.3.0",
+    "license": "CC-BY 4.0",
+    "version": "1.2.1",
     "updated": "2025-08-26",
     "curator": "bekalah",
-    "license": "CC-BY 4.0",
-    "notes": "Single source of truth for rooms. ND-safe defaults; no autoplay audio. Stylepacks defined in assets/data/stylepacks.json."
+    "notes": "Canonical rooms live in chapels/. Ateliers remain in main/05_ateliers/."
   },
-
+  "stylepacks_ref": "assets/data/stylepacks.json",
   "rooms": [
     {
-      "id": "frontispiece",
-      "title": "Frontispiece",
+      "id": "door",
+      "title": "Frontispiece (Door)",
       "route": "index.html",
-      "element": "Spirit",
-      "toneHz": 0,
-      "geometry": "title-page",
-      "stylepack": "hilma_spiral",
-      "realm": "Cathedral",
-      "slug": "frontispiece",
-      "notes": "Entry to the Living Grimoire; from here visitors enter the nave."
-    },
-
-    {
-      "id": "cathedral-nave",
-      "title": "Cathedral Nave",
-      "route": "cathedral.html",
-      "element": "Spirit",
-      "toneHz": 432,
-      "geometry": "nave-plan",
-      "stylepack": "rosslyn_gothic",
-      "realm": "Cathedral",
-      "slug": "cathedral-nave",
-      "art": {
-        "background": "images/pd/rosslyn-nave.jpg",
-        "overlay": "assets/overlays/vitrail-gold.png",
-        "shader": "glass-vitrail",
-        "palette_ref": "rosslyn_gothic"
-      },
-      "notes": "Hub of the temple. Links to Crypt, Lady Chapel, Crystal Grid, Jacob's Ladder, and briefs."
-    },
-
-    {
-      "id": "thelemic-brief",
-      "title": "Thelemic Alignment Brief",
-      "route": "main/Thelemic-Alignment-Brief.html",
-      "element": "Air",
+      "element": "Aether",
       "toneHz": 528,
       "geometry": "frontis-parchment",
-      "stylepack": "rosslyn_gothic",
-      "realm": "Temple",
-      "slug": "thelemic-brief",
-      "art": {
-        "background": "images/pd/parchment-light.jpg",
-        "overlay": "assets/overlays/rule-rubric.png",
-        "shader": "paper-grain",
-        "palette_ref": "rosae_illumination"
-      },
-      "notes": "Numerology 93/99/2 -> 8, lineage map, and archetype thrones."
+      "stylepack": "hilma_spiral",
+      "realm": "Cathedral"
     },
-
     {
-      "id": "atelier-manifesto",
-      "title": "Ateliers Manifesto",
-      "route": "main/05_ateliers/manifesto.html",
-      "element": "Water",
-      "toneHz": 639,
-      "geometry": "rose-window",
-      "stylepack": "rosae_illumination",
-      "realm": "Ateliers",
-      "slug": "atelier-manifesto",
-      "art": {
-        "background": "images/pd/atelier-realm.jpg",
-        "overlay": "assets/overlays/ribbon-gold.png",
-        "shader": "glass-vitrail",
-        "palette_ref": "rosae_illumination"
-      },
-      "notes": "Venus Covenant standards and production checklist for Lux, Rosae, Somnium, Venosa, Luxuria."
-    },
-
-    {
-      "id": "crypt",
-      "title": "The Crypt",
-      "route": "crypt.html",
-      "element": "Earth",
-      "toneHz": 417,
-      "geometry": "vault-star",
-      "stylepack": "rosicrucian_black",
-      "realm": "Cathedral",
-      "slug": "crypt",
-      "art": {
-        "background": "images/pd/crypt-vault.jpg",
-        "overlay": "assets/overlays/lamp-silver.png",
-        "shader": "soot-vellum",
-        "palette_ref": "rosicrucian_black"
-      },
-      "notes": "Descent and initiation. Reliquaries for Crowley/Regardie texts; transformation tone."
-    },
-
-    {
-      "id": "lady-chapel",
-      "title": "Lady Chapel",
-      "route": "lady-chapel.html",
-      "element": "Water",
-      "toneHz": 639,
-      "geometry": "vesica-rose",
-      "stylepack": "rosae_illumination",
-      "realm": "Cathedral",
-      "slug": "lady-chapel",
-      "art": {
-        "background": "images/pd/rose-window-apase.jpg",
-        "overlay": "assets/overlays/gold-initial.png",
-        "shader": "leaf-gild",
-        "palette_ref": "rosae_illumination"
-      },
-      "notes": "Marian/Venus sanctuary. Luminous manuscripts and gentle devotion."
-    },
-
-    {
-      "id": "crystal-grid",
-      "title": "Crystal Grid Sanctuary",
-      "route": "crystal-grid.html",
-      "element": "Aether",
+      "id": "nave",
+      "title": "Cathedral Nave",
+      "route": "cathedral.html",
+      "element": "Sun",
       "toneHz": 528,
-      "geometry": "platonic-array",
-      "stylepack": "alchemical_bloom",
-      "realm": "Temple",
-      "slug": "crystal-grid",
-      "art": {
-        "background": "images/pd/crystal-grid.jpg",
-        "overlay": "assets/overlays/ribbons-prismatic.png",
-        "shader": "opalescent",
-        "palette_ref": "alchemical_bloom"
-      },
-      "notes": "Reiki grid of Platonic solids; hover/click activates harmonics."
-    },
-
-    {
-      "id": "jacobs-ladder",
-      "title": "Jacob's Ladder",
-      "route": "jacobs-ladder.html",
-      "element": "Spirit",
-      "toneHz": 444,
-      "geometry": "helix-pillar",
+      "geometry": "rose-grid",
       "stylepack": "angelic_chorus",
-      "realm": "Temple",
-      "slug": "jacobs-ladder",
-      "art": {
-        "background": "images/pd/helix-pillar.jpg",
-        "overlay": "assets/overlays/ladder-feather.png",
-        "shader": "haze",
-        "palette_ref": "angelic_chorus"
-      },
-      "notes": "72-step Shem ladder; each step maps to angels72.json with tone and color."
+      "realm": "Cathedral"
     },
 
+    /* ------ CHAPELS: canonical ------ */
     {
       "id": "apprentice-pillar",
-      "title": "Apprentice Pillar",
-      "route": "apprentice-pillar.html",
-      "element": "Fire",
-      "toneHz": 852,
-      "geometry": "spiral-vine",
-      "stylepack": "hilma_spiral",
-      "realm": "Cathedral",
-      "slug": "apprentice-pillar",
-      "art": {
-        "background": "images/pd/apprentice-pillar.jpg",
-        "overlay": "assets/overlays/spiral-halo.png",
-        "shader": "soft-glaze",
-        "palette_ref": "hilma_spiral"
-      },
-      "notes": "Prima Materia schematics; legend clearly marked as interpretive."
-    },
-
-    {
-      "id": "angels72",
-      "title": "Angelic Ladder (72)",
-      "route": "angels72.html",
-      "element": "Air",
-      "toneHz": 528,
-      "geometry": "decans-grid",
-      "stylepack": "angelic_chorus",
-      "realm": "Temple",
-      "slug": "angels72",
-      "art": {
-        "background": "images/pd/aethers.jpg",
-        "overlay": "assets/overlays/choir-spheres.png",
-        "shader": "opalescent",
-        "palette_ref": "angelic_chorus"
-      },
-      "notes": "Interactive table sourced from assets/data/angels72.json; broadcasts tone to ambient engine and cymatic canvas."
-    },
-
-    {
-      "id": "musical-cubes",
-      "title": "Musical Cubes",
-      "route": "musical-cubes.html",
+      "title": "Apprentice Pillar -- Prima Materia",
+      "route": "chapels/apprentice-pillar.html",
       "element": "Earth",
       "toneHz": 396,
-      "geometry": "cube-array",
-      "stylepack": "angelic_chorus",
-      "realm": "Labs",
-      "slug": "musical-cubes",
-      "art": {
-        "background": "images/pd/stone-cubes.jpg",
-        "overlay": "assets/overlays/cube-lines.png",
-        "shader": "stone-glow",
-        "palette_ref": "angelic_chorus"
-      },
-      "notes": "ND-safe tone cubes with cathedral IR; museum charter clarifies attested vs interpretive policy."
+      "geometry": "helix-vine",
+      "stylepack": "rosslyn_gothic",
+      "realm": "Chapels"
     },
-
     {
-      "id": "cubes-visual-lab",
-      "title": "Cubes Visual Lab",
-      "route": "cubes-visual-lab.html",
-      "element": "Aether",
-      "toneHz": 741,
-      "geometry": "cymatic-mandala",
-      "stylepack": "enochian_astral",
-      "realm": "Labs",
-      "slug": "cubes-visual-lab",
-      "art": {
-        "background": "images/pd/ink-plates.jpg",
-        "overlay": "assets/overlays/vesica-rays.png",
-        "shader": "glass-ink",
-        "palette_ref": "enochian_astral"
-      },
-      "notes": "Edge extraction of PD plates; YAML export; feeds analyser to cymatic-engine."
-    },
-
-    {
-      "id": "respawn-gate",
-      "title": "Respawn Gate",
-      "route": "respawn-gate.html",
-      "element": "Spirit",
-      "toneHz": 0,
-      "geometry": "ouroboros",
-      "stylepack": "neutral_white",
-      "realm": "Temple",
-      "slug": "respawn-gate",
-      "art": {
-        "background": "images/pd/reset-wash.jpg",
-        "overlay": "assets/overlays/quietus-button.png",
-        "shader": "calm",
-        "palette_ref": "neutral_white"
-      },
-      "notes": "ND reset: high-contrast toggle, volume cap, quietus. No autoplay, user-initiated sound only."
-    }
-  ]
-}
+      "id": "crypt",
+     
