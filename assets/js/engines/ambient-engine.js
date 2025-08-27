@@ -1,37 +1,40 @@
-// ambient-engine.js (patched)
-import { hasAudio, onFirstGesture, prefersReducedMotion } from "../compat/platform-bridge.js";
+// assets/js/engines/ambient-engine.js
+// Single AudioContext (safe), tone pub/sub, analyser, reduced-motion aware.
 
-let _ctx, _osc, _gain, _analyser, _fake, _lastHz = 432;
+let _ctx = null, _osc = null, _gain = null, _analyser = null;
 const _listeners = new Set();
+let _lastHz = 432;
+let _ensured = false;
 
 class FakeAnalyser {
   constructor(){ this.frequencyBinCount = 512; this._t = 0; }
-  getByteFrequencyData(arr) {
-    // gentle synthetic motion if audio is blocked or disabled
+  getByteFrequencyData(arr){
     this._t += 0.016;
     const base = 40 + Math.floor(30 * Math.sin(this._t));
     for (let i = 0; i < arr.length; i++) arr[i] = base + ((i % 32) * 2);
   }
 }
 
-function _ensureAudio() {
-  if (_ctx || _fake) return;
+function reducedMotion(){ 
+  return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
 
-  if (!hasAudio || prefersReducedMotion) {
-    // No audio context or motion reduced: provide silent, synthetic analyser
-    _fake = new FakeAnalyser();
-    return;
-  }
+export async function ensureAudio(){
+  if (_ensured) return;
+  _ensured = true;
+
+  if (reducedMotion()) { _analyser = new FakeAnalyser(); return; }
 
   const AC = window.AudioContext || window.webkitAudioContext;
-  _ctx = new AC({ latencyHint: "interactive" });
+  if (!AC) { _analyser = new FakeAnalyser(); return; }
 
+  _ctx = new AC({ latencyHint: "interactive" });
   _osc = _ctx.createOscillator();
   _osc.type = "sine";
   _osc.frequency.value = _lastHz;
 
   _gain = _ctx.createGain();
-  _gain.gain.value = 0.04;
+  _gain.gain.value = 0.04; // ND-safe default
 
   _analyser = _ctx.createAnalyser();
   _analyser.fftSize = 1024;
@@ -41,44 +44,34 @@ function _ensureAudio() {
   _gain.connect(_analyser);
   _analyser.connect(_ctx.destination);
   _osc.start();
-}
 
-export async function unlock() {
-  _ensureAudio();
-  if (_ctx && _ctx.state === "suspended") {
+  if (_ctx.state === "suspended") {
     try { await _ctx.resume(); } catch(_) {}
   }
 }
 
-onFirstGesture(unlock); // works on iOS/Android/desktop
+export function getAnalyser(){ return _analyser || new FakeAnalyser(); }
 
-export function setToneHz(hz, meta) {
-  if (Number.isFinite(hz) && hz > 0) _lastHz = hz;
-
-  _ensureAudio();
-  if (_ctx && _ctx.state === "suspended") _ctx.resume().catch(()=>{});
-
-  if (_osc && _ctx) {
-    const t = _ctx.currentTime;
-    _osc.frequency.setTargetAtTime(_lastHz, t, 0.02);
-  }
-
-  const payload = Object.assign({ hz: Number(_lastHz) || null }, meta || {});
-  _listeners.forEach(fn => { try { fn(payload); } catch(_){} });
-}
-
-export function onToneChange(fn) {
+export function onToneChange(fn){
   if (typeof fn === "function") _listeners.add(fn);
   return () => _listeners.delete(fn);
 }
 
-export function getAnalyser() {
-  _ensureAudio();
-  return _analyser || _fake || new FakeAnalyser();
+export function setToneHz(hz, meta){
+  if (Number.isFinite(hz) && hz > 0) _lastHz = hz;
+  if (_osc && _ctx) {
+    const t = _ctx.currentTime;
+    _osc.frequency.setTargetAtTime(_lastHz, t, 0.02);
+  }
+  const payload = Object.assign({ hz: Number(_lastHz)||null }, meta || {});
+  _listeners.forEach(fn => { try { fn(payload); } catch(_){} });
 }
 
-export function setVolume(v) {
+export function setVolume(v){
   if (!_gain) return;
-  const x = Math.max(0, Math.min(1, Number(v) || 0));
+  const x = Math.max(0, Math.min(1, Number(v)||0));
   _gain.gain.setTargetAtTime(x, _ctx.currentTime, 0.05);
 }
+
+// user gesture unlock (harmless if already running)
+window.addEventListener("pointerdown", () => { ensureAudio(); }, { once:true, passive:true });
