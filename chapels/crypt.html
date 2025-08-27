@@ -1,236 +1,215 @@
 
-
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Stone Grimoire -- The Crypt (Undercroft)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Rosslyn-inspired crypt: sealed initiatory chamber; descent motif; study folio with schematic, cymatic vault star, and curator plaque.">
+  <meta name="description" content="Rosslyn Chapel -- Crypt (undercroft): sealed initiatory chamber; descent motif; living folio with schematic, plaque, tone and cymatic bloom.">
 
-  <!-- Shared skins (from your repo) -->
+  <!-- House styles -->
   <link rel="stylesheet" href="../assets/css/palette.css">
   <link rel="stylesheet" href="../assets/css/light.css">
   <link rel="stylesheet" href="../assets/css/folio.css">
 
   <style>
-    /* Dark vellum variant for the crypt (stylepack: rosicrucian_black) */
-    body.crypt {
-      margin: 0;
-      background: #0f0f10;
-      color: #f2f2f2;
-      font: 18px/1.6 Georgia, "Iowan Old Style", serif;
+    body.mystic{ margin:0; background:#111; color:#f2f2f2; font:18px/1.6 Georgia,serif }
+    header, footer{
+      margin:18px auto; max-width:1000px; text-align:center;
+      background:#0d0d0d; border:1px solid #2c2c2c; border-radius:12px; padding:14px 18px;
+      box-shadow: 0 1px 0 #1a1a1a inset, 0 0 0 3px rgba(212,175,55,.08) inset;
     }
-    header, .wrap {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 16px 18px;
-    }
-    header {
-      margin-top: 10px;
-      background: #151417;
-      border: 1px solid #2b2730;
-      border-radius: 12px;
-    }
-    header h1 {
-      margin: .2rem 0 .35rem;
-      color: #d4af37; /* gold */
-    }
-    header p { color: #c9c2cd; }
+    header h1{ margin:.2rem 0 .3rem; color:#d4af37 }
 
-    /* Folio container in dark theme */
-    .folio {
-      background: #161519;
-      border: 1px solid #2b2730;
-      box-shadow: 0 0 0 4px rgba(255,255,255,0.04) inset, 0 1px 18px rgba(0,0,0,.4);
-    }
-    .folio h2, .folio h3, .folio h4 { color: #d9cbd6; }
-    .folio blockquote { background: #1b1a20; border-left-color: #caa44a; color: #d1c9d6; }
-    .folio .marginalia { opacity: .10; } /* keep subtle in the dark */
+    .wrap{ max-width:1000px; margin:0 auto; padding:10px 12px 24px }
 
-    /* Diagram card */
-    figure {
-      background: #1a1920;
-      border: 1px solid #3a3340;
-      border-radius: 12px;
-      padding: 10px;
-      margin: 12px 0;
+    /* Stage */
+    .stage{
+      position:relative; overflow:hidden; min-height:520px;
+      border:1px solid #2c2c2c; border-radius:14px; background:#0f0f0f;
+      box-shadow: 0 2px 18px rgba(0,0,0,.35), inset 0 0 60px rgba(0,0,0,.25);
     }
-    figcaption { color: #c9c2cd; font-size: .95rem; }
+    .cymatic-wrap{ position:absolute; inset:0; pointer-events:none; opacity:.45 }
+    #cymatics{ width:100%; height:100% }
 
-    /* Cymatic vault star canvas */
-    .canvas-card {
-      background: #1a1920;
-      border: 1px solid #3a3340;
-      border-radius: 12px;
-      padding: 12px;
-      margin: 14px 0;
-    }
-    #vaultstar {
-      width: 100%;
-      height: auto;
-      display: block;
-      background: #0f0f12;
-      border: 1px solid #2b2730;
-      border-radius: 10px;
-    }
-    .legend { color: #caa44a; font-size: .95rem; margin-top: 6px; }
+    figure{ position:relative; margin:0; padding:12px }
+    svg{ display:block; width:100%; height:auto; background:#151515; border:1px solid #2c2c2c; border-radius:12px }
+    figcaption{ color:#bbb; font-size:.95rem; margin-top:.35rem }
 
-    /* Lists and links */
-    a { color: #caa44a; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    ul { margin: .4rem 0 .2rem 1.1rem; }
+    /* Controls */
+    .controls{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin:10px 0 }
+    .controls label{ display:inline-flex; align-items:center; gap:6px; font-size:.95rem }
+    .controls button{ border:1px solid #2c2c2c; background:#181818; color:#f2f2f2; padding:.45rem .7rem; border-radius:10px; cursor:pointer }
+    .controls button:hover{ background:#202020 }
 
-    /* Plaque */
-    .plaque {
-      background: #151417;
-      border: 1px solid #2b2730;
-      color: #d1c9d6;
-    }
+    /* Plaque (light ink on dark) */
+    .plaque{ margin-top:16px; background:#0f0f0f; border:1px solid #2c2c2c; border-radius:12px; padding:12px; color:#d8d8d8 }
+    .plaque strong{ color:#d4c79a }
 
-    /* Footer */
-    .site-footer {
-      margin: 2rem auto;
-      max-width: 1000px;
-      padding: 12px;
-      background: #151417;
-      border-top: 2px solid #5a4b5f;
-      text-align: center;
-      border-radius: 12px;
-    }
-    .site-footer ul {
-      list-style: none;
-      margin: 0; padding: 0;
-      display: flex; flex-wrap: wrap; gap: 10px;
-      justify-content: center;
-    }
-    .site-footer a { color: #caa44a; text-decoration: none; font-size: .95rem; }
-    .site-footer a:hover { text-decoration: underline; }
-    .site-footer .seal { margin-top: .8rem; color: #d9cbd6; }
+    /* Footer nav */
+    .site-footer{margin:2rem auto;max-width:1000px;padding:12px;
+      background:#0d0d0d;border-top:2px solid #5a4b2a;text-align:center}
+    .site-footer ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+    .site-footer a{color:#caa44a;text-decoration:none;font-size:.95rem}
+    .site-footer a:hover{text-decoration:underline}
+    .site-footer .seal{margin-top:.8rem;color:#b9963a}
   </style>
 </head>
+<body class="mystic" data-theme="malkuth" data-stylepack="rosicrucian_black">
 
-<!-- stylepack hook aligns with assets/data/stylepacks.json -->
-<body class="crypt" data-stylepack="rosicrucian_black" data-theme="yesod">
-  <header>
-    <p><a href="../cathedral.html">-- Back to Cathedral (Nave)</a></p>
-    <h1>The Crypt (Undercroft)</h1>
-    <p>Subterranean vault below the nave: descent, sealed mysteries, initiatory underworld.</p>
-  </header>
+<header>
+  <p style="margin:.2rem 0"><a href="../cathedral.html" style="color:#caa44a;text-decoration:none">← Back to Cathedral (Nave)</a></p>
+  <h1>The Crypt (Undercroft)</h1>
+  <p class="meta" style="color:#bfbfbf">Location: beneath Rosslyn Chapel. Function: early chapel / burial vault. Meaning: descent, sealed mysteries, initiatory underworld.</p>
+</header>
 
-  <main class="wrap">
-    <article class="folio" aria-label="Crypt folio">
-      <div class="marginalia" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="controls" role="group" aria-label="View and audio">
+    <label><input id="toggle-motion" type="checkbox" checked> Reduced Motion</label>
+    <label><input id="toggle-mute" type="checkbox"> Mute</label>
+    <button id="pulse">Pulse 417 Hz</button>
+  </div>
 
-      <!-- Schematic -->
-      <figure role="group" aria-labelledby="capcrypt">
-        <svg viewBox="0 0 860 300" role="img" aria-label="Cross-section of the undercroft with a central sealed door and barrel vault">
-          <rect x="0" y="0" width="860" height="300" fill="#111017" stroke="#3a3340" stroke-width="2"/>
-          <!-- earth band -->
-          <rect x="0" y="210" width="860" height="90" fill="#0b0b0d"/>
-          <!-- vault block -->
-          <rect x="160" y="110" width="540" height="110" rx="18" fill="#1b1822" stroke="#5a4b5f"/>
-          <!-- keystone/door line -->
-          <line x1="430" y1="110" x2="430" y2="220" stroke="#caa44a" stroke-width="3"/>
-          <!-- lanterns -->
-          <circle cx="240" cy="125" r="3.5" fill="#caa44a"/>
-          <circle cx="620" cy="125" r="3.5" fill="#caa44a"/>
-          <!-- label -->
-          <text x="448" y="150" font-family="Georgia,serif" font-size="14" fill="#d4af37">Sealed</text>
-        </svg>
-        <figcaption id="capcrypt">
-          Crypt schematic -- barrel vault, sealed threshold, dim lanterns. The undercroft preserves silence and lineage.
-        </figcaption>
-      </figure>
+  <section class="stage" aria-label="Crypt chamber">
+    <div class="cymatic-wrap"><canvas id="cymatics" aria-hidden="true"></canvas></div>
 
-      <!-- Cymatic vault star -->
-      <section class="canvas-card" aria-labelledby="vaultstar-title">
-        <h2 id="vaultstar-title">Vault Star -- Cymatic Bloom (417 Hz)</h2>
-        <canvas id="vaultstar" width="940" height="420" aria-label="ND-safe cymatic vault star"></canvas>
-        <p class="legend">Tap once to unlock audio, then the vault star will breathe with the tone. No autoplay, volume capped.</p>
-      </section>
+    <figure role="group" aria-labelledby="capcrypt">
+      <svg viewBox="0 0 800 280" role="img" aria-label="Schematic cross-section of the crypt: barrel-vaulted undercroft with sealed door">
+        <rect x="0" y="0" width="800" height="280" fill="#1a1a1a" stroke="#333" stroke-width="3"/>
+        <rect x="150" y="120" width="500" height="100" rx="20" fill="#222" stroke="#444"/>
+        <line x1="400" y1="120" x2="400" y2="220" stroke="#d4af37" stroke-width="3"/>
+        <text x="420" y="160" font-family="Georgia,serif" font-size="14" fill="#d4af37">Sealed</text>
+      </svg>
+      <figcaption id="capcrypt">
+        <strong>Crypt schematic.</strong> A barrel-vaulted chamber beneath the chapel. Much remains sealed; tales of hidden vaults abound.
+        Interpretations range from Templar to Masonic to folk legend.
+      </figcaption>
+    </figure>
+  </section>
 
-      <!-- Intention/Technique/Lineage/Evidence/Reflection plaque -->
-      <section class="plaque" role="note" aria-label="Curator Plaque" style="margin-top:12px">
-        <strong>Plaque -- Provenance</strong><br>
-        <em>Intention:</em> Mark the undercroft as a folio of sealed knowledge; descent held with dignity and care.<br>
-        <em>Technique:</em> Dark vellum folio, schematic SVG, cymatic vault star at 417 Hz (transmutation); ND-safe audio chain.<br>
-        <em>Lineage:</em> Rosslyn undercroft; katabasis motifs; Rosicrucian vault lore; Hermetic Saturn/Binah meditation.<br>
-        <em>Evidence:</em> Architectural references; Crypt lore; stylepack: <code>rosicrucian_black</code>.<br>
-        <em>Reflection:</em> The descent is real; we return carrying a changed center. As Leary would say: set, setting, and signal -- the tone teaches.
-      </section>
+  <aside class="plaque" role="note" aria-label="Curator Plaque" id="plaque">
+    <!-- filled by JS -->
+  </aside>
 
-      <section aria-labelledby="notes">
-        <h2 id="notes">Study Notes</h2>
-        <ul>
-          <li>417 Hz -- dissolving, transmutation; gentle amplitude to avoid overwhelm.</li>
-          <li>Double Tree of Life may be contemplated here as the mirrored ladder.</li>
-          <li>Respawn Gate nearby in the nave provides a reset if visitors feel saturated.</li>
-        </ul>
-      </section>
-    </article>
-  </main>
+  <section class="plaque" aria-label="Study Folio">
+    <h2 style="color:#d4af37;margin:.4rem 0 .3rem">Study Notes</h2>
+    <h3 style="margin:.6rem 0 .2rem;color:#e2e2e2">Intention</h3>
+    <p>Mark the undercroft as a folio of <em>sealed knowledge</em>. The crypt is descent into shadow; only outer hints may be shown.</p>
 
-  <footer class="site-footer" role="contentinfo">
-    <nav aria-label="Site links">
-      <ul>
-        <li><a href="../index.html">✦ Frontispiece (Door)</a></li>
-        <li><a href="../cathedral.html">✦ Cathedral Nave</a></li>
-        <li><a href="../chapels/apprentice-pillar.html">Apprentice Pillar</a></li>
-        <li><a href="../chapels/crypt.html">Crypt</a></li>
-        <li><a href="../chapels/lady-chapel.html">Lady Chapel</a></li>
-        <li><a href="../chapels/crystal-grid.html">Crystal Grid</a></li>
-        <li><a href="../chapels/musical-cubes.html">Musical Cubes</a></li>
-        <li><a href="../chapels/cubes-visual-lab.html">Cubes Visual Lab</a></li>
-        <li><a href="../chapels/helix-totem.html">Jacob's Ladder</a></li>
-        <li><a href="../chapels/shem-ladder.html">Shem Ladder (72)</a></li>
-        <li><a href="../main/Thelemic-Alignment-Brief.html">Thelemic Alignment</a></li>
-        <li><a href="../main/05_ateliers/manifesto.html">Ateliers Manifesto</a></li>
-      </ul>
-    </nav>
-    <p class="seal">𓂀 ✦ Codex 144:99 ✦ 𓂀</p>
-  </footer>
+    <h3 style="margin:.6rem 0 .2rem;color:#e2e2e2">Technique</h3>
+    <p>Accessible HTML folio; schematic SVG; dark palette to signal hidden chamber.</p>
 
-  <!-- Engines and effects (paths match your repo) -->
-  <script type="module">
-    import { initAmbient, setToneHz, onUnlock } from "../assets/js/engines/ambient-engine.js";
-    import { mountCymaticsCanvas } from "../assets/js/engines/cymatic-engine.js";
-    import { applyStylepack } from "../assets/js/engines/cathedral-engine.js";
+    <h3 style="margin:.6rem 0 .2rem;color:#e2e2e2">Lineage</h3>
+    <ul>
+      <li>Rosslyn undercroft (early church core).</li>
+      <li>Symbol of katabasis (descent): Orphic, Hermetic, Christian harrowing.</li>
+      <li>Masonic lore: sealed vault, lost word, hidden treasures.</li>
+    </ul>
 
-    // Apply the crypt skin
-    applyStylepack("rosicrucian_black");
+    <h3 style="margin:.6rem 0 .2rem;color:#e2e2e2">Evidence</h3>
+    <p>Architecture: crypt beneath choir. Antiquarian records note burials, sealed doors. No excavation permitted in modern times -- the mystery remains.</p>
 
-    // Boot ambient chain and cymatics (tap-to-unlock for iPad Safari)
-    const canvas = document.getElementById("vaultstar");
+    <h3 style="margin:.6rem 0 .2rem;color:#e2e2e2">Reflection</h3>
+    <p>The crypt teaches: not all may be revealed. Some knowledge lies sealed for safety and sanctity. The descent is real, but return is not guaranteed.</p>
+  </section>
+</div>
 
-    // Initialize ambient engine once the user interacts
-    onUnlock(() => {
-      // Start vault tone (gentle gain inside ambient engine)
-      setToneHz(417);
-      // Mount cymatic bloom that listens to the analyser internally
-      mountCymaticsCanvas(canvas, {
-        petals: 8,                // vault star feel
-        aureole: true,
-        analyserFromAmbient: true // pull analyser node from ambient engine
-      });
-    });
+<footer class="site-footer" role="contentinfo">
+  <nav aria-label="Site links">
+    <ul>
+      <li><a href="../index.html">✦ Frontispiece (Door)</a></li>
+      <li><a href="../cathedral.html">✦ Cathedral Nave</a></li>
+      <li><a href="./apprentice-pillar.html">Apprentice Pillar</a></li>
+      <li><a href="./crypt.html">Crypt</a></li>
+      <li><a href="./lady-chapel.html">Lady Chapel</a></li>
+      <li><a href="./crystal-grid.html">Crystal Grid</a></li>
+      <li><a href="./musical-cubes.html">Musical Cubes</a></li>
+      <li><a href="./cubes-visual-lab.html">Cubes Visual Lab</a></li>
+      <li><a href="./helix-totem.html">Jacob's Ladder</a></li>
+      <li><a href="./shem-ladder.html">Shem Ladder (72)</a></li>
+      <li><a href="../main/Thelemic-Alignment-Brief.html">Thelemic Alignment</a></li>
+      <li><a href="../main/05_ateliers/manifesto.html">Ateliers Manifesto</a></li>
+    </ul>
+  </nav>
+  <p class="seal">𓂀 ✦ Codex 144:99 ✦ 𓂀</p>
+</footer>
 
-    // If user taps the canvas first, unlock audio and start
-    canvas.addEventListener("pointerdown", () => {
-      setToneHz(417);
-      mountCymaticsCanvas(canvas, {
-        petals: 8,
-        aureole: true,
-        analyserFromAmbient: true
-      });
-    });
+<script type="module">
+  // Engines (correct paths)
+  import { setToneHz, setMuted, getAnalyser } from "../assets/js/engines/ambient-engine.js";
+  import { mountCymaticsCanvas } from "../assets/js/engines/cymatic-engine.js";
 
-    // Initialize ambient engine (no autoplay sound until unlock)
-    initAmbient({
-      impulseUrl: "../assets/ir/cathedral.wav",
-      masterGain: 0.22,  // ND-safe cap
-      limiterCeiling: -3
-    });
-  </script>
+  const root = document.documentElement;
+  const motion = document.getElementById("toggle-motion");
+  const mute = document.getElementById("toggle-mute");
+  const pulseBtn = document.getElementById("pulse");
+  const plaqueEl = document.getElementById("plaque");
+  const cymCanvas = document.getElementById("cymatics");
+
+  // iPad-safe unlock: first gesture primes audio
+  const unlock = () => setToneHz(0);
+  window.addEventListener("touchstart", unlock, { once:true });
+  window.addEventListener("mousedown", unlock, { once:true });
+
+  // Reduced motion and mute toggles
+  const applyMotion = () => root.classList.toggle("reduced-motion", !!motion.checked);
+  motion.addEventListener("change", applyMotion); applyMotion();
+  mute.addEventListener("change", () => setMuted(!!mute.checked));
+
+  // Cymatics behind the chamber
+  mountCymaticsCanvas(cymCanvas, { analyser: getAnalyser(), petals: 24, aureole: true });
+
+  // Fill plaque from JSON (if present in structure)
+  async function loadStructure(){
+    const res = await fetch("../assets/data/structure.json");
+    if(!res.ok) return null;
+    return res.json();
+  }
+  async function loadPlaque(url){
+    const res = await fetch(url);
+    if(!res.ok) return null;
+    return res.json();
+  }
+  function renderPlaque(data){
+    if(!data){ plaqueEl.innerHTML = "<strong>Plaque -- Crypt</strong><br>No plaque data found."; return; }
+    plaqueEl.innerHTML =
+      "<strong>Plaque -- Crypt (Undercroft)</strong><br>" +
+      "Intention: " + (data.intention||"") + "<br>" +
+      "Technique: " + (data.technique||"") + "<br>" +
+      "Lineage: " + ((data.lineage||[]).join(" · ")) + "<br>" +
+      "Evidence: " + (data.evidence||"") + "<br>" +
+      "Reflection: " + (data.reflection||"");
+  }
+
+  async function boot(){
+    // Defaults (safe if structure block missing)
+    let hz = 417, stylepack = "rosicrucian_black", plaqueUrl = "../assets/data/plaques/crypt.json";
+
+    const structure = await loadStructure();
+    if (structure && Array.isArray(structure.rooms)){
+      const here = structure.rooms.find(r => (r.id==="crypt") || (r.route && r.route.endsWith("chapels/crypt.html")));
+      if (here){
+        if (here.toneHz) hz = here.toneHz;
+        if (here.stylepack) stylepack = here.stylepack;
+        if (here.plaque) plaqueUrl = here.plaque;
+      }
+    }
+
+    // Apply stylepack to CSS
+    root.setAttribute("data-stylepack", stylepack);
+
+    // Load plaque
+    const plaque = await loadPlaque(plaqueUrl);
+    renderPlaque(plaque);
+
+    // Pulse button plays the chamber tone once, ND-safe
+    pulseBtn.addEventListener("click", () => { if (!mute.checked) setToneHz(hz); });
+
+    // Optional: auto-select tone on first page click (no autoplay)
+    // document.addEventListener("click", () => setToneHz(hz), { once:true });
+  }
+
+  boot();
+</script>
 </body>
 </html>
