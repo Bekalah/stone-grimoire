@@ -105,5 +105,81 @@
       try { await recordCompositeWebM("#cymatics", null, 6, 30); } catch(e){ alert("Recording not supported: "+e.message); }
     });
   </script>
+  
+  <!-- Planetary Hour (opt-in, ND-safe). Adds a gentle tint once/hour.
+     This DOES NOTHING unless body[data-hourly="on"] is present. Safe to keep in place. -->
+<script>
+  // feature flag: remove or toggle this attribute whenever you want
+  document.body.setAttribute('data-hourly','on');
+</script>
+
+<script>
+(function(){
+  // no-op unless opted in
+  if (document.body.getAttribute('data-hourly') !== 'on') return;
+
+  // Chaldean order + weekday rulers
+  var ORDER    = ["Saturn","Jupiter","Mars","Sun","Venus","Mercury","Moon"];
+  var DAYRULE  = {0:"Sun",1:"Moon",2:"Mars",3:"Mercury",4:"Jupiter",5:"Venus",6:"Saturn"};
+
+  // gentle planet tints (edit to taste). Uses inline CSS vars so it won't collide with your CSS.
+  var TINT = {
+    Saturn:  "#2f2a38",  // indigo-black
+    Jupiter: "#3a2f1a",  // warm umber
+    Mars:    "#4a1f1f",  // soft oxblood
+    Sun:     "#f6e8b1",  // vellum gold-wash
+    Venus:   "#e6d5df",  // rose-violet glaze
+    Mercury: "#cad6ef",  // airy blue
+    Moon:    "#e9eef2"   // pearl grey
+  };
+
+  // apply tint by setting CSS custom properties on <html>
+  function applyPlanet(planet){
+    var root = document.documentElement;
+    var bg   = TINT[planet] || "#f8f5ef";
+    // set subtle variables ONLY if they exist, else fall back to body background
+    root.style.setProperty('--hour-bg', bg);
+    // add very gentle wash layer
+    if (!document.getElementById('hour-wash-style')){
+      var st = document.createElement('style');
+      st.id='hour-wash-style';
+      st.textContent = `
+        :root { --hour-bg: transparent; --hour-fade: .85s; }
+        html, body { transition: background-color var(--hour-fade) ease, color var(--hour-fade) ease; }
+        body { background-color: var(--hour-bg); }
+      `;
+      document.head.appendChild(st);
+    }
+  }
+
+  // pick planet by "clock mode" (simple, dependency-free)
+  function tick(){
+    var now = new Date();
+    var wd  = now.getDay(); // 0=Sun..6=Sat
+    var hr  = now.getHours();
+    var start = ORDER.indexOf(DYRUL(wd));
+    var idx = ( (hr - 6) + start ) % ORDER.length; // hour ~ seed at 06:00
+    if (idx < 0) idx += ORDER.length;
+    var planet = ORDER[idx];
+    if (planet !== last) { applyPlanet(planet); last = planet; }
+  }
+  function DYRUL(d){ return DAYRULE[d]; }
+
+  var last = "";
+  tick();
+  // check once per minute; extremely light
+  var timer = setInterval(tick, 60*1000);
+
+  // rollback helper if anything feels off
+  window.CodexHours = {
+    off: function(){
+      clearInterval(timer);
+      document.documentElement.style.removeProperty('--hour-bg');
+      var s = document.getElementById('hour-wash-style'); if (s) s.remove();
+    }
+  };
+})();
+</script>
+
 </body>
 </html>
