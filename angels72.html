@@ -1,100 +1,109 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>72 Angelic Ladder -- Codex 144:99</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="The 72 Shem ha-Mephorash angels as tones, colors, and stylepacks. Click to activate their resonance." />
-
-  <!-- paths from /main/ are correct like this -->
-  <link rel="stylesheet" href="../assets/css/palette.css" />
-  <link rel="stylesheet" href="../assets/css/light.css" />
-  <script src="../assets/js/theme.js" defer></script>
-
+  <meta charset="utf-8">
+  <title>Angels 72 -- Cathedral Ladder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="Angels 72 -- Living Cathedral">
+  <meta property="og:description" content="A breathing, visionary ladder of angels -- tone, bloom, and living sculpture.">
+  <meta name="twitter:card" content="summary_large_image">
   <style>
-    body.mystic{margin:0;background:radial-gradient(circle at 50% 18%, var(--bg) 78%, #ece7dc 100%);color:var(--ink);font:18px/1.6 Georgia,"Iowan Old Style",serif}
-    header,footer{max-width:1100px;margin:18px auto;background:var(--wash);border:1px solid var(--line);border-radius:12px;padding:14px 18px;text-align:center}
-    header h1{margin:.2rem 0 .3rem;color:var(--accent)}
-    .wrap{max-width:1100px;margin:0 auto;padding:10px 14px 24px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
-    .cell{background:#ffffffcc;border:1px solid var(--line);border-radius:12px;padding:10px;cursor:pointer;transition:.2s}
-    .cell:hover{background:var(--panel);transform:translateY(-1px)}
-    .name{font-weight:bold;color:#3d3a34}
-    .meta{font-size:.9rem;color:#6b6257}
-    .plaque{margin-top:14px;font-size:.92rem;color:#6b6257;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
-    a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+    :root{ --bg:#0b0d10; --fg:#eae6d7; --wash:#0b0d10; --accent:rgba(47,90,158,0.35); --accent-2:rgba(212,175,55,0.40); }
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--fg)}
+    .wrap{max-width:1200px;margin:0 auto;padding:16px}
+    figure.plaque{margin:0 0 16px 0}
+    #cymatics{display:block;width:100%;height:auto;max-height:60vh;pointer-events:none}
+    #plaque-caption{font:14px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;opacity:.9;margin-top:8px}
+    .bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:12px 0 18px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
+    .angel{background:#141a21;color:var(--fg);border:1px solid #22303f;border-radius:8px;padding:10px;cursor:pointer}
+    .angel:focus{outline:2px solid #7aa2ff;outline-offset:2px}
+    button,select,input[type=range]{background:#141a21;color:var(--fg);border:1px solid #22303f;border-radius:8px;padding:8px 10px;cursor:pointer}
+    @media (max-width:480px){#cymatics{max-height:50vh}}
   </style>
+</head>
+<body>
+  <main class="wrap">
+
+    <figure class="plaque" aria-label="Cymatic Bloom">
+      <canvas id="cymatics" aria-hidden="true"></canvas>
+      <figcaption id="plaque-caption">Tap an angel to activate tone and bloom.</figcaption>
+    </figure>
+
+    <div class="bar">
+      <label for="vol" style="font-size:12px;opacity:.85">Volume</label>
+      <input id="vol" type="range" min="0" max="0.12" step="0.01" value="0.04" style="width:160px">
+      <span style="flex:1"></span>
+      <button id="btnSave">Save Plate (PNG)</button>
+      <button id="btnShare">Share Link</button>
+      <button id="btnClip">Record 6s Clip</button>
+    </div>
+
+    <!-- Replace the sample tiles with your 72; keep data-angel-id -->
+    <section id="angel-grid" class="grid" aria-label="Angels">
+      <button class="angel"
+        data-angel
+        data-angel-id="01"
+        data-name="Vehuiah"
+        data-element="Fire"
+        data-stylepack="rosslyn-gothic"
+        data-tone-hz="396">Vehuiah</button>
+
+      <button class="angel"
+        data-angel
+        data-angel-id="02"
+        data-name="Jeliel"
+        data-element="Earth"
+        data-stylepack="hilma-spiral"
+        data-tone-hz="417">Jeliel</button>
+    </section>
+
+  </main>
 
   <script type="module">
-    import { applyStylepack } from "../assets/js/style-engine.js";
-    import { ensureAudio, loadIR, setBloomTone } from "../assets/js/bloom.js";
+    import { ensureAudio, onToneChange, setVolume } from "./assets/js/engines/ambient-engine.js";
+    import { mountCymaticsCanvas } from "./assets/js/engines/cymatic-engine.js";
+    import { resolveFusion, ensureFusionMaps } from "./assets/js/engines/fusion-router.js";
+    import { exportCompositePNG, shareURL, recordCompositeWebM } from "./assets/js/utils/share-export.js";
 
-    function decanLabel(d, s){
-      // Your data has 6 segments per sign; you also give a simple decan number (1–3).
-      // We’ll show both so it’s transparent.
-      return `Decan ${d} · Segment ${s}`;
-    }
+    await ensureFusionMaps();
+    await mountCymaticsCanvas("#cymatics");
+    try { await ensureAudio(); } catch(_) {}
 
-    async function loadAngels() {
-      const res = await fetch("../assets/data/angels72.json", { cache: "no-cache" });
-      const angels = await res.json();
+    document.getElementById("vol")?.addEventListener("input", e => setVolume(e.target.value), { passive:true });
 
-      const grid = document.getElementById("angel-grid");
-      const plaque = document.getElementById("plaque");
-      const paletteHints = {
-        Fire:"#e8893a", Air:"#8faef2", Water:"#80dfff", Earth:"#7aa36d", Light:"#f4c76a", Aether:"#c49bc7"
-      };
+    document.addEventListener("click", (ev)=>{
+      const btn = ev.target.closest("[data-angel]");
+      if (!btn) return;
+      const angelId = btn.getAttribute("data-angel-id");
+      const name = btn.getAttribute("data-name")||"";
+      const element = btn.getAttribute("data-element")||"";
+      const stylepack = btn.getAttribute("data-stylepack")||"";
+      // Let fusion router pick tone/style from data maps; falls back to stylepack if set
+      const state = resolveFusion({ angelId, stylepack });
+      const cap = document.getElementById("plaque-caption");
+      if (cap) cap.textContent = (name||state.meta.name||"") + (state.hz ? (" -- "+state.hz+" Hz") : "") + (element?(" -- "+element):"") + (state.meta.stylepack?(" -- "+state.meta.stylepack):"");
+    }, { passive:true });
 
-      // prep audio (dry is fine if IR missing)
-      ensureAudio(); loadIR("../assets/audio/ir/cathedral_small.wav");
+    onToneChange((payload)=>{
+      const cap=document.getElementById("plaque-caption");
+      if (cap && payload && payload.hz) {
+        cap.textContent = (payload.name||"") + " -- " + payload.hz + " Hz" + (payload.element?(" -- "+payload.element):"") + (payload.stylepack?(" -- "+payload.stylepack):"");
+      }
+    });
 
-      angels.forEach((a) => {
-        const cell = document.createElement("button");
-        cell.className = "cell";
-        cell.type = "button";
-        cell.setAttribute("aria-label", `${a.name}: ${a.element}, ${a.toneHz} Hz`);
-        cell.innerHTML = `
-          <div class="name">${a.n}. ${a.name}</div>
-          <div class="meta">${a.sign} · ${decanLabel(a.decan, a.segment)}</div>
-          <div class="meta">${a.element} · ${a.toneHz} Hz · Style: ${a.stylepack}</div>
-        `;
-        cell.addEventListener("click", () => {
-          applyStylepack(a.stylepack);
-          const color = paletteHints[a.element] || "#d4af37";
-          setBloomTone(a.toneHz, { color, level: 0.18 });
-          plaque.innerHTML = `
-            <strong>Plaque -- Activation</strong><br/>
-            Angel: <em>${a.name}</em> (#${a.n}) · ${a.sign} · ${decanLabel(a.decan, a.segment)} · ${a.element}<br/>
-            Tone: ${a.toneHz} Hz · Stylepack: <code>${a.stylepack}</code>${a.pattern ? " · Pattern: "+a.pattern : ""}
-          `;
-        });
-        grid.appendChild(cell);
-      });
-    }
-
-    window.addEventListener("DOMContentLoaded", loadAngels);
+    // Save / Share / Clip (no relief on this page)
+    document.getElementById("btnSave")?.addEventListener("click", ()=> {
+      exportCompositePNG({ halo:"#cymatics", relief:null, width:2160, height:1215, caption: document.getElementById("plaque-caption")?.textContent || "Angels 72", subcaption:"Cathedral of Circuits • Codex 144:99" });
+    });
+    document.getElementById("btnShare")?.addEventListener("click", ()=> {
+      const cap = document.getElementById("plaque-caption")?.textContent||"";
+      const hz = (cap.match(/(\d+)\s*Hz/i)||[])[1] || "";
+      shareURL({ hz, title:"Angels 72 -- Cathedral Plate" });
+    });
+    document.getElementById("btnClip")?.addEventListener("click", async ()=> {
+      try { await recordCompositeWebM("#cymatics", null, 6, 30); } catch(e){ alert("Recording not supported: "+e.message); }
+    });
   </script>
-</head>
-<body class="mystic" data-theme="tiphereth">
-  <header>
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
-      <div><a href="../cathedral.html">⟵ Back to Cathedral</a></div>
-      <h1>72 Angelic Ladder</h1>
-      <div><a href="./Thelemic-Alignment-Brief.html">Alignment Brief</a></div>
-    </div>
-    <p>Click any name to re‑skin the cathedral and sound a gentle harmonic bloom (ND‑safe).</p>
-  </header>
-
-  <div class="wrap">
-    <div id="angel-grid" class="grid" role="list" aria-label="Shem ha-Mephorash angels"></div>
-    <aside id="plaque" class="plaque" role="note" aria-label="Curator Plaque">
-      <strong>Plaque -- Activation</strong><br/>Select an angel to view tone & style details here.
-    </aside>
-  </div>
-
-  <footer>
-    ❦ Green Man’s vine entwines; the Choir resounds. ❦<br>
-    93 93/93 -- Stone Grimoire · Rosslyn Pattern
-  </footer>
 </body>
 </html>
