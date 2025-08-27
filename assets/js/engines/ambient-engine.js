@@ -1,154 +1,84 @@
+// ambient-engine.js (patched)
+import { hasAudio, onFirstGesture, prefersReducedMotion } from "../compat/platform-bridge.js";
 
+let _ctx, _osc, _gain, _analyser, _fake, _lastHz = 432;
+const _listeners = new Set();
 
-  // assets/js/engines/ambient-engine.js
-// ND-safe WebAudio core with tiny pub/sub. ASCII-only, iPad-safe.
-// Exposes: start(), stop(), setToneHz(hz), setMuted(on), onToneChange(fn),
-//          getAnalyser(), currentTone()
-
-let AC = null;
-let osc = null;
-let preGain = null;     // musical gain (we fade this)
-let low = null;         // gentle lowshelf
-let peak = null;        // gentle peaking cut
-let comp = null;        // soft compressor
-let convolver = null;   // optional IR
-let limiter = null;     // soft safety limiter
-let master = null;      // final cap
-let analyser = null;
-
-let currentHz = 528;
-let started = false;
-let muted = false;
-
-const listeners = new Set();
-
-// ---------- tiny pub/sub ----------
-export function onToneChange(fn){ listeners.add(fn); return ()=>listeners.delete(fn); }
-function notify(){ for (const fn of listeners) { try{ fn(currentHz); }catch(_){} } }
-
-// ---------- gesture unlock (iPad/Safari) ----------
-function onFirstGesture(fn){
-  let done = false;
-  const go = () => { if (!done){ done = true; cleanup(); try{ fn(); }catch(_){} } };
-  const cleanup = () => {
-    const evs = ['pointerdown','touchstart','keydown','mousedown','click','visibilitychange'];
-    evs.forEach(ev => window.removeEventListener(ev, go, true));
-  };
-  const evs = ['pointerdown','touchstart','keydown','mousedown','click','visibilitychange'];
-  evs.forEach(ev => window.addEventListener(ev, go, true));
-}
-
-// ---------- optional IR loader (tries common paths) ----------
-async function loadIR(ac){
-  const urls = [
-    'assets/audio/ir/cathedral_small.wav',
-    'assets/audio/ir/cathedral.wav',
-    '../assets/audio/ir/cathedral_small.wav',
-    '../assets/audio/ir/cathedral.wav'
-  ];
-  for (const u of urls){
-    try{
-      const res = await fetch(u, { cache: 'force-cache' });
-      if (!res.ok) continue;
-      const buf = await res.arrayBuffer();
-      return await ac.decodeAudioData(buf);
-    }catch(_){}
+class FakeAnalyser {
+  constructor(){ this.frequencyBinCount = 512; this._t = 0; }
+  getByteFrequencyData(arr) {
+    // gentle synthetic motion if audio is blocked or disabled
+    this._t += 0.016;
+    const base = 40 + Math.floor(30 * Math.sin(this._t));
+    for (let i = 0; i < arr.length; i++) arr[i] = base + ((i % 32) * 2);
   }
-  return null; // fine: we will run dry
 }
 
-// ---------- graph build ----------
-async function ensureAudio(){
-  if (AC) return AC;
-  const Ctx = window.AudioContext || window.webkitAudioContext;
-  if (!Ctx) { started = true; return null; } // no WebAudio available
+function _ensureAudio() {
+  if (_ctx || _fake) return;
 
-  AC = new Ctx();
-
-  // nodes
-  preGain = AC.createGain();      preGain.gain.value = 0.0001; // start silent
-  low     = AC.createBiquadFilter(); low.type = 'lowshelf'; low.frequency.value = 80;  low.gain.value = -3;
-  peak    = AC.createBiquadFilter(); peak.type = 'peaking';   peak.frequency.value = 2500; peak.Q.value = 0.9; peak.gain.value = -4;
-  comp    = AC.createDynamicsCompressor();
-  comp.threshold.value = -28; comp.knee.value = 24; comp.ratio.value = 2.2; comp.attack.value = 0.015; comp.release.value = 0.25;
-
-  convolver = AC.createConvolver();
-  limiter   = AC.createDynamicsCompressor();
-  limiter.threshold.value = -4; limiter.knee.value = 0; limiter.ratio.value = 20; limiter.attack.value = 0.003; limiter.release.value = 0.15;
-
-  master   = AC.createGain();     master.gain.value = 0.9; // global cap
-  analyser = AC.createAnalyser(); analyser.fftSize = 1024;
-
-  // chain: (osc) -> preGain -> low -> peak -> comp -> convolver -> limiter -> master -> analyser -> destination
-  preGain.connect(low); low.connect(peak); peak.connect(comp);
-  comp.connect(convolver); convolver.connect(limiter);
-  limiter.connect(master); master.connect(analyser); analyser.connect(AC.destination);
-
-  // load IR (optional)
-  const ir = await loadIR(AC);
-  if (ir) convolver.buffer = ir;
-
-  // gesture resume (mobile)
-  onFirstGesture(() => { if (AC.state === 'suspended') { AC.resume().catch(()=>{}); } });
-
-  return AC;
-}
-
-function buildOsc(){
-  if (!AC) return;
-  if (osc) { try { osc.stop(); } catch(_){ } try { osc.disconnect(); } catch(_){ } }
-  osc = AC.createOscillator();
-  osc.type = 'sine';
-  osc.frequency.value = currentHz;
-  osc.connect(preGain);
-  osc.start();
-}
-
-// ---------- public API ----------
-export async function start(){
-  await ensureAudio();
-  if (!AC) { started = true; return; }
-  if (!osc) buildOsc();
-  if (AC.state === 'suspended') { try{ await AC.resume(); }catch(_){} }
-  started = true;
-  fadeTo(muted ? 0.0001 : 0.08, 600); // ND-safe gentle pad
-}
-
-export function stop(){
-  if (!AC) return;
-  fadeTo(0.0001, 400);
-}
-
-export async function setToneHz(hz){
-  currentHz = hz;
-  notify();
-  await ensureAudio();
-  if (!AC) return;
-  if (!osc) buildOsc();
-  const t = AC.currentTime + 0.06;
-  try {
-    osc.frequency.linearRampToValueAtTime(hz, t);
-  } catch(_){
-    osc.frequency.value = hz;
+  if (!hasAudio || prefersReducedMotion) {
+    // No audio context or motion reduced: provide silent, synthetic analyser
+    _fake = new FakeAnalyser();
+    return;
   }
-  if (!started) return; // will fade-in when start() is called
-  fadeTo(muted ? 0.0001 : 0.08, 200);
+
+  const AC = window.AudioContext || window.webkitAudioContext;
+  _ctx = new AC({ latencyHint: "interactive" });
+
+  _osc = _ctx.createOscillator();
+  _osc.type = "sine";
+  _osc.frequency.value = _lastHz;
+
+  _gain = _ctx.createGain();
+  _gain.gain.value = 0.04;
+
+  _analyser = _ctx.createAnalyser();
+  _analyser.fftSize = 1024;
+  _analyser.smoothingTimeConstant = 0.85;
+
+  _osc.connect(_gain);
+  _gain.connect(_analyser);
+  _analyser.connect(_ctx.destination);
+  _osc.start();
 }
 
-export function setMuted(on){
-  muted = !!on;
-  if (!AC) return;
-  fadeTo(muted ? 0.0001 : 0.08, 150);
+export async function unlock() {
+  _ensureAudio();
+  if (_ctx && _ctx.state === "suspended") {
+    try { await _ctx.resume(); } catch(_) {}
+  }
 }
 
-export function getAnalyser(){ return analyser; }
-export function currentTone(){ return currentHz; }
+onFirstGesture(unlock); // works on iOS/Android/desktop
 
-// ---------- helpers ----------
-function fadeTo(v, ms){
-  if (!AC || !preGain) return;
-  const now = AC.currentTime;
-  preGain.gain.cancelScheduledValues(now);
-  preGain.gain.setValueAtTime(preGain.gain.value, now);
-  preGain.gain.linearRampToValueAtTime(v, now + (ms/1000));
+export function setToneHz(hz, meta) {
+  if (Number.isFinite(hz) && hz > 0) _lastHz = hz;
+
+  _ensureAudio();
+  if (_ctx && _ctx.state === "suspended") _ctx.resume().catch(()=>{});
+
+  if (_osc && _ctx) {
+    const t = _ctx.currentTime;
+    _osc.frequency.setTargetAtTime(_lastHz, t, 0.02);
+  }
+
+  const payload = Object.assign({ hz: Number(_lastHz) || null }, meta || {});
+  _listeners.forEach(fn => { try { fn(payload); } catch(_){} });
+}
+
+export function onToneChange(fn) {
+  if (typeof fn === "function") _listeners.add(fn);
+  return () => _listeners.delete(fn);
+}
+
+export function getAnalyser() {
+  _ensureAudio();
+  return _analyser || _fake || new FakeAnalyser();
+}
+
+export function setVolume(v) {
+  if (!_gain) return;
+  const x = Math.max(0, Math.min(1, Number(v) || 0));
+  _gain.gain.setTargetAtTime(x, _ctx.currentTime, 0.05);
 }
