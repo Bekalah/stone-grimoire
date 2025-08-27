@@ -1,127 +1,159 @@
-// Planetary Hours -- Codex 144:99
-// Gentle, ND-safe hourly tint based on Chaldean order.
-// Modes:
-//  - "clock": 24 fixed civil hours (midnight->midnight), seed by weekday ruler.
-//  - "approxSolar": assumes sunrise≈06:00, sunset≈18:00, divides day/night into 12 hours each.
-//
-// Emits:
-//   window.dispatchEvent(new CustomEvent("codex:set-planetary-hour",{detail:{planet,hourIndex,mode}}));
-// Also calls PlanetaryLight.applyPlanet(...) if available.
-//
-// Configuration (optional, before this script runs):
-//   window.CodexHours = { mode:"approxSolar" | "clock" }
-//
-// No external deps. ASCII-only.
+// assets/js/engines/planetary-light.js
+// Cathedral zodiac tint engine (ND-safe, iPad-safe, ASCII only).
+// Maps zodiac degrees -> angels72 -> stylepack + color wash.
+// No audio autoplay. If your ambient engine is running, we sync its tone.
 
-(function(){
-  var cfg = (window.CodexHours || {});
-  var mode = cfg.mode || "clock";
+const CONFIG = {
+  mode: "FIVE_DEGREES", // "FIVE_DEGREES" (exact 72) or "THREE_DEGREES" (finer healing)
+  cycleMinutes: 120,     // full 360° cycle duration when simulating (change to taste)
+  autoStart: true,       // start simulated cycle on load (no audio)
+  cssVar: "--hour-bg",   // the CSS var we tint
+  opacityVar: "--hour-bg-alpha", // optional alpha var you can use in CSS gradients
+};
 
-  // Chaldean order
-  var ORDER = ["Saturn","Jupiter","Mars","Sun","Venus","Mercury","Moon"];
+// --- tiny utils --------------------------------------------------------------
+const $ = (sel, root=document) => root.querySelector(sel);
+function setVar(name, val){ document.documentElement.style.setProperty(name, val); }
+function clamp(v, a, b){ return Math.max(a, Math.min(b, v)); }
 
-  // Day rulers (hour 0 at sunrise belongs to day ruler)
-  var DAY_RULER = {
-    0:"Sun",     // Sunday
-    1:"Moon",    // Monday
-    2:"Mars",    // Tuesday
-    3:"Mercury", // Wednesday
-    4:"Jupiter", // Thursday
-    5:"Venus",   // Friday
-    6:"Saturn"   // Saturday
-  };
+// Resolve a JSON by trying multiple relative paths (works from any subdir)
+async function loadJSON(candidates){
+  for (const url of candidates){
+    try{
+      const res = await fetch(url, { cache: "no-cache" });
+      if (res.ok) return await res.json();
+    }catch(_){}
+  }
+  console.warn("[planetary-light] Could not load JSON from", candidates);
+  return null;
+}
 
-  var timer = 0, lastKey = "";
+// Try both common locations relative to pages at /, /main/, /chapels/
+const ANGEL_PATHS = [
+  "assets/data/angels72.json",
+  "../assets/data/angels72.json",
+  "../../assets/data/angels72.json",
+];
 
-  function chaldeanIndex(ofPlanet){
-    for(var i=0;i<ORDER.length;i++) if(ORDER[i]===ofPlanet) return i;
-    return 0;
+// Optional imports are dynamic so this file never hard-crashes if modules are missing
+async function tryImportAmbient(){
+  const candidates = [
+    "./ambient-engine.js",
+    "../ambient-engine.js",
+    "../../assets/js/engines/ambient-engine.js",
+    "../engines/ambient-engine.js"
+  ];
+  for (const p of candidates){
+    try{ return await import(p); } catch(_){}
+  }
+  return null;
+}
+async function tryImportStyleEngine(){
+  const candidates = [
+    "../style-engine.js",
+    "../../assets/js/style-engine.js",
+    "../engines/style-engine.js",
+    "../../assets/js/engines/style-engine.js",
+  ];
+  for (const p of candidates){
+    try{ return await import(p); } catch(_){}
+  }
+  return null;
+}
+
+// --- color maps --------------------------------------------------------------
+const ELEMENT_HINT = {
+  Fire:  "#e8893a",
+  Air:   "#8faef2",
+  Water: "#80dfff",
+  Earth: "#7aa36d",
+  Light: "#f4c76a",
+  Aether:"#c49bc7"
+};
+
+// --- degree math -------------------------------------------------------------
+function angelIndexFromDegree(deg, mode){
+  const d = ((deg % 360) + 360) % 360;
+  if (mode === "THREE_DEGREES"){
+    // 120 slots -> map to 72 by proportion
+    const slot = Math.floor(d / 3);              // 0..119
+    const idx  = Math.floor(slot * (72/120));    // 0..71
+    return idx;
+  } else {
+    // FIVE_DEGREES -> 360/72 = 5°
+    return Math.floor(d / 5) % 72;               // 0..71
+  }
+}
+
+function simDegree(progress01){
+  // Progress 0..1 across the full cycle
+  return progress01 * 360;
+}
+
+// --- main loop ---------------------------------------------------------------
+let angels = null;
+let ambient = null;
+let styleEngine = null;
+let raf = 0;
+let t0 = 0;
+
+function hexWithAlpha(hex, alpha=0.18){
+  // hex "#rrggbb" -> rgba string
+  const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  if(!m) return hex;
+  const r = parseInt(m[1],16), g = parseInt(m[2],16), b = parseInt(m[3],16);
+  return `rgba(${r}, ${g}, ${b}, ${clamp(alpha, 0, 1)})`;
+}
+
+function tick(){
+  const now = performance.now();
+  const dur = CONFIG.cycleMinutes * 60 * 1000; // ms
+  const p   = (now - t0) / dur;
+  const deg = simDegree(p % 1);
+
+  const idx = angelIndexFromDegree(deg, CONFIG.mode);
+  const a   = angels[idx];
+
+  // Set tint color
+  const color = ELEMENT_HINT[a.element] || "#d4af37";
+  setVar(CONFIG.cssVar, color);
+  setVar(CONFIG.opacityVar, "0.18");
+
+  // Optionally update stylepack if available (very light)
+  if (styleEngine?.applyStylepack && a.stylepack){
+    // You can comment this out if you don't want skins to drift
+    // styleEngine.applyStylepack(a.stylepack);
   }
 
-  function applyPlanet(planet, hourIndex){
-    try {
-      window.dispatchEvent(new CustomEvent("codex:set-planetary-hour",{
-        detail:{ planet: planet, hourIndex: hourIndex, mode: mode }
-      }));
-    } catch(_){}
-
-    // If PlanetaryLight is present, nudge palette
-    try {
-      if (window.PlanetaryLight && window.PlanetaryLight.applyPlanet) {
-        window.PlanetaryLight.applyPlanet(planet);
-      }
-    } catch(_){}
+  // If ambient engine is already running, glide to the tone (no autoplay)
+  if (ambient?.setToneHz && typeof a.toneHz === "number"){
+    ambient.setToneHz(a.toneHz);
   }
 
-  function tick(){
-    var now = new Date();
-    var wd  = now.getDay(); // 0..6
-    var h   = now.getHours();
-    var m   = now.getMinutes();
-    var key = "";
+  raf = requestAnimationFrame(tick);
+}
 
-    if (mode === "clock"){
-      // Fixed civil hours: seed sequence so that the hour containing 06:00 starts at the day ruler
-      // Compute offset from 06:00, but use whole-day mapping for stability.
-      var dayRuler = DAY_RULER[wd];
-      var startIdx = chaldeanIndex(dayRuler);
-      // Build 24-hour sequence by cycling ORDER starting at day ruler at 06:00
-      // Hour at 06:00 → dayRuler; before 06:00 we step backwards; after we step forwards
-      var civilHour = h; // 0..23
-      var offsetFrom6 = civilHour - 6; // may be negative
-      // Normalize to 0..23
-      var idx = (startIdx + offsetFrom6) % ORDER.length;
-      if (idx < 0) idx += ORDER.length;
-      // The sequence repeats every 7 hours; we need to rotate by number of hours passed
-      // We already adjusted by offsetFrom6; also add floor(m/60) which is 0
-      var planet = ORDER[idx];
-      key = mode + "|" + wd + "|" + civilHour;
-      if (key !== lastKey){
-        lastKey = key;
-        applyPlanet(planet, civilHour);
-      }
-    } else {
-      // approxSolar: split day 06:00–18:00 into 12 day hours, night 18:00–06:00 into 12 night hours
-      var dayRuler2 = DAY_RULER[wd];
-      var baseIdx   = chaldeanIndex(dayRuler2); // at sunrise hour 0 = day ruler
-      var minutes = h*60 + m;
-
-      var sunrise = 6*60;   // 06:00
-      var sunset  = 18*60;  // 18:00
-
-      var hourIndex = 0, planet2 = dayRuler2;
-      if (minutes >= sunrise && minutes < sunset){
-        var dayMin = minutes - sunrise;
-        var dayHour = Math.floor(dayMin / ( (12*60)/12 )); // equal 60-min chunks
-        hourIndex = dayHour; // 0..11
-        planet2 = ORDER[(baseIdx + hourIndex) % ORDER.length];
-      } else {
-        // Night: starts at sunset with the next planet in sequence after the 11th day hour
-        // Compute how many 60-min segments since sunset or before sunrise
-        var nightMin = (minutes >= sunset) ? (minutes - sunset) : (minutes + (24*60 - sunset));
-        var nightHour = Math.floor(nightMin / 60); // 0..11
-        // Night begins with the planet after the last day hour (i.e., baseIdx+12)
-        hourIndex = 12 + nightHour; // 12..23
-        planet2 = ORDER[(baseIdx + hourIndex) % ORDER.length];
-      }
-      key = mode + "|" + wd + "|" + Math.floor(minutes/60);
-      if (key !== lastKey){
-        lastKey = key;
-        applyPlanet(planet2, hourIndex);
-      }
-    }
+async function start(){
+  angels      = await loadJSON(ANGEL_PATHS);
+  if (!Array.isArray(angels) || angels.length < 72){
+    console.warn("[planetary-light] angels72.json missing or incomplete");
+    return;
   }
+  ambient     = await tryImportAmbient();     // optional
+  styleEngine = await tryImportStyleEngine(); // optional
 
-  function start(){
-    stop();
-    tick();
-    timer = setInterval(tick, 60*1000); // check once per minute
+  t0 = performance.now();
+  if (CONFIG.autoStart) tick();
+
+  // Respect reduced motion: show a static tint only
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+    cancelAnimationFrame(raf);
+    const idx = angelIndexFromDegree(0, CONFIG.mode);
+    const a   = angels[idx];
+    const color = ELEMENT_HINT[a.element] || "#d4af37";
+    setVar(CONFIG.cssVar, color);
+    setVar(CONFIG.opacityVar, "0.14");
   }
-  function stop(){ if (timer) { clearInterval(timer); timer = 0; } }
+}
 
-  // Expose a tiny control
-  window.CodexPlanetaryHours = { start:start, stop:stop, setMode:function(m){ mode = m||"clock"; lastKey=""; tick(); } };
-
-  // Auto-start (safe: just color vars)
-  start();
-})();
+document.addEventListener("DOMContentLoaded", start);
