@@ -355,5 +355,11 @@
     mountCymaticsCanvas("#cymatics");
     // Nothing else needed; the visual listens to analyser frames
   </script>
+  
+  <script type="module">
+  import { setToneHz, onToneChange, setMuted, getAnalyser } from "../assets/js/engines/ambient-engine.js";
+  import { mountCymaticsCanvas } from "../assets/js/engines/cymatic-engine.js";
+</script>
+
 </body>
 </html>
