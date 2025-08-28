@@ -2,154 +2,26 @@
   "_provenance": {
     "license": "CC-BY 4.0",
     "version": "1.2.2",
-    "updated": "2025-08-27",
+    "updated": "2025-08-28",
     "curator": "bekalah",
-    "notes": "Canonical rooms live in chapels/. Ateliers live in main/05_ateliers/. Angels 72 lives at repo root."
+    "notes": "Canonical rooms live in chapels/. Ateliers are in main/05_ateliers/."
   },
   "stylepacks_ref": "assets/data/stylepacks.json",
-
   "rooms": [
-    {
-      "id": "door",
-      "title": "Frontispiece (Door)",
-      "route": "index.html",
-      "element": "Aether",
-      "toneHz": 528,
-      "geometry": "frontis-parchment",
-      "stylepack": "hilma_spiral",
-      "realm": "Cathedral"
-    },
-    {
-      "id": "nave",
-      "title": "Cathedral Nave",
-      "route": "cathedral.html",
-      "element": "Sun",
-      "toneHz": 528,
-      "geometry": "rose-grid",
-      "stylepack": "angelic_chorus",
-      "realm": "Cathedral"
-    },
+    { "id":"door", "title":"Frontispiece (Door)", "route":"index.html", "element":"Aether", "toneHz":528, "geometry":"frontis-parchment", "stylepack":"hilma_spiral", "realm":"Cathedral" },
+    { "id":"nave", "title":"Cathedral Nave", "route":"cathedral.html", "element":"Sun", "toneHz":528, "geometry":"rose-grid", "stylepack":"angelic_chorus", "realm":"Cathedral" },
 
-    /* ===== Chapels (canonical) ===== */
-    {
-      "id": "apprentice-pillar",
-      "title": "Apprentice Pillar -- Prima Materia",
-      "route": "chapels/apprentice-pillar.html",
-      "element": "Earth",
-      "toneHz": 396,
-      "geometry": "helix-vine",
-      "stylepack": "rosslyn_gothic",
-      "realm": "Chapels"
-    },
-    {
-      "id": "crypt",
-      "title": "The Crypt (Undercroft)",
-      "route": "chapels/crypt.html",
-      "element": "Saturn",
-      "toneHz": 417,
-      "geometry": "vault-star",
-      "stylepack": "rosicrucian_black",
-      "realm": "Chapels"
-    },
-    {
-      "id": "lady-chapel",
-      "title": "Lady Chapel",
-      "route": "chapels/lady-chapel.html",
-      "element": "Venus",
-      "toneHz": 639,
-      "geometry": "rose-window",
-      "stylepack": "rosae_illumination",
-      "realm": "Chapels"
-    },
-    {
-      "id": "crystal-grid",
-      "title": "Crystal Grid Sanctuary",
-      "route": "chapels/crystal-grid.html",
-      "element": "Aether",
-      "toneHz": 528,
-      "geometry": "seed-of-life",
-      "stylepack": "alchemical_bloom",
-      "realm": "Chapels"
-    },
-    {
-      "id": "musical-cubes",
-      "title": "Musical Cubes",
-      "route": "chapels/musical-cubes.html",
-      "element": "Mercury",
-      "toneHz": 741,
-      "geometry": "platonic-set",
-      "stylepack": "angelic_chorus",
-      "realm": "Chapels"
-    },
-    {
-      "id": "cubes-visual-lab",
-      "title": "Cubes Visual Lab",
-      "route": "chapels/cubes-visual-lab.html",
-      "element": "Air",
-      "toneHz": 852,
-      "geometry": "shader-lab",
-      "stylepack": "enochian_astral",
-      "realm": "Chapels"
-    },
-    {
-      "id": "helix-totem",
-      "title": "Helix Totem -- Jacob's Ladder",
-      "route": "chapels/helix-totem.html",
-      "element": "Moon",
-      "toneHz": 528,
-      "geometry": "triple-helix",
-      "stylepack": "hilma_spiral",
-      "realm": "Chapels"
-    },
-    {
-      "id": "shem-ladder",
-      "title": "Shem Ladder (72)",
-      "route": "chapels/shem-ladder.html",
-      "element": "Zodiac",
-      "toneHz": 528,
-      "geometry": "ladder-72",
-      "stylepack": "angelic_chorus",
-      "realm": "Chapels"
-    },
+    { "id":"apprentice-pillar", "title":"Apprentice Pillar -- Prima Materia", "route":"chapels/apprentice-pillar.html", "element":"Earth", "toneHz":396, "geometry":"helix-vine", "stylepack":"rosslyn_gothic", "realm":"Chapels" },
+    { "id":"lady-chapel", "title":"Lady Chapel -- Shekhinah", "route":"chapels/lady-chapel.html", "element":"Water", "toneHz":639, "geometry":"vesica-rose", "stylepack":"rosae_illumination", "realm":"Chapels" },
+    { "id":"crypt", "title":"Crypt -- Undercroft", "route":"chapels/crypt.html", "element":"Saturn", "toneHz":417, "geometry":"vault", "stylepack":"rosicrucian_black", "realm":"Chapels" },
 
-    /* ===== Studies / Briefs ===== */
-    {
-      "id": "thelemic-brief",
-      "title": "Thelemic Alignment Brief",
-      "route": "main/Thelemic-Alignment-Brief.html",
-      "element": "Air",
-      "toneHz": 528,
-      "geometry": "frontis-parchment",
-      "stylepack": "rosslyn_gothic",
-      "realm": "Temple"
-    },
-    {
-      "id": "atelier-manifesto",
-      "title": "Ateliers Manifesto -- Venus Covenant",
-      "route": "main/05_ateliers/manifesto.html",
-      "element": "Water",
-      "toneHz": 639,
-      "geometry": "rose-window",
-      "stylepack": "rosae_illumination",
-      "realm": "Temple",
-      "art": {
-        "background": "images/pd/atelier-realm.jpg",
-        "overlay": "assets/overlays/ribbon-gold.png",
-        "shader": "glass-vitrail",
-        "palette_ref": "hilma_spiral"
-      }
-    },
+    { "id":"musical-cubes", "title":"Musical Cubes Lab", "route":"chapels/musical-cubes.html", "element":"Air", "toneHz":741, "geometry":"cube-grid", "stylepack":"angelic_chorus", "realm":"Labs" },
+    { "id":"cubes-visual-lab", "title":"Cubes Visual Lab", "route":"chapels/cubes-visual-lab.html", "element":"Mercury", "toneHz":852, "geometry":"shader-field", "stylepack":"enochian_astral", "realm":"Labs" },
+    { "id":"angel-lab", "title":"Angel Lab (Grid)", "route":"chapels/angel-lab.html", "element":"Fire", "toneHz":963, "geometry":"ladder-grid", "stylepack":"alchemical_bloom", "realm":"Labs" },
+    { "id":"helix-totem", "title":"Helix Totem -- Jacob's Ladder", "route":"chapels/helix-totem.html", "element":"Spirit", "toneHz":528, "geometry":"double-helix", "stylepack":"angelic_chorus", "realm":"Labs" },
+    { "id":"shem-ladder", "title":"Shem Ladder -- 72", "route":"chapels/shem-ladder.html", "element":"Zodiac", "toneHz":528, "geometry":"ladder", "stylepack":"angelic_chorus", "realm":"Labs" },
 
-    /* ===== Root ritual chamber ===== */
-    {
-      "id": "angels72",
-      "title": "Angels 72 -- Ritual Chamber",
-      "route": "angels72.html",
-      "element": "Zodiac",
-      "toneHz": 528,
-      "geometry": "council-grid",
-      "stylepack": "angelic_chorus",
-      "realm": "Temple"
-    }
+    { "id":"thelemic-brief", "title":"Thelemic Alignment Brief", "route":"main/Thelemic-Alignment-Brief.html", "element":"Air", "toneHz":528, "geometry":"frontis-parchment", "stylepack":"rosslyn_gothic", "realm":"Temple" },
+    { "id":"atelier-manifesto", "title":"Ateliers Manifesto", "route":"main/05_ateliers/manifesto.html", "element":"Water", "toneHz":639, "geometry":"rose-window", "stylepack":"rosae_illumination", "realm":"Temple" }
   ]
 }
