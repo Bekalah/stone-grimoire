@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Sponsor Brief -- Circuitum 99</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="../assets/css/palette.css">
+  <link rel="stylesheet" href="../assets/css/light.css">
+  <link rel="stylesheet" href="../assets/css/folio.css">
+  <script src="../assets/js/theme.js" defer></script>
+  <script src="../assets/js/planetary-light.js" defer></script>
+</head>
+<body class="mystic" data-theme="netzach">
+  <header role="banner">
+    <div class="navline" role="navigation" aria-label="Breadcrumbs">
+      <div><a href="../index.html">⟵ Frontispiece</a></div>
+      <div><a href="../cathedral.html">Cathedral Nave</a></div>
+    </div>
+    <h1>Sponsor Brief</h1>
+    <div class="seal" aria-hidden="true">𓂀 ✦ 93 ✦ 𓂀</div>
+    <p>What you fund and why: museum-grade, ND-safe, portable.</p>
+  </header>
+
+  <div class="wrap">
+    <article id="content" class="folio" aria-label="Sponsor Brief" aria-live="polite">
+      <p><em>Loading brief…</em></p>
+    </article>
+    <aside class="plaque" role="note" aria-label="Curator Plaque">
+      <strong>Plaque -- Provenance</strong><br>
+      Source: <code>sponsors/BRIEF.md</code><br>
+      Render: <code>markdown-render.js</code> with <code>folio.css</code> parchment.<br>
+      Evidence: portable sponsor briefing for gallery and press kits.
+    </aside>
+  </div>
+
+  <footer>93 93/93 -- Circuitum 99 · Cathedral of Circuits</footer>
+
+  <noscript>
+    <div class="wrap">
+      <p>This page renders a Markdown document. Enable JavaScript or open the raw file:
+        <a href="./BRIEF.md">BRIEF.md</a>.
+      </p>
+    </div>
+  </noscript>
+
+  <script type="module">
+    import { renderMarkdownPretty } from "../assets/js/markdown-render.js";
+    function ornamentAfterRender(sel){
+      const el = document.querySelector(sel); if(!el) return;
+      const firstP = el.querySelector("p"); if(firstP && !firstP.classList.contains("dropcap")) firstP.classList.add("dropcap");
+    }
+    window.addEventListener("DOMContentLoaded", async () => {
+      await renderMarkdownPretty("./BRIEF.md", "#content");
+      ornamentAfterRender("#content");
+    });
+  </script>
+</body>
+</html>
