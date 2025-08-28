@@ -189,6 +189,23 @@
   import { mountOverlay } from "../assets/js/effects/overlay-loader.js";
   mountOverlay('#overlay', 'mandala-rose'); // or mandala-spiral / mandala-vesica / mandala-altarpiece
 </script>
+
+<div class="shader-backdrop" style="position:fixed;inset:0;z-index:-1;opacity:.45">
+  <canvas id="fractal"></canvas>
+</div>
+<script type="module">
+  import { mountFractalShader } from "../assets/js/engines/shader-engine.js";
+  import { onToneChange } from "../assets/js/engines/ambient-engine.js";
+  const update = await mountFractalShader(document.getElementById('fractal'), { kind:0, hue:210 });
+  // Sync hue/motif on tone changes
+  onToneChange(hz => {
+    // map Hz to a hue and motif
+    const hue = 180 + (hz % 180);        // simple mapping; refine later via correspondences
+    const kind = hz<500 ? 1 : hz<650 ? 3 : 2; // mandorla/rings/kaleid
+    update && update({ hz, hue, kind });
+  });
+</script>
+
   
 </body>
 </html>
