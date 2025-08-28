@@ -4,14 +4,16 @@
 <meta charset="utf-8">
 <title>Stone Grimoire -- Health Check</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../assets/css/palette.css">
+<link rel="stylesheet" href="../assets/css/engrave.css">
 <style>
-  body{margin:0;background:#f8f5ef;color:#1a1a1a;font:16px/1.55 Georgia,"Iowan Old Style",serif}
-  header{max-width:1100px;margin:12px auto;background:#fff8e7;border:1px solid var(--line);
-         border-radius:12px;padding:12px 16px;text-align:center}
+  :root{--accent-2:#d4af37}
+  body{margin:0;background:#f8f5ef;color:#1a1a1a;font:16px/1.5 Georgia,"Iowan Old Style",serif}
+  header{max-width:1100px;margin:12px auto;background:#fff8e7;border:2px solid var(--accent-2);
+         border-radius:12px;padding:10px 14px;text-align:center}
   .wrap{max-width:1100px;margin:10px auto;padding:0 10px}
   .card{background:#fff;border:1px solid #d9cfbf;border-radius:12px;padding:12px;margin:10px 0}
-  .ok{color:#19662a;font-weight:700} .bad{color:#8a1f1f;font-weight:700} .warn{color:#8a6d1f;font-weight:700}
+  .ok{color:#19662a;font-weight:700} .bad{color:#8a1f1f;font-weight:700}
+  .warn{color:#8a6d1f;font-weight:700}
   code{background:#f3efe6;padding:1px 4px;border-radius:4px}
   ul{margin:.4rem 0 .2rem .9rem}
   .small{color:#6b6257;font-size:.9rem}
@@ -20,8 +22,7 @@
 <body>
 <header>
   <h1>Stone Grimoire -- Health Check</h1>
-  <p class="small">Verifies JSON, pages, and engine wiring. (Tap once anywhere before sound tests on iPad.)</p>
-  <p class="small"><a href="./index.html">⟵ Back to Core</a></p>
+  <p class="small">Verifies JSON, pages, engines, and plaque wiring. (Tap anywhere to enable sound checks where applicable.)</p>
 </header>
 <div class="wrap">
   <div id="results" class="card">Running checks…</div>
@@ -30,7 +31,6 @@
 <script type="module">
 const rel = p => ('../' + p);
 
-// required JSON in your current layout
 const mustJSON = [
   'assets/data/stylepacks.json',
   'assets/data/angels72.json',
@@ -38,12 +38,8 @@ const mustJSON = [
   'assets/data/structure.json'
 ];
 
-// key pages you told me you have
 const mustPages = [
-  'index.html','cathedral.html','angels72.html',
-  'main/Thelemic-Alignment-Brief.html',
-  'main/05_ateliers/manifesto.html',
-  // chapels/realms you mentioned
+  'index.html','cathedral.html',
   'chapels/apprentice-pillar.html',
   'chapels/lady-chapel.html',
   'chapels/crypt.html',
@@ -51,111 +47,110 @@ const mustPages = [
   'chapels/cubes-visual-lab.html',
   'chapels/angel-lab.html',
   'chapels/helix-totem.html',
-  'chapels/shem-ladder.html'
+  'chapels/shem-ladder.html',
+  'images/pd/index.html',
+  'patrons/sinclair-family.html',
+  'main/05_ateliers/manifesto.html',
+  'main/Thelemic-Alignment-Brief.html'
 ];
 
-// engines/components as you’ve been organizing them
 const mustScripts = [
-  'assets/js/cathedral-engine.js',
-  'assets/js/ambient-engine.js',
+  'assets/js/engines/cathedral-engine.js',
+  'assets/js/engines/ambient-engine.js',
   'assets/js/engines/cymatic-engine.js',
-  'assets/js/components/style-engine.js',
-  'assets/js/components/room-plaque.js',
-  'assets/js/markdown-render.js'
+  'assets/js/ui/room-plaque.js',
+  'assets/js/components/style-engine.js'
 ];
 
 async function headOk(path){
   try{
     const r = await fetch(rel(path), { method:'HEAD' });
     return r.ok;
-  }catch(e){ return false; }
+  }catch{ return false }
 }
 async function loadJSON(path){
   const r = await fetch(rel(path));
-  if(!r.ok) throw new Error(path + ' ' + r.status);
+  if(!r.ok) throw new Error(`${path} ${r.status}`);
   return r.json();
 }
 function li(status,msg){
   const cls = status==='ok'?'ok':status==='warn'?'warn':'bad';
-  return '<li class="'+cls+'">'+msg+'</li>';
+  return `<li class="${cls}">${msg}</li>`;
 }
-function section(title,items){ return '<div class="card"><h3>'+title+'</h3><ul>'+items.join('')+'</ul></div>'; }
+function section(title,items){ return `<div class="card"><h3>${title}</h3><ul>${items.join('')}</ul></div>`; }
 
 (async function run(){
   const out = [];
 
-  // JSON presence
+  // JSON presence & basic shape
   const jsonItems = [];
   for (const path of mustJSON){
     const ok = await headOk(path);
-    jsonItems.push(li(ok?'ok':'bad', (ok?'Found':'Missing')+': <code>'+path+'</code>'));
+    jsonItems.push(li(ok?'ok':'bad', `${ok?'Found':'Missing'}: <code>${path}</code>`));
   }
+  let packs=null, angels=null, alch=null, struct=null;
 
-  // JSON structure sanity
   try{
-    const packs = await loadJSON('assets/data/stylepacks.json');
+    packs = await loadJSON('assets/data/stylepacks.json');
     jsonItems.push(li('ok','stylepacks.json parsed'));
-    if (!Array.isArray(packs?.packs)) {
-      jsonItems.push(li('warn','stylepacks.json should contain { "packs": [...] } with ids'));
-    }
-  }catch(e){ jsonItems.push(li('bad','stylepacks.json failed to parse')); }
+    if (!packs.packs || !Array.isArray(packs.packs)) jsonItems.push(li('warn','stylepacks.json: expected {packs:[…]}'));
+  }catch{ jsonItems.push(li('bad','stylepacks.json failed to parse')); }
 
   try{
-    const angels = await loadJSON('assets/data/angels72.json');
+    angels = await loadJSON('assets/data/angels72.json');
     jsonItems.push(li('ok','angels72.json parsed'));
-    if (!Array.isArray(angels) || angels.length!==72) {
-      jsonItems.push(li('warn','angels72.json is not array length 72'));
-    }
-  }catch(e){ jsonItems.push(li('bad','angels72.json failed to parse')); }
+    if (!Array.isArray(angels) || angels.length!==72) jsonItems.push(li('warn','angels72.json: expected 72 entries'));
+  }catch{ jsonItems.push(li('bad','angels72.json failed to parse')); }
 
   try{
-    const alch = await loadJSON('assets/data/alchemy.json');
+    alch = await loadJSON('assets/data/alchemy.json');
     jsonItems.push(li('ok','alchemy.json parsed'));
-  }catch(e){ jsonItems.push(li('bad','alchemy.json failed to parse')); }
+    if (!alch.elements || !alch.operations) jsonItems.push(li('warn','alchemy.json missing elements/operations'));
+  }catch{ jsonItems.push(li('bad','alchemy.json failed to parse')); }
 
   try{
-    const struct = await loadJSON('assets/data/structure.json');
+    struct = await loadJSON('assets/data/structure.json');
     jsonItems.push(li('ok','structure.json parsed'));
-    if (!Array.isArray(struct?.rooms)) {
-      jsonItems.push(li('warn','structure.json missing rooms[] array'));
-    }
-  }catch(e){ jsonItems.push(li('bad','structure.json failed to parse')); }
+    if (!struct.rooms || !Array.isArray(struct.rooms)) jsonItems.push(li('warn','structure.json: rooms[] missing'));
+  }catch{ jsonItems.push(li('bad','structure.json failed to parse')); }
 
   out.push(section('Data files', jsonItems));
 
-  // Pages
+  // Pages presence
   const pageItems = [];
   for (const p of mustPages){
     const ok = await headOk(p);
-    pageItems.push(li(ok?'ok':'bad', (ok?'Found':'Missing')+': <code>'+p+'</code>'));
+    pageItems.push(li(ok?'ok':'bad', `${ok?'Found':'Missing'}: <code>${p}</code>`));
   }
   out.push(section('Pages', pageItems));
 
-  // Scripts
+  // Scripts presence
   const scriptItems = [];
   for (const s of mustScripts){
     const ok = await headOk(s);
-    scriptItems.push(li(ok?'ok':'bad', (ok?'Found':'Missing')+': <code>'+s+'</code>'));
+    scriptItems.push(li(ok?'ok':'bad', `${ok?'Found':'Missing'}: <code>${s}</code>`));
+  }
+  for (const s of [
+    'assets/js/effects/elements.js',
+    'assets/js/alchemy-engine.js',      // legacy shim (optional)
+    'assets/js/utils/share-export.js'   // optional export utils
+  ]){
+    const ok = await headOk(s);
+    scriptItems.push(li(ok?'ok':'warn', `${ok?'Found (ok)':'Not found (optional)'}: <code>${s}</code>`));
   }
   out.push(section('Scripts', scriptItems));
 
-  // structure routes exist?
+  // Structure ↔ page routes consistency
   const linkItems = [];
-  try{
-    const struct = await loadJSON('assets/data/structure.json');
-    const routes = Array.isArray(struct?.rooms) ? struct.rooms.map(r=>r.route) : [];
-    const sample = routes.slice(0,10);
-    linkItems.push(li('ok', 'structure.json routes loaded ('+routes.length+' total)'));
-    for (const r of sample){
-      const ok = await headOk(r);
-      linkItems.push(li(ok?'ok':'warn', (ok?'OK':'Not found (check path)')+': <code>'+r+'</code>'));
+  if (struct && struct.rooms){
+    for (const r of struct.rooms){
+      const ok = await headOk(r.route);
+      linkItems.push(li(ok?'ok':'warn', `${ok?'Route OK':'Route not found'}: <code>${r.route}</code> -- <em>${r.title||r.id}</em>`));
     }
-  }catch(e){
-    linkItems.push(li('bad','could not read structure.json for route checks'));
   }
-  out.push(section('structure.json ↔ pages', linkItems));
+  out.push(section('Structure routes', linkItems));
 
-  document.getElementById('results').innerHTML = out.join('');
+  document.querySelector('#results').innerHTML = out.join('');
 })();
 </script>
 </body>
