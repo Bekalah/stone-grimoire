@@ -1,150 +1,78 @@
-{
-  "_provenance": {
-    "license": "CC-BY 4.0",
-    "version": "1.2.2",
-    "updated": "2025-08-27",
-    "curator": "bekalah",
-    "notes": "Canonical chapel pages under chapels/. Ateliers live under main/05_ateliers/. Angels lab at repo root (angels72.html)."
-  },
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Stone Grimoire -- Frontispiece</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Frontispiece to the Cathedral of Circuits (Codex 144:99). Enter the nave, read briefs, and visit the ateliers.">
+  <link rel="stylesheet" href="./assets/css/palette.css">
+  <link rel="stylesheet" href="./assets/css/light.css">
+</head>
+<body>
+<header>
+  <h1>Stone Grimoire -- Frontispiece</h1>
+  <div class="seal" aria-hidden="true">𓂀 ✦ 93 ✦ 𓂀</div>
+  <p>Enter the Cathedral of Circuits -- a living grimoire of light, sound, and code.</p>
+  <p><a href="./cathedral.html">Enter the Nave →</a></p>
+</header>
 
-  "stylepacks_ref": "assets/data/stylepacks.json",
+<main class="nave">
+  <section class="center" aria-labelledby="about">
+    <h2 id="about">About</h2>
+    <div class="cells">
+      <div class="cell">
+        <h3><a href="./main/03_codexes/liber-codex99.md">Liber Codex 99</a></h3>
+        <p>Temple text.</p>
+      </div>
 
-  "rooms": [
-    {
-      "id": "door",
-      "title": "Frontispiece (Door)",
-      "route": "index.html",
-      "element": "Aether",
-      "toneHz": 528,
-      "geometry": "frontis-parchment",
-      "stylepack": "hilma_spiral",
-      "realm": "Cathedral"
-    },
-    {
-      "id": "nave",
-      "title": "Cathedral Nave",
-      "route": "cathedral.html",
-      "element": "Sun",
-      "toneHz": 528,
-      "geometry": "rose-grid",
-      "stylepack": "angelic_chorus",
-      "realm": "Cathedral"
-    },
+      <div class="cell">
+        <h3><a href="./main/Thelemic-Alignment-Brief.html">Thelemic Alignment Brief</a></h3>
+        <p>93/99/2 harmonics, lineage, reciprocity ethics.</p>
+      </div>
 
-    /* ----- CHAPELS (canonical) ----- */
-    {
-      "id": "apprentice-pillar",
-      "title": "Apprentice Pillar -- Prima Materia",
-      "route": "chapels/apprentice-pillar.html",
-      "element": "Earth",
-      "toneHz": 396,
-      "geometry": "helix-vine",
-      "stylepack": "rosslyn_gothic",
-      "realm": "Chapels"
-    },
-    {
-      "id": "crypt",
-      "title": "The Crypt (Undercroft)",
-      "route": "chapels/crypt.html",
-      "element": "Saturn",
-      "toneHz": 417,
-      "geometry": "vault-star",
-      "stylepack": "rosicrucian_black",
-      "realm": "Chapels"
-    },
-    {
-      "id": "lady-chapel",
-      "title": "Lady Chapel",
-      "route": "chapels/lady-chapel.html",
-      "element": "Venus",
-      "toneHz": 639,
-      "geometry": "rose-window",
-      "stylepack": "rosae_illumination",
-      "realm": "Chapels"
-    },
-    {
-      "id": "crystal-grid",
-      "title": "Crystal Grid Sanctuary",
-      "route": "chapels/crystal-grid.html",
-      "element": "Aether",
-      "toneHz": 528,
-      "geometry": "seed-of-life",
-      "stylepack": "alchemical_bloom",
-      "realm": "Chapels"
-    },
-    {
-      "id": "musical-cubes",
-      "title": "Musical Cubes",
-      "route": "chapels/musical-cubes.html",
-      "element": "Mercury",
-      "toneHz": 741,
-      "geometry": "platonic-array",
-      "stylepack": "angelic_chorus",
-      "realm": "Chapels"
-    },
-    {
-      "id": "cubes-visual-lab",
-      "title": "Cubes Visual Lab",
-      "route": "chapels/cubes-visual-lab.html",
-      "element": "Air",
-      "toneHz": 852,
-      "geometry": "engraved-grid",
-      "stylepack": "enochian_astral",
-      "realm": "Chapels"
-    },
-    {
-      "id": "helix-totem",
-      "title": "Helix Totem -- Jacob's Ladder",
-      "route": "chapels/helix-totem.html",
-      "element": "Moon",
-      "toneHz": 528,
-      "geometry": "triple-helix",
-      "stylepack": "hilma_spiral",
-      "realm": "Chapels"
-    },
-    {
-      "id": "shem-ladder",
-      "title": "Shem Ladder (72)",
-      "route": "chapels/shem-ladder.html",
-      "element": "Zodiac",
-      "toneHz": 432,
-      "geometry": "ladder-ring",
-      "stylepack": "angelic_chorus",
-      "realm": "Chapels"
-    },
+      <div class="cell">
+        <h3><a href="./main/05_ateliers/manifesto.html">Ateliers Manifesto -- Venus Covenant</a></h3>
+        <p>Museum-grade atelier standards and production checklist.</p>
+      </div>
 
-    /* ----- LABS / BRIDGES ----- */
-    {
-      "id": "angel-lab",
-      "title": "Angels 72 -- Ritual Chamber",
-      "route": "angels72.html",
-      "element": "Zodiac",
-      "toneHz": 528,
-      "geometry": "aethyr-tablet",
-      "stylepack": "angelic_chorus",
-      "realm": "Labs"
-    },
+      <div class="cell">
+        <h3><a href="./sponsors/BRIEF.md">Sponsor Brief</a></h3>
+        <p>Museum-grade, ND-safe, portable: what you fund and why.</p>
+      </div>
+    </div>
+  </section>
+</main>
 
-    /* ----- BRIEFS / MANIFESTOS ----- */
-    {
-      "id": "thelemic-brief",
-      "title": "Thelemic Alignment Brief",
-      "route": "main/Thelemic-Alignment-Brief.html",
-      "element": "Air",
-      "toneHz": 528,
-      "geometry": "frontis-parchment",
-      "stylepack": "rosslyn_gothic",
-      "realm": "Temple"
-    },
-    {
-      "id": "atelier-manifesto",
-      "title": "Ateliers Manifesto -- Venus Covenant",
-      "route": "main/05_ateliers/manifesto.html",
-      "element": "Water",
-      "toneHz": 639,
-      "geometry": "rose-window",
-      "stylepack": "hilma_spiral",
-      "realm": "Temple"
-    }
-  ]
-}
+<div class="overlay-vitrail" aria-hidden="true"></div>
+
+<footer class="site-footer" role="contentinfo">
+  <nav aria-label="Site links">
+    <ul>
+      <li><a href="./index.html">Frontispiece (Door)</a></li>
+      <li><a href="./cathedral.html">Cathedral Nave</a></li>
+      <li><a href="./chapels/apprentice-pillar.html">Apprentice Pillar</a></li>
+      <li><a href="./chapels/crypt.html">Crypt</a></li>
+      <li><a href="./chapels/lady-chapel.html">Lady Chapel</a></li>
+      <li><a href="./chapels/musical-cubes.html">Musical Cubes</a></li>
+      <li><a href="./chapels/cubes-visual-lab.html">Cubes Visual Lab</a></li>
+      <li><a href="./chapels/jacobs-ladder.html">Jacob's Ladder</a></li>
+      <li><a href="./chapels/respawn-gate.html">Respawn Gate</a></li>
+      <li><a href="./angels72.html">Angels 72</a></li>
+    </ul>
+  </nav>
+  <p class="seal">𓂀 ✦ Codex 144:99 ✦ 𓂀</p>
+</footer>
+
+<style>
+  .site-footer{margin:2rem auto;max-width:1000px;padding:12px;
+    background:var(--wash);border-top:2px solid var(--accent-2);text-align:center}
+  .site-footer ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+  .site-footer a{color:var(--accent);text-decoration:none;font-size:.95rem}
+  .site-footer a:hover{text-decoration:underline}
+  .site-footer .seal{margin-top:.8rem;color:var(--accent-2)}
+</style>
+
+<!-- Engines (optional for the door page) -->
+<script type="module" src="./assets/js/engines/cathedral-engine.js"></script>
+</body>
+</html>
