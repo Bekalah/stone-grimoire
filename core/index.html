@@ -18,10 +18,12 @@
     h1{margin:.2rem 0 .3rem;color:var(--accent)}
     .wrap{max-width:1100px;margin:0 auto;padding:10px}
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
-    .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px}
+    .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;justify-content:space-between}
     .card h3{margin:.4rem 0;color:var(--accent-2)}
-    a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
     .note{background:var(--wash);border:1px solid var(--line);border-radius:12px;padding:12px;margin:10px 0}
+    .small{color:#6b6257;font-size:.95rem}
   </style>
 </head>
 <body class="mystic" data-theme="yesod">
@@ -34,11 +36,33 @@
 
   <main class="wrap">
     <section class="note">
-      <strong>How to use:</strong> run the Health Check first. If anything is missing or mis-pathed,
-      fix those files, then return here. Core keeps your repo consistent across iPad, desktop, and deploys.
+      <strong>How to use:</strong> run the <em>Health Check</em> first. Fix anything missing or mis-pathed, then return here.
+      Core keeps your repo consistent across iPad, desktop, and deploys.
     </section>
 
-    <section class="grid">
+    <!-- Front Gate Triad (Soul / Mind / Hands) -->
+    <section class="grid" aria-label="Front Gate">
+      <article class="card">
+        <h3>Manifesto (Soul / Vision)</h3>
+        <p>Primary charter of the Cathedral of Circuits -- vision, mythos, principles.</p>
+        <p><a href="./manifesto.md">Open manifesto.md →</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Cathedral Code Annex (Mind / Architecture)</h3>
+        <p>Pointer into the technical annex (keeps original docs in <code>/docs</code>).</p>
+        <p><a href="./cathedral_code_annex.md">Open cathedral_code_annex.md →</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Build Dossier (Hands / Construction)</h3>
+        <p>Pointer into the build dossier under <code>/docs</code> -- engines, data flow, wiring.</p>
+        <p><a href="./build_dossier.md">Open build_dossier.md →</a></p>
+      </article>
+    </section>
+
+    <!-- Ops / Daily tools -->
+    <section class="grid" aria-label="Operations">
       <article class="card">
         <h3>Health Check</h3>
         <p>Verify JSON presence, page wiring, and engine files.</p>
@@ -62,19 +86,63 @@
         <p>Interactive grid: tone + stylepack + plaque.</p>
         <p><a href="../angels72.html">Open Angels Ladder →</a></p>
       </article>
+    </section>
 
+    <!-- Build docs you referenced earlier -->
+    <section class="grid" aria-label="Build Docs">
       <article class="card">
-        <h3>Docs -- Bridge Dossier</h3>
+        <h3>Bridge Dossier</h3>
         <p>Build notes for engines and data flow.</p>
         <p><a href="../docs/bridge_dossier.md">Open bridge_dossier.md →</a></p>
       </article>
 
       <article class="card">
-        <h3>Docs -- Bridge Code</h3>
+        <h3>Bridge Code</h3>
         <p>Implementation crib sheet.</p>
         <p><a href="../docs/bridge_code.md">Open bridge_code.md →</a></p>
       </article>
+
+      <article class="card">
+        <h3>Sponsor Brief</h3>
+        <p>Public-facing museum-grade summary, ND-safe commitments.</p>
+        <p><a href="../sponsors/BRIEF.md">Open sponsor brief →</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Repo README</h3>
+        <p>Front-facing vision and links for collaborators.</p>
+        <p><a href="../README">Open README →</a></p>
+      </article>
     </section>
+
+    <!-- Quick realm links (optional, handy during build) -->
+    <section class="grid" aria-label="Quick Realms">
+      <article class="card">
+        <h3>Helix Totem</h3>
+        <p>Jacob’s Ladder as a helical pillar (CSS 3D + tones + bloom).</p>
+        <p><a href="../chapels/helix-totem.html">Open Helix Totem →</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Crypt</h3>
+        <p>Undercroft initiation (Rosicrucian Black, 417 Hz).</p>
+        <p><a href="../chapels/crypt.html">Open Crypt →</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Lady Chapel</h3>
+        <p>Marian/Venus sanctuary (Rosæ Illumination, 639 Hz).</p>
+        <p><a href="../chapels/lady-chapel.html">Open Lady Chapel →</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Crystal Grid</h3>
+        <p>Reiki lattice -- tones + geometry + cymatic overlays.</p>
+        <p><a href="../chapels/crystal-grid.html">Open Crystal Grid →</a></p>
+      </article>
+    </section>
+
+    <p class="small">Tip: keep <code>assets/data/structure.json</code> as your single source of truth; pages above should match those routes.</p>
   </main>
 
   <footer>
