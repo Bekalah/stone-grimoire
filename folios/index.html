@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Folio Shelf -- Cathedral of Circuits</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Illuminated folios: rites, diagrams, oracles, and atelier briefs.">
+  <link rel="stylesheet" href="../assets/css/palette.css">
+  <link rel="stylesheet" href="../assets/css/light.css">
+  <style>
+    body{margin:0;background:radial-gradient(circle at 50% 18%, var(--bg) 78%, #ece7dc 100%);
+         color:var(--ink); font:18px/1.6 Georgia, "Iowan Old Style", serif}
+    header,footer{max-width:1100px;margin:18px auto;background:var(--wash);
+      border:1px solid var(--line); border-radius:12px; padding:14px 18px; text-align:center}
+    h1{margin:.2rem 0 .4rem; color:var(--accent)}
+    .wrap{max-width:1100px; margin:0 auto; padding:10px 14px 24px}
+    .shelf{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:12px}
+    .card{background:#fff; border:1px solid var(--line); border-radius:12px; padding:12px;
+          box-shadow:inset 0 0 40px rgba(0,0,0,.03)}
+    .card h3{margin:.2rem 0 .2rem; color:#3d3a34}
+    .card p{margin:.2rem 0 .4rem; color:#6b6257}
+    .card a{display:inline-block; margin-top:.25rem; color:var(--accent)}
+    .search{display:flex; gap:.5rem; justify-content:center; margin-top:.5rem}
+    .search input{padding:.45rem .6rem; border:1px solid var(--line); border-radius:.4rem; width:280px}
+  </style>
+</head>
+<body>
+  <header>
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:center">
+      <div><a href="../cathedral.html">⟵ Back to Cathedral</a></div>
+      <h1>Folio Shelf</h1>
+      <div><a href="../main/05_ateliers/manifesto.html">Ateliers</a></div>
+    </div>
+    <div class="search">
+      <input id="q" type="search" placeholder="Search folios (oracle, rite, diagram, atelier)..." aria-label="Search folios">
+    </div>
+  </header>
+
+  <div class="wrap">
+    <section class="shelf" id="shelf" aria-live="polite">
+      <!-- Cards will render here -->
+    </section>
+  </div>
+
+  <footer>
+    ❦ Green Man’s vine entwines; the Choir resounds. ❦<br>
+    93 93/93 -- Stone Grimoire · Rosslyn Pattern
+  </footer>
+
+  <script type="module">
+    // Define your folios here (add/remove freely)
+    const FOLIOS = [
+      {
+        id: "thelemic-brief",
+        title: "Thelemic Alignment Brief",
+        kind: "brief",
+        path: "../main/Thelemic-Alignment-Brief.html",
+        tag: "doctrine number 93/99/2 museum"
+      },
+      {
+        id: "ateliers-manifesto",
+        title: "Ateliers Manifesto -- Venus Covenant",
+        kind: "atelier",
+        path: "../main/05_ateliers/manifesto.html",
+        tag: "atelier standards illuminated"
+      },
+      {
+        id: "shem-ladder",
+        title: "Shem Ladder (72) -- Angelic Grid",
+        kind: "diagram",
+        path: "../angels72.html",
+        tag: "angels ladder zodiac tone"
+      },
+      {
+        id: "angel-cubes",
+        title: "Angel Cubes Lab -- Rosslyn Harmonics",
+        kind: "lab",
+        path: "../chapels/angel-cubes.html",
+        tag: "music cubes rosslyn ratios"
+      },
+      {
+        id: "crystal-grid",
+        title: "Crystal Pavilion -- Reiki Grid",
+        kind: "rite",
+        path: "../chapels/crystal-grid.html",
+        tag: "reiki crystals temple"
+      },
+      {
+        id: "i-ching",
+        title: "I Ching Oracle -- Double-Tree Mapping",
+        kind: "oracle",
+        path: "../main/i-ching-oracle.html",
+        tag: "oracle hexagram yin yang"
+      }
+    ];
+
+    const shelf = document.getElementById("shelf");
+    const q = document.getElementById("q");
+
+    function render(list){
+      shelf.innerHTML = "";
+      list.forEach(f => {
+        const el = document.createElement("article");
+        el.className = "card";
+        el.innerHTML = `
+          <h3>${f.title}</h3>
+          <p>${f.kind[0].toUpperCase()+f.kind.slice(1)} · ${f.tag}</p>
+          <a href="${f.path}" aria-label="Open ${f.title}">Open folio ⟶</a>
+        `;
+        shelf.appendChild(el);
+      });
+    }
+
+    function search(){
+      const term = q.value.trim().toLowerCase();
+      if (!term) return render(FOLIOS);
+      const out = FOLIOS.filter(f => (f.title+" "+f.kind+" "+f.tag).toLowerCase().includes(term));
+      render(out);
+    }
+
+    q.addEventListener("input", search, {passive:true});
+    render(FOLIOS);
+  </script>
+</body>
+</html>
