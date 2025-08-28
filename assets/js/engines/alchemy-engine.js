@@ -1,119 +1,189 @@
-// Alchemy Fusion Engine — fuses two angels via 7 classical operations.
-// - smooth color & tone interpolation
-// - stylepack handoff at mid-blend
-// - ND-friendly (no strobe, slow ramps, audio only after gesture)
+<!-- File: assets/js/engines/cathedral-engine.js -->
+<script type="module">
+// Cathedral Engine -- Circuitum 99 (unified data root = assets/data, iPad-safe)
+// - Reads: assets/data/structure.json, assets/data/stylepacks.json,
+//          assets/data/geometry/geometry_index.json
+// - Provides: stylepack apply, geometry mount, ND-safe ambient (manual start).
 
-function rel(path){ const d = location.pathname.split('/').length - 2; return ('../'.repeat(Math.max(0,d))) + path; }
-async function j(p){ return (await fetch(rel(p))).json(); }
+// helpers
+async function firstOk(urls){
+  for (const u of urls){
+    try { const r = await fetch(u, { cache: "no-store" }); if (r.ok) return await r.json(); } catch(_) {}
+  }
+  throw new Error("No data source reachable: " + urls.join(" | "));
+}
+const byId = (list, id) => list.find(x => x.id === id);
 
-const EASE = {
-  linear: t=>t,
-  sine: t=>0.5 - Math.cos(Math.PI*t)/2,
-  easeInOut: t=>t<.5 ? 2*t*t : 1 - Math.pow(-2*t+2,2)/2,
-  expoOut: t=>t===1?1:1-Math.pow(2,-10*t),
-  expoIn: t=>t===0?0:Math.pow(2,10*t-10),
-  bounce: t=>{const n1=7.5625,d1=2.75; if(t<1/d1){return n1*t*t;}
-    else if(t<2/d1){return n1*(t-=1.5/d1)*t+.75;}
-    else if(t<2.5/d1){return n1*(t-=2.25/d1)*t+.9375;}
-    return n1*(t-=2.625/d1)*t+.984375;}
-};
-
-function hexLerp(a,b,t){
-  const A=a.replace('#',''), B=b.replace('#','');
-  const ar=parseInt(A.substr(0,2),16), ag=parseInt(A.substr(2,2),16), ab=parseInt(A.substr(4,2),16);
-  const br=parseInt(B.substr(0,2),16), bg=parseInt(B.substr(2,2),16), bb=parseInt(B.substr(4,2),16);
-  const r=Math.round(ar+(br-ar)*t), g=Math.round(ag+(bg-ag)*t), bl=Math.round(ab+(bb-ab)*t);
-  return '#'+[r,g,bl].map(v=>v.toString(16).padStart(2,'0')).join('');
+// Data roots (canonical → legacy fallback if you still have main/data)
+const DATA_ROOTS = [
+  "./assets/data",
+  "./main/data"
+];
+async function loadJSON(relPath){
+  const tries = DATA_ROOTS.map(root => `${root}/${relPath}`);
+  return await firstOk(tries);
 }
 
-async function toneLib(){
-  const Tone = (await import('https://esm.sh/tone@14.8.39')).default;
-  await Tone.start();
-  const reverb = new Tone.Reverb({ decay:6, wet:0.32 }).toDestination();
-  const low = new Tone.Filter({ type:'lowpass', frequency: 1600 }).connect(reverb);
-  const osc = new Tone.Oscillator(528, 'sine').connect(low).start();
-  return { Tone, osc, low, reverb };
+// stylepacks
+async function loadStylepacks(){ return await loadJSON("stylepacks.json"); }
+function applyStylepack(packId, packs, doc){
+  doc.documentElement.setAttribute("data-stylepack", packId || "");
+  const pack = packs && packs.packs && packs.packs.find(p => p.id === packId);
+  if (!pack || !pack.palette) return;
+  const rs = getComputedStyle(doc.documentElement);
+  doc.documentElement.style.setProperty("--accent",   pack.palette[2] || rs.getPropertyValue("--accent"));
+  doc.documentElement.style.setProperty("--accent-2", pack.palette[1] || rs.getPropertyValue("--accent-2"));
 }
 
-export async function AlchemyFusion(){
-  const [alchemy, angels, packs] = await Promise.all([
-    j('assets/data/alchemy.json'),
-    j('assets/data/angels72.json'),
-    j('assets/data/stylepacks.json')
-  ]);
-
-  const getAngel = q => angels.find(a => a.id===q || a.n===q || a.name===q);
-  const getElem = id => alchemy.elements.find(e=>e.id===id);
-  const getOp = id => alchemy.operations.find(o=>o.id===id) || alchemy.operations.find(o=>o.id==='conjunction');
-  const getPack = id => packs.find(p=>p.id===id) || packs[0];
-
-  let audio = null;
-
-  function setOverlayTint(color){ document.documentElement.style.setProperty('--alch-color', color); }
-
-  async function ensurePad(freq){
-    if (!audio){
-      try { audio = await toneLib(); } catch { return; }
-    }
-    // glide frequency
-    audio.Tone.getTransport().cancel();
-    const now = audio.Tone.now();
-    audio.osc.frequency.linearRampTo(freq, 3, now);
-  }
-
-  async function applyPack(target, packId){
-    if (window.applyStylePack) return window.applyStylePack(target, packId);
-    const { applyStylePack } = await import(rel('assets/js/components/style-engine.js'));
-    return applyStylePack(target, packId);
-  }
-
-  function animateBlend({fromColor, toColor, dur=6000, ease='easeInOut', mid, onTick, onHalf, onEnd}){
-    const E = EASE[ease] || EASE.easeInOut;
-    const t0 = performance.now();
-    function loop(t){
-      const k = Math.min(1, (t - t0)/dur);
-      const e = E(k);
-      const c = hexLerp(fromColor, toColor, e);
-      setOverlayTint(c);
-      onTick && onTick(e, c);
-      if (mid && k >= 0.5 && !loop._half){ loop._half = true; onHalf && onHalf(); }
-      if (k < 1) requestAnimationFrame(loop);
-      else { onEnd && onEnd(); }
-    }
-    requestAnimationFrame(loop);
-  }
-
-  return {
-    fuse({ aId, bId, operation='conjunction', duration=6000, target=document.getElementById('pillar'), onProgress, onPackChange, onToneChange }={}){
-      const A = getAngel(aId), B = getAngel(bId);
-      if (!A || !B) return;
-      const op = getOp(operation);
-      const eFrom = getElem(op.from) || getElem(A.element);
-      const eTo = getElem(op.to) || getElem(B.element);
-      const colorFrom = eFrom?.color || '#999999';
-      const colorTo = eTo?.color || '#ffffff';
-      const packFrom = A.stylepack;
-      const packTo = eTo?.stylepack || B.stylepack || A.stylepack;
-      const toneFrom = A.toneHz || eFrom?.solfeggio || 528;
-      const toneTo = eTo?.solfeggio || B.toneHz || 528;
-
-      // start on packFrom; mid-handoff to packTo
-      applyPack(target, packFrom).then(p=>onPackChange && onPackChange(p, 'from'));
-      ensurePad(toneFrom).then(()=> onToneChange && onToneChange(toneFrom, 'from'));
-
-      animateBlend({
-        fromColor: colorFrom,
-        toColor: colorTo,
-        dur: duration,
-        ease: op.curve || 'easeInOut',
-        mid: true,
-        onTick: (e, c)=> onProgress && onProgress(e, c),
-        onHalf: ()=>{
-          applyPack(target, packTo).then(p=>onPackChange && onPackChange(p, 'to'));
-          ensurePad(toneTo).then(()=> onToneChange && onToneChange(toneTo, 'to'));
-        },
-        onEnd: ()=>{/* graceful end */}
-      });
-    }
-  };
+// structure
+async function loadStructure(){ return await loadJSON("structure.json"); }
+function resolveRoom(struct){
+  const path = (location.pathname.split("/").pop() || "index.html");
+  const hash = location.hash || "";
+  const exact = struct.rooms.find(r => (r.route === (path + hash)));
+  return exact || struct.rooms.find(r => r.route === path) || struct.rooms[0];
 }
+
+// geometry
+async function loadGeometryIndex(){ return await loadJSON("geometry/geometry_index.json"); }
+function resolveGeometryPath(geomId, geomIndex){
+  if (!geomId || !geomIndex || !geomIndex.plates) return null;
+  const hit = byId(geomIndex.plates, geomId);
+  return hit ? hit.file : null;
+}
+async function mountGeometry(path){
+  if (!path) return;
+  const frame = document.createElement("div");
+  frame.className = "geometry-frame";
+  const img = document.createElement("img");
+  img.src = path;
+  img.alt = "Sacred Geometry Scaffold";
+  frame.appendChild(img);
+  document.body.appendChild(frame);
+}
+
+// ambient audio (manual start; ND-safe chain)
+let AC=null, nodes=null, irLoaded=false;
+const defaultHz=528, fadeMs=800;
+
+async function ensureAudio(){
+  if (AC) return AC;
+  const Ctx = window.AudioContext || window.webkitAudioContext;
+  AC = new Ctx();
+
+  const osc=AC.createOscillator();
+  const gain=AC.createGain();
+  const master=AC.createGain();
+  const low=AC.createBiquadFilter();  low.type="lowshelf";  low.frequency.value=80;   low.gain.value=-3;
+  const peak=AC.createBiquadFilter(); peak.type="peaking";  peak.frequency.value=2500; peak.Q.value=.9; peak.gain.value=-4;
+  const comp=AC.createDynamicsCompressor(); comp.threshold.value=-28; comp.knee.value=24; comp.ratio.value=2.2; comp.attack.value=.015; comp.release.value=.25;
+  const convolver=AC.createConvolver();
+  const limiter=AC.createDynamicsCompressor(); limiter.threshold.value=-4; limiter.knee.value=0; limiter.ratio.value=20; limiter.attack.value=.003; limiter.release.value=.15;
+
+  gain.gain.value=0.0001;
+  master.gain.value=.25;
+  osc.type="sine";
+  osc.frequency.value=defaultHz;
+  osc.start();
+
+  osc.connect(gain);
+  gain.connect(low);
+  low.connect(peak);
+  peak.connect(comp);
+  comp.connect(convolver);
+  convolver.connect(limiter);
+  limiter.connect(master);
+  master.connect(AC.destination);
+
+  nodes={osc,gain,master,convolver};
+  return AC;
+}
+async function loadIR(){
+  if(!AC) await ensureAudio();
+  const irCandidates = [
+    "./assets/audio/ir/cathedral_small.wav",
+    "./audio/ir/cathedral_small.wav"
+  ];
+  for (const url of irCandidates){
+    try{
+      const buf = await (await fetch(url,{cache:"force-cache"})).arrayBuffer();
+      await new Promise(res => AC.decodeAudioData(buf,(dec)=>{ nodes.convolver.buffer=dec; res(); }));
+      irLoaded=true; return;
+    } catch(_){}
+  }
+  irLoaded=false;
+}
+function fadeTo(target,ms=fadeMs){
+  if(!nodes) return;
+  const g=nodes.gain.gain, now=AC.currentTime;
+  g.cancelScheduledValues(now);
+  g.setValueAtTime(g.value,now);
+  g.linearRampToValueAtTime(target, now+ms/1000);
+}
+async function startTone(hz=defaultHz){
+  if(!AC) await ensureAudio();
+  if(!irLoaded) await loadIR();
+  nodes.osc.frequency.linearRampToValueAtTime(hz, AC.currentTime+.25);
+  fadeTo(0.08);
+}
+function stopTone(){ if(!AC) return; fadeTo(0.0001); }
+function setTone(hz=defaultHz){ if(!AC) return; nodes.osc.frequency.linearRampToValueAtTime(hz, AC.currentTime+.12); }
+
+// minimal curator plaque
+function mountPlaque(room){
+  const el=document.createElement("div");
+  el.className="controls";
+  el.innerHTML =
+    "<strong>"+(room.title||"Plaque")+"</strong><br>"
+    + "<small>Style: "+(room.stylepack||"--")+" · Tone: "+(room.toneHz||"--")+" Hz</small><br>"
+    + '<button id="btnToggle" type="button">Quietus / Resume</button> '
+    + '<button id="btnToneDown" type="button">-</button> '
+    + '<button id="btnToneUp" type="button">+</button>';
+  document.body.appendChild(el);
+
+  let audioOn=false, currentHz=room.toneHz||defaultHz;
+  el.querySelector("#btnToggle").addEventListener("click", async ()=>{
+    if(!audioOn){ await ensureAudio(); await startTone(currentHz); audioOn=true; }
+    else { stopTone(); audioOn=false; }
+  });
+  el.querySelector("#btnToneUp").addEventListener("click", ()=>{ currentHz = Math.round(currentHz+6); setTone(currentHz); });
+  el.querySelector("#btnToneDown").addEventListener("click", ()=>{ currentHz = Math.max(60, Math.round(currentHz-6)); setTone(currentHz); });
+  return el;
+}
+
+// public hook for other pages
+export async function applyRoom(roomId){
+  const struct = await loadStructure();
+  const packs  = await loadStylepacks();
+  const geomIx = await loadGeometryIndex();
+  const room   = roomId ? byId(struct.rooms, roomId) : resolveRoom(struct);
+
+  applyStylepack(room.stylepack, packs, document);
+  const geomPath = resolveGeometryPath(room.geometry, geomIx);
+  if (geomPath) await mountGeometry(geomPath);
+
+  const ov = document.createElement("div"); ov.className="overlay-vitrail"; document.body.appendChild(ov);
+  mountPlaque(room);
+  return room;
+}
+export { startTone, stopTone, setTone };
+
+// auto-boot if included directly
+(async function boot(){
+  try{
+    const struct = await loadStructure();
+    const packs  = await loadStylepacks();
+    const geomIx = await loadGeometryIndex();
+    const room   = resolveRoom(struct);
+
+    applyStylepack(room.stylepack, packs, document);
+    const geomPath = resolveGeometryPath(room.geometry, geomIx);
+    if (geomPath) await mountGeometry(geomPath);
+
+    const ov = document.createElement("div"); ov.className="overlay-vitrail"; document.body.appendChild(ov);
+    mountPlaque(room);
+  } catch(e){
+    console.error("Cathedral boot error:", e);
+  }
+})();
+</script>
