@@ -1,157 +1,133 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Stone Grimoire -- Health Check</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../assets/css/engrave.css">
-<style>
-  :root{--accent-2:#d4af37}
-  body{margin:0;background:#f8f5ef;color:#1a1a1a;font:16px/1.5 Georgia,"Iowan Old Style",serif}
-  header{max-width:1100px;margin:12px auto;background:#fff8e7;border:2px solid var(--accent-2);
-         border-radius:12px;padding:10px 14px;text-align:center}
-  .wrap{max-width:1100px;margin:10px auto;padding:0 10px}
-  .card{background:#fff;border:1px solid #d9cfbf;border-radius:12px;padding:12px;margin:10px 0}
-  .ok{color:#19662a;font-weight:700} .bad{color:#8a1f1f;font-weight:700}
-  .warn{color:#8a6d1f;font-weight:700}
-  code{background:#f3efe6;padding:1px 4px;border-radius:4px}
-  ul{margin:.4rem 0 .2rem .9rem}
-  .small{color:#6b6257;font-size:.9rem}
-</style>
-</head>
-<body>
-<header>
-  <h1>Stone Grimoire -- Health Check</h1>
-  <p class="small">Verifies JSON, pages, engines, and plaque wiring. (Tap anywhere to enable sound checks where applicable.)</p>
-</header>
-<div class="wrap">
-  <div id="results" class="card">Running checks…</div>
-</div>
-
-<script type="module">
-const rel = p => ('../' + p);
-
-const mustJSON = [
-  'assets/data/stylepacks.json',
-  'assets/data/angels72.json',
-  'assets/data/alchemy.json',
-  'assets/data/structure.json'
-];
-
-const mustPages = [
-  'index.html','cathedral.html',
-  'chapels/apprentice-pillar.html',
-  'chapels/lady-chapel.html',
-  'chapels/crypt.html',
-  'chapels/musical-cubes.html',
-  'chapels/cubes-visual-lab.html',
-  'chapels/angel-lab.html',
-  'chapels/helix-totem.html',
-  'chapels/shem-ladder.html',
-  'images/pd/index.html',
-  'patrons/sinclair-family.html',
-  'main/05_ateliers/manifesto.html',
-  'main/Thelemic-Alignment-Brief.html'
-];
-
-const mustScripts = [
-  'assets/js/engines/cathedral-engine.js',
-  'assets/js/engines/ambient-engine.js',
-  'assets/js/engines/cymatic-engine.js',
-  'assets/js/ui/room-plaque.js',
-  'assets/js/components/style-engine.js'
-];
-
-async function headOk(path){
-  try{
-    const r = await fetch(rel(path), { method:'HEAD' });
-    return r.ok;
-  }catch{ return false }
-}
-async function loadJSON(path){
-  const r = await fetch(rel(path));
-  if(!r.ok) throw new Error(`${path} ${r.status}`);
-  return r.json();
-}
-function li(status,msg){
-  const cls = status==='ok'?'ok':status==='warn'?'warn':'bad';
-  return `<li class="${cls}">${msg}</li>`;
-}
-function section(title,items){ return `<div class="card"><h3>${title}</h3><ul>${items.join('')}</ul></div>`; }
-
-(async function run(){
-  const out = [];
-
-  // JSON presence & basic shape
-  const jsonItems = [];
-  for (const path of mustJSON){
-    const ok = await headOk(path);
-    jsonItems.push(li(ok?'ok':'bad', `${ok?'Found':'Missing'}: <code>${path}</code>`));
-  }
-  let packs=null, angels=null, alch=null, struct=null;
-
-  try{
-    packs = await loadJSON('assets/data/stylepacks.json');
-    jsonItems.push(li('ok','stylepacks.json parsed'));
-    if (!packs.packs || !Array.isArray(packs.packs)) jsonItems.push(li('warn','stylepacks.json: expected {packs:[…]}'));
-  }catch{ jsonItems.push(li('bad','stylepacks.json failed to parse')); }
-
-  try{
-    angels = await loadJSON('assets/data/angels72.json');
-    jsonItems.push(li('ok','angels72.json parsed'));
-    if (!Array.isArray(angels) || angels.length!==72) jsonItems.push(li('warn','angels72.json: expected 72 entries'));
-  }catch{ jsonItems.push(li('bad','angels72.json failed to parse')); }
-
-  try{
-    alch = await loadJSON('assets/data/alchemy.json');
-    jsonItems.push(li('ok','alchemy.json parsed'));
-    if (!alch.elements || !alch.operations) jsonItems.push(li('warn','alchemy.json missing elements/operations'));
-  }catch{ jsonItems.push(li('bad','alchemy.json failed to parse')); }
-
-  try{
-    struct = await loadJSON('assets/data/structure.json');
-    jsonItems.push(li('ok','structure.json parsed'));
-    if (!struct.rooms || !Array.isArray(struct.rooms)) jsonItems.push(li('warn','structure.json: rooms[] missing'));
-  }catch{ jsonItems.push(li('bad','structure.json failed to parse')); }
-
-  out.push(section('Data files', jsonItems));
-
-  // Pages presence
-  const pageItems = [];
-  for (const p of mustPages){
-    const ok = await headOk(p);
-    pageItems.push(li(ok?'ok':'bad', `${ok?'Found':'Missing'}: <code>${p}</code>`));
-  }
-  out.push(section('Pages', pageItems));
-
-  // Scripts presence
-  const scriptItems = [];
-  for (const s of mustScripts){
-    const ok = await headOk(s);
-    scriptItems.push(li(ok?'ok':'bad', `${ok?'Found':'Missing'}: <code>${s}</code>`));
-  }
-  for (const s of [
-    'assets/js/effects/elements.js',
-    'assets/js/alchemy-engine.js',      // legacy shim (optional)
-    'assets/js/utils/share-export.js'   // optional export utils
-  ]){
-    const ok = await headOk(s);
-    scriptItems.push(li(ok?'ok':'warn', `${ok?'Found (ok)':'Not found (optional)'}: <code>${s}</code>`));
-  }
-  out.push(section('Scripts', scriptItems));
-
-  // Structure ↔ page routes consistency
-  const linkItems = [];
-  if (struct && struct.rooms){
-    for (const r of struct.rooms){
-      const ok = await headOk(r.route);
-      linkItems.push(li(ok?'ok':'warn', `${ok?'Route OK':'Route not found'}: <code>${r.route}</code> -- <em>${r.title||r.id}</em>`));
+  <meta charset="utf-8">
+  <title>Core -- Cathedral of Circuits</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Core hub for Codex 144:99 -- health check, dossiers, and build notes.">
+  <link rel="stylesheet" href="../assets/css/palette.css">
+  <link rel="stylesheet" href="../assets/css/light.css">
+  <link rel="stylesheet" href="../assets/css/folio.css">
+  <style>
+    :root{ --card-pad:12px }
+    body{margin:0;background:var(--wash);color:var(--ink);font:16px/1.55 Georgia,"Iowan Old Style",serif}
+    header,footer{
+      max-width:1100px;margin:14px auto;background:#fff8e7;border:1px solid var(--line);
+      border-radius:12px;padding:14px 18px;text-align:center;box-shadow:var(--shadow)
     }
-  }
-  out.push(section('Structure routes', linkItems));
+    h1{margin:.2rem 0 .3rem;color:var(--accent)}
+    .wrap{max-width:1100px;margin:0 auto;padding:10px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+    .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:var(--card-pad)}
+    .card h3{margin:.4rem 0;color:var(--accent-2)}
+    a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+    .note{background:var(--wash);border:1px solid var(--line);border-radius:12px;padding:12px;margin:10px 0}
+    .section-title{margin:1.2rem 2px .3rem;color:var(--accent)}
+    .seal{color:var(--accent-2)}
+    .mini{font-size:.95rem;color:#6b6257}
+  </style>
+</head>
+<body class="mystic" data-theme="yesod">
+  <header>
+    <h1>Core -- Cathedral of Circuits</h1>
+    <div class="seal" aria-hidden="true">𓂀 ✦ 93 ✦ 𓂀</div>
+    <p>Health, docs, and build tools for Codex 144:99.</p>
+    <p class="mini"><a href="../cathedral.html">⟵ Back to the Cathedral</a></p>
+  </header>
 
-  document.querySelector('#results').innerHTML = out.join('');
-})();
-</script>
+  <main class="wrap">
+    <section class="note" role="note" aria-label="How to use Core">
+      <strong>How to use:</strong> run the Health Check first. If anything is missing or mis-pathed,
+      fix those files, then return here. Core keeps the repo consistent across iPad, desktop, and deploys.
+    </section>
+
+    <!-- CORE (META) -->
+    <h2 class="section-title">Core (Meta)</h2>
+    <section class="grid" aria-label="Core meta">
+      <article class="card">
+        <h3>Health Check</h3>
+        <p>Verify JSON presence, page routes, and engines.</p>
+        <p><a href="./health-check.html">Open Health Check →</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Bridge Dossier</h3>
+        <p>Build notes for engines and data flow.</p>
+        <p><a href="../docs/bridge_dossier.md">Open <code>bridge_dossier.md</code> →</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Bridge Code</h3>
+        <p>Implementation crib sheet.</p>
+        <p><a href="../docs/bridge_code.md">Open <code>bridge_code.md</code> →</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Front Door</h3>
+        <p>Visitor entrance.</p>
+        <p><a href="../index.html">Open Frontispiece →</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Cathedral (Nave)</h3>
+        <p>The living hub -- rooms, plaques, tones.</p>
+        <p><a href="../cathedral.html">Enter the Cathedral →</a></p>
+      </article>
+    </section>
+
+    <!-- ENGINES & LABS (kept outside core/) -->
+    <h2 class="section-title">Engines & Labs</h2>
+    <section class="grid" aria-label="Engines and labs">
+      <article class="card">
+        <h3>Angelic Ladder (72)</h3>
+        <p>Interactive: tone + stylepack + plaque + cymatics.</p>
+        <p><a href="../angels72.html">Open Angels Ladder →</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Helix Totem</h3>
+        <p>Jacob’s Ladder as rotating pillar (CSS 3D + audio).</p>
+        <p><a href="../chapels/helix-totem.html">Open Helix Totem →</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Crystal Grid</h3>
+        <p>Reiki/Platonic lattice -- tones and color harmonics.</p>
+        <p><a href="../chapels/crystal-grid.html">Open Crystal Grid →</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Musical Cubes</h3>
+        <p>ND-gentle tone lab; museum charter notes.</p>
+        <p><a href="../chapels/musical-cubes.html">Open Musical Cubes →</a></p>
+      </article>
+    </section>
+
+    <!-- CHAPELS QUICK LINKS -->
+    <h2 class="section-title">Chapels</h2>
+    <section class="grid" aria-label="Chapels">
+      <article class="card">
+        <h3>Apprentice Pillar</h3>
+        <p>Prima Materia -- helix vine schematic.</p>
+        <p><a href="../chapels/apprentice-pillar.html">Open →</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Crypt</h3>
+        <p>Descent -- Rosicrucian vault hush (417 Hz).</p>
+        <p><a href="../chapels/crypt.html">Open →</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Lady Chapel</h3>
+        <p>Marian/Venus sanctuary (639 Hz) -- illumination.</p>
+        <p><a href="../chapels/lady-chapel.html">Open →</a></p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    ❦ Core keeps the temple healthy ❦ -- 93 93/93
+  </footer>
 </body>
 </html>
