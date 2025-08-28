@@ -183,6 +183,12 @@
   };
 })();
 </script>
+
+<div class="overlay-vitrail" id="overlay" aria-hidden="true"></div>
+<script type="module">
+  import { mountOverlay } from "../assets/js/effects/overlay-loader.js";
+  mountOverlay('#overlay', 'mandala-rose'); // or mandala-spiral / mandala-vesica / mandala-altarpiece
+</script>
   
 </body>
 </html>
