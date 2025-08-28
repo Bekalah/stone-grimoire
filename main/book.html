@@ -1,10 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-codex="144:99" data-realm="book" data-app="stone-grimoire">
 <head>
   <meta charset="utf-8" />
   <title>Circuitum99 -- The Cathedral of Circuits (Book)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="Landing page for the Circuitum99 book: a living grimoire and manuscript lane blending visionary art, trauma-informed practice, hermetic correspondences, and angel-tech." />
+
+  <!-- Guard (prevents double-inits across realms). Safe to omit if unused. -->
+  <script src="../assets/js/c144.guard.js" defer></script>
 
   <!-- Reuse site styles already present in your repo -->
   <link rel="stylesheet" href="../assets/css/palette.css" />
@@ -16,13 +19,14 @@
   <script src="../assets/js/planetary-light.js" defer></script>
 
   <style>
-    /* Local enhancements (non-invasive) */
+    /* Local enhancements (scoped + non-invasive) */
     :root {
       --gold: #c9a227;
       --violet: #5f3a83;
       --lapis: #2b5a9e;
       --ink: #1b1b1b;
     }
+    .c144-app.mystic { color: var(--ink) }
     .subtle { opacity:.85 }
     .grid {
       display:grid; gap:1.25rem;
@@ -58,14 +62,21 @@
     .hr { height:1px; background:linear-gradient(90deg, transparent, rgba(0,0,0,.15), transparent); margin:1.25rem 0 }
     .pill { border:1px solid rgba(0,0,0,.12); border-radius:999px; padding:.35rem .6rem; font-size:.78rem; margin:.15rem .25rem .15rem 0 }
     .flex { display:flex; flex-wrap:wrap; gap:.5rem }
+    /* Scope helpers to avoid bleed */
+    .c144-wrap { max-width: 1040px; margin: 0 auto; padding: 0 14px; }
+    header .navline { display:flex; gap:1rem; justify-content:space-between; align-items:center; padding:10px 0 }
+    header .navline a { color: var(--lapis); text-decoration: none; }
+    header .navline a:hover { text-decoration: underline; }
   </style>
 </head>
-<body class="mystic" data-theme="tiphereth">
-  <header>
+<body class="c144-app mystic" data-theme="tiphereth">
+  <header class="c144-wrap" role="banner">
     <div class="navline">
       <div><a href="../cathedral.html" aria-label="Back to Cathedral">⟵ Back to Cathedral</a></div>
-      <div><a href="./thelemic_alignment_brief.html">Thelemic Brief</a></div>
-      <div><a href="./05_ateliers/manifesto.html">Ateliers Manifesto</a></div>
+      <nav aria-label="Aux links">
+        <a href="./thelemic_alignment_brief.html">Thelemic Brief</a>
+        <a href="./05_ateliers/manifesto.html">Ateliers Manifesto</a>
+      </nav>
     </div>
 
     <h1>Circuitum99 -- <span style="font-variant:small-caps;letter-spacing:.03em">The Cathedral of Circuits</span></h1>
@@ -79,7 +90,7 @@
     </div>
   </header>
 
-  <main class="wrap">
+  <main class="c144-wrap" id="main">
     <article class="folio" aria-label="Book Overview">
 
       <!-- QUICK START -->
@@ -128,7 +139,7 @@
         <div class="grid">
           <div class="card">
             <h3>Cathedral, not funnel</h3>
-            <p>A humane architecture for a survivor-artist. The book is a **sanctum**: museum-grade art ethos, neurodivergent pacing, consent-based vision.</p>
+            <p>A humane architecture for a survivor-artist. The book is a <strong>sanctum</strong>: museum-grade art ethos, neurodivergent pacing, consent-based vision.</p>
             <div class="flex">
               <span class="pill">Reciprocity</span><span class="pill">Consent</span><span class="pill">Beauty as Medicine</span>
             </div>
@@ -142,7 +153,7 @@
           </div>
           <div class="card">
             <h3>Living Grimoire</h3>
-            <p>No black-box rituals here. We focus on **symbol grammar, archetypes, memory palaces, and narrative healing**--portable, ethical, and creative.</p>
+            <p>No black-box rituals here. We focus on <strong>symbol grammar, archetypes, memory palaces, and narrative healing</strong>--portable, ethical, and creative.</p>
             <div class="flex">
               <span class="pill">Symbol Grammar</span><span class="pill">Archetypes</span><span class="pill">Memory Notae</span>
             </div>
@@ -256,15 +267,13 @@
     </article>
   </main>
 
-  <footer>
-    <div class="wrap">
-      <p class="muted">93 93/93 -- Stone Grimoire · Cathedral of Circuits</p>
-      <p class="small">"The book is a cathedral; every page is a stained glass window. When the reader looks through, they see themselves lit in color."</p>
-    </div>
+  <footer class="c144-wrap">
+    <p class="muted">93 93/93 -- Stone Grimoire · Cathedral of Circuits</p>
+    <p class="small">"The book is a cathedral; every page is a stained glass window. When the reader looks through, they see themselves lit in color."</p>
   </footer>
 
   <noscript>
-    <div class="wrap"><p>This page uses light scripting for theme overlays. All content remains readable without JavaScript.</p></div>
+    <div class="c144-wrap"><p>This page uses light scripting for theme overlays. All content remains readable without JavaScript.</p></div>
   </noscript>
 </body>
 </html>
