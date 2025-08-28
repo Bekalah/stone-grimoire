@@ -8,7 +8,7 @@ I experienced firsthand the lack of environments that honor complexity.
 Rather than flattening it, I built a sanctuary: a digital cathedral that is both  
 **museum-grade art** and **an engine of healing exploration**.
 
----
+—
 
 ## ✦ Vision
 
@@ -21,18 +21,23 @@ The system is **portable** (JSON + modular JS) and designed to be
 adopted across exhibitions, ateliers, or collaborative research.  
 It is both **a digital archive** and **a creative engine**.
 
----
+—
 
 ## ✦ Core Modules
 
-- **Style Wardrobe** (`stylepacks.json`) — museum skins for every element.  
-- **Cathedral Engine** (`cathedral-engine.js`) — routes rooms, applies tone & overlays.  
-- **Plaque System** (`room-plaque.js`) — curator cards (glyphs, tones, swatches, sponsor metadata).  
-- **72 Angelic Ladder** (`angels72.json`) — full Shem ha-Mephorash mapping.  
-- **Alchemy Engine** (`alchemy-engine.js`) — fusion lab (7 operations, tone/color/style blending).  
-- **Temple Realms** — immersive spaces inspired by Hilma af Klint & The Five.  
+- **Style Wardrobe** → [`assets/data/stylepacks.json`](assets/data/stylepacks.json)  
+  Museum skins for every element.  
+- **Cathedral Engine** → [`assets/js/core/cathedral-engine.js`](assets/js/core/cathedral-engine.js)  
+  Routes rooms, applies tone & overlays.  
+- **Plaque System** → [`assets/js/components/room-plaque.js`](assets/js/components/room-plaque.js)  
+  Curator cards (glyphs, tones, swatches, sponsor metadata).  
+- **72 Angelic Ladder** → [`assets/data/angels72.json`](assets/data/angels72.json)  
+  Full Shem ha-Mephorash mapping.  
+- **Alchemy Engine** → [`assets/js/engines/alchemy-engine.js`](assets/js/engines/alchemy-engine.js)  
+  Fusion lab (7 operations, tone/color/style blending).  
+- **Temple Realms** → Immersive spaces inspired by Hilma af Klint & *The Five*.  
 
----
+—
 
 ## ✦ Standards
 
@@ -41,7 +46,17 @@ It is both **a digital archive** and **a creative engine**.
 - **Accessibility** — ND-safe sound, no strobe, ARIA roles/labels.  
 - **Sponsorship Ready** — plaques include credits, patron metadata, portability.  
 
----
+See the full [Standards Charter](standards/README.md).
+
+—
+
+## ✦ Updates & Logs
+
+- [Latest Update Summary](README_UPDATE.md) — progress, modules built, next expansions.  
+- [Visionary Pillar Update](updates/pillar-update.html) — Jacob’s Ladder / Apprentice Pillar prototype.  
+- [All Updates →](updates/)  
+
+—
 
 ## ✦ Call to Action
 
@@ -50,13 +65,13 @@ It is **a 21st-century grimoire** — a living architecture of meaning, memory, 
 
 ✨ Sponsors & collaborators welcome.  
 
----
+—
 
 ### 🔗 Links
 - [Codex 144:99 — Live Project (Bekalah page)](your-link-here)  
 - [Stone Grimoire Repo](your-github-repo-link-here)  
 
----
+—
 
 ### Hashtags
 `#CathedralOfCircuits #Codex14499 #FusionistArt #VisionaryArt #ArtAsHealing #Neurodivergence #EsotericDesign #MuseumQuality #DigitalGrimoire`
