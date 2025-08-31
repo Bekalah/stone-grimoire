@@ -1,27 +1,77 @@
 {
-  "_provenance": {
-    "license": "CC-BY 4.0",
-    "version": "1.2.2",
-    "updated": "2025-08-28",
-    "curator": "bekalah",
-    "notes": "Canonical rooms live in chapels/. Ateliers are in main/05_ateliers/."
-  },
-  "stylepacks_ref": "assets/data/stylepacks.json",
-  "rooms": [
-    { "id":"door", "title":"Frontispiece (Door)", "route":"index.html", "element":"Aether", "toneHz":528, "geometry":"frontis-parchment", "stylepack":"hilma_spiral", "realm":"Cathedral" },
-    { "id":"nave", "title":"Cathedral Nave", "route":"cathedral.html", "element":"Sun", "toneHz":528, "geometry":"rose-grid", "stylepack":"angelic_chorus", "realm":"Cathedral" },
-
-    { "id":"apprentice-pillar", "title":"Apprentice Pillar -- Prima Materia", "route":"chapels/apprentice-pillar.html", "element":"Earth", "toneHz":396, "geometry":"helix-vine", "stylepack":"rosslyn_gothic", "realm":"Chapels" },
-    { "id":"lady-chapel", "title":"Lady Chapel -- Shekhinah", "route":"chapels/lady-chapel.html", "element":"Water", "toneHz":639, "geometry":"vesica-rose", "stylepack":"rosae_illumination", "realm":"Chapels" },
-    { "id":"crypt", "title":"Crypt -- Undercroft", "route":"chapels/crypt.html", "element":"Saturn", "toneHz":417, "geometry":"vault", "stylepack":"rosicrucian_black", "realm":"Chapels" },
-
-    { "id":"musical-cubes", "title":"Musical Cubes Lab", "route":"chapels/musical-cubes.html", "element":"Air", "toneHz":741, "geometry":"cube-grid", "stylepack":"angelic_chorus", "realm":"Labs" },
-    { "id":"cubes-visual-lab", "title":"Cubes Visual Lab", "route":"chapels/cubes-visual-lab.html", "element":"Mercury", "toneHz":852, "geometry":"shader-field", "stylepack":"enochian_astral", "realm":"Labs" },
-    { "id":"angel-lab", "title":"Angel Lab (Grid)", "route":"chapels/angel-lab.html", "element":"Fire", "toneHz":963, "geometry":"ladder-grid", "stylepack":"alchemical_bloom", "realm":"Labs" },
-    { "id":"helix-totem", "title":"Helix Totem -- Jacob's Ladder", "route":"chapels/helix-totem.html", "element":"Spirit", "toneHz":528, "geometry":"double-helix", "stylepack":"angelic_chorus", "realm":"Labs" },
-    { "id":"shem-ladder", "title":"Shem Ladder -- 72", "route":"chapels/shem-ladder.html", "element":"Zodiac", "toneHz":528, "geometry":"ladder", "stylepack":"angelic_chorus", "realm":"Labs" },
-
-    { "id":"thelemic-brief", "title":"Thelemic Alignment Brief", "route":"main/Thelemic-Alignment-Brief.html", "element":"Air", "toneHz":528, "geometry":"frontis-parchment", "stylepack":"rosslyn_gothic", "realm":"Temple" },
-    { "id":"atelier-manifesto", "title":"Ateliers Manifesto", "route":"main/05_ateliers/manifesto.html", "element":"Water", "toneHz":639, "geometry":"rose-window", "stylepack":"rosae_illumination", "realm":"Temple" }
-  ]
+  "id": "spiral-crypt-metatron",
+  "title": "Spiral Crypt of Metatron",
+  "route": "chapels/spiral-crypt-metatron.html",
+  "stylepack": "rosicrucian_black",
+  "realm": "Chapels",
+  "pillar": 3,
+  "vertebra": 11,
+  "gate": 33,
+  "dome": 99
+},
+{
+  "id": "vesica-oracle-pool",
+  "title": "Vesica Oracle Pool",
+  "route": "chapels/vesica-oracle-pool.html",
+  "stylepack": "rosae_illumination",
+  "realm": "Chapels",
+  "pillar": 7,
+  "vertebra": 22,
+  "gate": 44,
+  "dome": 72
+},
+{
+  "id": "chiasm-gate",
+  "title": "Chiasm Gate",
+  "route": "chapels/chiasm-gate.html",
+  "stylepack": "enochian_astral",
+  "realm": "Chapels",
+  "pillar": 9,
+  "vertebra": 13,
+  "gate": 27,
+  "dome": 81
+},
+{
+  "id": "lattice-144-lights",
+  "title": "Lattice of 144 Lights",
+  "route": "chapels/lattice-144-lights.html",
+  "stylepack": "angelic_chorus",
+  "realm": "Chapels",
+  "pillar": 11,
+  "vertebra": 33,
+  "gate": 99,
+  "dome": 144
+},
+{
+  "id": "obsidian-womb",
+  "title": "Obsidian Womb",
+  "route": "chapels/obsidian-womb.html",
+  "stylepack": "rosslyn_gothic",
+  "realm": "Chapels",
+  "pillar": 10,
+  "vertebra": 1,
+  "gate": 9,
+  "dome": 36
+},
+{
+  "id": "lantern-archive",
+  "title": "Lantern Archive",
+  "route": "chapels/lantern-archive.html",
+  "stylepack": "alchemical_bloom",
+  "realm": "Chapels",
+  "pillar": 5,
+  "vertebra": 17,
+  "gate": 56,
+  "dome": 108
+},
+{
+  "id": "choral-forge",
+  "title": "Choral Forge",
+  "route": "chapels/choral-forge.html",
+  "stylepack": "angelic_chorus",
+  "realm": "Chapels",
+  "pillar": 6,
+  "vertebra": 21,
+  "gate": 63,
+  "dome": 111
 }
