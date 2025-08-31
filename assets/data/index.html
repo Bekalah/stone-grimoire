@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en" data-codex="144:99" data-realm="chapels">
+<head>
+  <meta charset="utf-8" />
+  <title>Chapels -- Traveler Index · Codex 144:99</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Traveler index for chapels in the Cathedral of Circuits. ND-safe, no autoplay." />
+
+  <!-- Your existing stack -->
+  <link rel="stylesheet" href="../assets/css/palette.css" />
+  <link rel="stylesheet" href="../assets/css/light.css" />
+  <script src="../assets/js/theme.js" defer></script>
+  <script src="../assets/js/planetary-hours.js" defer></script>
+  <script src="../assets/js/share-export.js" defer></script>
+
+  <style>
+    /* ND-safe: no motion, no flashing. */
+    :root { --card: #fff; --line: rgba(0,0,0,.12); }
+    .wrap{max-width:1100px;margin:0 auto;padding:14px 14px 28px}
+    .meta{opacity:.85;font-size:.95rem}
+    .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:.5rem}
+    .row{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+    .btn{appearance:none;border:1px solid var(--line);border-radius:8px;padding:.4rem .6rem;background:#fafafa}
+    .badge{display:inline-block;padding:.2rem .5rem;border:1px solid var(--line);border-radius:.4rem;font-size:.85rem}
+    .badge.got{background:#e7ffe7;border-color:#9cd49c}
+    .soft{opacity:.9}
+    .intent{font-style:italic;opacity:.9}
+    .mini{font-size:.85rem;opacity:.8}
+    .tags{display:flex;gap:.35rem;flex-wrap:wrap}
+    .tag{border:1px solid var(--line);padding:.15rem .4rem;border-radius:.4rem;font-size:.8rem}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1>Chapels -- Traveler Index</h1>
+      <p class="meta">Browse the living rooms of the Cathedral. Planetary hour coloring is gentle and ND-safe.</p>
+    </header>
+
+    <section id="chapels-grid" class="grid" aria-live="polite">Loading…</section>
+  </main>
+
+  <script>
+  // ND-safe stamps
+  const LS_KEY = 'c99.stamps';
+  const getStamps = () => { try { return JSON.parse(localStorage.getItem(LS_KEY)) || {}; } catch { return {}; } };
+  const setStamp  = (slug) => { const s = getStamps(); s[slug] = true; localStorage.setItem(LS_KEY, JSON.stringify(s)); };
+
+  async function j(url){ const r = await fetch(url, {cache:'no-store'}); if(!r.ok) throw new Error(url); return r.json(); }
+
+  function slugFromRoute(route, id){
+    if (id) return id;
+    if (!route) return '';
+    return route.replace(/^chapels\//,'').replace(/\.html$/,'');
+  }
+
+  async function loadPlaque(slug){
+    try { return await j(`../assets/data/plaques/${slug}.json`); }
+    catch { return null; }
+  }
+
+  async function build(){
+    const grid = document.getElementById('chapels-grid');
+    let structure; try { structure = await j('../assets/data/structure.json'); } catch(e){ grid.textContent='Missing assets/data/structure.json'; return; }
+    let stamps;    try { stamps    = await j('../assets/data/stamps.json'); } catch(e){ stamps = {"chapels": []}; }
+
+    const stampMap = Object.fromEntries((stamps.chapels||[]).map(c => [c.slug, c.label]));
+    const rooms = (structure.rooms||[]).filter(r => (r.realm||'').toLowerCase()==='chapels');
+
+    // Load plaques in parallel (best effort)
+    const withPlaques = await Promise.all(rooms.map(async r => {
+      const slug = slugFromRoute(r.route, r.id);
+      const plaque = await loadPlaque(slug);
+      return { ...r, slug, plaque };
+    }));
+
+    const state = getStamps();
+    grid.innerHTML = withPlaques.map(r => {
+      const got = state[r.slug] ? 'got' : '';
+      const intent = r.plaque?.intention ? `<div class="intent">${r.plaque.intention}</div>` : '';
+      const tone = r.plaque?.tone ? `<div class="mini soft">Tone: ${r.plaque.tone.hz} Hz · ${r.plaque.tone.note}</div>` : '';
+      const numerics = `
+        <div class="mini soft">
+          Pillar ${r.pillar ?? '--'} · V${r.vertebra ?? '--'} · Gate ${r.gate ?? '--'} · Dome ${r.dome ?? '--'}
+        </div>`;
+      return `
+        <article class="card" data-slug="${r.slug}">
+          <h2>${r.title || r.slug}</h2>
+          ${intent}
+          ${tone}
+          ${numerics}
+          <div class="row">
+            <a class="btn" href="../${r.route}">Enter</a>
+            <button class="btn" data-action="stamp">${got ? 'Stamped' : 'Stamp'}</button>
+            <span class="badge ${got?'got':''}" data-badge>${got ? 'Visited' : 'New'}</span>
+            <button class="btn" data-action="share" data-url="${location.origin || ''}/chapels/${r.slug}.html">Share</button>
+          </div>
+        </article>`;
+    }).join('');
+
+    grid.addEventListener('click', (ev) => {
+      const b = ev.target.closest('button.btn'); if (!b) return;
+      const card = ev.target.closest('[data-slug]'); const slug = card?.dataset.slug; if (!slug) return;
+
+      if (b.dataset.action === 'stamp'){
+        setStamp(slug);
+        b.textContent = 'Stamped';
+        const badge = card.querySelector('[data-badge]');
+        if (badge){ badge.textContent = 'Visited'; badge.classList.add('got'); }
+      }
+
+      if (b.dataset.action === 'share'){
+        const url = b.dataset.url || location.href;
+        if (navigator.share){ navigator.share({title:'Circuitum 99 -- Chapel', url}).catch(()=>{});
+        } else {
+          navigator.clipboard?.writeText(url).catch(()=>{});
+          b.textContent = 'Link Copied';
+          setTimeout(()=> b.textContent = 'Share', 1200);
+        }
+      }
+    });
+
+    // If your planetary-hours engine emits events/classes, it will tint gently here.
+  }
+
+  document.addEventListener('DOMContentLoaded', build);
+  </script>
+</body>
+</html>
