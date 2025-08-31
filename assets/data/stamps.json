@@ -1,0 +1,12 @@
+{
+  "_schema": "c99.stamps.v1",
+  "chapels": [
+    { "slug": "spiral-crypt-metatron", "label": "Spiral Crypt of Metatron" },
+    { "slug": "vesica-oracle-pool", "label": "Vesica Oracle Pool" },
+    { "slug": "chiasm-gate", "label": "Chiasm Gate" },
+    { "slug": "lattice-144-lights", "label": "Lattice of 144 Lights" },
+    { "slug": "obsidian-womb", "label": "Obsidian Womb" },
+    { "slug": "lantern-archive", "label": "Lantern Archive" },
+    { "slug": "choral-forge", "label": "Choral Forge" }
+  ]
+}
