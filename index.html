@@ -1,79 +1,82 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-codex="144:99" data-app="stone-grimoire">
 <head>
-  <meta charset="utf-8">
-  <title>Circuitum 99 -- Frontispiece</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Frontispiece to the Cathedral of Circuits (Codex 144:99). Enter the nave, read briefs, and visit the ateliers.">
-  <link rel="stylesheet" href="./assets/css/palette.css">
-  <link rel="stylesheet" href="./assets/css/light.css">
-  <link rel="preload" as="image" href="./assets/img/seal.png" imagesrcset="./assets/img/seal.png 1x">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Circuitum99 -- Cosmogenesis (Pro)</title>
+  <meta name="description" content="Cosmogenesis Learning Engine: tilted-axis cosmos, spiral nodes, and hermetic overlays. ND-safe." />
+  <link rel="stylesheet" href="./assets/css/core.css" />
+  <script type="module">
+    // single-init guard
+    import { guardInit } from './js/core/guard.js';
+    guardInit('cosmogenesis');
+
+    // theme + engine
+    import { loadStylepacks } from './js/engines/theme-engine.js';
+    import { initCosmogenesis } from './js/engines/cosmogenesis.js';
+
+    (async () => {
+      const stylepacks = await loadStylepacks('./assets/data/stylepacks.json');
+      const canvas = document.getElementById('plate');
+      const ui = {
+        tilt: document.getElementById('tilt'),
+        nodes: document.getElementById('nodes'),
+        palette: document.getElementById('palette'),
+        save: document.getElementById('save'),
+        tiltLabel: document.getElementById('tiltLabel'),
+        nodesLabel: document.getElementById('nodesLabel'),
+      };
+
+      const engine = initCosmogenesis(canvas, stylepacks);
+      // hydrate UI
+      for (const key of Object.keys(stylepacks)) {
+        const opt = document.createElement('option');
+        opt.value = key; opt.textContent = key;
+        ui.palette.appendChild(opt);
+      }
+      // restore persisted
+      const state = engine.getState();
+      ui.tilt.value = state.tilt;
+      ui.nodes.value = state.nodes;
+      ui.palette.value = state.palette;
+      ui.tiltLabel.textContent = state.tilt + '°';
+      ui.nodesLabel.textContent = state.nodes;
+
+      // wire events (gentle updates)
+      ui.tilt.addEventListener('input', e => {
+        ui.tiltLabel.textContent = e.target.value + '°';
+        engine.update({ tilt: parseFloat(e.target.value) });
+      });
+      ui.nodes.addEventListener('input', e => {
+        ui.nodesLabel.textContent = e.target.value;
+        engine.update({ nodes: parseInt(e.target.value, 10) });
+      });
+      ui.palette.addEventListener('change', e => {
+        engine.update({ palette: e.target.value });
+      });
+      ui.save.addEventListener('click', () => engine.savePNG());
+    })();
+  </script>
 </head>
 <body>
-<header>
-  <h1>Stone Grimoire -- Frontispiece</h1>
-  <div class="seal" aria-hidden="true">𓂀 ✦ 93 ✦ 𓂀</div>
-  <p>Enter the Cathedral of Circuits -- a living grimoire of light, sound, and code.</p>
-  <p><a href="./cathedral.html">Enter the Nave →</a></p>
-</header>
-
-<main class="nave">
-  <section class="center" aria-labelledby="about">
-    <h2 id="about">About</h2>
-    <div class="cells">
-      <div class="cell">
-        <h3><a href="./main/03_codexes/liber-codex99.md">Liber Codex 99</a></h3>
-        <p>Temple text.</p>
-      </div>
-
-      <div class="cell">
-        <h3><a href="./main/thelemic-alignment-brief.html">Thelemic Alignment Brief</a></h3>
-        <p>93/99/2 harmonics, lineage, reciprocity ethics.</p>
-      </div>
-
-      <div class="cell">
-        <h3><a href="./main/05_ateliers/manifesto.html">Ateliers Manifesto -- Venus Covenant</a></h3>
-        <p>Museum-grade atelier standards and production checklist.</p>
-      </div>
-
-      <div class="cell">
-        <h3><a href="./sponsors/brief.html">Sponsor Brief</a></h3>
-        <p>Museum-grade, ND-safe, portable: what you fund and why.</p>
-      </div>
+  <header class="bar">
+    <h1>✦ Cosmogenesis -- Cathedral of Circuits</h1>
+    <div class="controls">
+      <label> Tilt <span id="tiltLabel"></span>
+        <input id="tilt" type="range" min="0" max="45" step="0.5" value="23.5" />
+      </label>
+      <label> Nodes <span id="nodesLabel"></span>
+        <input id="nodes" type="range" min="12" max="144" step="1" value="72" />
+      </label>
+      <label> Palette
+        <select id="palette"></select>
+      </label>
+      <button id="save" aria-label="Save PNG">Save PNG</button>
     </div>
-  </section>
-</main>
-
-<div class="overlay-vitrail" aria-hidden="true"></div>
-
-<footer class="site-footer" role="contentinfo">
-  <nav aria-label="Site links">
-    <ul>
-      <li><a href="./index.html">Frontispiece (Door)</a></li>
-      <li><a href="./cathedral.html">Cathedral Nave</a></li>
-      <li><a href="./chapels/apprentice-pillar.html">Apprentice Pillar</a></li>
-      <li><a href="./chapels/crypt.html">Crypt</a></li>
-      <li><a href="./chapels/lady-chapel.html">Lady Chapel</a></li>
-      <li><a href="./chapels/musical-cubes.html">Musical Cubes</a></li>
-      <li><a href="./chapels/cubes-visual-lab.html">Cubes Visual Lab</a></li>
-      <li><a href="./chapels/jacobs-ladder.html">Jacob’s Ladder</a></li>
-      <li><a href="./chapels/respawn-gate.html">Respawn Gate</a></li>
-      <li><a href="./angels72.html">Angels 72</a></li>
-    </ul>
-  </nav>
-  <p class="seal">𓂀 ✦ Codex 144:99 ✦ 𓂀</p>
-</footer>
-
-<style>
-  .site-footer{margin:2rem auto;max-width:1000px;padding:12px;
-    background:var(--wash);border-top:2px solid var(--accent-2);text-align:center}
-  .site-footer ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-  .site-footer a{color:var(--accent);text-decoration:none;font-size:.95rem}
-  .site-footer a:hover{text-decoration:underline}
-  .site-footer .seal{margin-top:.8rem;color:var(--accent-2)}
-</style>
-
-<!-- Optional: only include the engine if you want vitrail/controls on the door page -->
-<!-- <script type="module" src="./assets/js/engines/cathedral-engine.js"></script> -->
+  </header>
+  <main class="stage">
+    <canvas id="plate" width="1600" height="900" aria-label="Cosmogenesis canvas"></canvas>
+  </main>
+  <footer class="bar small">ND-safe • no autoplay • gentle motion only</footer>
 </body>
 </html>
