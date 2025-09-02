@@ -1,0 +1,175 @@
+{
+  "meta": {
+    "project": "Circuitum99 × Stone Grimoire",
+    "updated": "2025-09-02T14:00:00Z",
+    "nd_safe": true,
+    "generator": "manual seed"
+  },
+  "tokens": {
+    "css": "/assets/css/perm-style.css",
+    "json": "/assets/tokens/perm-style.json",
+    "palette": {
+      "void": "#0B0B0B",
+      "ink": "#141414",
+      "bone": "#F8F5EF",
+      "indigo": "#280050",
+      "violet": "#460082",
+      "blue": "#0080FF",
+      "green": "#00FF80",
+      "amber": "#FFC800",
+      "light": "#FFFFFF",
+      "gold": "#C9A227"
+    }
+  },
+  "routes": {
+    "stone_grimoire": {
+      "base": "/",
+      "chapels": "/chapels/",
+      "assets": "/assets/",
+      "bridge": "/bridge/c99-bridge.json"
+    },
+    "cosmogenesis": {
+      "tokens": "/c99/tokens/perm-style.json",
+      "css": "/c99/css/perm-style.css",
+      "public": "/c99/",
+      "bridge": "/bridge/c99-bridge.json"
+    }
+  },
+  "rooms": [
+    {
+      "id": "crypt",
+      "title": "The Crypt",
+      "element": "earth",
+      "tone": 110,
+      "geometry": "vesica",
+      "stylepack": "Rosicrucian Black",
+      "assets": [
+        {
+          "name": "portal_crypt-a01.png",
+          "thumb": "/assets/art/thumbs/portal_crypt-a01-512.jpg",
+          "webp": "/assets/art/webp/portal_crypt-a01.webp",
+          "src": "/assets/art/processed/portal_crypt-a01.png",
+          "type": "png"
+        },
+        {
+          "name": "sigil_ann-abyss.svg",
+          "thumb": "",
+          "webp": "",
+          "src": "/assets/art/processed/sigil_ann-abyss.svg",
+          "type": "svg"
+        }
+      ]
+    },
+    {
+      "id": "nave",
+      "title": "The Nave",
+      "element": "air",
+      "tone": 222,
+      "geometry": "rose-window",
+      "stylepack": "Angelic Chorus",
+      "assets": [
+        {
+          "name": "portal_nave-a02.png",
+          "thumb": "/assets/art/thumbs/portal_nave-a02-512.jpg",
+          "webp": "/assets/art/webp/portal_nave-a02.webp",
+          "src": "/assets/art/processed/portal_nave-a02.png",
+          "type": "png"
+        }
+      ]
+    },
+    {
+      "id": "apprentice_pillar",
+      "title": "Apprentice Pillar",
+      "element": "water",
+      "tone": 333,
+      "geometry": "fibonacci",
+      "stylepack": "Hilma Spiral",
+      "assets": [
+        {
+          "name": "border_apprentice.svg",
+          "thumb": "",
+          "webp": "",
+          "src": "/assets/art/processed/border_apprentice.svg",
+          "type": "svg"
+        }
+      ]
+    },
+    {
+      "id": "respawn_gate",
+      "title": "Respawn Gate",
+      "element": "fire",
+      "tone": 432,
+      "geometry": "merkaba",
+      "stylepack": "Alchemical Bloom",
+      "assets": [
+        {
+          "name": "portal_respawn-a01.png",
+          "thumb": "/assets/art/thumbs/portal_respawn-a01-512.jpg",
+          "webp": "/assets/art/webp/portal_respawn-a01.webp",
+          "src": "/assets/art/processed/portal_respawn-a01.png",
+          "type": "png"
+        }
+      ]
+    }
+  ],
+  "angels": [
+    {
+      "id": "angel-01",
+      "name": "Vehuiah",
+      "virtue": "Initiation",
+      "seal": "/assets/art/processed/seal_gate-01.svg",
+      "gate": 1
+    },
+    {
+      "id": "angel-02",
+      "name": "Jeliel",
+      "virtue": "Union",
+      "seal": "/assets/art/processed/seal_gate-02.svg",
+      "gate": 2
+    },
+    {
+      "id": "angel-03",
+      "name": "Sitael",
+      "virtue": "Refuge",
+      "seal": "/assets/art/processed/seal_gate-03.svg",
+      "gate": 3
+    },
+    {
+      "id": "angel-04",
+      "name": "Elemiah",
+      "virtue": "Orientation",
+      "seal": "/assets/art/processed/seal_gate-04.svg",
+      "gate": 4
+    }
+  ],
+  "assets": [
+    {
+      "name": "portal_crypt-a01.png",
+      "src": "/assets/art/processed/portal_crypt-a01.png",
+      "thumb": "/assets/art/thumbs/portal_crypt-a01-512.jpg",
+      "webp": "/assets/art/webp/portal_crypt-a01.webp",
+      "type": "png"
+    },
+    {
+      "name": "sigil_ann-abyss.svg",
+      "src": "/assets/art/processed/sigil_ann-abyss.svg",
+      "thumb": "",
+      "webp": "",
+      "type": "svg"
+    },
+    {
+      "name": "portal_nave-a02.png",
+      "src": "/assets/art/processed/portal_nave-a02.png",
+      "thumb": "/assets/art/thumbs/portal_nave-a02-512.jpg",
+      "webp": "/assets/art/webp/portal_nave-a02.webp",
+      "type": "png"
+    },
+    {
+      "name": "portal_respawn-a01.png",
+      "src": "/assets/art/processed/portal_respawn-a01.png",
+      "thumb": "/assets/art/thumbs/portal_respawn-a01-512.jpg",
+      "webp": "/assets/art/webp/portal_respawn-a01.webp",
+      "type": "png"
+    }
+  ]
+}
