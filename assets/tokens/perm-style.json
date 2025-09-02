@@ -1,0 +1,57 @@
+{
+  "meta": {
+    "name": "Circuitum99 -- Perm Style",
+    "version": "1.0.0",
+    "source": [
+      "data/visionary.json",
+      "docs/style/palette.json",
+      "cosmogenesis/registry/datasets/palettes.core.json"
+    ],
+    "nd_safe": true,
+    "notes": "No autoplay, no strobe. High-end couture × ancient arcana."
+  },
+  "palette": {
+    "void": "#0B0B0B",
+    "ink": "#141414",
+    "bone": "#F8F5EF",
+
+    "indigo": "#280050",
+    "violet": "#460082",
+    "blue": "#0080FF",
+    "green": "#00FF80",
+    "amber": "#FFC800",
+    "light": "#FFFFFF",
+
+    "crimson": "#B7410E",
+    "gold": "#C9A227",
+    "obsidian": "#0B0B0B",
+    "rose_quartz": "#FFB6C1",
+    "teal_glow": "#00CED1",
+    "violet_alt": "#8A2BE2",
+
+    "gonzalez_palette": ["#0b0b0b", "#16121b", "#2a2140", "#5e4ba8", "#e6e6e6"]
+  },
+  "line": {
+    "hair": 1,
+    "primary": 2,
+    "pillar": 3
+  },
+  "typography": {
+    "display": "'EB Garamond','Junicode',serif",
+    "gothic": "'Cinzel',serif",
+    "ui": "'Inter',system-ui,sans-serif",
+    "scale": { "h1": 1.888, "h2": 1.555, "h3": 1.333, "body": 1.0, "small": 0.888 }
+  },
+  "geometry": {
+    "vesica_ratio": 1.732,
+    "spine_33": true,
+    "pillars_21": true,
+    "gates_99": true
+  },
+  "a11y": {
+    "min_contrast": 4.5,
+    "motion": "reduce",
+    "autoplay": false,
+    "strobe": false
+  }
+}
