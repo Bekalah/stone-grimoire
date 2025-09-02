@@ -1,0 +1,65 @@
+:root{
+  /* core surfaces */
+  --void:#0B0B0B; --ink:#141414; --bone:#F8F5EF;
+
+  /* visionary (from data/visionary.json) */
+  --indigo:#280050; --violet:#460082; --blue:#0080FF;
+  --green:#00FF80; --amber:#FFC800; --light:#FFFFFF;
+
+  /* secondary + docs/style/palette.json */
+  --crimson:#B7410E; --gold:#C9A227; --obsidian:#0B0B0B;
+  --rose-quartz:#FFB6C1; --teal-glow:#00CED1; --violet-alt:#8A2BE2;
+
+  /* Andrew Gonzalez obsidian scale */
+  --gonz-0:#0b0b0b; --gonz-1:#16121b; --gonz-2:#2a2140; --gonz-3:#5e4ba8; --gonz-4:#e6e6e6;
+
+  /* line weights */
+  --line-hair:1px; --line-primary:2px; --line-pillar:3px;
+
+  /* typography */
+  --font-display:"EB Garamond","Junicode",serif;
+  --font-gothic:"Cinzel",serif;
+  --font-ui:"Inter",system-ui,sans-serif;
+  --scale-h1:1.888rem; --scale-h2:1.555rem; --scale-h3:1.333rem;
+  --scale-body:1rem; --scale-small:.888rem;
+
+  /* a11y */
+  --min-contrast:4.5;
+}
+
+/* base */
+html{color-scheme:light dark}
+body{
+  margin:0; padding:0;
+  color:var(--bone);
+  background:
+    radial-gradient(1200px 700px at 50% 10%, var(--gonz-2) 0%, var(--gonz-1) 45%, var(--void) 100%);
+  font-family:var(--font-ui);
+  -webkit-font-smoothing:antialiased;
+}
+
+/* headings + ornament glow */
+h1,h2,h3{
+  font-family:var(--font-display);
+  letter-spacing:.01em; text-rendering:optimizeLegibility;
+}
+h1{font-size:var(--scale-h1)}
+h2{font-size:var(--scale-h2)}
+h3{font-size:var(--scale-h3)}
+
+/* sigil lines */
+.sigil{stroke:var(--violet); stroke-width:var(--line-primary); fill:none}
+.sigil--hair{stroke-width:var(--line-hair)}
+.sigil--pillar{stroke-width:var(--line-pillar)}
+
+/* portal frames */
+.portal{
+  border:var(--line-primary) solid var(--gold);
+  box-shadow:0 0 24px 4px rgba(110,0,255,.25);
+  background:linear-gradient(180deg, var(--gonz-2), transparent);
+}
+
+/* ND-safe motion defaults */
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important; transition:none !important}
+}
