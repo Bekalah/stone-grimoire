@@ -13,6 +13,15 @@
   <!-- House styles (keep your variables + light skin) -->
   <link rel="stylesheet" href="./assets/css/palette.css">
   <link rel="stylesheet" href="./assets/css/light.css">
+  <link rel="stylesheet" href="/assets/css/perm-style.css" />
+<script src="/bridge/c99-bridge.js" defer></script>
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    C99Bridge.ndSafe();
+    const tokens = await C99Bridge.loadTokens('/assets/tokens/perm-style.json');
+    C99Bridge.applyCSSVars(tokens);
+  });
+</script>
 
   <style>
     :root{
