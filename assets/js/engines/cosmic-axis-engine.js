@@ -14,7 +14,7 @@
  *   applyPlanet(), start(), stop(), dispose(), getSnapshot().
  *
  * USAGE (ESM):
- *   import * as CosmicAxis from "../assets/js/engines/cosmic-axis-engine.js";
+ *   import * as CosmicAxis from "/assets/js/engines/cosmic-axis-engine.js";
  *   const axis = CosmicAxis.mount("#stage", { tiltDeg: 23.5, nodes: 144, palette: myPalette });
  *   axis.update({ hexagram: 31, numerologyKey: 144 });
  *

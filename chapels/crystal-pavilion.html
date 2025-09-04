@@ -5,10 +5,10 @@
   <title>Crystal Pavilion -- Seed of Life Grid</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Interactive crystal grid: Platonic solids, solfeggio tones, cymatic blooms, and PNG export.">
-  <link rel="stylesheet" href="../assets/css/palette.css">
-  <link rel="stylesheet" href="../assets/css/light.css">
-  <link rel="stylesheet" href="../assets/css/ambient.css">
-  <link rel="stylesheet" href="../assets/css/rosslyn.css">
+  <link rel="stylesheet" href="/assets/css/palette.css">
+  <link rel="stylesheet" href="/assets/css/light.css">
+  <link rel="stylesheet" href="/assets/css/ambient.css">
+  <link rel="stylesheet" href="/assets/css/rosslyn.css">
   <style>
     body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Georgia,"Iowan Old Style",serif}
     header{max-width:1100px;margin:14px auto;background:var(--wash);border:1px solid var(--line);
@@ -63,8 +63,8 @@
 
 <!-- Engines -->
 <script type="module">
-  import { ensureAudio, setToneHz, stopTone, onToneChange, getAnalyser, setMuted } from "../assets/js/engines/ambient-engine.js";
-  import { mountCrystalGrid } from "../assets/js/effects/crystal-grid.js";
+  import { ensureAudio, setToneHz, stopTone, onToneChange, getAnalyser, setMuted } from "/assets/js/engines/ambient-engine.js";
+  import { mountCrystalGrid } from "/assets/js/effects/crystal-grid.js";
 
   // UI toggles (CSS helpers)
   const root = document.documentElement;
@@ -89,8 +89,8 @@
   // Mount grid painter + interaction
   const canvas = document.getElementById("grid");
   await mountCrystalGrid(canvas, {
-    crystalsUrl: "../assets/data/crystals.json",
-    gridsUrl: "../assets/data/grids.json",
+    crystalsUrl: "/assets/data/crystals.json",
+    gridsUrl: "/assets/data/grids.json",
     gridId: "seed_of_life_relationships",
     analyser: getAnalyser(),
     onSelect: (node) => setToneHz(node.toneHz) // broadcast selected frequency

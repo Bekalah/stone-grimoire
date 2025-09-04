@@ -31,8 +31,7 @@ async function loadJSON(candidates){
 // Try both common locations relative to pages at /, /main/, /chapels/
 const ANGEL_PATHS = [
   "assets/data/angels72.json",
-  "../assets/data/angels72.json",
-  "../../assets/data/angels72.json",
+  "/assets/data/angels72.json",
 ];
 
 // Optional imports are dynamic so this file never hard-crashes if modules are missing
@@ -40,7 +39,7 @@ async function tryImportAmbient(){
   const candidates = [
     "./ambient-engine.js",
     "../ambient-engine.js",
-    "../../assets/js/engines/ambient-engine.js",
+    "/assets/js/engines/ambient-engine.js",
     "../engines/ambient-engine.js"
   ];
   for (const p of candidates){
@@ -51,9 +50,9 @@ async function tryImportAmbient(){
 async function tryImportStyleEngine(){
   const candidates = [
     "../style-engine.js",
-    "../../assets/js/style-engine.js",
+    "/assets/js/style-engine.js",
     "../engines/style-engine.js",
-    "../../assets/js/engines/style-engine.js",
+    "/assets/js/engines/style-engine.js",
   ];
   for (const p of candidates){
     try{ return await import(p); } catch(_){}
