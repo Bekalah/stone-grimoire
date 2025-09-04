@@ -90,7 +90,7 @@ function hexA(hex, a){
   return "rgba(" + r + "," + g + "," + b + "," + a + ")";
 }
 
-// Event wiring: listen for your app’s custom events.
+// Event wiring: listen for your app's custom events.
 function onAngelActivate(e){ applyAngel(e.detail || {}); }
 function onSignSet(e){ applySign((e.detail && e.detail.sign) || "Sun"); }
 
