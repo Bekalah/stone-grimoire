@@ -1,0 +1,20 @@
+{
+  "visionary": {
+    "core": {
+      "indigo": "#280050",
+      "violet": "#460082",
+      "blue": "#0080FF",
+      "green": "#00FF80",
+      "amber": "#FFC800",
+      "light": "#FFFFFF"
+    },
+    "secondary": {
+      "crimson": "#B7410E",
+      "gold": "#FFD700",
+      "slate": "#2E2E2E",
+      "silver": "#C0C0C0",
+      "sky": "#87CEFA",
+      "shadow": "#4B0082"
+    }
+  }
+}
