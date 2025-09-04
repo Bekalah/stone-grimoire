@@ -1,14 +1,14 @@
 {
   "meta": {
     "name": "Circuitum99 -- Perm Style",
-    "version": "1.0.0",
+    "version": "3.7.0",
     "source": [
       "data/visionary.json",
       "docs/style/palette.json",
       "cosmogenesis/registry/datasets/palettes.core.json"
     ],
     "nd_safe": true,
-    "notes": "No autoplay, no strobe. High-end couture × ancient arcana."
+    "notes": "World-of-Enchantment baseline; Avalon fixed; Aeons flavor; Violet Flame ↔ Respawn Gate alias; Witch-as-the-Coven ward; Solfeggio × BioGeometry; Egregores, Consecration Angels, Pillars; True-fairy shimmer."
   },
   "palette": {
     "void": "#0B0B0B",
@@ -29,7 +29,41 @@
     "teal_glow": "#00CED1",
     "violet_alt": "#8A2BE2",
 
-    "gonzalez_palette": ["#0b0b0b", "#16121b", "#2a2140", "#5e4ba8", "#e6e6e6"]
+    "gonzalez_palette": ["#0b0b0b", "#16121b", "#2a2140", "#5e4ba8", "#e6e6e6"],
+
+    "obsidian_glass": "#1c1c1c",
+    "obsidian_sheen": "#2e2e2e",
+    "obsidian_rainbow": "#545455",
+    "shungite": "#252525",
+    "tourmaline": "#1b2e34",
+    "basalt": "#2d2d30",
+    "glint_silver": "#d9dfe4",
+    "lava_ember": "#ff4500",
+    "lava_core": "#b22222",
+    "raku_copper": "#b87333",
+    "raku_charcoal": "#333333",
+    "raku_violet": "#6a0dad",
+    "raku_azure": "#007fff",
+    "gold_leaf": "#d4af37",
+    "gold_leaf_warm": "#ffcc66",
+    "gold_leaf_cold": "#c0c080",
+    "nacre_pearl": "#f0ead6",
+    "moonstone": "#e0e4f3",
+    "moonstone_glow": "#cfd8dc",
+    "abalone_shell": "#7fffd4",
+    "avalon_mist": "#ccd6d9",
+    "avalon_night": "#1a1a2e",
+    "tor_stone": "#8e8e83",
+    "isle_reed": "#6b8e23",
+    "astral_dusk": "#4b0082",
+    "astral_dawn": "#ffefd5",
+    "starlight_silver": "#f8f8ff",
+    "starlight_gold": "#fff8dc",
+    "violet_core": "#8a2be2",
+    "violet_flare": "#bf00ff",
+    "violet_smoke": "#551a8b",
+    "violet_aura": "#c9a0dc",
+    "grail_gold": "#e4c580"
   },
   "line": {
     "hair": 1,
@@ -48,6 +82,81 @@
     "pillars_21": true,
     "gates_99": true
   },
+  "layers": {
+    "visionary": "visionary-grid",
+    "rakuPatina": "raku-patina",
+    "goldLeaf": "goldLeaf",
+    "pearl": "nacre",
+    "moonstone": "adularescence",
+    "abalone": "abalone-shell",
+    "gonzVelvet": "oracle-velvet",
+    "faeShimmer": "true-fairy",
+    "roseGate": "roseGate",
+    "violetFlame": "violetFlame",
+    "violetGate": "violetGate",
+    "respawnGate": "respawnGate",
+    "avalonGrove": "avalonGrove",
+    "inBetweenVeil": "inBetweenVeil",
+    "trueFairy": "trueFairy",
+    "protectionSigil": "protectionSigil"
+  },
+  "materials": {
+    "volcanic_obsidian": ["obsidian_glass","obsidian_sheen","obsidian_rainbow"],
+    "shungite": ["shungite","tourmaline","basalt","glint_silver"],
+    "raku_lineage": ["raku_copper","raku_charcoal","raku_violet","raku_azure"],
+    "gold_leaf": ["gold_leaf","gold_leaf_warm","gold_leaf_cold"],
+    "mother_of_pearl": ["nacre_pearl"],
+    "moonstone": ["moonstone","moonstone_glow"],
+    "abalone": ["abalone_shell"]
+  },
+  "effects": {
+    "stars": "twinkle",
+    "ember_eyes": true
+  },
+  "healing": {
+    "solfeggio": {
+      "396": "liberation from fear",
+      "417": "transmutation",
+      "528": "miracles",
+      "639": "relationships",
+      "741": "awaken intuition",
+      "852": "return to spirit",
+      "963": "oneness"
+    },
+    "biogeometry_angles": [27,36,45,63,81]
+  },
+  "avatars": {
+    "incarnate_self": "Incarnate Self",
+    "rebecca_respawn": {"name":"Rebecca Respawn","numerology":11},
+    "drag_persona": {"name":"Drag Persona","numerology":22},
+    "virelai_ezra_lux": {"name":"Virelai Ezra Lux","numerology":33,"note":"Lavender Quan Yin Reiki"}
+  },
+  "avalon": {
+    "current":"Priestess",
+    "service":"Grail",
+    "tor_isle_polarity":true,
+    "round_table_oath":true,
+    "veils":["Outer Isle","Inner Sanctuary","Lady's Veil"]
+  },
+  "between_realm": {
+    "name":"In-Between Astral Narthex",
+    "liminal":"veil eddies and star-motes"
+  },
+  "adventure_modes": {
+    "hermetic_alchemy":["nigredo","albedo","citrinitas","rubedo"],
+    "tree_of_life":{"sephiroth":10,"paths":22},
+    "theosophical_aeons":["Sat","Svabhavat","Manvantara","Pralaya","Rounds","Root-Races"]
+  },
+  "rituals": {
+    "violet_flame": {
+      "steps":["Invoke","Rotate","Transmute","Replace"],
+      "alias":"respawnGate",
+      "ray":"VI"
+    }
+  },
+  "angels": { "consecration": 72 },
+  "pillars": { "columns":["Severity","Mildness","Mercy"], "levels":7 },
+  "egregores": { "ray":"VI", "pillar":"middle" },
   "a11y": {
     "min_contrast": 4.5,
     "motion": "reduce",
