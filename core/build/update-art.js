@@ -117,7 +117,7 @@ async function main(){
   const wardAssets = assets.filter(a => /(hamsa|evil[-_]?eye|logo|ward)/.test(a.name));
 
   const manifest = {
-    meta:{ project:"Circuitum99 × Stone Grimoire", updated:new Date().toISOString(), nd_safe:true, generator:"update-art.js" },
+    meta:{ project:"circuitum99 × Stone Grimoire", updated:new Date().toISOString(), nd_safe:true, generator:"update-art.js" },
     tokens:{ css:"/assets/css/perm-style.css", json:"/assets/tokens/perm-style.json",
       palette:styleTokens.palette||{}, secondary:styleTokens.secondary||{}, layers:styleTokens.layers||{},
       adventure_modes:styleTokens.adventure_modes||{}, avalon:styleTokens.avalon||{}, between_realm:styleTokens.between_realm||{} },

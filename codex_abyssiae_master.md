@@ -64,7 +64,7 @@ These spreads embody *solve et coagula*, mirroring both alchemical stages and Ab
 - Tarot back design.  
 - Grimoire mandala.  
 - Reiki sigil.  
-- Repo seal for all three projects (Stone-Grimoire, Cosmogenesis, Circuitum99).  
+- Repo seal for all three projects (Stone-Grimoire, Cosmogenesis, circuitum99).  
 
 ---
 
@@ -89,6 +89,6 @@ This document is sealed as:
 for integration into:  
 - `/Stone-Grimoire/`  
 - `/Cosmogenesis-Learning-Engine/`  
-- `/Circuitum99-Alpha-Omega/`  
+- `/circuitum99-Alpha-Omega/`  
 
 ---
