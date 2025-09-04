@@ -845,3 +845,9 @@
   },
   "assets": []
 }
+  ],
+  "seal": {
+    "monad": "/stone_grimoire/plans/seal/codex_abyssiae_monad_seal.svg",
+    "version": "1.0.0"
+  }
+}
