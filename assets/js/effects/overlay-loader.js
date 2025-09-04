@@ -2,7 +2,7 @@
 export async function mountOverlay(containerSelector, symbolId = 'mandala-spiral') {
   const container = document.querySelector(containerSelector);
   if (!container) return;
-  const url = '../assets/overlays/spiral-mandalas.svg';
+  const url = '/assets/overlays/spiral-mandalas.svg';
   try {
     const res = await fetch(url);
     if (!res.ok) throw new Error(res.statusText);
