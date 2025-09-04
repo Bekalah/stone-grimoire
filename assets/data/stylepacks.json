@@ -7,10 +7,10 @@
       "Hilma af Klint Temple Series (public domain)",
       "Visionary painter lineages (Fuchs/Venosa/Klarwein -- stylistic influence only)"
     ],
-    "version": "1.2.1",
+    "version": "1.3.0",
     "updated": "2025-08-24",
     "curator": "bekalah",
-    "notes": "ND-safe palettes; no strobe; high-contrast options supported. Added packs referenced by angels72.json."
+    "notes": "ND-safe palettes; no strobe; high-contrast options supported. Added packs referenced by angels72.json and Rosslyn cube overlays."
   },
   "packs": [
     {
@@ -136,6 +136,25 @@
       "motifs": ["plume-serpent", "feather-sun", "obsidian-ray"],
       "textures": ["jade-polish", "obsidian-sheen"],
       "description": "Plumed radiance and jade/obsidian contrast; solar‑serpentine motion."
+    },
+    {
+      "id": "rosslyn_cubes",
+      "title": "Rosslyn Cubes",
+      "palette": ["#f2f2f2", "#bfbfbf", "#808080", "#404040"],
+      "motifs": ["cymatic-cube", "stone-relief", "tracery"],
+      "textures": ["etched-stone", "light-shadow"],
+      "overlays": {
+        "layers": [
+          {
+            "id": "cube_tracery",
+            "src": "/assets/overlays/rosslyn/cube_tracery.png",
+            "blend": "overlay",
+            "opacity": 0.6,
+            "alt": "Rosslyn cube tracery"
+          }
+        ]
+      },
+      "description": "Rosslyn Chapel cube patterns etched over cymatics."
     }
   ]
 }

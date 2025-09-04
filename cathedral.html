@@ -11,8 +11,8 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- House styles (keep your variables + light skin) -->
-  <link rel="stylesheet" href="./assets/css/palette.css">
-  <link rel="stylesheet" href="./assets/css/light.css">
+  <link rel="stylesheet" href="/assets/css/palette.css">
+  <link rel="stylesheet" href="/assets/css/light.css">
   <link rel="stylesheet" href="/assets/css/perm-style.css" />
   <link rel="stylesheet" href="./assets/css/meta_realms.css">
   <link rel="stylesheet" href="./assets/css/cathedral_icon.css">
@@ -61,6 +61,8 @@
       <h1>The Living Cathedral</h1>
       <nav aria-label="Quick links">
         <a href="./index.html" style="color:var(--fg);opacity:.8">Frontispiece</a>
+        &nbsp;·&nbsp;
+        <a href="./chapels/cosmogenesis/index.html" style="color:var(--fg);opacity:.8">Cosmogenesis</a>
         &nbsp;·&nbsp;
         <a href="./chapels/helix-totem.html" style="color:var(--fg);opacity:.8">Helix Totem</a>
         &nbsp;·&nbsp;
@@ -124,20 +126,20 @@
   <!-- Main engines + effects (paths corrected to /assets/js/...) -->
   <script type="module">
     // Core audio + events
-    import { ensureAudio, onToneChange, setToneHz, setVolume } from "./assets/js/engines/ambient-engine.js";
+    import { ensureAudio, onToneChange, setToneHz, setVolume } from "/assets/js/engines/ambient-engine.js";
     // Cymatic halo (ND-safe)
-    import { mountCymaticsCanvas } from "./assets/js/engines/cymatic-engine.js";
+    import { mountCymaticsCanvas } from "/assets/js/engines/cymatic-engine.js";
     // Relief overlay (image responding to audio)
-    import { mountOverlayCanvas } from "./assets/js/effects/overlay-relief.js";
+    import { mountOverlayCanvas } from "/assets/js/effects/overlay-relief.js";
     // Style wardrobe helper
-    import { applyStylepack } from "./assets/js/effects/stylepack-apply.js";
+    import { applyStylepack } from "/assets/js/effects/stylepack-apply.js";
     // Export / share utils
-    import { exportCompositePNG, shareURL, recordCompositeWebM } from "./assets/js/utils/share-export.js";
+    import { exportCompositePNG, shareURL, recordCompositeWebM } from "/assets/js/utils/share-export.js";
 
     // Optional: fusion router (zodiac/decan, pillar, etc.) -- guard if file not present
     let fusion = null;
     try {
-      fusion = await import("./assets/js/engines/fusion-router.js");
+      fusion = await import("/assets/js/engines/fusion-router.js");
       if (fusion.ensureFusionMaps) await fusion.ensureFusionMaps();
     } catch (_) {
       // optional module not present -- safe to continue
@@ -146,7 +148,7 @@
     // Mount visuals
     const haloAPI   = await mountCymaticsCanvas("#cath-halo");
     const reliefAPI = await mountOverlayCanvas("#cath-relief", {
-      src: "assets/overlays/stone-angels.png",
+      src: "/assets/overlays/stone-angels.png",
       alpha: 0.26,
       useAudio: true
     });
@@ -172,7 +174,7 @@
       const val = Number(e.target.value);
       reliefAPI?.unmount?.();
       // remount with new alpha
-      mountOverlayCanvas("#cath-relief", { src:"assets/overlays/stone-angels.png", alpha: val, useAudio:true });
+      mountOverlayCanvas("#cath-relief", { src:"/assets/overlays/stone-angels.png", alpha: val, useAudio:true });
     }, { passive:true });
 
     // Resolve by data (optional)
@@ -275,9 +277,11 @@
   <!-- Hilma/rose overlay from SVG sprite (paths corrected) -->
   <div class="overlay-vitrail" id="overlay" aria-hidden="true"></div>
   <script type="module">
-    import { mountOverlay } from "./assets/js/effects/overlay-loader.js";
-    // IDs available in assets/overlays/spiral-mandalas.svg: mandala-rose / mandala-spiral / mandala-vesica / mandala-altarpiece
+    import { mountOverlay } from "/assets/js/effects/overlay-loader.js";
+    import { mountPlanetaryLight } from "/assets/js/effects/planetary-light.js";
+    // IDs available in /assets/overlays/spiral-mandalas.svg: mandala-rose / mandala-spiral / mandala-vesica / mandala-altarpiece
     mountOverlay('#overlay', 'mandala-rose');
+    mountPlanetaryLight('#overlay');
   </script>
 
   <!-- Fractal shader backdrop (GLSL syncs to tone) -->
@@ -285,8 +289,8 @@
     <canvas id="fractal"></canvas>
   </div>
   <script type="module">
-    import { mountFractalShader } from "./assets/js/engines/shader-engine.js";
-    import { onToneChange } from "./assets/js/engines/ambient-engine.js";
+    import { mountFractalShader } from "/assets/js/engines/shader-engine.js";
+    import { onToneChange } from "/assets/js/engines/ambient-engine.js";
     const update = await mountFractalShader(document.getElementById('fractal'), { kind:0, hue:210 });
     onToneChange(hz => {
       const hue  = 180 + (Number(hz)||0) % 180;          // simple mapping; refine later via correspondences
@@ -307,6 +311,7 @@
         <li><a href="./chapels/crystal-grid.html">Crystal Grid</a></li>
         <li><a href="./chapels/musical-cubes.html">Musical Cubes</a></li>
         <li><a href="./chapels/cubes-visual-lab.html">Cubes Visual Lab</a></li>
+        <li><a href="./chapels/cosmogenesis/index.html">Cosmogenesis</a></li>
         <li><a href="./chapels/helix-totem.html">Jacob’s Ladder</a></li>
         <li><a href="./chapels/shem-ladder.html">Shem Ladder (72)</a></li>
         <li><a href="./main/Thelemic-Alignment-Brief.html">Thelemic Alignment</a></li>

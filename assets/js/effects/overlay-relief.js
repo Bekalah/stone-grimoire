@@ -8,6 +8,7 @@ let canvas=null, ctx=null, rafId=0;
 let analyser=null, bins=null;
 let img=null, ready=false;
 let active=false, alpha=0.25, ro=null;
+let cubeData=[], currentCube=null;
 
 function dprCap(){ const d=window.devicePixelRatio||1; return Math.min(Math.max(1,d),2); }
 function sizeCanvas(c){
@@ -78,13 +79,36 @@ export async function mountOverlayCanvas(target, opts){
   sizeCanvas(canvas); mountResize();
 
   ready=false; img=new Image(); img.decoding='async';
-  img.src = o.src || canvas.getAttribute('src') || canvas.getAttribute('data-src') || ''; 
+  img.src = o.src || canvas.getAttribute('src') || canvas.getAttribute('data-src') || '';
   img.onload = ()=> { ready=true; }; img.onerror=()=>{ ready=false; };
+
+  try {
+    const res = await fetch('/assets/data/cubes.json');
+    const data = await res.json();
+    cubeData = Array.isArray(data.cubes) ? data.cubes : [];
+  } catch(_) { cubeData = []; }
+
+  function selectCube(hz){
+    if(!cubeData.length || !Number.isFinite(hz)) return null;
+    let best=null, bestDiff=Infinity;
+    for(const c of cubeData){
+      const d=Math.abs(hz - Number(c.toneHz||0));
+      if(d<bestDiff){ best=c; bestDiff=d; }
+    }
+    return best;
+  }
 
   if (o.useAudio){
     try { await ensureAudio(); } catch(_) {}
     analyser = getAnalyser(); bins = new Uint8Array(analyser.frequencyBinCount || 512);
-    onToneChange(()=> start());
+    onToneChange(({hz})=> {
+      const next = selectCube(hz);
+      if(next && next.overlay && next.id!==currentCube){
+        currentCube = next.id;
+        img.src = next.overlay;
+      }
+      start();
+    });
   }
   window.addEventListener('pointerdown', ()=> { if(!active) start(); }, { passive:true });
 

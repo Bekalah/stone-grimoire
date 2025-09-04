@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <title>Sponsor Brief -- Circuitum 99</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="../assets/css/palette.css">
-  <link rel="stylesheet" href="../assets/css/light.css">
-  <link rel="stylesheet" href="../assets/css/folio.css">
-  <script src="../assets/js/theme.js" defer></script>
-  <script src="../assets/js/planetary-light.js" defer></script>
+  <link rel="stylesheet" href="/assets/css/palette.css">
+  <link rel="stylesheet" href="/assets/css/light.css">
+  <link rel="stylesheet" href="/assets/css/folio.css">
+  <script src="/assets/js/theme.js" defer></script>
+  <script src="/assets/js/planetary-light.js" defer></script>
 </head>
 <body class="mystic" data-theme="netzach">
   <header role="banner">
@@ -44,7 +44,7 @@
   </noscript>
 
   <script type="module">
-    import { renderMarkdownPretty } from "../assets/js/markdown-render.js";
+    import { renderMarkdownPretty } from "/assets/js/markdown-render.js";
     function ornamentAfterRender(sel){
       const el = document.querySelector(sel); if(!el) return;
       const firstP = el.querySelector("p"); if(firstP && !firstP.classList.contains("dropcap")) firstP.classList.add("dropcap");
