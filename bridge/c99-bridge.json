@@ -171,5 +171,9 @@
       "webp": "/assets/art/webp/portal_respawn-a01.webp",
       "type": "png"
     }
-  ]
+  ],
+  "seal": {
+    "monad": "/stone_grimoire/plans/seal/codex_abyssiae_monad_seal.svg",
+    "version": "1.0.0"
+  }
 }
