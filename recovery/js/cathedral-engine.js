@@ -1,6 +1,6 @@
 <!-- File: assets/js/engines/cathedral-engine.js -->
 <script type="module">
-// Cathedral Engine -- Circuitum 99 (unified data root = assets/data, iPad-safe)
+// Cathedral Engine -- circuitum99 (unified data root = assets/data, iPad-safe)
 // - Reads: assets/data/structure.json, assets/data/stylepacks.json,
 //          assets/data/geometry/geometry_index.json
 // - Provides: stylepack apply, geometry mount, ND-safe ambient (manual start).

@@ -1,4 +1,4 @@
-// Cathedral Engine -- Circuitum 99 (Bekalah / Rebecca Respawn)
+// Cathedral Engine -- circuitum99 (Bekalah / Rebecca Respawn)
 // Data root: ./assets/data (fallback: ./main/data) -- iPad/Working Copy safe.
 
 async function firstOk(urls){
