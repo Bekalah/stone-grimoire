@@ -7,14 +7,14 @@
   <meta name=“description” content=“Venus Covenant — museum-grade fusion art standards for the Ateliers in Codex 144:99.”>
 
   <!— Core site styles —>
-  <link rel=“stylesheet” href=“../../assets/css/palette.css”>
-  <link rel=“stylesheet” href=“../../assets/css/light.css”>
+  <link rel=“stylesheet” href=“/assets/css/palette.css”>
+  <link rel=“stylesheet” href=“/assets/css/light.css”>
   <!— Grimoire folio styling (shared parchment/rubric/dropcap) —>
-  <link rel=“stylesheet” href=“../../assets/css/folio.css”>
+  <link rel=“stylesheet” href=“/assets/css/folio.css”>
 
   <!— Subtle theme/planetary tinting —>
-  <script src=“../../assets/js/theme.js” defer></script>
-  <script src=“../../assets/js/planetary-light.js” defer></script>
+  <script src=“/assets/js/theme.js” defer></script>
+  <script src=“/assets/js/planetary-light.js” defer></script>
 </head>
 <body class=“mystic” data-theme=“netzach”>
   <header role=“banner”>
@@ -58,7 +58,7 @@
 
   <!— Markdown renderer —>
   <script type=“module”>
-    import { renderMarkdownPretty } from “../../assets/js/markdown-render.js”;
+    import { renderMarkdownPretty } from “/assets/js/markdown-render.js”;
 
     function ornamentAfterRender(containerSelector){
       const el = document.querySelector(containerSelector);

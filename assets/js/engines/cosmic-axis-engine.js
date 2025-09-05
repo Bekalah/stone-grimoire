@@ -5,7 +5,7 @@
  *
  * ──────────────────────────────────────────────────────────────────────────────
  * FEATURES
- * - Draws a celestial field on a tilted axis (default 23.5°) with ecliptic, meridians, Jacob’s Ladder spine,
+ * - Draws a celestial field on a tilted axis (default 23.5°) with ecliptic, meridians, Jacob's Ladder spine,
  *   rose/vesica tracery, and a logarithmic or Archimedean spiral node lattice (up to 144+ nodes).
  * - Palette aware (wash/ink/accent/gold). Works with your stylepacks.json (array or map).
  * - Modular overlays: I Ching hexagram bands, numerology resonance, planetary tints (gentle).
@@ -14,7 +14,7 @@
  *   applyPlanet(), start(), stop(), dispose(), getSnapshot().
  *
  * USAGE (ESM):
- *   import * as CosmicAxis from "../assets/js/engines/cosmic-axis-engine.js";
+ *   import * as CosmicAxis from "/assets/js/engines/cosmic-axis-engine.js";
  *   const axis = CosmicAxis.mount("#stage", { tiltDeg: 23.5, nodes: 144, palette: myPalette });
  *   axis.update({ hexagram: 31, numerologyKey: 144 });
  *
@@ -224,7 +224,7 @@ function drawCosmos(ctx, cfg, tClock = 0) {
     }
   }
 
-  // Ladder spine (Jacob’s)
+  // Ladder spine (Jacob's)
   if (overlays.drawLadder) {
     ctx.strokeStyle = blend(palette.accent, "#000000", 0.25);
     ctx.lineWidth = 2;
