@@ -1,4 +1,7 @@
+ codex/fill-in-demo-code-and-add-options-racrhm
+
  codex/fill-in-demo-code-and-add-options-8yxo44
+main
 """Generate museum-quality visionary art with selectable palettes and patterns.
 
 This version is self-contained and requires only the Python standard library.
@@ -36,6 +39,7 @@ PALETTES: dict[str, Sequence[Tuple[int, int, int]]] = {
         (0, 0, 128),      # navy
         (240, 240, 240),  # mist gray
     ],
+codex/fill-in-demo-code-and-add-options-racrhm
     "venus_net": [
         (255, 179, 71),   # amber
         (255, 94, 196),   # magenta
@@ -63,6 +67,11 @@ def pattern_waves(x: float, y: float) -> float:
     return math.sin(10 * x) * math.cos(10 * y)
 
 
+ codex/fill-in-demo-code-and-add-options-racrhm
+PATTERNS: dict[str, Callable[[float, float], float]] = {
+    "radial": pattern_radial,
+    "waves": pattern_waves,
+
 def pattern_flower(x: float, y: float) -> float:
     """Sacred geometry reminiscent of a flower of life."""
 
@@ -75,6 +84,7 @@ PATTERNS: dict[str, Callable[[float, float], float]] = {
     "radial": pattern_radial,
     "waves": pattern_waves,
     "flower": pattern_flower,
+ main
 }
 
 
@@ -176,7 +186,7 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-=======
+ codex/fill-in-demo-code-and-add-options-racrhm
 """Render a museum-quality visionary art piece inspired by Alex Grey."""
 
 # Import required libraries
@@ -231,4 +241,5 @@ timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 filename = f"Visionary_Dream_{timestamp}.png"
 Image.fromarray((RGB * 255).astype(np.uint8)).save(filename)
 main
+
 
