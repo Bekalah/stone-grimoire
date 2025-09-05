@@ -1,4 +1,4 @@
-// Cathedral Engine -- Circuitum 99 (unified data root = assets/data, iPad-safe)
+// Cathedral Engine -- circuitum99 (unified data root = assets/data, iPad-safe)
 // - Looks up JSON under ./assets/data first, then ./main/data (for legacy).
 // - Wires stylepacks, structure rooms, and geometry plates by ID.
 // - Provides calm, ND-safe ambient tone with cathedral IR (manual start).

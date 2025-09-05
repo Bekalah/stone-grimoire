@@ -53,7 +53,7 @@ export async function ensureAudio() {
   return ctx;
 }
 
-export async function loadIR(url = "../assets/audio/ir/cathedral_small.wav") {
+export async function loadIR(url = "/assets/audio/ir/cathedral_small.wav") {
   await ensureAudio();
   try {
     const res = await fetch(url, { cache: "force-cache" });

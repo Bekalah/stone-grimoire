@@ -16,7 +16,7 @@ It is **alchemy for the modern age**: a professional mystical enterprise designe
 1. **Stone Grimoire / Cathedral of Circuits**  
    A digital sanctuary crafted in the tradition of Gothic alchemists. Chapels, crypts, and illuminated folios serve as immersive spaces of initiation, each room a chamber of art and geometry.  
 
-2. **Circuitum 99 — Alpha et Omega**  
+2. **circuitum99 — Alpha et Omega**  
    A codex of 99 gates, 21 pillars, 33 living spine nodes. A high-order **angel-tech lattice** where mathematics and myth cohere, designed as an adaptive framework for those who walk between systems and shadows.  
 
 3. **Cosmogenesis Learning Engine (Pro Edition)**  
