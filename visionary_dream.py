@@ -1,37 +1,51 @@
-"""Generate a museum-quality visionary art piece inspired by Hilma af Klint."""
+"""Generate a museum-quality visionary art piece inspired by Alex Grey."""
 
 # Import required libraries
 import numpy as np
 from PIL import Image
 
-# Resolution of the output image (4K)
-WIDTH, HEIGHT = 3840, 2160
+# Canvas resolution (4K square)
+WIDTH, HEIGHT = 4096, 4096
 
-# Generate a coordinate grid centered at the canvas origin
-x = np.linspace(-1, 1, WIDTH)
-y = np.linspace(-1, 1, HEIGHT)
+# Generate coordinate grid centered at the canvas origin
+x = np.linspace(-2, 2, WIDTH)
+y = np.linspace(-2, 2, HEIGHT)
 X, Y = np.meshgrid(x, y)
 
 # Compute polar coordinates for radial symmetry
 R = np.sqrt(X**2 + Y**2)
 T = np.arctan2(Y, X)
 
-# Layered trigonometric pattern for visionary geometry
-pattern = np.sin(8 * R**2 + 6 * T) + np.cos(4 * R - 3 * T)
+# Simulate tesseract-inspired 4D rotations
+theta = np.pi / 4
+x4 = X * np.cos(theta) - Y * np.sin(theta)
+y4 = X * np.sin(theta) + Y * np.cos(theta)
+z4 = np.sin(x4)
+w4 = np.cos(y4)
 
-# Normalize pattern to the range [0, 1]
+# Layered trigonometric field for visionary geometry
+pattern = (
+    np.sin(4 * R + 8 * T)
+    + np.cos(4 * (R - T))
+    + np.sin(3 * (x4 + z4))
+    + np.cos(3 * (y4 + w4))
+)
+
+# Normalize pattern to range [0, 1]
 pattern_norm = (pattern - pattern.min()) / (pattern.max() - pattern.min())
 
-# Define a pastel palette inspired by Hilma af Klint (RGB 0-1)
+# Define a vibrant palette inspired by Alex Grey (RGB 0-1)
 palette = np.array([
-    [255, 200, 221],  # soft rose
-    [211, 226, 255],  # pale sky
-    [255, 255, 204],  # light gold
-    [204, 246, 221],  # mint
-    [229, 203, 255],  # lavender
+    [75, 0, 130],   # indigo
+    [0, 0, 255],    # blue
+    [0, 255, 255],  # cyan
+    [0, 255, 0],    # green
+    [255, 255, 0],  # yellow
+    [255, 165, 0],  # orange
+    [255, 0, 0],    # red
 ]) / 255.0
 
-# Interpolate the palette across the normalized pattern
+# Interpolate palette across the normalized pattern
 xp = np.linspace(0, 1, len(palette))
 RGB = np.empty((HEIGHT, WIDTH, 3))
 for c in range(3):
