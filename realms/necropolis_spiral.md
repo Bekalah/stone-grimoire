@@ -1,6 +1,11 @@
 # Necropolis Spiral
 
 
+Underworld chamber nested within the Cathedral Crypt. Shadow initiations, ancestral grief, and death–rebirth trials unfold here.
+
+## Guides
+- [Aurex Nirvani](../characters/aurex_nirvani.md)
+
 Underworld chamber within the Cathedral Crypt. Shadow initiations, ancestral grief, and death–rebirth trials unfold in its winding descent.
 
 ## Linked Entities
@@ -15,5 +20,6 @@ Underworld chamber within the Cathedral Crypt where shadow initiations, ancestra
 - Serves as staging ground for death–rebirth trials.
 
 Guides: [Aurex Nirvani](../characters/aurex_nirvani.md) and allied crypt keepers.
+
 
 
