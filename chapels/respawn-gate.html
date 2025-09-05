@@ -10,13 +10,13 @@
   >
 
   <!-- Site styles (same stack as cathedral) -->
-  <link rel="stylesheet" href="../assets/css/palette.css">
-  <link rel="stylesheet" href="../assets/css/light.css">
-  <script src="../assets/js/theme.js" defer></script>
-  <script src="../assets/js/planetary-light.js" defer></script>
+  <link rel="stylesheet" href="/assets/css/palette.css">
+  <link rel="stylesheet" href="/assets/css/light.css">
+  <script src="/assets/js/theme.js" defer></script>
+  <script src="/assets/js/planetary-light.js" defer></script>
 
   <!-- Rebecca (velvet-noir architect-scribe) -->
-  <link rel="stylesheet" href="../assets/css/rebecca.css">
+  <link rel="stylesheet" href="/assets/css/rebecca.css">
 
   <style>
     /* Page ornament -- quiet temple card */
@@ -115,10 +115,10 @@
 
   <!-- Logic -->
   <script type="module">
-    import { initRebecca, rebeccaSpeak, rebeccaLog, rebeccaMute } from "../assets/js/components/rebecca.js";
+    import { initRebecca, rebeccaSpeak, rebeccaLog, rebeccaMute } from "/assets/js/components/rebecca.js";
     // Optional audio & visuals (will no-op gracefully if files missing)
-    import { ensureAudio, setToneHz, stopTone } from "../assets/js/engines/ambient-engine.js";
-    import { mountCymaticsCanvas } from "../assets/js/engines/cymatic-engine.js";
+    import { ensureAudio, setToneHz, stopTone } from "/assets/js/engines/ambient-engine.js";
+    import { mountCymaticsCanvas } from "/assets/js/engines/cymatic-engine.js";
 
     // 0) Bring in Rebecca everywhere (open-world, no locks)
     initRebecca({});

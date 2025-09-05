@@ -48,7 +48,7 @@ async function main(){
   const angels72    = safeReadJSON(path.resolve(root,'../cosmogenesis-learning-engine/registry/datasets/angels72.json')) ||
                       safeReadJSON(path.resolve(root,'../cosmogenesis_learning_engine/registry/datasets/angels72.json')) ||
                       safeReadJSON(path.resolve(root,'../cosmogenesis_learning_engine/registry/datasets/shem72.json'));
-  const styleTokens = safeReadJSON(path.resolve(root,'assets','tokens','perm-style.json')) || { palette:{}, secondary:{}, layers:{} };
+  const styleTokens = safeReadJSON(path.resolve(root,'assets','tokens','perm-style.json')) || { palette:{}, secondary:{}, layers:{}, adventure_modes:{}, avalon:{}, between_realm:{} };
 
   const defaultRooms = [
     { id:"crypt", title:"The Crypt", element:"earth", stylepack:"Rosicrucian Black", tone:110, geometry:"vesica" },
@@ -109,9 +109,15 @@ async function main(){
   }
 
   const visionaryAssets = assets.filter(a => /alex[-_ ]?grey|visionary|sacred|grid/.test(a.name));
+  const oracleVelvet = assets.filter(a => /oracle|velvet/.test(a.name));
+  const angelArt = assets.filter(a => /angel/.test(a.name));
+  const pillarArt = assets.filter(a => /pillar/.test(a.name));
+  const egregoreArt = assets.filter(a => /egregore/.test(a.name));
+  const betweenAssets = assets.filter(a => /(between|narthex|veil|threshold)/.test(a.name));
+  const wardAssets = assets.filter(a => /(hamsa|evil[-_]?eye|logo|ward)/.test(a.name));
 
   const manifest = {
-    meta:{ project:"Circuitum99 × Stone Grimoire", updated:new Date().toISOString(), nd_safe:true, generator:"update-art.js" },
+    meta:{ project:"circuitum99 × Stone Grimoire", updated:new Date().toISOString(), nd_safe:true, generator:"update-art.js" },
     tokens:{ css:"/assets/css/perm-style.css", json:"/assets/tokens/perm-style.json",
       palette:styleTokens.palette||{}, secondary:styleTokens.secondary||{}, layers:styleTokens.layers||{},
       adventure_modes:styleTokens.adventure_modes||{}, avalon:styleTokens.avalon||{}, between_realm:styleTokens.between_realm||{} },
@@ -123,6 +129,17 @@ async function main(){
       id:r.id, title:r.title, element:r.element, tone:r.tone, geometry:r.geometry, stylepack:r.stylepack,
       assets:(assetsByRoom[r.id]||[]).map(a => ({ name:a.name, thumb:`/${a.thumb}`, webp:a.webp?`/${a.webp}`:'', src:`/${a.processed}`, type:a.type }))
     })),
+      angels, creatures,
+      visionary:{ overlays: visionaryAssets.map(a => ({ name:a.name, src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:'' })) },
+      oracle: oracleVelvet.map(a => ({ name:a.name, src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:'' })),
+      angel_assets: angelArt.map(a => ({ name:a.name, src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:'' })),
+      pillars: pillarArt.map(a => ({ name:a.name, src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:'' })),
+      egregores: egregoreArt.map(a => ({ name:a.name, src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:'' })),
+      between_realm:{ ...(styleTokens.between_realm||{}), assets: betweenAssets.map(a => ({ name:a.name, class:'between-narthex', src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:'' })) },
+      protection: wardAssets.length?{ sigil: wardAssets.map(a => ({ name:a.name, class:'protection-handsigil', layer:'protectionSigil', src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:'' })) }:undefined,
+      assets: assets.map(a => ({ name:a.name, src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:'', type:a.type })),
+      rituals:{ violet_flame:{ alias:'respawnGate', ray:'VI', steps:['Invoke','Rotate','Transmute','Replace'] } }
+    };
     angels:{ list:angels, assets:angelArt },
     creatures,
     visionary:{ overlays: visionaryAssets.map(a => ({ name:a.name, src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:'' })) },
