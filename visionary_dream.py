@@ -1,45 +1,51 @@
-"""Generate a museum-quality visionary art piece inspired by Hilma af Klint."""
+"""Render a museum-quality visionary art piece inspired by Alex Grey."""
 
 # Import required libraries
 import numpy as np
 from PIL import Image
 
-# Resolution of the output image (4K)
-WIDTH, HEIGHT = 3840, 2160
+# Canvas resolution (4K square)
+WIDTH, HEIGHT = 4096, 4096
 
-# Generate a coordinate grid centered at the canvas origin
-x = np.linspace(-1, 1, WIDTH)
-y = np.linspace(-1, 1, HEIGHT)
+# Craft coordinate grid centered at origin
+x = np.linspace(-np.pi, np.pi, WIDTH)
+y = np.linspace(-np.pi, np.pi, HEIGHT)
 X, Y = np.meshgrid(x, y)
 
-# Compute polar coordinates for radial symmetry
+# Polar coordinates for radial symmetry
 R = np.sqrt(X**2 + Y**2)
 T = np.arctan2(Y, X)
 
-# Layered trigonometric pattern for visionary geometry
-pattern = np.sin(8 * R**2 + 6 * T) + np.cos(4 * R - 3 * T)
+# Layered visionary geometry using trigonometric waves
+pattern = (
+    np.sin(3 * R) +
+    np.cos(5 * T) +
+    np.sin(2 * (X + Y)) +
+    np.cos(2 * (X - Y))
+)
 
-# Normalize pattern to the range [0, 1]
+# Normalize pattern to [0, 1]
 pattern_norm = (pattern - pattern.min()) / (pattern.max() - pattern.min())
 
-# Define a pastel palette inspired by Hilma af Klint (RGB 0-1)
+# Psychedelic palette inspired by Alex Grey (RGB 0-1)
 palette = np.array([
-    [255, 200, 221],  # soft rose
-    [211, 226, 255],  # pale sky
-    [255, 255, 204],  # light gold
-    [204, 246, 221],  # mint
-    [229, 203, 255],  # lavender
+    [255, 110, 0],   # vivid orange
+    [106, 0, 255],   # deep violet
+    [0, 255, 212],   # electric aqua
+    [255, 0, 133],   # neon magenta
+    [255, 255, 0],   # solar yellow
 ]) / 255.0
 
-# Interpolate the palette across the normalized pattern
+# Interpolate palette across pattern
 xp = np.linspace(0, 1, len(palette))
 RGB = np.empty((HEIGHT, WIDTH, 3))
 for c in range(3):
     RGB[..., c] = np.interp(pattern_norm, xp, palette[:, c])
 
-# Convert to 8-bit color and create image
-img = Image.fromarray((RGB * 255).astype(np.uint8))
+# Radial gradient for depth
+gradient = 1 - np.clip(R / R.max(), 0, 1)
+RGB *= gradient[..., None]
 
-# Save the generated artwork
-img.save("Visionary_Dream.png")
+# Convert to 8-bit image and save
+Image.fromarray((RGB * 255).astype(np.uint8)).save("Visionary_Dream.png")
 
