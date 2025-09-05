@@ -68,7 +68,7 @@
       "palette": ["#e7f0ff", "#bcd2ff", "#8faef2", "#546aa9"],
       "motifs": ["sphere", "ladder", "feather"],
       "textures": ["opalescent-glaze", "haze"],
-      "description": "Spherical harmonics; Jacob’s Ladder atmosphere."
+      "description": "Spherical harmonics; Jacob's Ladder atmosphere."
     },
     {
       "id": "enochian_astral",
@@ -76,7 +76,7 @@
       "palette": ["#0b1522", "#1b2d4a", "#2f5597", "#b9d3ff"],
       "motifs": ["vesica", "tablet", "sigil-ray"],
       "textures": ["indigo-wash", "glass-ink"],
-      "description": "Dee–Kelly tablets and astral vesicas -- lab of light."
+      "description": "Dee-Kelly tablets and astral vesicas -- lab of light."
     },
     {
       "id": "sun_solaris",
