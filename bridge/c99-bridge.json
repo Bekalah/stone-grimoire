@@ -847,6 +847,9 @@
         "Replace"
       ]
     }
+  ],
+  "seal": {
+    "monad": "/plans/seal/codex_abyssiae_monad_seal.svg",
   }
   "pillars": {
     "assets": []
