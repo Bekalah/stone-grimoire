@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 import fs from 'fs'; import path from 'path';
 
+
+const ROOT = path.resolve(process.cwd(), 'stone_grimoire');
+const ROOT = path.resolve(process.cwd(), 'stone-grimoire');
 // Resolve project root whether directory uses underscore or hyphen
 const ROOT = fs.existsSync(path.resolve(process.cwd(), 'stone_grimoire'))
   ? path.resolve(process.cwd(), 'stone_grimoire')
@@ -77,6 +80,9 @@ push(`<defs>
 push(`<rect x="0" y="0" width="${W}" height="${H}" fill="url(#bgGrad)"/>`);
 push(`<circle cx="${CX}" cy="${CY}" r="${R_OUT+60}" fill="none" stroke="${EDGE}" stroke-width="18"/>`);
 
+
+// OUTER RING — 78 gates (22 Hebrew + 56 minors)
+
 // OUTER RING - 78 gates (22 Hebrew + 56 minors)
 const GATES = 78, stepGate = 360/GATES;
 for(let i=0;i<GATES;i++){
@@ -97,6 +103,7 @@ for(let i=0;i<GATES;i++){
   }
 }
 
+
 // SECOND RING - 72 Shem alternating with 72 Goetia (144 ticks)
 const marks = 144, stepMark = 360/marks;
 for(let i=0;i<marks;i++){
@@ -114,6 +121,7 @@ for(let i=0;i<marks;i++){
     push(`<text x="${tx}" y="${ty}" font-family="Inter,system-ui" font-size="16" text-anchor="middle" fill="${isAngel?AZURE:COPPER}" opacity=".8" transform="rotate(${a} ${tx} ${ty})">${esc(label)}</text>`);
   }
 }
+
 
 // THIRD RING - 33 beads (alchemical sequence), Ars Notoria notae at 11/22/33
 const BEADS = 33, stepB = 360/BEADS;
@@ -142,6 +150,7 @@ PLAN.forEach((p,i)=>{
   push(`<text x="${px}" y="${py+8}" font-family="Junicode,serif" font-size="28" text-anchor="middle" fill="${INK}">${esc(p.glyph)}</text>`);
 });
 
+
 // CENTER - Vesica + Monad × LuxCrux fusion
 push(`<g>
   <ellipse cx="${CX-80}" cy="${CY}" rx="${R_VESICA}" ry="${R_VESICA*0.82}" fill="none" stroke="${SILV}" stroke-width="6"/>
@@ -161,8 +170,8 @@ push(`<g>
   <path d="M ${CX-180} ${CY-180} L ${CX+180} ${CY+180} M ${CX+180} ${CY-180} L ${CX-180} ${CY+180}" stroke="${AZURE}" stroke-width="4" stroke-opacity=".7"/>
 </g>`);
 
-// HIDDEN SPIRAL - Soyga + Ars Notoria (faint)
-const SOYGA = "ABHORSEMEM...SOYGA".split(''); // placeholder letter stream; replace if dataset exists
+// HIDDEN SPIRAL — Soyga + Ars Notoria (faint)
+const SOYGA = "ABHORSEMEM…SOYGA".split(''); // placeholder letter stream; replace if dataset exists
 const turns = 3.5, ptsSpiral = 220, r0 = 260, r1 = 60;
 for(let i=0;i<ptsSpiral;i++){
   const t = i/(ptsSpiral-1);

@@ -112,7 +112,7 @@
 
       if (b.dataset.action === 'share'){
         const url = b.dataset.url || location.href;
-        if (navigator.share){ navigator.share({title:'Circuitum 99 -- Chapel', url}).catch(()=>{});
+        if (navigator.share){ navigator.share({title:'circuitum99 -- Chapel', url}).catch(()=>{});
         } else {
           navigator.clipboard?.writeText(url).catch(()=>{});
           b.textContent = 'Link Copied';

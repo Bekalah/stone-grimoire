@@ -122,3 +122,9 @@ Each card = portable Monad → meditation yantra, ritual key, world portal.
     • Technology: structured for repo/app integration (YAML fields, arrays).
 
 ⸻
+
+### Visionary World Builder Demo
+
+See [docs/visionary_world_builder.md](docs/visionary_world_builder.md) for instructions on generating customizable visionary art with palette and pattern options.
+
+⸻
