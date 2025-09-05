@@ -122,6 +122,9 @@ body.allow-motion .between-narthex[data-drift="on"]{
 /* ND-safe motion defaults */
 @media (prefers-reduced-motion:reduce){
   *{animation:none !important; transition:none !important}
+odex/update-world-of-enchantment-assets
+  .between-narthex[data-drift="on"]{animation:none !important}
+
 }
 
 /* violet gate + respawn gate */

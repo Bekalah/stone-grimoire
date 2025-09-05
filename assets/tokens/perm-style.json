@@ -1,5 +1,8 @@
 {
   "meta": {
+codex/update-world-of-enchantment-assets
+    "name": "Circuitum99 -- Perm Style",
+=======
     "name": "circuitum99 -- Perm Style",
     "version": "3.7.0",
     "source": [
@@ -8,7 +11,10 @@
       "cosmogenesis/registry/datasets/palettes.core.json"
     ],
     "nd_safe": true,
+odex/update-world-of-enchantment-assets
+=======
     "notes": "World-of-Enchantment baseline; Avalon fixed; Aeons flavor; Violet Flame ↔ Respawn Gate alias; Witch-as-the-Coven ward; Solfeggio × BioGeometry; Egregores, Consecration Angels, Pillars; True-fairy shimmer."
+ main
     "notes": "World-of-Enchantment baseline; Avalon (Dion Fortune) fixed; Theosophical Aeons available as flavor; Violet Flame ↔ Respawn Gate alias; Witch-as-the-Coven protection sigil encoded; Solfeggio × BioGeometry; Egregores, Consecration Angels, Pillars; True-fairy shimmer."
   },
   "palette": {
@@ -31,7 +37,6 @@
     "violet_alt": "#8A2BE2",
 
     "gonzalez_palette": ["#0b0b0b", "#16121b", "#2a2140", "#5e4ba8", "#e6e6e6"],
-
     "obsidian_glass": "#1c1c1c",
     "obsidian_sheen": "#2e2e2e",
     "obsidian_rainbow": "#545455",

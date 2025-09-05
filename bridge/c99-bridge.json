@@ -1,5 +1,7 @@
 {
   "meta": {
+
+    "project": "Circuitum99 × Stone Grimoire",
     "project": "circuitum99 × Stone Grimoire",
     "updated": "2025-09-04T06:25:42.678Z",
     "updated": "2025-09-04T06:26:07.697Z",
@@ -32,6 +34,7 @@
         "#5e4ba8",
         "#e6e6e6"
       ],
+
       "obsidian_glass": "#1c1c1c",
       "obsidian_sheen": "#2e2e2e",
       "obsidian_rainbow": "#545455",
@@ -260,7 +263,6 @@
       "assets": []
     }
   ],
-  "angels": [],
   "angels": {
     "list": [],
     "assets": []
@@ -273,6 +275,39 @@
     "overlays": []
   },
   "oracle": [],
+  "pillars": {
+    "assets": []
+  },
+  "egregores": {
+    "assets": []
+  },
+  "between_realm": {
+    "name": "In-Between Astral Narthex",
+    "traits": [
+      "liminal_hush",
+      "veil_eddies",
+      "star_motes"
+    ],
+    "assets": []
+  },
+  "protection": {
+    "sigil": []
+  },
+  "rituals": {
+    "violet_flame": [
+      "invoke",
+      "rotate",
+      "transmute",
+      "replace"
+    ],
+    "respawn_gate": {
+      "alias": "violet_flame",
+      "ray": 6
+    }
+  },
+  "assets": []
+}
+=======
   "angel_assets": [],
   "pillars": [],
   "egregores": [],
@@ -850,5 +885,4 @@
     "monad": "/stone_grimoire/plans/seal/codex_abyssiae_monad_seal.svg",
     "version": "1.0.0"
   }
-}
 }
