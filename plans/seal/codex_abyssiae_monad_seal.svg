@@ -4,6 +4,7 @@
   <radialGradient id="bgGrad" cx="50%" cy="10%">
     <stop offset="0%" stop-color="#33214e" stop-opacity="0.35"/>
     <stop offset="40%" stop-color="#191b22" stop-opacity="0.9"/>
+    <stop offset="100%" stop-color="#0b0b0b" stop-opacity="1"/>
     <stop offset="100%" stop-color="#0B0B0B" stop-opacity="1"/>
   </radialGradient>
   <filter id="softSpec"><feGaussianBlur stdDeviation="0.8"/><feComponentTransfer><feFuncA type="gamma" amplitude="0.9" exponent="1.3" offset="0"/></feComponentTransfer></filter>
@@ -11,6 +12,49 @@
 <rect x="0" y="0" width="2400" height="2400" fill="url(#bgGrad)"/>
 <circle cx="1200" cy="1200" r="1120" fill="none" stroke="#191b22" stroke-width="18"/>
 <line x1="1200" y1="140" x2="1200" y2="164" stroke="#d9e0e7" stroke-width="4" />
+<text x="1200" y="200" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-90 1200 200)">א</text>
+<line x1="1285.2945628397292" y1="143.4372533777373" x2="1283.363365190528" y2="167.35942877295838" stroke="#d9e0e7" stroke-width="4" />
+<text x="1280.4665687167258" y="203.24269186579" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-85.38461538461539 1280.4665687167258 203.24269186579)">ב</text>
+<line x1="1370.0359577092258" y1="153.7267216038124" x2="1366.1860869686395" y2="177.4159279071223" stroke="#d9e0e7" stroke-width="4" />
+<text x="1360.4112808577602" y="212.94973736208715" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-80.76923076923077 1360.4112808577602 212.94973736208715)">ג</text>
+<line x1="1453.6746041448112" y1="170.80167352838498" x2="1447.9310282019096" y2="194.10427714661012" stroke="#d9e0e7" stroke-width="4" />
+<text x="1439.3156642875576" y="229.058182573948" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-76.15384615384616 1439.3156642875576 229.058182573948)">ד</text>
+<line x1="1535.6680734295608" y1="194.55137153602573" x2="1528.0680415783254" y2="217.31624614275722" stroke="#d9e0e7" stroke-width="4" />
+<text x="1516.6679938014724" y="251.4635580528544" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-71.53846153846155 1516.6679938014724 251.4635580528544)">ה</text>
+<line x1="1615.4846064516794" y1="224.82178972164616" x2="1606.0774078150375" y2="246.901296369458" stroke="#d9e0e7" stroke-width="4" />
+<text x="1591.9666098600749" y="280.0205563411756" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-66.92307692307693 1591.9666098600749 280.0205563411756)">ו</text>
+<line x1="1692.6065623663947" y1="261.4166128075975" x2="1681.4532062373441" y2="282.6675574232745" stroke="#d9e0e7" stroke-width="4" />
+<text x="1664.7231720437685" y="314.54397434679004" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-62.30769230769231 1664.7231720437685 314.54397434679004)">ז</text>
+<line x1="1766.5337756954693" y1="304.09850932357756" x2="1753.706595868402" y2="324.38307137662866" stroke="#d9e0e7" stroke-width="4" />
+<text x="1734.4658261278014" y="354.8099144562053" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-57.69230769230769 1734.4658261278014 354.8099144562053)">ח</text>
+<line x1="1836.7868000922576" y1="352.59067079228873" x2="1822.368985750546" y2="371.77729711397274" stroke="#d9e0e7" stroke-width="4" />
+<text x="1800.7422642379788" y="400.5572365964988" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-53.07692307692308 1800.7422642379788 400.5572365964988)">ט</text>
+<line x1="1902.910017735243" y1="406.5786069386329" x2="1886.995073937464" y2="424.5428648947393" stroke="#d9e0e7" stroke-width="4" />
+<text x="1863.1226582407953" y="451.4892518288989" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-48.46153846153847 1863.1226582407953 451.4892518288989)">י</text>
+<line x1="1964.4745941844433" y1="465.71218527982455" x2="1947.1657354481918" y2="482.33756976405493" stroke="#d9e0e7" stroke-width="4" />
+<text x="1921.2024473438146" y="507.2756464904005" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-43.846153846153854 1921.2024473438146 507.2756464904005)">כ</text>
+<line x1="2021.0812595373138" y1="529.6079018689001" x2="2002.4907404534501" y2="544.7865908831891" stroke="#d9e0e7" stroke-width="4" />
+<text x="1974.6049618276547" y="567.5546244046227" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-39.23076923076923 1974.6049618276547 567.5546244046227)">ל</text>
+<line x1="2072.3628978472757" y1="597.8513684649748" x2="2052.611285065828" y2="611.4849223865226" stroke="#d9e0e7" stroke-width="4" />
+<text x="2022.9838658936565" y="631.9352532688442" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-34.61538461538462 2022.9838658936565 631.9352532688442)">מ</text>
+<line x1="2117.986928011505" y1="670" x2="2097.2023183206784" y2="682" stroke="#d9e0e7" stroke-width="4" />
+<text x="2066.025403784439" y="700" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-30.000000000000007 2066.025403784439 700)">נ</text>
+<line x1="2157.6574606870054" y1="745.5858849127626" x2="2135.974650256356" y2="755.8745063864359" stroke="#d9e0e7" stroke-width="4" />
+<text x="2103.450434610382" y="771.3074385969458" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-25.384615384615387 2103.450434610382 771.3074385969458)">ס</text>
+<line x1="2191.1172172465394" y1="824.1188197349122" x2="2168.67682742209" y2="832.629337023933" stroke="#d9e0e7" stroke-width="4" />
+<text x="2135.016242685415" y="845.3951129574643" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-20.769230769230774 2135.016242685415 845.3951129574643)">ע</text>
+<line x1="2218.1491983292544" y1="905.0894882485601" x2="2195.096763650102" y2="911.766707382555" stroke="#d9e0e7" stroke-width="4" />
+<text x="2160.5181116313724" y="921.7825360835473" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-16.15384615384616 2160.5181116313724 921.7825360835473)">פ</text>
+<line x1="2238.5780911648035" y1="987.9727645973928" x2="2215.0631155157894" y2="992.7733812480178" stroke="#d9e0e7" stroke-width="4" />
+<text x="2179.7906520422675" y="999.9743062239554" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-11.538461538461547 2179.7906520422675 999.9743062239554)">צ</text>
+<line x1="2252.2714065439372" y1="1072.2311189293573" x2="2228.446393565584" y2="1075.1239992554852" stroke="#d9e0e7" stroke-width="4" />
+<text x="2192.708874098054" y="1079.4633197446767" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-6.923076923076934 2192.708874098054 1079.4633197446767)">ק</text>
+<line x1="2259.140338061864" y1="1157.3181034840197" x2="2235.159802105746" y2="1158.2844860466457" stroke="#d9e0e7" stroke-width="4" />
+<text x="2199.1889981715694" y="1159.7340598905846" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-2.307692307692321 2199.1889981715694 1159.7340598905846)">ר</text>
+<line x1="2259.140338061864" y1="1242.6818965159798" x2="2235.159802105746" y2="1241.7155139533538" stroke="#d9e0e7" stroke-width="4" />
+<text x="2199.1889981715694" y="1240.265940109415" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(2.3076923076922924 2199.1889981715694 1240.265940109415)">ש</text>
+<line x1="2252.2714065439372" y1="1327.7688810706425" x2="2228.446393565584" y2="1324.8760007445146" stroke="#d9e0e7" stroke-width="4" />
+<text x="2192.708874098054" y="1320.536680255323" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(6.92307692307692 2192.708874098054 1320.536680255323)">ת</text>
 <text x="1200" y="200" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#F8F5EF" transform="rotate(-90 1200 200)">א</text>
 <line x1="1285.2945628397292" y1="143.4372533777373" x2="1283.363365190528" y2="167.35942877295838" stroke="#d9e0e7" stroke-width="4" />
 <text x="1280.4665687167258" y="203.24269186579" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#F8F5EF" transform="rotate(-85.38461538461539 1280.4665687167258 203.24269186579)">ב</text>
@@ -377,6 +421,17 @@
 <line x1="766.9872981077806" y1="1450" x2="1200" y2="700" stroke="#16121b" stroke-width="10"/>
 <line x1="766.9872981077807" y1="950" x2="1633.0127018922194" y2="950" stroke="#16121b" stroke-width="10"/>
 <circle cx="1200" cy="700" r="22" fill="#2a2140" stroke="#d9e0e7" stroke-width="3"/>
+<text x="1200" y="708" font-family="Junicode,serif" font-size="28" text-anchor="middle" fill="#f8f5ef">☉</text>
+<circle cx="1633.0127018922194" cy="950" r="22" fill="#2a2140" stroke="#d9e0e7" stroke-width="3"/>
+<text x="1633.0127018922194" y="958" font-family="Junicode,serif" font-size="28" text-anchor="middle" fill="#f8f5ef">☿</text>
+<circle cx="1633.0127018922194" cy="1450" r="22" fill="#2a2140" stroke="#d9e0e7" stroke-width="3"/>
+<text x="1633.0127018922194" y="1458" font-family="Junicode,serif" font-size="28" text-anchor="middle" fill="#f8f5ef">☾</text>
+<circle cx="1200" cy="1700" r="22" fill="#2a2140" stroke="#d9e0e7" stroke-width="3"/>
+<text x="1200" y="1708" font-family="Junicode,serif" font-size="28" text-anchor="middle" fill="#f8f5ef">🜨</text>
+<circle cx="766.9872981077806" cy="1450" r="22" fill="#2a2140" stroke="#d9e0e7" stroke-width="3"/>
+<text x="766.9872981077806" y="1458" font-family="Junicode,serif" font-size="28" text-anchor="middle" fill="#f8f5ef">♀</text>
+<circle cx="766.9872981077807" cy="950" r="22" fill="#2a2140" stroke="#d9e0e7" stroke-width="3"/>
+<text x="766.9872981077807" y="958" font-family="Junicode,serif" font-size="28" text-anchor="middle" fill="#f8f5ef">♄</text>
 <text x="1200" y="708" font-family="Junicode,serif" font-size="28" text-anchor="middle" fill="#F8F5EF">☉</text>
 <circle cx="1633.0127018922194" cy="950" r="22" fill="#2a2140" stroke="#d9e0e7" stroke-width="3"/>
 <text x="1633.0127018922194" y="958" font-family="Junicode,serif" font-size="28" text-anchor="middle" fill="#F8F5EF">☿</text>
@@ -392,6 +447,13 @@
   <ellipse cx="1120" cy="1200" rx="320" ry="262.4" fill="none" stroke="#d9e0e7" stroke-width="6"/>
   <ellipse cx="1280" cy="1200" rx="320" ry="262.4" fill="none" stroke="#d9e0e7" stroke-width="6"/>
   <!-- Monad circle + point -->
+  <circle cx="1200" cy="1200" r="190" fill="none" stroke="#c9a227" stroke-width="10"/>
+  <circle cx="1200" cy="1200" r="10" fill="#c9a227"/>
+  <!-- Crescent (Moon) -->
+  <path d="M 1160 1080 a 120 120 0 1 0 0 240 a 90 120 0 1 1 0 -240 Z" fill="#141414" stroke="#c9a227" stroke-width="6"/>
+  <!-- Cross (Earth/Body) -->
+  <line x1="980" y1="1200" x2="1420" y2="1200" stroke="#c9a227" stroke-width="10"/>
+  <line x1="1200" y1="980" x2="1200" y2="1420" stroke="#c9a227" stroke-width="10"/>
   <circle cx="1200" cy="1200" r="190" fill="none" stroke="#C9A227" stroke-width="10"/>
   <circle cx="1200" cy="1200" r="10" fill="#C9A227"/>
   <!-- Crescent (Moon) -->
