@@ -1,0 +1,22 @@
+{
+  "cubes": [
+    {
+      "id": "cube_fa",
+      "toneHz": 396,
+      "path": "Path 32 (Tau)",
+      "overlay": "/assets/overlays/rosslyn/cube_fa.png"
+    },
+    {
+      "id": "cube_sol",
+      "toneHz": 417,
+      "path": "Path 31 (Shin)",
+      "overlay": "/assets/overlays/rosslyn/cube_sol.png"
+    },
+    {
+      "id": "cube_la",
+      "toneHz": 528,
+      "path": "Path 27 (Peh)",
+      "overlay": "/assets/overlays/rosslyn/cube_la.png"
+    }
+  ]
+}

@@ -1,7 +1,13 @@
 #!/usr/bin/env node
 import fs from 'fs'; import path from 'path';
 
+
 const ROOT = path.resolve(process.cwd(), 'stone_grimoire');
+const ROOT = path.resolve(process.cwd(), 'stone-grimoire');
+// Resolve project root whether directory uses underscore or hyphen
+const ROOT = fs.existsSync(path.resolve(process.cwd(), 'stone_grimoire'))
+  ? path.resolve(process.cwd(), 'stone_grimoire')
+  : path.resolve(process.cwd(), 'stone-grimoire');
 const TOKENS = path.join(ROOT, 'assets', 'tokens', 'perm-style.json');
 const OUTDIR = path.join(ROOT, 'plans', 'seal');
 const OUTFILE = path.join(OUTDIR, 'codex_abyssiae_monad_seal.svg');
@@ -74,7 +80,10 @@ push(`<defs>
 push(`<rect x="0" y="0" width="${W}" height="${H}" fill="url(#bgGrad)"/>`);
 push(`<circle cx="${CX}" cy="${CY}" r="${R_OUT+60}" fill="none" stroke="${EDGE}" stroke-width="18"/>`);
 
+
 // OUTER RING — 78 gates (22 Hebrew + 56 minors)
+
+// OUTER RING - 78 gates (22 Hebrew + 56 minors)
 const GATES = 78, stepGate = 360/GATES;
 for(let i=0;i<GATES;i++){
   const ang = -90 + i*stepGate;
@@ -94,7 +103,8 @@ for(let i=0;i<GATES;i++){
   }
 }
 
-// SECOND RING — 72 Shem alternating with 72 Goetia (144 ticks)
+
+// SECOND RING - 72 Shem alternating with 72 Goetia (144 ticks)
 const marks = 144, stepMark = 360/marks;
 for(let i=0;i<marks;i++){
   const a = -90 + i*stepMark;
@@ -112,7 +122,8 @@ for(let i=0;i<marks;i++){
   }
 }
 
-// THIRD RING — 33 beads (alchemical sequence), Ars Notoria notae at 11/22/33
+
+// THIRD RING - 33 beads (alchemical sequence), Ars Notoria notae at 11/22/33
 const BEADS = 33, stepB = 360/BEADS;
 for(let i=0;i<BEADS;i++){
   const a = -90 + i*stepB;
@@ -124,7 +135,7 @@ for(let i=0;i<BEADS;i++){
   }
 }
 
-// HEXAGRAM OF BLACK FLAMES — planetary archangels
+// HEXAGRAM OF BLACK FLAMES - planetary archangels
 const pts = [];
 for(let k=0;k<6;k++){ pts.push(polar(CX,CY,R_HEX, -90 + k*60)); }
 for(let k=0;k<6;k++){
@@ -139,7 +150,8 @@ PLAN.forEach((p,i)=>{
   push(`<text x="${px}" y="${py+8}" font-family="Junicode,serif" font-size="28" text-anchor="middle" fill="${INK}">${esc(p.glyph)}</text>`);
 });
 
-// CENTER — Vesica + Monad × LuxCrux fusion
+
+// CENTER - Vesica + Monad × LuxCrux fusion
 push(`<g>
   <ellipse cx="${CX-80}" cy="${CY}" rx="${R_VESICA}" ry="${R_VESICA*0.82}" fill="none" stroke="${SILV}" stroke-width="6"/>
   <ellipse cx="${CX+80}" cy="${CY}" rx="${R_VESICA}" ry="${R_VESICA*0.82}" fill="none" stroke="${SILV}" stroke-width="6"/>
