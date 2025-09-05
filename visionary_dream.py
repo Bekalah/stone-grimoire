@@ -1,45 +1,44 @@
-"""Generate a museum-quality visionary art piece inspired by Hilma af Klint."""
+# Visionary art generation using Python and Pillow
+# Color palette inspired by Alex Grey's psychedelic spectrum
 
-# Import required libraries
 import numpy as np
 from PIL import Image
 
-# Resolution of the output image (4K)
-WIDTH, HEIGHT = 3840, 2160
+# Set canvas resolution
+WIDTH, HEIGHT = 1920, 1080
 
-# Generate a coordinate grid centered at the canvas origin
+# Create coordinate grids centered at origin
 x = np.linspace(-1, 1, WIDTH)
 y = np.linspace(-1, 1, HEIGHT)
 X, Y = np.meshgrid(x, y)
 
-# Compute polar coordinates for radial symmetry
+# Compute radial distance and polar angle
 R = np.sqrt(X**2 + Y**2)
-T = np.arctan2(Y, X)
+theta = np.arctan2(Y, X)
 
-# Layered trigonometric pattern for visionary geometry
-pattern = np.sin(8 * R**2 + 6 * T) + np.cos(4 * R - 3 * T)
+# Layered trigonometric waves for visionary geometry
+wave = np.sin(10 * R + 5 * theta) + np.sin(15 * R - 4 * theta)
 
-# Normalize pattern to the range [0, 1]
-pattern_norm = (pattern - pattern.min()) / (pattern.max() - pattern.min())
+# Normalize wave to 0-1 range
+wave_norm = (wave - wave.min()) / (wave.max() - wave.min())
 
-# Define a pastel palette inspired by Hilma af Klint (RGB 0-1)
+# Alex Grey-inspired spectral palette (violet to red)
 palette = np.array([
-    [255, 200, 221],  # soft rose
-    [211, 226, 255],  # pale sky
-    [255, 255, 204],  # light gold
-    [204, 246, 221],  # mint
-    [229, 203, 255],  # lavender
-]) / 255.0
+    [148, 0, 211],
+    [75, 0, 130],
+    [0, 0, 255],
+    [0, 255, 0],
+    [255, 255, 0],
+    [255, 127, 0],
+    [255, 0, 0]
+], dtype=np.float32) / 255.0
 
-# Interpolate the palette across the normalized pattern
-xp = np.linspace(0, 1, len(palette))
-RGB = np.empty((HEIGHT, WIDTH, 3))
-for c in range(3):
-    RGB[..., c] = np.interp(pattern_norm, xp, palette[:, c])
+# Interpolate colors across the palette
+indices = wave_norm * (palette.shape[0] - 1)
+low = np.floor(indices).astype(int)
+high = np.ceil(indices).astype(int)
+frac = indices - low
+rgb = palette[low] * (1 - frac[..., None]) + palette[high] * frac[..., None]
 
-# Convert to 8-bit color and create image
-img = Image.fromarray((RGB * 255).astype(np.uint8))
-
-# Save the generated artwork
-img.save("Visionary_Dream.png")
-
+# Convert to image and save
+Image.fromarray((rgb * 255).astype(np.uint8)).save("Visionary_Dream.png")
