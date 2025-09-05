@@ -40,7 +40,12 @@
 - **Style Spiral** → unlock Venus Net, Rilke Slate.
 - **Teaching Spiral** → export/import JSON configs as lessons.
 - **Sound Spiral** → pair monad/spiral/ring/border with tones.
+codex/fill-in-demo-code-and-add-options-racrhm
 - **Visionary Dream CLI** → `python visionary_dream.py --style surrealism --pattern waves`.
+- **Visionary Dream CLI** → `python visionary_dream.py --style venus_net --pattern flower`.
+- **Harmonic Dream CLI** → `python harmonic_dream.py --scale pentatonic --pattern ascending`.
+- **Story Dream CLI** → `python story_dream.py --seed 42`.
+main
 
 —
 
