@@ -2,7 +2,7 @@ export async function startFractal(canvas, params = {}) {
   const gl = canvas.getContext('webgl', { antialias:true, alpha:false });
   if (!gl) throw new Error('WebGL not available');
 
-  const fragSrc = await fetch('../assets/shaders/fractal.glsl', {cache:'no-store'}).then(r=>r.text());
+  const fragSrc = await fetch('/assets/shaders/fractal.glsl', {cache:'no-store'}).then(r=>r.text());
   const vsSrc = `attribute vec2 a_pos; void main(){ gl_Position=vec4(a_pos,0.,1.);} `;
   function sh(t,s){ const o=gl.createShader(t); gl.shaderSource(o,s); gl.compileShader(o); if(!gl.getShaderParameter(o,gl.COMPILE_STATUS)) throw gl.getShaderInfoLog(o); return o; }
   const prog = gl.createProgram();
