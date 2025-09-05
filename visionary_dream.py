@@ -3,6 +3,7 @@
 # Import required libraries
 import numpy as np
 from PIL import Image
+from datetime import datetime
 
 # Canvas resolution (4K square)
 WIDTH, HEIGHT = 4096, 4096
@@ -46,6 +47,8 @@ for c in range(3):
 gradient = 1 - np.clip(R / R.max(), 0, 1)
 RGB *= gradient[..., None]
 
-# Convert to 8-bit image and save
-Image.fromarray((RGB * 255).astype(np.uint8)).save("Visionary_Dream.png")
+# Convert to 8-bit image and save with timestamped filename
+timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+filename = f"Visionary_Dream_{timestamp}.png"
+Image.fromarray((RGB * 255).astype(np.uint8)).save(filename)
 
