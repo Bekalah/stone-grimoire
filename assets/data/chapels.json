@@ -16,7 +16,7 @@
       "gate": 33,
       "dome": 99,
       "geometry": ["nested_tori", "double_tree", "golden_spiral"],
-      "influences": ["Metatron’s Cube", "Double Tree of Life"],
+      "influences": ["Metatron's Cube", "Double Tree of Life"],
       "summary": "A breathing spiral labyrinth where lost names (soul contracts) are recovered.",
       "seed": ["ancestral", "contract", "integration"]
     },
@@ -29,7 +29,7 @@
       "gate": 44,
       "dome": 72,
       "geometry": ["vesica", "halo_overlaps", "rippling_mandorla"],
-      "influences": ["Sophia’s well", "Tibetan sky-mirror"],
+      "influences": ["Sophia's well", "Tibetan sky-mirror"],
       "summary": "Waters that reveal parallel selves and daimonic guides who speak in riddles.",
       "seed": ["mirror", "twin", "river"]
     },
@@ -50,7 +50,7 @@
       "id": "04",
       "slug": "lattice-144-lights",
       "title": "Lattice of 144 Lights",
-      "pillar": { "index": 11, "name": "Da’ath" },
+      "pillar": { "index": 11, "name": "Da'ath" },
       "vertebra": 33,
       "gate": 99,
       "dome": 144,
