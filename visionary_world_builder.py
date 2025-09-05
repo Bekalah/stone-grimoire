@@ -3,6 +3,7 @@
 # Import required libraries
 import numpy as np
 from PIL import Image
+from datetime import datetime
 
 # Resolution of the output image (4K)
 WIDTH, HEIGHT = 3840, 2160
@@ -52,5 +53,7 @@ for c in range(3):
 # Convert to 8-bit color and create image
 img = Image.fromarray((RGB * 255).astype(np.uint8))
 
-# Save the generated artwork
-img.save("Visionary_Dream.png")
+# Save the generated artwork with a timestamped filename
+timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+filename = f"Visionary_Dream_{timestamp}.png"
+img.save(filename)

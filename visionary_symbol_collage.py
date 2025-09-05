@@ -3,6 +3,7 @@
 # Import required libraries
 import numpy as np
 from PIL import Image, ImageDraw
+from datetime import datetime
 
 # Canvas resolution (4K square)
 WIDTH, HEIGHT = 4096, 4096
@@ -106,5 +107,7 @@ draw.line([
     (WIDTH*0.68, HEIGHT*0.2)
 ], fill=symbol_color, width=5)
 
-# Save the final visionary artwork
-img.save("Visionary_Dream.png")
+# Save the final visionary artwork with a timestamped filename
+timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+filename = f"Visionary_Dream_{timestamp}.png"
+img.save(filename)
