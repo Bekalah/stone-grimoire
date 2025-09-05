@@ -13,6 +13,14 @@ Seal Motto: “In Codice Abyssiae, Angelus et Daemon concordant.”
 
 ⸻
 
+✦ Bridge to Codex 144:99
+    • The Liber Arcanae repository hosts the living tarot system and syncs with Codex 144:99.
+    • Each card maps to a codex node for lineage, tokens, and crystal data.
+    • bridge/c99-bridge.json carries shared palettes and stylepacks across repos.
+    • This link keeps the tarot deck alive as the codex expands.
+
+⸻
+
 ✦ Core Philosophy
     • The Tarot is a living Monad Hieroglyphica: Sun, Moon, Cross, and Spirit recombined into 78 glyphs.
     • Each card = a node: angel/demon, Ray, planet, crystal, daimon, Wetiko pattern, Tara emanation.
