@@ -379,7 +379,7 @@ footer{max-width:980px;margin:18px auto 48px;padding:12px;color:#534d45;border-t
 
   <h3>assets/js/style-engine.js</h3>
   <pre><code>export async function loadStylepacks(){
-  const res = await fetch('./assets/data/stylepacks.json');
+  const res = await fetch(/assets/data/stylepacks.json');
   return await res.json();
 }
 export function applyStylepack(doc, packsOrId, idMaybe){
@@ -412,7 +412,7 @@ export async function ensureAudio(){
   osc.connect(gain); gain.connect(low); low.connect(peak); peak.connect(comp); comp.connect(convolver); convolver.connect(limiter); limiter.connect(master); master.connect(AC.destination);
   nodes={osc,gain,master,convolver}; return AC;
 }
-export async function loadIR(url='./assets/audio/ir/cathedral_small.wav'){
+export async function loadIR(url=/assets/audio/ir/cathedral_small.wav'){
   if(!AC) await ensureAudio();
   try{ const buf=await (await fetch(url,{cache:'force-cache'})).arrayBuffer();
        AC.decodeAudioData(buf,(dec)=>{ nodes.convolver.buffer=dec; irLoaded=true; }); } catch{ irLoaded=false; }
@@ -449,7 +449,7 @@ export function setTone(hz=defaultHz){ if(!AC) return; nodes.osc.frequency.linea
 import {ensureAudio, startTone, stopTone, setTone} from './ambient-engine.js';
 import {mountPlaque} from './room-plaque.js';
 
-async function loadStructure(){ const res=await fetch('./assets/data/structure.json'); return await res.json(); }
+async function loadStructure(){ const res=await fetch(/assets/data/structure.json'); return await res.json(); }
 function resolveRoom(struct){
   const path=location.pathname.split('/').pop()||'index.html';
   const hash=location.hash||'';
@@ -533,8 +533,8 @@ header,footer{margin:18px auto;max-width:1100px;background:var(--wash);border:2p
 &lt;meta charset="utf-8"&gt;
 &lt;title&gt;Stone Grimoire -- Frontispiece&lt;/title&gt;
 &lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;
-&lt;link rel="stylesheet" href="./assets/css/palette.css"&gt;
-&lt;link rel="stylesheet" href="./assets/css/light.css"&gt;
+&lt;link rel="stylesheet" href=/assets/css/palette.css"&gt;
+&lt;link rel="stylesheet" href=/assets/css/light.css"&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;header&gt;
@@ -553,8 +553,8 @@ header,footer{margin:18px auto;max-width:1100px;background:var(--wash);border:2p
   &lt;/section&gt;
 &lt;/main&gt;
 &lt;div class="overlay-vitrail"&gt;&lt;/div&gt;
-&lt;script type="module" src="./assets/js/cathedral-engine.js"&gt;&lt;/script&gt;
-&lt;script type="module" src="./assets/js/ritual.js"&gt;&lt;/script&gt;
+&lt;script type="module" src=/assets/js/cathedral-engine.js"&gt;&lt;/script&gt;
+&lt;script type="module" src=/assets/js/ritual.js"&gt;&lt;/script&gt;
 &lt;div id="ritual-bar"&gt;
   &lt;div class="ritual-controls" role="group" aria-label="Ritual controls"&gt;
     &lt;button onclick="ritual.banish()"&gt;✧ Banish ✧&lt;/button&gt;
@@ -571,8 +571,8 @@ header,footer{margin:18px auto;max-width:1100px;background:var(--wash);border:2p
 &lt;meta charset="utf-8"&gt;
 &lt;title&gt;Stone Grimoire -- Cathedral Nave&lt;/title&gt;
 &lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;
-&lt;link rel="stylesheet" href="./assets/css/palette.css"&gt;
-&lt;link rel="stylesheet" href="./assets/css/light.css"&gt;
+&lt;link rel="stylesheet" href=/assets/css/palette.css"&gt;
+&lt;link rel="stylesheet" href=/assets/css/light.css"&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;header&gt;
@@ -598,8 +598,8 @@ header,footer{margin:18px auto;max-width:1100px;background:var(--wash);border:2p
   &lt;/section&gt;
 &lt;/main&gt;
 &lt;div class="overlay-vitrail"&gt;&lt;/div&gt;
-&lt;script type="module" src="./assets/js/cathedral-engine.js"&gt;&lt;/script&gt;
-&lt;script type="module" src="./assets/js/ritual.js"&gt;&lt;/script&gt;
+&lt;script type="module" src=/assets/js/cathedral-engine.js"&gt;&lt;/script&gt;
+&lt;script type="module" src=/assets/js/ritual.js"&gt;&lt;/script&gt;
 &lt;div id="ritual-bar"&gt;
   &lt;div class="ritual-controls" role="group" aria-label="Ritual controls"&gt;
     &lt;button onclick="ritual.banish()"&gt;✧ Banish ✧&lt;/button&gt;
@@ -642,7 +642,7 @@ header,footer{margin:18px auto;max-width:1100px;background:var(--wash);border:2p
   "_provenance": {
     "license": "CC-BY 4.0",
     "lineage": [
-      "Cathedral of Circuits / Circuitum 99",
+      "Cathedral of Circuits / circuitum99",
       "Codex 144:99 -- Angel-Tech Registry",
       "Liber Soyga planetary squares",
       "Hilma af Klint Temple blueprints"
@@ -703,8 +703,8 @@ Contact: bekalah · GitHub: https://github.com/Bekalah · Repo: https://github.c
   <h3>tools/healthcheck.html</h3>
   <pre><code>&lt;!doctype html&gt;&lt;meta charset="utf-8"&gt;
 &lt;title&gt;Healthcheck&lt;/title&gt;
-&lt;link rel="stylesheet" href="../assets/css/palette.css"&gt;
-&lt;link rel="stylesheet" href="../assets/css/light.css"&gt;
+&lt;link rel="stylesheet" href="/assets/css/palette.css"&gt;
+&lt;link rel="stylesheet" href="/assets/css/light.css"&gt;
 &lt;body&gt;
 &lt;h1&gt;Healthcheck&lt;/h1&gt;
 &lt;ul id="log"&gt;&lt;/ul&gt;
@@ -714,13 +714,13 @@ async function check(path,label){
   try{ const r=await fetch(path); if(!r.ok) throw new Error(r.status); await r.text(); li.textContent=`✔ ${label}`; }
   catch(e){ li.textContent=`✖ ${label} (${e})`; }
 }
-await check('../assets/data/stylepacks.json','stylepacks.json');
-await check('../assets/data/structure.json','structure.json');
-await check('../assets/js/cathedral-engine.js','cathedral-engine.js');
-await check('../assets/js/ambient-engine.js','ambient-engine.js');
-await check('../assets/js/style-engine.js','style-engine.js');
-await check('../assets/js/room-plaque.js','room-plaque.js');
-await check('../assets/js/ritual.js','ritual.js');
+await check('/assets/data/stylepacks.json','stylepacks.json');
+await check('/assets/data/structure.json','structure.json');
+await check('/assets/js/cathedral-engine.js','cathedral-engine.js');
+await check('/assets/js/ambient-engine.js','ambient-engine.js');
+await check('/assets/js/style-engine.js','style-engine.js');
+await check('/assets/js/room-plaque.js','room-plaque.js');
+await check('/assets/js/ritual.js','ritual.js');
 &lt;/script&gt;
 </code></pre>
 </section>
