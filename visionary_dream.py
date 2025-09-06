@@ -196,6 +196,9 @@ import wave
 # Visionary art generation using Python and Pillow
 # Color palette inspired by Alex Grey's psychedelic spectrum
 
+# Visionary art generation using Python and Pillow
+# Color palette inspired by Alex Grey's psychedelic spectrum
+
 import numpy as np
 from PIL import Image
 from datetime import datetime
@@ -385,7 +388,6 @@ pattern = (
     np.sin(2 * (X + Y)) +
     np.cos(2 * (X - Y))
 )
-=======
 # ------------------------------
 # Argument parsing for user inputs
 # ------------------------------
@@ -416,6 +418,10 @@ tarot_phase = (hash(args.tarot) % 360) / 180.0 * math.pi
 # ------------------------------
 # Coordinate grid centered at canvas origin
 # ------------------------------
+=======
+# Set canvas resolution
+WIDTH, HEIGHT = 1920, 1080
+
 =======
 # Set canvas resolution
 WIDTH, HEIGHT = 1920, 1080
@@ -502,6 +508,14 @@ with wave.open("Visionary_Dream.wav", "w") as wf:
     wf.setframerate(sample_rate)
     wf.writeframes(audio.tobytes())
 
+# Layered trigonometric waves for visionary geometry
+wave = np.sin(10 * R + 5 * theta) + np.sin(15 * R - 4 * theta)
+
+# Normalize wave to 0-1 range
+wave_norm = (wave - wave.min()) / (wave.max() - wave.min())
+
+# Alex Grey-inspired spectral palette (violet to red)
+palette = np.array([
 # Layered trigonometric waves for visionary geometry
 wave = np.sin(10 * R + 5 * theta) + np.sin(15 * R - 4 * theta)
 
