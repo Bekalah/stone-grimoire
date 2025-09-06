@@ -1,0 +1,53 @@
+/codex/                       # 144:99 board = alpha↔omega loop
+  /board/
+    board.json
+    bus.js
+    /mandala/
+      manifest.json
+      ribbon_mandala.jpg      # (put your art here; placeholder path)
+  /meta/
+    charter.md
+    adapter.config.json
+    presentation.policy.json
+    schema_helix_node.json    # (append fields if you already have one)
+    schema_facet_science.json
+    schema_facet_canon.json
+    schema_facet_psych.json
+    schema_facet_craft.json
+    schema_facet_esoteric.json
+    schema_facet_research.json
+    schema_fusion.json        # Fusion Kink facet
+  /lenses/
+    agrippa_occult_philosophy.json
+    bruno_memory_wheels.json
+    fortune_mystical_qabalah.json
+    case_tarot_bota.json
+    wilber_aqal.json
+    eight_circuit_leary_raw_alli.json
+    mcgilchrist_hemispheres.json
+    biogeometry_gilbert.json
+    green_evolutionary_astrology.json
+    jung_archetypes.json
+    plato_timaeus_solids.json
+    hilma_af_klint_temple.json
+  /translation_rules/
+    v1.0.json
+  /labs/
+    lab_master_pattern.json
+/nodes/
+  respawn_gate.json
+  egregore_moonchild.json
+  chapter_21_omega_gate.json
+/data/research/
+  sessions.jsonl
+  esm.jsonl
+/docs/
+  research_manifesto.md
+  ribbon_mandala.md
+  integrity_banner.md
+  validator.md
+/scenes/                       # you can copy these into each repo’s /scenes/
+  mandala.html                 # Stone Cathedral hub
+  room.html                    # Cosmogenesis room demo
+  home.html                    # Circuitum99 splash
+  card.html                    # Liber Arcanae demo
