@@ -26,6 +26,10 @@
     "room_id": 4,
     "style": "Alpha et Omega",
     "ingest": [],
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
     "optional": true
   },
   {
@@ -38,12 +42,20 @@
     "room_id": 6,
     "style": "Solomon",
     "ingest": [],
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
     "optional": true
   },
   {
     "room_id": 7,
     "style": "Alchemy",
     "ingest": [],
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -56,12 +68,19 @@
     "room_id": 9,
     "style": "Hilma Spiral",
     "ingest": [],
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
     "optional": true
   },
   {
     "room_id": 10,
     "style": "Crystal Grid",
     "ingest": [],
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
     "optional": true
   },
   {
@@ -73,13 +92,21 @@
   {
     "room_id": 12,
     "style": "Slavic",
+
     "ingest": [],
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
     "optional": true
   },
   {
     "room_id": 13,
     "style": "Avalon",
     "ingest": [],
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
     "optional": true
   },
   {
@@ -92,12 +119,19 @@
     "room_id": 15,
     "style": "Agrippa",
     "ingest": [],
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
     "optional": true
   },
   {
     "room_id": 16,
     "style": "Solomon",
     "ingest": [],
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
     "optional": true
   },
   {
@@ -110,12 +144,19 @@
     "room_id": 18,
     "style": "Magdalene",
     "ingest": [],
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
     "optional": true
   },
   {
     "room_id": 19,
     "style": "Hilma Spiral",
     "ingest": [],
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
     "optional": true
   },
   {
@@ -127,13 +168,21 @@
   {
     "room_id": 21,
     "style": "Egyptian",
+
     "ingest": [],
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
     "optional": true
   },
   {
     "room_id": 22,
     "style": "Slavic",
     "ingest": [],
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
     "optional": true
   },
   {
@@ -146,12 +195,19 @@
     "room_id": 24,
     "style": "Alpha et Omega",
     "ingest": [],
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
     "optional": true
   },
   {
     "room_id": 25,
     "style": "Agrippa",
     "ingest": [],
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
     "optional": true
   },
   {
@@ -164,12 +220,19 @@
     "room_id": 27,
     "style": "Alchemy",
     "ingest": [],
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
     "optional": true
   },
   {
     "room_id": 28,
     "style": "Magdalene",
     "ingest": [],
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
     "optional": true
   },
   {
@@ -182,12 +245,20 @@
     "room_id": 30,
     "style": "Crystal Grid",
     "ingest": [],
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
     "optional": true
   },
   {
     "room_id": 31,
     "style": "Egyptian",
+
     "ingest": [],
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
     "optional": true
   },
   {
@@ -200,12 +271,20 @@
     "room_id": 33,
     "style": "Avalon",
     "ingest": [],
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
     "optional": true
   },
   {
     "room_id": 34,
     "style": "Alpha et Omega",
     "ingest": [],
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -217,13 +296,26 @@
   {
     "room_id": 36,
     "style": "Solomon",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 37,
     "style": "Alchemy",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -235,13 +327,26 @@
   {
     "room_id": 39,
     "style": "Hilma Spiral",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 40,
     "style": "Crystal Grid",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -254,12 +359,19 @@
     "room_id": 42,
     "style": "Slavic",
     "ingest": [],
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
     "optional": true
   },
   {
     "room_id": 43,
     "style": "Avalon",
     "ingest": [],
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
     "optional": true
   },
   {
@@ -271,13 +383,26 @@
   {
     "room_id": 45,
     "style": "Agrippa",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 46,
     "style": "Solomon",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -289,13 +414,26 @@
   {
     "room_id": 48,
     "style": "Magdalene",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 49,
     "style": "Hilma Spiral",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -307,13 +445,26 @@
   {
     "room_id": 51,
     "style": "Egyptian",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 52,
     "style": "Slavic",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -325,13 +476,26 @@
   {
     "room_id": 54,
     "style": "Alpha et Omega",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 55,
     "style": "Agrippa",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -343,13 +507,26 @@
   {
     "room_id": 57,
     "style": "Alchemy",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 58,
     "style": "Magdalene",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -361,13 +538,26 @@
   {
     "room_id": 60,
     "style": "Crystal Grid",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 61,
     "style": "Egyptian",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -379,13 +569,26 @@
   {
     "room_id": 63,
     "style": "Avalon",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 64,
     "style": "Alpha et Omega",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -397,13 +600,26 @@
   {
     "room_id": 66,
     "style": "Solomon",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 67,
     "style": "Alchemy",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -415,13 +631,26 @@
   {
     "room_id": 69,
     "style": "Hilma Spiral",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 70,
     "style": "Crystal Grid",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -433,13 +662,26 @@
   {
     "room_id": 72,
     "style": "Slavic",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 73,
     "style": "Avalon",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -451,13 +693,26 @@
   {
     "room_id": 75,
     "style": "Agrippa",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 76,
     "style": "Solomon",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -469,13 +724,26 @@
   {
     "room_id": 78,
     "style": "Magdalene",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 79,
     "style": "Hilma Spiral",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -487,13 +755,26 @@
   {
     "room_id": 81,
     "style": "Egyptian",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 82,
     "style": "Slavic",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -505,13 +786,26 @@
   {
     "room_id": 84,
     "style": "Alpha et Omega",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 85,
     "style": "Agrippa",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -523,13 +817,26 @@
   {
     "room_id": 87,
     "style": "Alchemy",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 88,
     "style": "Magdalene",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -541,13 +848,26 @@
   {
     "room_id": 90,
     "style": "Crystal Grid",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 91,
     "style": "Egyptian",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -559,13 +879,26 @@
   {
     "room_id": 93,
     "style": "Avalon",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 94,
     "style": "Alpha et Omega",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -577,13 +910,26 @@
   {
     "room_id": 96,
     "style": "Solomon",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 97,
     "style": "Alchemy",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -595,13 +941,26 @@
   {
     "room_id": 99,
     "style": "Hilma Spiral",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 100,
     "style": "Crystal Grid",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -613,13 +972,26 @@
   {
     "room_id": 102,
     "style": "Slavic",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 103,
     "style": "Avalon",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -631,13 +1003,26 @@
   {
     "room_id": 105,
     "style": "Agrippa",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 106,
     "style": "Solomon",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -649,13 +1034,26 @@
   {
     "room_id": 108,
     "style": "Magdalene",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 109,
     "style": "Hilma Spiral",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -667,13 +1065,26 @@
   {
     "room_id": 111,
     "style": "Egyptian",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 112,
     "style": "Slavic",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -685,13 +1096,26 @@
   {
     "room_id": 114,
     "style": "Alpha et Omega",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 115,
     "style": "Agrippa",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -703,13 +1127,26 @@
   {
     "room_id": 117,
     "style": "Alchemy",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 118,
     "style": "Magdalene",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -721,13 +1158,26 @@
   {
     "room_id": 120,
     "style": "Crystal Grid",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 121,
     "style": "Egyptian",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -739,13 +1189,26 @@
   {
     "room_id": 123,
     "style": "Avalon",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 124,
     "style": "Alpha et Omega",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -757,13 +1220,26 @@
   {
     "room_id": 126,
     "style": "Solomon",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 127,
     "style": "Alchemy",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -775,13 +1251,26 @@
   {
     "room_id": 129,
     "style": "Hilma Spiral",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 130,
     "style": "Crystal Grid",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -793,13 +1282,26 @@
   {
     "room_id": 132,
     "style": "Slavic",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 133,
     "style": "Avalon",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -811,13 +1313,26 @@
   {
     "room_id": 135,
     "style": "Agrippa",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 136,
     "style": "Solomon",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -829,13 +1344,26 @@
   {
     "room_id": 138,
     "style": "Magdalene",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 139,
     "style": "Hilma Spiral",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -847,13 +1375,26 @@
   {
     "room_id": 141,
     "style": "Egyptian",
+
     "ingest": [],
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+
     "optional": true
   },
   {
     "room_id": 142,
     "style": "Slavic",
+
     "ingest": [],
+
+    "ingest": [
+      "liber-arcanae:assets/data/tarot_map.json",
+      "cosmogenesis-learning-engine:assets/data/codex144.json"
+    ],
+
     "optional": true
   },
   {
@@ -865,7 +1406,16 @@
   {
     "room_id": 144,
     "style": "Alpha et Omega",
+
     "ingest": [],
     "optional": true
   }
 ]
+
+    "ingest": [
+      "circuitum99:assets/data/spine33.json"
+    ],
+    "optional": true
+  }
+]
+

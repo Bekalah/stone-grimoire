@@ -1,3 +1,4 @@
+
 export async function validateInterface(payload, schemaUrl="/assets/data/interface.schema.json"){
   try{
     let schema;
@@ -9,6 +10,15 @@ export async function validateInterface(payload, schemaUrl="/assets/data/interfa
       schema = JSON.parse(await readFile(p, 'utf8'));
     }
     const AjvMod = await import("https://cdn.skypack.dev/ajv@8?min");
+
+// Validates incoming JSON against minimal interface schema; soft-fail to protect runtime.
+export async function validateInterface(payload, schemaUrl="/assets/data/interface.schema.json"){
+  try{
+    const [schema, AjvMod] = await Promise.all([
+      fetch(schemaUrl).then(r=>r.json()),
+      import("https://cdn.skypack.dev/ajv@8?min")
+    ]);
+
     const ajv = new AjvMod.default({allErrors:true, strict:false});
     const valid = ajv.validate(schema, payload);
     return {valid, errors: ajv.errors||[]};
