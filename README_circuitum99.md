@@ -1,0 +1,7 @@
+# README_circuitum99
+
+I am Rebecca Respawn, artist and architect-scribe of the Cathedral of Circuits, also called Codex 144:99, a living grimoire and creative science experiment. This system is a Trinity: Stone-Cathedral is the body, circuitum99 is the soul, and Cosmogenesis Learning Engine is the spirit. Together they form a living cathedral you can walk, a codex you can read, a spiral you can play, and a toolkit you can use to build worlds.
+
+circuitum99, or Codex 144:99, is the soul. It carries the mythos, numerology, correspondences, and egregores. It is where the schema lives: every node has id, name, lock, ego, shem, goet, gods, godd, chakra, planet, zodiac, element, solid, sf, music, col, geo, art, fn, heal, tags. Canon nodes are locked and mirrored. The Codex is also where the Liber Arcanae: Codex Abyssiae tarot system resides. Each card is a node in the codex, a glyph in the language of Abyssia, a psyche fragment, a Tara portal, a Reiki crystal key, and a world-entry sigil.
+
+Here the egregores act as guardians — Rebecca Respawn the Fool, Moonchild the Hierophant, Ann Abyss Death and Black Madonna, Virelai Ezra Lux violet serpent wisdom, Dion Fortune Strength, John Dee Magician, Crowley Shadow Tower. Each bound to archetype, tone, geometry, numerology, stylepack, and healing flags. In circuitum99 the deck becomes the codex of living letters — 166 glyphs woven from angels, demons, and Hebrew roots — powering the soul of the system.

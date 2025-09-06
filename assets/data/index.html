@@ -7,11 +7,11 @@
   <meta name="description" content="Traveler index for chapels in the Cathedral of Circuits. ND-safe, no autoplay." />
 
   <!-- Your existing stack -->
-  <link rel="stylesheet" href="../assets/css/palette.css" />
-  <link rel="stylesheet" href="../assets/css/light.css" />
-  <script src="../assets/js/theme.js" defer></script>
-  <script src="../assets/js/planetary-hours.js" defer></script>
-  <script src="../assets/js/share-export.js" defer></script>
+  <link rel="stylesheet" href="/assets/css/palette.css" />
+  <link rel="stylesheet" href="/assets/css/light.css" />
+  <script src="/assets/js/theme.js" defer></script>
+  <script src="/assets/js/planetary-hours.js" defer></script>
+  <script src="/assets/js/share-export.js" defer></script>
 
   <style>
     /* ND-safe: no motion, no flashing. */
@@ -56,14 +56,14 @@
   }
 
   async function loadPlaque(slug){
-    try { return await j(`../assets/data/plaques/${slug}.json`); }
+    try { return await j(`/assets/data/plaques/${slug}.json`); }
     catch { return null; }
   }
 
   async function build(){
     const grid = document.getElementById('chapels-grid');
-    let structure; try { structure = await j('../assets/data/structure.json'); } catch(e){ grid.textContent='Missing assets/data/structure.json'; return; }
-    let stamps;    try { stamps    = await j('../assets/data/stamps.json'); } catch(e){ stamps = {"chapels": []}; }
+    let structure; try { structure = await j('/assets/data/structure.json'); } catch(e){ grid.textContent='Missing assets/data/structure.json'; return; }
+    let stamps;    try { stamps    = await j('/assets/data/stamps.json'); } catch(e){ stamps = {"chapels": []}; }
 
     const stampMap = Object.fromEntries((stamps.chapels||[]).map(c => [c.slug, c.label]));
     const rooms = (structure.rooms||[]).filter(r => (r.realm||'').toLowerCase()==='chapels');
@@ -112,7 +112,7 @@
 
       if (b.dataset.action === 'share'){
         const url = b.dataset.url || location.href;
-        if (navigator.share){ navigator.share({title:'Circuitum 99 -- Chapel', url}).catch(()=>{});
+        if (navigator.share){ navigator.share({title:'circuitum99 -- Chapel', url}).catch(()=>{});
         } else {
           navigator.clipboard?.writeText(url).catch(()=>{});
           b.textContent = 'Link Copied';

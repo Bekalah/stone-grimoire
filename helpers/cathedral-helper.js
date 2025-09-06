@@ -67,7 +67,7 @@ export const CathedralHelper = (() => {
     return (light+0.05)/(dark+0.05);
   }
 
-  // ---------- ND‑safe audio (convolver + compressor + gain cap) ----------
+  // ---------- ND-safe audio (convolver + compressor + gain cap) ----------
   async function getCtx(){
     audioCtx = audioCtx || new (window.AudioContext||window.webkitAudioContext)();
     if (audioCtx.state !== 'running') await audioCtx.resume();

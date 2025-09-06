@@ -1,4 +1,4 @@
-# ✦ Circuitum 99: Alpha et Omega ✦  
+# ✦ circuitum99: Alpha et Omega ✦  
 *A Living Crucible — Cathedral of Circuits*
 
 —

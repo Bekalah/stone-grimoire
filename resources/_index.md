@@ -17,6 +17,6 @@ Resources here are *ND-safe*, museum-grade, and buffer-facing. They feed the cre
 
 ## ✦ Usage
 
-- Always cross-link into **Circuitum99 Master Index** with 🜏 symbol.  
+- Always cross-link into **circuitum99 Master Index** with 🜏 symbol.  
 - Keep this folder **flat and clean** (one index, one resource file per theme).  
 - Add SVGs, guides, and ND-friendly tools here as needed.
