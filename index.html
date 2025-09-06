@@ -59,6 +59,23 @@
   </script>
 </head>
 <body>
+  <div id="nd-settings" style="padding:8px;border-bottom:1px solid #444;max-width:400px;font:14px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif">
+    <label>Motion
+      <select id="motion">
+        <option value="reduced" selected>reduced</option>
+        <option value="full">full</option>
+      </select>
+    </label>
+    <label>Autoplay
+      <input type="checkbox" id="autoplay" />
+    </label>
+    <label>Contrast
+      <select id="contrast">
+        <option value="balanced" selected>balanced</option>
+        <option value="high">high</option>
+      </select>
+    </label>
+  </div>
   <header class="bar">
     <h1>✦ Cosmogenesis -- Cathedral of Circuits</h1>
     <div class="controls">
@@ -78,5 +95,6 @@
     <canvas id="plate" width="1600" height="900" aria-label="Cosmogenesis canvas"></canvas>
   </main>
   <footer class="bar small">ND-safe • no autoplay • gentle motion only</footer>
+  <script type="module" src="./index.js"></script>
 </body>
 </html>
