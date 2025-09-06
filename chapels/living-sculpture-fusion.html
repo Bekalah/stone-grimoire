@@ -7,8 +7,8 @@
 <meta name="description" content="A museum-grade chapel that blends archetypes and realms (Shem Ladder, stylepacks, numerology, I Ching, planetary hour) into a living, ND-safe sculpture.">
 
 <!-- Optional house styles (will gracefully degrade if absent) -->
-<link rel="stylesheet" href="../assets/css/palette.css">
-<link rel="stylesheet" href="../assets/css/light.css">
+<link rel="stylesheet" href="/assets/css/palette.css">
+<link rel="stylesheet" href="/assets/css/light.css">
 
 <style>
   :root{
@@ -240,11 +240,11 @@ function prefersReducedMotion(){ return window.matchMedia && window.matchMedia("
 (async function boot(){
   // Engines (best-effort)
   state.engines.helper    = await tryImport(["../helpers/cathedral-helper.js"]);
-  state.engines.fractal   = await tryImport(["../assets/js/engines/fractal-engine.js", "../assets/js/engines/cymatic-engine.js"]);
-  state.engines.planetary = await tryImport(["../assets/js/planetary-light.js", "../assets/js/engines/planetary-hours.js"]);
+  state.engines.fractal   = await tryImport(["/assets/js/engines/fractal-engine.js", "/assets/js/engines/cymatic-engine.js"]);
+  state.engines.planetary = await tryImport(["/assets/js/planetary-light.js", "/assets/js/engines/planetary-hours.js"]);
 
   // Data
-  const angels = await loadJSON("../assets/data/angels72.json");
+  const angels = await loadJSON("/assets/data/angels72.json");
   if(angels && Array.isArray(angels)){
     state.angels = angels;
     els.angelA.innerHTML = '<option value="">-- select --</option>' + angels.map((a,i)=>`<option value="${i}">#${String(i+1).padStart(2,"0")} -- ${a.name||("Shem "+(i+1))}</option>`).join("");
@@ -254,7 +254,7 @@ function prefersReducedMotion(){ return window.matchMedia && window.matchMedia("
     els.angelB.innerHTML = '<option value="">(angels72.json missing)</option>';
   }
 
-  const packs = await loadJSON("../assets/data/stylepacks.json");
+  const packs = await loadJSON("/assets/data/stylepacks.json");
   if(packs && typeof packs==="object"){
     state.stylepacks = packs;
     const opts = Object.keys(packs).sort().map(k=>`<option value="${k}">${k}</option>`).join("");

@@ -18,7 +18,7 @@ bridge/c99-bridge.js
 stone_grimoire/assets/tokens/perm-style.json
 {
   “meta”: {
-    “name”: “Circuitum99 — Perm Style”,
+    “name”: “circuitum99 — Perm Style”,
     “version”: “2.1.0”,
     “author”: “Virelai Ezra Lux”,
     “materials_version”: “obsidian-volcanic-1.0”,
