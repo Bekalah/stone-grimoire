@@ -1,4 +1,4 @@
-🜍 Circuitum 99 — Cathedral Annex (Unified)
+🜍 circuitum99 — Cathedral Annex (Unified)
 
 A living codex of art standards, chapel schematics, and archive references.
 For use in Stone Grimoire / Codex 144:99 (museum-grade, ND-friendly).

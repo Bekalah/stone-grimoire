@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="2400" viewBox="0 0 2400 2400" role="img" aria-label="Seal of Codex Abyssiae">
+<defs>
+  <radialGradient id="bgGrad" cx="50%" cy="10%">
+    <stop offset="0%" stop-color="#33214e" stop-opacity="0.35"/>
+    <stop offset="40%" stop-color="#191b22" stop-opacity="0.9"/>
+    <stop offset="100%" stop-color="#0b0b0b" stop-opacity="1"/>
+    <stop offset="100%" stop-color="#0B0B0B" stop-opacity="1"/>
+  </radialGradient>
+  <filter id="softSpec"><feGaussianBlur stdDeviation="0.8"/><feComponentTransfer><feFuncA type="gamma" amplitude="0.9" exponent="1.3" offset="0"/></feComponentTransfer></filter>
+</defs>
+<rect x="0" y="0" width="2400" height="2400" fill="url(#bgGrad)"/>
+<circle cx="1200" cy="1200" r="1120" fill="none" stroke="#191b22" stroke-width="18"/>
+<line x1="1200" y1="140" x2="1200" y2="164" stroke="#d9e0e7" stroke-width="4" />
+<text x="1200" y="200" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-90 1200 200)">א</text>
+<line x1="1285.2945628397292" y1="143.4372533777373" x2="1283.363365190528" y2="167.35942877295838" stroke="#d9e0e7" stroke-width="4" />
+<text x="1280.4665687167258" y="203.24269186579" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-85.38461538461539 1280.4665687167258 203.24269186579)">ב</text>
+<line x1="1370.0359577092258" y1="153.7267216038124" x2="1366.1860869686395" y2="177.4159279071223" stroke="#d9e0e7" stroke-width="4" />
+<text x="1360.4112808577602" y="212.94973736208715" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-80.76923076923077 1360.4112808577602 212.94973736208715)">ג</text>
+<line x1="1453.6746041448112" y1="170.80167352838498" x2="1447.9310282019096" y2="194.10427714661012" stroke="#d9e0e7" stroke-width="4" />
+<text x="1439.3156642875576" y="229.058182573948" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-76.15384615384616 1439.3156642875576 229.058182573948)">ד</text>
+<line x1="1535.6680734295608" y1="194.55137153602573" x2="1528.0680415783254" y2="217.31624614275722" stroke="#d9e0e7" stroke-width="4" />
+<text x="1516.6679938014724" y="251.4635580528544" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-71.53846153846155 1516.6679938014724 251.4635580528544)">ה</text>
+<line x1="1615.4846064516794" y1="224.82178972164616" x2="1606.0774078150375" y2="246.901296369458" stroke="#d9e0e7" stroke-width="4" />
+<text x="1591.9666098600749" y="280.0205563411756" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-66.92307692307693 1591.9666098600749 280.0205563411756)">ו</text>
+<line x1="1692.6065623663947" y1="261.4166128075975" x2="1681.4532062373441" y2="282.6675574232745" stroke="#d9e0e7" stroke-width="4" />
+<text x="1664.7231720437685" y="314.54397434679004" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-62.30769230769231 1664.7231720437685 314.54397434679004)">ז</text>
+<line x1="1766.5337756954693" y1="304.09850932357756" x2="1753.706595868402" y2="324.38307137662866" stroke="#d9e0e7" stroke-width="4" />
+<text x="1734.4658261278014" y="354.8099144562053" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-57.69230769230769 1734.4658261278014 354.8099144562053)">ח</text>
+<line x1="1836.7868000922576" y1="352.59067079228873" x2="1822.368985750546" y2="371.77729711397274" stroke="#d9e0e7" stroke-width="4" />
+<text x="1800.7422642379788" y="400.5572365964988" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-53.07692307692308 1800.7422642379788 400.5572365964988)">ט</text>
+<line x1="1902.910017735243" y1="406.5786069386329" x2="1886.995073937464" y2="424.5428648947393" stroke="#d9e0e7" stroke-width="4" />
+<text x="1863.1226582407953" y="451.4892518288989" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-48.46153846153847 1863.1226582407953 451.4892518288989)">י</text>
+<line x1="1964.4745941844433" y1="465.71218527982455" x2="1947.1657354481918" y2="482.33756976405493" stroke="#d9e0e7" stroke-width="4" />
+<text x="1921.2024473438146" y="507.2756464904005" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-43.846153846153854 1921.2024473438146 507.2756464904005)">כ</text>
+<line x1="2021.0812595373138" y1="529.6079018689001" x2="2002.4907404534501" y2="544.7865908831891" stroke="#d9e0e7" stroke-width="4" />
+<text x="1974.6049618276547" y="567.5546244046227" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-39.23076923076923 1974.6049618276547 567.5546244046227)">ל</text>
+<line x1="2072.3628978472757" y1="597.8513684649748" x2="2052.611285065828" y2="611.4849223865226" stroke="#d9e0e7" stroke-width="4" />
+<text x="2022.9838658936565" y="631.9352532688442" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-34.61538461538462 2022.9838658936565 631.9352532688442)">מ</text>
+<line x1="2117.986928011505" y1="670" x2="2097.2023183206784" y2="682" stroke="#d9e0e7" stroke-width="4" />
+<text x="2066.025403784439" y="700" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-30.000000000000007 2066.025403784439 700)">נ</text>
+<line x1="2157.6574606870054" y1="745.5858849127626" x2="2135.974650256356" y2="755.8745063864359" stroke="#d9e0e7" stroke-width="4" />
+<text x="2103.450434610382" y="771.3074385969458" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-25.384615384615387 2103.450434610382 771.3074385969458)">ס</text>
+<line x1="2191.1172172465394" y1="824.1188197349122" x2="2168.67682742209" y2="832.629337023933" stroke="#d9e0e7" stroke-width="4" />
+<text x="2135.016242685415" y="845.3951129574643" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-20.769230769230774 2135.016242685415 845.3951129574643)">ע</text>
+<line x1="2218.1491983292544" y1="905.0894882485601" x2="2195.096763650102" y2="911.766707382555" stroke="#d9e0e7" stroke-width="4" />
+<text x="2160.5181116313724" y="921.7825360835473" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-16.15384615384616 2160.5181116313724 921.7825360835473)">פ</text>
+<line x1="2238.5780911648035" y1="987.9727645973928" x2="2215.0631155157894" y2="992.7733812480178" stroke="#d9e0e7" stroke-width="4" />
+<text x="2179.7906520422675" y="999.9743062239554" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-11.538461538461547 2179.7906520422675 999.9743062239554)">צ</text>
+<line x1="2252.2714065439372" y1="1072.2311189293573" x2="2228.446393565584" y2="1075.1239992554852" stroke="#d9e0e7" stroke-width="4" />
+<text x="2192.708874098054" y="1079.4633197446767" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-6.923076923076934 2192.708874098054 1079.4633197446767)">ק</text>
+<line x1="2259.140338061864" y1="1157.3181034840197" x2="2235.159802105746" y2="1158.2844860466457" stroke="#d9e0e7" stroke-width="4" />
+<text x="2199.1889981715694" y="1159.7340598905846" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(-2.307692307692321 2199.1889981715694 1159.7340598905846)">ר</text>
+<line x1="2259.140338061864" y1="1242.6818965159798" x2="2235.159802105746" y2="1241.7155139533538" stroke="#d9e0e7" stroke-width="4" />
+<text x="2199.1889981715694" y="1240.265940109415" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(2.3076923076922924 2199.1889981715694 1240.265940109415)">ש</text>
+<line x1="2252.2714065439372" y1="1327.7688810706425" x2="2228.446393565584" y2="1324.8760007445146" stroke="#d9e0e7" stroke-width="4" />
+<text x="2192.708874098054" y="1320.536680255323" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#f8f5ef" transform="rotate(6.92307692307692 2192.708874098054 1320.536680255323)">ת</text>
+<text x="1200" y="200" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#F8F5EF" transform="rotate(-90 1200 200)">א</text>
+<line x1="1285.2945628397292" y1="143.4372533777373" x2="1283.363365190528" y2="167.35942877295838" stroke="#d9e0e7" stroke-width="4" />
+<text x="1280.4665687167258" y="203.24269186579" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#F8F5EF" transform="rotate(-85.38461538461539 1280.4665687167258 203.24269186579)">ב</text>
+<line x1="1370.0359577092258" y1="153.7267216038124" x2="1366.1860869686395" y2="177.4159279071223" stroke="#d9e0e7" stroke-width="4" />
+<text x="1360.4112808577602" y="212.94973736208715" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#F8F5EF" transform="rotate(-80.76923076923077 1360.4112808577602 212.94973736208715)">ג</text>
+<line x1="1453.6746041448112" y1="170.80167352838498" x2="1447.9310282019096" y2="194.10427714661012" stroke="#d9e0e7" stroke-width="4" />
+<text x="1439.3156642875576" y="229.058182573948" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#F8F5EF" transform="rotate(-76.15384615384616 1439.3156642875576 229.058182573948)">ד</text>
+<line x1="1535.6680734295608" y1="194.55137153602573" x2="1528.0680415783254" y2="217.31624614275722" stroke="#d9e0e7" stroke-width="4" />
+<text x="1516.6679938014724" y="251.4635580528544" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#F8F5EF" transform="rotate(-71.53846153846155 1516.6679938014724 251.4635580528544)">ה</text>
+<line x1="1615.4846064516794" y1="224.82178972164616" x2="1606.0774078150375" y2="246.901296369458" stroke="#d9e0e7" stroke-width="4" />
+<text x="1591.9666098600749" y="280.0205563411756" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#F8F5EF" transform="rotate(-66.92307692307693 1591.9666098600749 280.0205563411756)">ו</text>
+<line x1="1692.6065623663947" y1="261.4166128075975" x2="1681.4532062373441" y2="282.6675574232745" stroke="#d9e0e7" stroke-width="4" />
+<text x="1664.7231720437685" y="314.54397434679004" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#F8F5EF" transform="rotate(-62.30769230769231 1664.7231720437685 314.54397434679004)">ז</text>
+<line x1="1766.5337756954693" y1="304.09850932357756" x2="1753.706595868402" y2="324.38307137662866" stroke="#d9e0e7" stroke-width="4" />
+<text x="1734.4658261278014" y="354.8099144562053" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#F8F5EF" transform="rotate(-57.69230769230769 1734.4658261278014 354.8099144562053)">ח</text>
+<line x1="1836.7868000922576" y1="352.59067079228873" x2="1822.368985750546" y2="371.77729711397274" stroke="#d9e0e7" stroke-width="4" />
+<text x="1800.7422642379788" y="400.5572365964988" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#F8F5EF" transform="rotate(-53.07692307692308 1800.7422642379788 400.5572365964988)">ט</text>
+<line x1="1902.910017735243" y1="406.5786069386329" x2="1886.995073937464" y2="424.5428648947393" stroke="#d9e0e7" stroke-width="4" />
+<text x="1863.1226582407953" y="451.4892518288989" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#F8F5EF" transform="rotate(-48.46153846153847 1863.1226582407953 451.4892518288989)">י</text>
+<line x1="1964.4745941844433" y1="465.71218527982455" x2="1947.1657354481918" y2="482.33756976405493" stroke="#d9e0e7" stroke-width="4" />
+<text x="1921.2024473438146" y="507.2756464904005" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#F8F5EF" transform="rotate(-43.846153846153854 1921.2024473438146 507.2756464904005)">כ</text>
+<line x1="2021.0812595373138" y1="529.6079018689001" x2="2002.4907404534501" y2="544.7865908831891" stroke="#d9e0e7" stroke-width="4" />
+<text x="1974.6049618276547" y="567.5546244046227" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#F8F5EF" transform="rotate(-39.23076923076923 1974.6049618276547 567.5546244046227)">ל</text>
+<line x1="2072.3628978472757" y1="597.8513684649748" x2="2052.611285065828" y2="611.4849223865226" stroke="#d9e0e7" stroke-width="4" />
+<text x="2022.9838658936565" y="631.9352532688442" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#F8F5EF" transform="rotate(-34.61538461538462 2022.9838658936565 631.9352532688442)">מ</text>
+<line x1="2117.986928011505" y1="670" x2="2097.2023183206784" y2="682" stroke="#d9e0e7" stroke-width="4" />
+<text x="2066.025403784439" y="700" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#F8F5EF" transform="rotate(-30.000000000000007 2066.025403784439 700)">נ</text>
+<line x1="2157.6574606870054" y1="745.5858849127626" x2="2135.974650256356" y2="755.8745063864359" stroke="#d9e0e7" stroke-width="4" />
+<text x="2103.450434610382" y="771.3074385969458" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#F8F5EF" transform="rotate(-25.384615384615387 2103.450434610382 771.3074385969458)">ס</text>
+<line x1="2191.1172172465394" y1="824.1188197349122" x2="2168.67682742209" y2="832.629337023933" stroke="#d9e0e7" stroke-width="4" />
+<text x="2135.016242685415" y="845.3951129574643" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#F8F5EF" transform="rotate(-20.769230769230774 2135.016242685415 845.3951129574643)">ע</text>
+<line x1="2218.1491983292544" y1="905.0894882485601" x2="2195.096763650102" y2="911.766707382555" stroke="#d9e0e7" stroke-width="4" />
+<text x="2160.5181116313724" y="921.7825360835473" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#F8F5EF" transform="rotate(-16.15384615384616 2160.5181116313724 921.7825360835473)">פ</text>
+<line x1="2238.5780911648035" y1="987.9727645973928" x2="2215.0631155157894" y2="992.7733812480178" stroke="#d9e0e7" stroke-width="4" />
+<text x="2179.7906520422675" y="999.9743062239554" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#F8F5EF" transform="rotate(-11.538461538461547 2179.7906520422675 999.9743062239554)">צ</text>
+<line x1="2252.2714065439372" y1="1072.2311189293573" x2="2228.446393565584" y2="1075.1239992554852" stroke="#d9e0e7" stroke-width="4" />
+<text x="2192.708874098054" y="1079.4633197446767" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#F8F5EF" transform="rotate(-6.923076923076934 2192.708874098054 1079.4633197446767)">ק</text>
+<line x1="2259.140338061864" y1="1157.3181034840197" x2="2235.159802105746" y2="1158.2844860466457" stroke="#d9e0e7" stroke-width="4" />
+<text x="2199.1889981715694" y="1159.7340598905846" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#F8F5EF" transform="rotate(-2.307692307692321 2199.1889981715694 1159.7340598905846)">ר</text>
+<line x1="2259.140338061864" y1="1242.6818965159798" x2="2235.159802105746" y2="1241.7155139533538" stroke="#d9e0e7" stroke-width="4" />
+<text x="2199.1889981715694" y="1240.265940109415" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#F8F5EF" transform="rotate(2.3076923076922924 2199.1889981715694 1240.265940109415)">ש</text>
+<line x1="2252.2714065439372" y1="1327.7688810706425" x2="2228.446393565584" y2="1324.8760007445146" stroke="#d9e0e7" stroke-width="4" />
+<text x="2192.708874098054" y="1320.536680255323" font-family="Junicode,serif" font-size="34" text-anchor="middle" fill="#F8F5EF" transform="rotate(6.92307692307692 2192.708874098054 1320.536680255323)">ת</text>
+<line x1="2238.5780911648035" y1="1412.027235402607" x2="2215.0631155157894" y2="1407.226618751982" stroke="#d9e0e7" stroke-width="4" />
+<text x="2187.628977258606" y="1401.6258993262527" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(11.538461538461533 2187.628977258606 1401.6258993262527)">🜍</text>
+<line x1="2218.1491983292544" y1="1494.9105117514396" x2="2195.096763650102" y2="1488.233292617445" stroke="#d9e0e7" stroke-width="4" />
+<text x="2168.2022565244233" y="1480.4432036277842" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(16.153846153846146 2168.2022565244233 1480.4432036277842)">🜄</text>
+<line x1="2191.11721724654" y1="1575.8811802650876" x2="2168.67682742209" y2="1567.3706629760668" stroke="#d9e0e7" stroke-width="4" />
+<text x="2142.4963726268984" y="1557.4417261388758" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(20.76923076923076 2142.4963726268984 1557.4417261388758)">🜁</text>
+<line x1="2157.6574606870054" y1="1654.4141150872372" x2="2135.974650256356" y2="1644.1254936135638" stroke="#d9e0e7" stroke-width="4" />
+<text x="2110.6780380872656" y="1632.1221018942783" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(25.384615384615373 2110.6780380872656 1632.1221018942783)">🜃</text>
+<line x1="2117.9869280115054" y1="1729.9999999999998" x2="2097.2023183206784" y2="1717.9999999999998" stroke="#d9e0e7" stroke-width="4" />
+<text x="2072.953607014714" y="1703.9999999999998" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(29.999999999999986 2072.953607014714 1703.9999999999998)">🜍</text>
+<line x1="2072.362897847276" y1="1802.1486315350248" x2="2052.6112850658283" y2="1788.5150776134772" stroke="#d9e0e7" stroke-width="4" />
+<text x="2029.5677368208057" y="1772.609264705005" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(34.6153846153846 2029.5677368208057 1772.609264705005)">🜄</text>
+<line x1="2021.081259537314" y1="1870.3920981310998" x2="2002.4907404534501" y2="1855.213409116811" stroke="#d9e0e7" stroke-width="4" />
+<text x="1980.801801522276" y="1837.5049386001401" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(39.230769230769226 1980.801801522276 1837.5049386001401)">🜁</text>
+<line x1="1964.4745941844435" y1="1934.2878147201752" x2="1947.165735448192" y2="1917.6624302359448" stroke="#d9e0e7" stroke-width="4" />
+<text x="1926.9720669225653" y="1898.266148337676" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(43.84615384615384 1926.9720669225653 1898.266148337676)">🜃</text>
+<line x1="1902.910017735243" y1="1993.421393061367" x2="1886.995073937464" y2="1975.4571351052607" stroke="#d9e0e7" stroke-width="4" />
+<text x="1868.4276395067218" y="1954.49883415647" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(48.46153846153845 1868.4276395067218 1954.49883415647)">🜍</text>
+<line x1="1836.7868000922576" y1="2047.4093292077112" x2="1822.3689857505462" y2="2028.222702886027" stroke="#d9e0e7" stroke-width="4" />
+<text x="1805.548202351883" y="2005.8383055107292" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(53.076923076923066 1805.548202351883 2005.8383055107292)">🜄</text>
+<line x1="1766.5337756954693" y1="2095.9014906764223" x2="1753.706595868402" y2="2075.616928623371" stroke="#d9e0e7" stroke-width="4" />
+<text x="1738.7415527368237" y="2051.951606228145" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(57.69230769230768 1738.7415527368237 2051.951606228145)">🜁</text>
+<line x1="1692.6065623663949" y1="2138.5833871924024" x2="1681.4532062373446" y2="2117.3324425767255" stroke="#d9e0e7" stroke-width="4" />
+<text x="1668.440957420119" y="2092.5396738584354" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(62.30769230769229 1668.440957420119 2092.5396738584354)">🜃</text>
+<line x1="1615.4846064516798" y1="2175.1782102783536" x2="1606.077407815038" y2="2153.098703630542" stroke="#d9e0e7" stroke-width="4" />
+<text x="1595.102342738956" y="2127.339279208095" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(66.9230769230769 1595.102342738956 2127.339279208095)">🜍</text>
+<line x1="1535.6680734295612" y1="2205.4486284639743" x2="1528.0680415783258" y2="2182.6837538572427" stroke="#d9e0e7" stroke-width="4" />
+<text x="1519.2013377518847" y="2156.1247334827226" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(71.53846153846152 1519.2013377518847 2156.1247334827226)">🜄</text>
+<line x1="1453.6746041448118" y1="2229.198326471615" x2="1447.9310282019103" y2="2205.89572285339" stroke="#d9e0e7" stroke-width="4" />
+<text x="1441.2301896018587" y="2178.7093519654604" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(76.15384615384613 1441.2301896018587 2178.7093519654604)">🜁</text>
+<line x1="1370.0359577092265" y1="2246.2732783961874" x2="1366.1860869686402" y2="2222.5840720928777" stroke="#d9e0e7" stroke-width="4" />
+<text x="1361.694571104623" y="2194.946664739016" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(80.76923076923075 1361.694571104623 2194.946664739016)">🜃</text>
+<line x1="1285.2945628397301" y1="2256.5627466222622" x2="1283.3633651905286" y2="2232.6405712270416" stroke="#d9e0e7" stroke-width="4" />
+<text x="1281.1103012664603" y="2204.731366599284" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(85.38461538461536 1281.1103012664603 2204.731366599284)">🜍</text>
+<line x1="1200.0000000000007" y1="2260" x2="1200.0000000000007" y2="2236" stroke="#d9e0e7" stroke-width="4" />
+<text x="1200.0000000000007" y="2208" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(89.99999999999997 1200.0000000000007 2208)">🜄</text>
+<line x1="1114.705437160271" y1="2256.5627466222627" x2="1116.6366348094725" y2="2232.6405712270416" stroke="#d9e0e7" stroke-width="4" />
+<text x="1118.8896987335406" y="2204.731366599284" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(94.61538461538458 1118.8896987335406 2204.731366599284)">🜁</text>
+<line x1="1029.9640422907746" y1="2246.273278396188" x2="1033.8139130313607" y2="2222.5840720928777" stroke="#d9e0e7" stroke-width="4" />
+<text x="1038.305428895378" y="2194.9466647390163" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(99.23076923076923 1038.305428895378 2194.9466647390163)">🜃</text>
+<line x1="946.3253958551888" y1="2229.198326471615" x2="952.0689717980902" y2="2205.89572285339" stroke="#d9e0e7" stroke-width="4" />
+<text x="958.7698103981418" y="2178.7093519654604" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(103.84615384615384 958.7698103981418 2178.7093519654604)">🜍</text>
+<line x1="864.3319265704394" y1="2205.4486284639743" x2="871.9319584216746" y2="2182.6837538572427" stroke="#d9e0e7" stroke-width="4" />
+<text x="880.798662248116" y="2156.1247334827226" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(108.46153846153845 880.798662248116 2156.1247334827226)">🜄</text>
+<line x1="784.5153935483208" y1="2175.1782102783536" x2="793.9225921849626" y2="2153.098703630542" stroke="#d9e0e7" stroke-width="4" />
+<text x="804.8976572610446" y="2127.339279208095" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(113.07692307692307 804.8976572610446 2127.339279208095)">🜁</text>
+<line x1="707.3934376336053" y1="2138.5833871924024" x2="718.5467937626559" y2="2117.3324425767255" stroke="#d9e0e7" stroke-width="4" />
+<text x="731.5590425798814" y="2092.5396738584354" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(117.69230769230768 731.5590425798814 2092.5396738584354)">🜃</text>
+<line x1="633.4662243045312" y1="2095.901490676423" x2="646.2934041315984" y2="2075.6169286233717" stroke="#d9e0e7" stroke-width="4" />
+<text x="661.2584472631769" y="2051.9516062281455" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(122.30769230769229 661.2584472631769 2051.9516062281455)">🜍</text>
+<line x1="563.2131999077427" y1="2047.4093292077114" x2="577.6310142494542" y2="2028.2227028860275" stroke="#d9e0e7" stroke-width="4" />
+<text x="594.4517976481176" y="2005.8383055107292" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(126.9230769230769 594.4517976481176 2005.8383055107292)">🜄</text>
+<line x1="497.08998226475774" y1="1993.4213930613678" x2="513.0049260625368" y2="1975.4571351052612" stroke="#d9e0e7" stroke-width="4" />
+<text x="531.572360493279" y="1954.4988341564704" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(131.53846153846152 531.572360493279 1954.4988341564704)">🜁</text>
+<line x1="435.5254058155567" y1="1934.2878147201754" x2="452.83426455180825" y2="1917.662430235945" stroke="#d9e0e7" stroke-width="4" />
+<text x="473.027933077435" y="1898.2661483376764" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(136.15384615384613 473.027933077435 1898.2661483376764)">🜃</text>
+<line x1="378.9187404626865" y1="1870.3920981311003" x2="397.5092595465502" y2="1855.2134091168114" stroke="#d9e0e7" stroke-width="4" />
+<text x="419.19819847772453" y="1837.5049386001406" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(140.76923076923075 419.19819847772453 1837.5049386001406)">🜍</text>
+<line x1="327.63710215272454" y1="1802.1486315350255" x2="347.3887149341723" y2="1788.5150776134778" stroke="#d9e0e7" stroke-width="4" />
+<text x="370.4322631791946" y="1772.6092647050054" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(145.38461538461536 370.4322631791946 1772.6092647050054)">🜄</text>
+<line x1="282.0130719884952" y1="1730.0000000000005" x2="302.7976816793217" y2="1718.0000000000005" stroke="#d9e0e7" stroke-width="4" />
+<text x="327.04639298528605" y="1704.0000000000005" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(149.99999999999997 327.04639298528605 1704.0000000000005)">🜁</text>
+<line x1="242.3425393129951" y1="1654.4141150872383" x2="264.02534974364426" y2="1644.125493613565" stroke="#d9e0e7" stroke-width="4" />
+<text x="289.321961912735" y="1632.1221018942792" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(154.61538461538458 289.321961912735 1632.1221018942792)">🜃</text>
+<line x1="208.88278275346056" y1="1575.8811802650885" x2="231.32317257791044" y2="1567.3706629760677" stroke="#d9e0e7" stroke-width="4" />
+<text x="257.50362737310206" y="1557.4417261388767" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(159.2307692307692 257.50362737310206 1557.4417261388767)">🜍</text>
+<line x1="181.85080167074557" y1="1494.9105117514405" x2="204.90323634989852" y2="1488.2332926174456" stroke="#d9e0e7" stroke-width="4" />
+<text x="231.7977434755769" y="1480.443203627785" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(163.8461538461538 231.7977434755769 1480.443203627785)">🜄</text>
+<line x1="161.4219088351963" y1="1412.0272354026072" x2="184.93688448421074" y2="1407.2266187519822" stroke="#d9e0e7" stroke-width="4" />
+<text x="212.3710227413942" y="1401.625899326253" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(168.46153846153845 212.3710227413942 1401.625899326253)">🜁</text>
+<line x1="147.72859345606298" y1="1327.7688810706434" x2="171.55360643441622" y2="1324.8760007445155" stroke="#d9e0e7" stroke-width="4" />
+<text x="199.34945490916175" y="1321.5009736973666" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(173.07692307692304 199.34945490916175 1321.5009736973666)">🜃</text>
+<line x1="140.85966193813624" y1="1242.6818965159805" x2="164.84019789425383" y2="1241.7155139533545" stroke="#d9e0e7" stroke-width="4" />
+<text x="192.81748984305784" y="1240.5880676302909" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(177.69230769230768 192.81748984305784 1240.5880676302909)">🜍</text>
+<line x1="140.85966193813601" y1="1157.3181034840213" x2="164.84019789425383" y2="1158.284486046647" stroke="#d9e0e7" stroke-width="4" />
+<text x="192.81748984305773" y="1159.4119323697107" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(182.30769230769226 192.81748984305773 1159.4119323697107)">🜄</text>
+<line x1="147.72859345606275" y1="1072.2311189293582" x2="171.553606434416" y2="1075.123999255486" stroke="#d9e0e7" stroke-width="4" />
+<text x="199.34945490916152" y="1078.499026302635" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(186.9230769230769 199.34945490916152 1078.499026302635)">🜁</text>
+<line x1="161.42190883519606" y1="987.9727645973935" x2="184.93688448421062" y2="992.7733812480186" stroke="#d9e0e7" stroke-width="4" />
+<text x="212.37102274139409" y="998.3741006737478" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(191.5384615384615 212.37102274139409 998.3741006737478)">🜃</text>
+<line x1="181.8508016707451" y1="905.0894882485612" x2="204.90323634989807" y2="911.766707382556" stroke="#d9e0e7" stroke-width="4" />
+<text x="231.79774347557645" y="919.5567963722167" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(196.15384615384613 231.79774347557645 919.5567963722167)">🜍</text>
+<line x1="208.88278275345988" y1="824.1188197349131" x2="231.32317257790987" y2="832.6293370239339" stroke="#d9e0e7" stroke-width="4" />
+<text x="257.5036273731015" y="842.5582738611249" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(200.76923076923072 257.5036273731015 842.5582738611249)">🜄</text>
+<line x1="242.34253931299463" y1="745.5858849127629" x2="264.0253497436438" y2="755.8745063864362" stroke="#d9e0e7" stroke-width="4" />
+<text x="289.32196191273454" y="767.8778981057217" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(205.38461538461536 289.32196191273454 767.8778981057217)">🜁</text>
+<line x1="282.0130719884951" y1="669.9999999999999" x2="302.7976816793216" y2="681.9999999999999" stroke="#d9e0e7" stroke-width="4" />
+<text x="327.04639298528593" y="695.9999999999999" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(210 327.04639298528593 695.9999999999999)">🜃</text>
+<line x1="327.63710215272374" y1="597.8513684649754" x2="347.3887149341715" y2="611.4849223865232" stroke="#d9e0e7" stroke-width="4" />
+<text x="370.4322631791939" y="627.3907352949955" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(214.61538461538458 370.4322631791939 627.3907352949955)">🜍</text>
+<line x1="378.91874046268606" y1="529.6079018689002" x2="397.50925954654974" y2="544.7865908831892" stroke="#d9e0e7" stroke-width="4" />
+<text x="419.1981984777241" y="562.4950613998598" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(219.23076923076923 419.1981984777241 562.4950613998598)">🜄</text>
+<line x1="435.5254058155558" y1="465.71218527982535" x2="452.83426455180745" y2="482.33756976405573" stroke="#d9e0e7" stroke-width="4" />
+<text x="473.0279330774342" y="501.73385166232447" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(223.8461538461538 473.0279330774342 501.73385166232447)">🜁</text>
+<line x1="497.0899822647567" y1="406.57860693863313" x2="513.0049260625358" y2="424.5428648947395" stroke="#d9e0e7" stroke-width="4" />
+<text x="531.5723604932781" y="445.5011658435303" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(228.46153846153845 531.5723604932781 445.5011658435303)">🜃</text>
+<line x1="563.2131999077416" y1="352.5906707922893" x2="577.6310142494531" y2="371.7772971139733" stroke="#d9e0e7" stroke-width="4" />
+<text x="594.4517976481166" y="394.1616944892713" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(233.07692307692304 594.4517976481166 394.1616944892713)">🜍</text>
+<line x1="633.4662243045306" y1="304.0985093235777" x2="646.2934041315978" y2="324.3830713766288" stroke="#d9e0e7" stroke-width="4" />
+<text x="661.2584472631762" y="348.048393771855" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(237.69230769230768 661.2584472631762 348.048393771855)">🜄</text>
+<line x1="707.3934376336047" y1="261.41661280759786" x2="718.5467937626552" y2="282.66755742327484" stroke="#d9e0e7" stroke-width="4" />
+<text x="731.5590425798807" y="307.4603261415648" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(242.30769230769226 731.5590425798807 307.4603261415648)">🜁</text>
+<line x1="784.5153935483203" y1="224.82178972164638" x2="793.922592184962" y2="246.90129636945824" stroke="#d9e0e7" stroke-width="4" />
+<text x="804.8976572610442" y="272.6607207919053" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(246.9230769230769 804.8976572610442 272.6607207919053)">🜃</text>
+<line x1="864.3319265704378" y1="194.5513715360263" x2="871.9319584216731" y2="217.3162461427578" stroke="#d9e0e7" stroke-width="4" />
+<text x="880.7986622481144" y="243.87526651727785" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(251.5384615384615 880.7986622481144 243.87526651727785)">🜍</text>
+<line x1="946.3253958551879" y1="170.8016735283852" x2="952.0689717980893" y2="194.10427714661034" stroke="#d9e0e7" stroke-width="4" />
+<text x="958.7698103981409" y="221.2906480345398" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(256.15384615384613 958.7698103981409 221.2906480345398)">🜄</text>
+<line x1="1029.9640422907728" y1="153.72672160381262" x2="1033.813913031359" y2="177.41592790712252" stroke="#d9e0e7" stroke-width="4" />
+<text x="1038.3054288953765" y="205.0533352609841" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(260.7692307692307 1038.3054288953765 205.0533352609841)">🜁</text>
+<line x1="1114.7054371602699" y1="143.43725337773753" x2="1116.6366348094712" y2="167.3594287729586" stroke="#d9e0e7" stroke-width="4" />
+<text x="1118.8896987335397" y="195.26863340071634" font-family="Junicode,serif" font-size="24" text-anchor="middle" fill="#6b6f76" transform="rotate(265.38461538461536 1118.8896987335397 195.26863340071634)">🜃</text>
+<line x1="1200" y1="300" x2="1200" y2="318" stroke="#1F7AF3" stroke-width="3" />
+<text x="1200" y="340" font-family="Inter,system-ui" font-size="16" text-anchor="middle" fill="#1F7AF3" opacity=".8" transform="rotate(-90 1200 340)">Shem-1</text>
+<line x1="1239.2574486288026" y1="300.856600576328" x2="1238.7340159804185" y2="312.8451792353103" stroke="#b87333" stroke-width="2" />
+<line x1="1278.4401684728923" y1="303.42477171742905" x2="1276.8713651034345" y2="321.35627628308043" stroke="#1F7AF3" stroke-width="3" />
+<line x1="1317.4735729980466" y1="307.6996247635707" x2="1315.907258691406" y2="319.5969631000564" stroke="#b87333" stroke-width="2" />
+<line x1="1356.2833599002374" y1="313.6730222890128" x2="1353.1576927022327" y2="331.3995618432325" stroke="#1F7AF3" stroke-width="3" />
+<line x1="1394.7956525442926" y1="321.33359359205997" x2="1392.1983771770354" y2="333.04914567749915" stroke="#b87333" stroke-width="2" />
+<line x1="1432.9371405922686" y1="330.66675633983857" x2="1428.2783977804233" y2="348.0534212130417" stroke="#1F7AF3" stroke-width="3" />
+<text x="1422.584378788168" y="369.3037893914012" font-family="Inter,system-ui" font-size="16" text-anchor="middle" fill="#1F7AF3" opacity=".8" transform="rotate(-75 1422.584378788168 369.3037893914012)">Shem-4</text>
+<line x1="1470.635219553846" y1="341.65474432659585" x2="1467.0267499597946" y2="353.0993477355746" stroke="#b87333" stroke-width="2" />
+<line x1="1507.818128993102" y1="354.2766412926825" x2="1501.66176641324" y2="371.19110846682884" stroke="#1F7AF3" stroke-width="3" />
+<line x1="1544.4150891285808" y1="368.5084207398419" x2="1539.8228879401997" y2="379.59497512997734" stroke="#b87333" stroke-width="2" />
+<line x1="1580.3564355666294" y1="384.322991667015" x2="1572.749306855297" y2="400.6365318336748" stroke="#1F7AF3" stroke-width="3" />
+<line x1="1615.5737519115307" y1="401.6902501396006" x2="1610.0327685527102" y2="412.33438013773923" stroke="#b87333" stroke-width="2" />
+<line x1="1650" y1="420.5771365940053" x2="1641" y2="436.1655938621252" stroke="#1F7AF3" stroke-width="3" />
+<text x="1630" y="455.2181527453828" font-family="Inter,system-ui" font-size="16" text-anchor="middle" fill="#1F7AF3" opacity=".8" transform="rotate(-60 1630 455.2181527453828)">Shem-7</text>
+<line x1="1683.5696475121415" y1="440.9476987684029" x2="1677.1220522119797" y2="451.0683961181576" stroke="#b87333" stroke-width="2" />
+<line x1="1716.2187927159414" y1="462.7631601399074" x2="1705.8944168616226" y2="477.5078969371092" stroke="#1F7AF3" stroke-width="3" />
+<line x1="1747.8852861078485" y1="485.9819937378884" x2="1740.5801489597438" y2="495.50223382138313" stroke="#b87333" stroke-width="2" />
+<line x1="1778.5088487178855" y1="510.5600011929198" x2="1766.9386717435277" y2="524.3488011690614" stroke="#1F7AF3" stroke-width="3" />
+<line x1="1808.0311868540944" y1="536.4503968708883" x2="1799.9241043627062" y2="545.2977249126099" stroke="#b87333" stroke-width="2" />
+<line x1="1836.396103067893" y1="563.6038969321073" x2="1823.668181006535" y2="576.3318189934652" stroke="#1F7AF3" stroke-width="3" />
+<text x="1808.1118318204308" y="591.8881681795692" font-family="Inter,system-ui" font-size="16" text-anchor="middle" fill="#1F7AF3" opacity=".8" transform="rotate(-45 1808.1118318204308 591.8881681795692)">Shem-10</text>
+<line x1="1863.5496031291118" y1="591.9688131459058" x2="1854.7022750873903" y2="600.0758956372937" stroke="#b87333" stroke-width="2" />
+<line x1="1889.4399988070802" y1="621.4911512821146" x2="1875.6511988309385" y2="633.0613282564724" stroke="#1F7AF3" stroke-width="3" />
+<line x1="1914.0180062621116" y1="652.1147138921514" x2="1904.497766178617" y2="659.419851040256" stroke="#b87333" stroke-width="2" />
+<line x1="1937.2368398600925" y1="683.7812072840586" x2="1922.4921030628907" y2="694.1055831383774" stroke="#1F7AF3" stroke-width="3" />
+<line x1="1959.052301231597" y1="716.4303524878585" x2="1948.9316038818424" y2="722.8779477880204" stroke="#b87333" stroke-width="2" />
+<line x1="1979.4228634059948" y1="750" x2="1963.8344061378748" y2="759" stroke="#1F7AF3" stroke-width="3" />
+<text x="1944.7818472546173" y="770" font-family="Inter,system-ui" font-size="16" text-anchor="middle" fill="#1F7AF3" opacity=".8" transform="rotate(-30 1944.7818472546173 770)">Shem-13</text>
+<line x1="1998.3097498603995" y1="784.4262480884695" x2="1987.6656198622609" y2="789.9672314472898" stroke="#b87333" stroke-width="2" />
+<line x1="2015.677008332985" y1="819.6435644333706" x2="1999.3634681663252" y2="827.2506931447031" stroke="#1F7AF3" stroke-width="3" />
+<line x1="2031.4915792601582" y1="855.5849108714192" x2="2020.4050248700228" y2="860.1771120598003" stroke="#b87333" stroke-width="2" />
+<line x1="2045.7233587073176" y1="892.1818710068982" x2="2028.8088915331714" y2="898.3382335867602" stroke="#1F7AF3" stroke-width="3" />
+<line x1="2058.345255673404" y1="929.3647804461542" x2="2046.9006522644254" y2="932.9732500402055" stroke="#b87333" stroke-width="2" />
+<line x1="2069.3332436601613" y1="967.0628594077314" x2="2051.9465787869585" y2="971.7216022195767" stroke="#1F7AF3" stroke-width="3" />
+<text x="2030.696210608599" y="977.4156212118321" font-family="Inter,system-ui" font-size="16" text-anchor="middle" fill="#1F7AF3" opacity=".8" transform="rotate(-15 2030.696210608599 977.4156212118321)">Shem-16</text>
+<line x1="2078.66640640794" y1="1005.2043474557074" x2="2066.950854322501" y2="1007.8016228229646" stroke="#b87333" stroke-width="2" />
+<line x1="2086.326977710987" y1="1043.7166400997628" x2="2068.6004381567673" y2="1046.8423072977675" stroke="#1F7AF3" stroke-width="3" />
+<line x1="2092.3003752364293" y1="1082.5264270019536" x2="2080.403036899944" y2="1084.0927413085942" stroke="#b87333" stroke-width="2" />
+<line x1="2096.575228282571" y1="1121.5598315271077" x2="2078.6437237169193" y2="1123.1286348965655" stroke="#1F7AF3" stroke-width="3" />
+<line x1="2099.1433994236722" y1="1160.7425513711976" x2="2087.1548207646897" y2="1161.2659840195815" stroke="#b87333" stroke-width="2" />
+<line x1="2100" y1="1200" x2="2082" y2="1200" stroke="#1F7AF3" stroke-width="3" />
+<text x="2060" y="1200" font-family="Inter,system-ui" font-size="16" text-anchor="middle" fill="#1F7AF3" opacity=".8" transform="rotate(0 2060 1200)">Shem-19</text>
+<line x1="2099.1433994236722" y1="1239.2574486288024" x2="2087.1548207646897" y2="1238.7340159804185" stroke="#b87333" stroke-width="2" />
+<line x1="2096.575228282571" y1="1278.4401684728923" x2="2078.6437237169193" y2="1276.8713651034345" stroke="#1F7AF3" stroke-width="3" />
+<line x1="2092.3003752364293" y1="1317.4735729980464" x2="2080.403036899944" y2="1315.9072586914058" stroke="#b87333" stroke-width="2" />
+<line x1="2086.326977710987" y1="1356.2833599002372" x2="2068.6004381567673" y2="1353.1576927022325" stroke="#1F7AF3" stroke-width="3" />
+<line x1="2078.66640640794" y1="1394.7956525442926" x2="2066.950854322501" y2="1392.1983771770354" stroke="#b87333" stroke-width="2" />
+<line x1="2069.3332436601613" y1="1432.9371405922686" x2="2051.9465787869585" y2="1428.2783977804233" stroke="#1F7AF3" stroke-width="3" />
+<text x="2030.696210608599" y="1422.584378788168" font-family="Inter,system-ui" font-size="16" text-anchor="middle" fill="#1F7AF3" opacity=".8" transform="rotate(15 2030.696210608599 1422.584378788168)">Shem-22</text>
+<line x1="2058.345255673404" y1="1470.6352195538457" x2="2046.9006522644254" y2="1467.0267499597944" stroke="#b87333" stroke-width="2" />
+<line x1="2045.7233587073176" y1="1507.8181289931017" x2="2028.8088915331714" y2="1501.6617664132398" stroke="#1F7AF3" stroke-width="3" />
+<line x1="2031.4915792601582" y1="1544.4150891285808" x2="2020.4050248700228" y2="1539.8228879401997" stroke="#b87333" stroke-width="2" />
+<line x1="2015.677008332985" y1="1580.3564355666294" x2="1999.3634681663252" y2="1572.749306855297" stroke="#1F7AF3" stroke-width="3" />
+<line x1="1998.3097498603995" y1="1615.5737519115305" x2="1987.6656198622609" y2="1610.0327685527102" stroke="#b87333" stroke-width="2" />
+<line x1="1979.4228634059948" y1="1650" x2="1963.8344061378748" y2="1641" stroke="#1F7AF3" stroke-width="3" />
+<text x="1944.7818472546173" y="1630" font-family="Inter,system-ui" font-size="16" text-anchor="middle" fill="#1F7AF3" opacity=".8" transform="rotate(30 1944.7818472546173 1630)">Shem-25</text>
+<line x1="1959.052301231597" y1="1683.5696475121415" x2="1948.9316038818424" y2="1677.1220522119797" stroke="#b87333" stroke-width="2" />
+<line x1="1937.2368398600925" y1="1716.2187927159414" x2="1922.4921030628907" y2="1705.8944168616226" stroke="#1F7AF3" stroke-width="3" />
+<line x1="1914.0180062621116" y1="1747.8852861078485" x2="1904.497766178617" y2="1740.5801489597438" stroke="#b87333" stroke-width="2" />
+<line x1="1889.4399988070802" y1="1778.5088487178855" x2="1875.6511988309385" y2="1766.9386717435277" stroke="#1F7AF3" stroke-width="3" />
+<line x1="1863.5496031291118" y1="1808.0311868540944" x2="1854.7022750873903" y2="1799.9241043627062" stroke="#b87333" stroke-width="2" />
+<line x1="1836.396103067893" y1="1836.3961030678927" x2="1823.668181006535" y2="1823.6681810065347" stroke="#1F7AF3" stroke-width="3" />
+<text x="1808.1118318204308" y="1808.1118318204308" font-family="Inter,system-ui" font-size="16" text-anchor="middle" fill="#1F7AF3" opacity=".8" transform="rotate(45 1808.1118318204308 1808.1118318204308)">Shem-28</text>
+<line x1="1808.0311868540944" y1="1863.5496031291118" x2="1799.9241043627062" y2="1854.7022750873903" stroke="#b87333" stroke-width="2" />
+<line x1="1778.5088487178855" y1="1889.4399988070802" x2="1766.9386717435277" y2="1875.6511988309385" stroke="#1F7AF3" stroke-width="3" />
+<line x1="1747.8852861078485" y1="1914.0180062621116" x2="1740.5801489597438" y2="1904.497766178617" stroke="#b87333" stroke-width="2" />
+<line x1="1716.2187927159414" y1="1937.2368398600925" x2="1705.8944168616226" y2="1922.4921030628907" stroke="#1F7AF3" stroke-width="3" />
+<line x1="1683.5696475121415" y1="1959.052301231597" x2="1677.1220522119797" y2="1948.9316038818424" stroke="#b87333" stroke-width="2" />
+<line x1="1650" y1="1979.4228634059946" x2="1641" y2="1963.8344061378748" stroke="#1F7AF3" stroke-width="3" />
+<text x="1630" y="1944.7818472546173" font-family="Inter,system-ui" font-size="16" text-anchor="middle" fill="#1F7AF3" opacity=".8" transform="rotate(60 1630 1944.7818472546173)">Shem-31</text>
+<line x1="1615.5737519115307" y1="1998.3097498603993" x2="1610.0327685527102" y2="1987.6656198622609" stroke="#b87333" stroke-width="2" />
+<line x1="1580.3564355666294" y1="2015.677008332985" x2="1572.749306855297" y2="1999.3634681663252" stroke="#1F7AF3" stroke-width="3" />
+<line x1="1544.4150891285808" y1="2031.4915792601582" x2="1539.8228879401997" y2="2020.4050248700228" stroke="#b87333" stroke-width="2" />
+<line x1="1507.818128993102" y1="2045.7233587073174" x2="1501.66176641324" y2="2028.8088915331712" stroke="#1F7AF3" stroke-width="3" />
+<line x1="1470.635219553846" y1="2058.345255673404" x2="1467.0267499597946" y2="2046.9006522644254" stroke="#b87333" stroke-width="2" />
+<line x1="1432.9371405922686" y1="2069.3332436601613" x2="1428.2783977804233" y2="2051.9465787869585" stroke="#1F7AF3" stroke-width="3" />
+<text x="1422.584378788168" y="2030.696210608599" font-family="Inter,system-ui" font-size="16" text-anchor="middle" fill="#1F7AF3" opacity=".8" transform="rotate(75 1422.584378788168 2030.696210608599)">Shem-34</text>
+<line x1="1394.7956525442926" y1="2078.66640640794" x2="1392.1983771770354" y2="2066.950854322501" stroke="#b87333" stroke-width="2" />
+<line x1="1356.2833599002374" y1="2086.326977710987" x2="1353.1576927022327" y2="2068.6004381567673" stroke="#1F7AF3" stroke-width="3" />
+<line x1="1317.4735729980466" y1="2092.3003752364293" x2="1315.907258691406" y2="2080.403036899944" stroke="#b87333" stroke-width="2" />
+<line x1="1278.4401684728923" y1="2096.575228282571" x2="1276.8713651034345" y2="2078.6437237169193" stroke="#1F7AF3" stroke-width="3" />
+<line x1="1239.2574486288026" y1="2099.1433994236722" x2="1238.7340159804185" y2="2087.1548207646897" stroke="#b87333" stroke-width="2" />
+<line x1="1200" y1="2100" x2="1200" y2="2082" stroke="#1F7AF3" stroke-width="3" />
+<text x="1200" y="2060" font-family="Inter,system-ui" font-size="16" text-anchor="middle" fill="#1F7AF3" opacity=".8" transform="rotate(90 1200 2060)">Shem-37</text>
+<line x1="1160.7425513711978" y1="2099.1433994236722" x2="1161.2659840195818" y2="2087.1548207646897" stroke="#b87333" stroke-width="2" />
+<line x1="1121.5598315271077" y1="2096.575228282571" x2="1123.1286348965655" y2="2078.6437237169193" stroke="#1F7AF3" stroke-width="3" />
+<line x1="1082.5264270019538" y1="2092.3003752364293" x2="1084.0927413085944" y2="2080.403036899944" stroke="#b87333" stroke-width="2" />
+<line x1="1043.7166400997628" y1="2086.326977710987" x2="1046.8423072977675" y2="2068.6004381567673" stroke="#1F7AF3" stroke-width="3" />
+<line x1="1005.2043474557074" y1="2078.66640640794" x2="1007.8016228229648" y2="2066.950854322501" stroke="#b87333" stroke-width="2" />
+<line x1="967.0628594077313" y1="2069.3332436601613" x2="971.7216022195767" y2="2051.9465787869585" stroke="#1F7AF3" stroke-width="3" />
+<text x="977.4156212118321" y="2030.696210608599" font-family="Inter,system-ui" font-size="16" text-anchor="middle" fill="#1F7AF3" opacity=".8" transform="rotate(105 977.4156212118321 2030.696210608599)">Shem-40</text>
+<line x1="929.3647804461543" y1="2058.345255673404" x2="932.9732500402056" y2="2046.9006522644254" stroke="#b87333" stroke-width="2" />
+<line x1="892.1818710068982" y1="2045.7233587073176" x2="898.3382335867602" y2="2028.8088915331714" stroke="#1F7AF3" stroke-width="3" />
+<line x1="855.5849108714192" y1="2031.4915792601582" x2="860.1771120598003" y2="2020.4050248700228" stroke="#b87333" stroke-width="2" />
+<line x1="819.6435644333706" y1="2015.677008332985" x2="827.2506931447032" y2="1999.3634681663252" stroke="#1F7AF3" stroke-width="3" />
+<line x1="784.4262480884696" y1="1998.3097498603997" x2="789.96723144729" y2="1987.6656198622609" stroke="#b87333" stroke-width="2" />
+<line x1="750.0000000000002" y1="1979.4228634059948" x2="759.0000000000002" y2="1963.8344061378748" stroke="#1F7AF3" stroke-width="3" />
+<text x="770.0000000000002" y="1944.7818472546173" font-family="Inter,system-ui" font-size="16" text-anchor="middle" fill="#1F7AF3" opacity=".8" transform="rotate(120 770.0000000000002 1944.7818472546173)">Shem-43</text>
+<line x1="716.4303524878587" y1="1959.052301231597" x2="722.8779477880207" y2="1948.9316038818426" stroke="#b87333" stroke-width="2" />
+<line x1="683.7812072840587" y1="1937.236839860093" x2="694.1055831383776" y2="1922.492103062891" stroke="#1F7AF3" stroke-width="3" />
+<line x1="652.1147138921514" y1="1914.0180062621116" x2="659.419851040256" y2="1904.497766178617" stroke="#b87333" stroke-width="2" />
+<line x1="621.4911512821146" y1="1889.4399988070802" x2="633.0613282564723" y2="1875.6511988309385" stroke="#1F7AF3" stroke-width="3" />
+<line x1="591.9688131459058" y1="1863.5496031291118" x2="600.0758956372937" y2="1854.7022750873903" stroke="#b87333" stroke-width="2" />
+<line x1="563.6038969321073" y1="1836.396103067893" x2="576.3318189934652" y2="1823.668181006535" stroke="#1F7AF3" stroke-width="3" />
+<text x="591.8881681795692" y="1808.1118318204308" font-family="Inter,system-ui" font-size="16" text-anchor="middle" fill="#1F7AF3" opacity=".8" transform="rotate(135 591.8881681795692 1808.1118318204308)">Shem-46</text>
+<line x1="536.4503968708884" y1="1808.0311868540944" x2="545.29772491261" y2="1799.9241043627064" stroke="#b87333" stroke-width="2" />
+<line x1="510.5600011929199" y1="1778.5088487178855" x2="524.3488011690615" y2="1766.9386717435277" stroke="#1F7AF3" stroke-width="3" />
+<line x1="485.9819937378883" y1="1747.8852861078485" x2="495.50223382138313" y2="1740.5801489597438" stroke="#b87333" stroke-width="2" />
+<line x1="462.76316013990754" y1="1716.2187927159416" x2="477.5078969371094" y2="1705.8944168616229" stroke="#1F7AF3" stroke-width="3" />
+<line x1="440.9476987684028" y1="1683.5696475121413" x2="451.06839611815747" y2="1677.1220522119795" stroke="#b87333" stroke-width="2" />
+<line x1="420.5771365940052" y1="1650" x2="436.1655938621251" y2="1641" stroke="#1F7AF3" stroke-width="3" />
+<text x="455.21815274538267" y="1630" font-family="Inter,system-ui" font-size="16" text-anchor="middle" fill="#1F7AF3" opacity=".8" transform="rotate(150 455.21815274538267 1630)">Shem-49</text>
+<line x1="401.6902501396005" y1="1615.5737519115305" x2="412.3343801377391" y2="1610.0327685527102" stroke="#b87333" stroke-width="2" />
+<line x1="384.322991667015" y1="1580.3564355666294" x2="400.6365318336748" y2="1572.749306855297" stroke="#1F7AF3" stroke-width="3" />
+<line x1="368.5084207398419" y1="1544.4150891285808" x2="379.59497512997734" y2="1539.8228879402" stroke="#b87333" stroke-width="2" />
+<line x1="354.2766412926825" y1="1507.818128993102" x2="371.19110846682884" y2="1501.66176641324" stroke="#1F7AF3" stroke-width="3" />
+<line x1="341.65474432659585" y1="1470.6352195538461" x2="353.0993477355746" y2="1467.0267499597946" stroke="#b87333" stroke-width="2" />
+<line x1="330.66675633983857" y1="1432.9371405922689" x2="348.0534212130418" y2="1428.2783977804236" stroke="#1F7AF3" stroke-width="3" />
+<text x="369.3037893914013" y="1422.5843787881681" font-family="Inter,system-ui" font-size="16" text-anchor="middle" fill="#1F7AF3" opacity=".8" transform="rotate(165 369.3037893914013 1422.5843787881681)">Shem-52</text>
+<line x1="321.3335935920601" y1="1394.7956525442928" x2="333.04914567749927" y2="1392.1983771770356" stroke="#b87333" stroke-width="2" />
+<line x1="313.6730222890128" y1="1356.2833599002372" x2="331.3995618432325" y2="1353.1576927022325" stroke="#1F7AF3" stroke-width="3" />
+<line x1="307.6996247635707" y1="1317.4735729980464" x2="319.5969631000564" y2="1315.9072586914058" stroke="#b87333" stroke-width="2" />
+<line x1="303.42477171742905" y1="1278.4401684728928" x2="321.35627628308043" y2="1276.871365103435" stroke="#1F7AF3" stroke-width="3" />
+<line x1="300.856600576328" y1="1239.2574486288024" x2="312.8451792353103" y2="1238.7340159804185" stroke="#b87333" stroke-width="2" />
+<line x1="300" y1="1200" x2="318" y2="1200" stroke="#1F7AF3" stroke-width="3" />
+<text x="340" y="1200" font-family="Inter,system-ui" font-size="16" text-anchor="middle" fill="#1F7AF3" opacity=".8" transform="rotate(180 340 1200)">Shem-55</text>
+<line x1="300.856600576328" y1="1160.7425513711974" x2="312.8451792353103" y2="1161.2659840195813" stroke="#b87333" stroke-width="2" />
+<line x1="303.42477171742905" y1="1121.559831527108" x2="321.35627628308043" y2="1123.1286348965657" stroke="#1F7AF3" stroke-width="3" />
+<line x1="307.69962476357057" y1="1082.5264270019538" x2="319.5969631000563" y2="1084.0927413085944" stroke="#b87333" stroke-width="2" />
+<line x1="313.6730222890128" y1="1043.7166400997626" x2="331.3995618432325" y2="1046.8423072977673" stroke="#1F7AF3" stroke-width="3" />
+<line x1="321.33359359205997" y1="1005.2043474557074" x2="333.04914567749915" y2="1007.8016228229646" stroke="#b87333" stroke-width="2" />
+<line x1="330.66675633983846" y1="967.0628594077317" x2="348.0534212130417" y2="971.7216022195771" stroke="#1F7AF3" stroke-width="3" />
+<text x="369.3037893914012" y="977.4156212118326" font-family="Inter,system-ui" font-size="16" text-anchor="middle" fill="#1F7AF3" opacity=".8" transform="rotate(195 369.3037893914012 977.4156212118326)">Shem-58</text>
+<line x1="341.65474432659573" y1="929.3647804461543" x2="353.0993477355745" y2="932.9732500402056" stroke="#b87333" stroke-width="2" />
+<line x1="354.27664129268237" y1="892.1818710068983" x2="371.1911084668287" y2="898.3382335867602" stroke="#1F7AF3" stroke-width="3" />
+<line x1="368.50842073984177" y1="855.5849108714197" x2="379.59497512997723" y2="860.1771120598007" stroke="#b87333" stroke-width="2" />
+<line x1="384.322991667015" y1="819.6435644333707" x2="400.63653183367467" y2="827.2506931447033" stroke="#1F7AF3" stroke-width="3" />
+<line x1="401.6902501396004" y1="784.4262480884696" x2="412.334380137739" y2="789.96723144729" stroke="#b87333" stroke-width="2" />
+<line x1="420.5771365940053" y1="749.9999999999999" x2="436.1655938621252" y2="758.9999999999999" stroke="#1F7AF3" stroke-width="3" />
+<text x="455.2181527453828" y="769.9999999999999" font-family="Inter,system-ui" font-size="16" text-anchor="middle" fill="#1F7AF3" opacity=".8" transform="rotate(210 455.2181527453828 769.9999999999999)">Shem-61</text>
+<line x1="440.9476987684028" y1="716.4303524878587" x2="451.06839611815735" y2="722.8779477880207" stroke="#b87333" stroke-width="2" />
+<line x1="462.7631601399072" y1="683.7812072840587" x2="477.5078969371091" y2="694.1055831383776" stroke="#1F7AF3" stroke-width="3" />
+<line x1="485.9819937378884" y1="652.1147138921514" x2="495.50223382138313" y2="659.419851040256" stroke="#b87333" stroke-width="2" />
+<line x1="510.5600011929197" y1="621.4911512821146" x2="524.3488011690613" y2="633.0613282564724" stroke="#1F7AF3" stroke-width="3" />
+<line x1="536.450396870888" y1="591.9688131459062" x2="545.2977249126095" y2="600.0758956372941" stroke="#b87333" stroke-width="2" />
+<line x1="563.6038969321071" y1="563.6038969321073" x2="576.3318189934649" y2="576.3318189934652" stroke="#1F7AF3" stroke-width="3" />
+<text x="591.888168179569" y="591.8881681795692" font-family="Inter,system-ui" font-size="16" text-anchor="middle" fill="#1F7AF3" opacity=".8" transform="rotate(225 591.888168179569 591.8881681795692)">Shem-64</text>
+<line x1="591.9688131459056" y1="536.4503968708884" x2="600.0758956372936" y2="545.29772491261" stroke="#b87333" stroke-width="2" />
+<line x1="621.4911512821145" y1="510.5600011929199" x2="633.0613282564722" y2="524.3488011690615" stroke="#1F7AF3" stroke-width="3" />
+<line x1="652.1147138921513" y1="485.9819937378885" x2="659.4198510402558" y2="495.50223382138336" stroke="#b87333" stroke-width="2" />
+<line x1="683.7812072840583" y1="462.76316013990754" x2="694.1055831383771" y2="477.5078969371094" stroke="#1F7AF3" stroke-width="3" />
+<line x1="716.4303524878583" y1="440.94769876840303" x2="722.87794778802" y2="451.0683961181577" stroke="#b87333" stroke-width="2" />
+<line x1="749.9999999999995" y1="420.5771365940053" x2="758.9999999999995" y2="436.1655938621252" stroke="#1F7AF3" stroke-width="3" />
+<text x="769.9999999999995" y="455.2181527453829" font-family="Inter,system-ui" font-size="16" text-anchor="middle" fill="#1F7AF3" opacity=".8" transform="rotate(240 769.9999999999995 455.2181527453829)">Shem-67</text>
+<line x1="784.426248088469" y1="401.6902501396006" x2="789.9672314472895" y2="412.33438013773934" stroke="#b87333" stroke-width="2" />
+<line x1="819.6435644333701" y1="384.32299166701523" x2="827.2506931447026" y2="400.636531833675" stroke="#1F7AF3" stroke-width="3" />
+<line x1="855.5849108714194" y1="368.5084207398419" x2="860.1771120598005" y2="379.59497512997723" stroke="#b87333" stroke-width="2" />
+<line x1="892.1818710068976" y1="354.2766412926826" x2="898.3382335867595" y2="371.19110846682895" stroke="#1F7AF3" stroke-width="3" />
+<line x1="929.3647804461536" y1="341.65474432659596" x2="932.9732500402049" y2="353.0993477355747" stroke="#b87333" stroke-width="2" />
+<line x1="967.0628594077314" y1="330.66675633983857" x2="971.7216022195768" y2="348.0534212130417" stroke="#1F7AF3" stroke-width="3" />
+<text x="977.4156212118322" y="369.3037893914012" font-family="Inter,system-ui" font-size="16" text-anchor="middle" fill="#1F7AF3" opacity=".8" transform="rotate(255 977.4156212118322 369.3037893914012)">Shem-70</text>
+<line x1="1005.2043474557074" y1="321.33359359205997" x2="1007.8016228229646" y2="333.04914567749915" stroke="#b87333" stroke-width="2" />
+<line x1="1043.7166400997628" y1="313.6730222890128" x2="1046.8423072977675" y2="331.3995618432325" stroke="#1F7AF3" stroke-width="3" />
+<line x1="1082.5264270019536" y1="307.6996247635707" x2="1084.0927413085942" y2="319.5969631000564" stroke="#b87333" stroke-width="2" />
+<line x1="1121.5598315271077" y1="303.42477171742905" x2="1123.1286348965655" y2="321.35627628308043" stroke="#1F7AF3" stroke-width="3" />
+<line x1="1160.7425513711976" y1="300.856600576328" x2="1161.2659840195815" y2="312.8451792353103" stroke="#b87333" stroke-width="2" />
+<circle cx="1200" cy="460" r="16" fill="#0b0b0b" stroke="#191b22" stroke-width="2"/>
+<circle cx="1340.0459208267037" cy="473.372764025597" r="16" fill="#0b0b0b" stroke="#191b22" stroke-width="2"/>
+<circle cx="1475.0302171886424" cy="513.0077295681064" r="16" fill="#0b0b0b" stroke="#191b22" stroke-width="2"/>
+<circle cx="1600.0742049171422" cy="577.472385704926" r="16" fill="#0b0b0b" stroke="#191b22" stroke-width="2"/>
+<circle cx="1710.658468496763" cy="664.436811802248" r="16" fill="#0b0b0b" stroke="#191b22" stroke-width="2"/>
+<circle cx="1802.7862045172483" cy="770.7578869173133" r="16" fill="#0b0b0b" stroke="#191b22" stroke-width="2"/>
+<circle cx="1873.1276765623436" cy="892.592890378604" r="16" fill="#0b0b0b" stroke="#191b22" stroke-width="2"/>
+<circle cx="1919.140560559421" cy="1025.5383877230238" r="16" fill="#0b0b0b" stroke="#191b22" stroke-width="2"/>
+<circle cx="1939.161830995426" cy="1164.7893822904307" r="16" fill="#d9e0e7" stroke="#191b22" stroke-width="2"/>
+<circle cx="1932.4678669918903" cy="1305.312980322231" r="16" fill="#d9e0e7" stroke="#191b22" stroke-width="2"/>
+<circle cx="1899.3006058488547" cy="1442.0302928548917" r="16" fill="#d9e0e7" stroke="#191b22" stroke-width="2"/>
+<circle cx="1899.3006058488547" cy="1442.0302928548917" r="22" fill="none" stroke="#460082" stroke-width="3" filter="url(#softSpec)"/>
+<circle cx="1840.8587988004847" cy="1569.9999999999998" r="16" fill="#d9e0e7" stroke="#191b22" stroke-width="2"/>
+<circle cx="1759.254685022151" cy="1684.5969431195108" r="16" fill="#d9e0e7" stroke="#191b22" stroke-width="2"/>
+<circle cx="1657.437649803248" cy="1781.6792901096628" r="16" fill="#d9e0e7" stroke="#191b22" stroke-width="2"/>
+<circle cx="1539.0876260782838" cy="1857.7382320046434" r="16" fill="#d9e0e7" stroke="#191b22" stroke-width="2"/>
+<circle cx="1408.482092062658" cy="1910.0248004747282" r="16" fill="#d9e0e7" stroke="#191b22" stroke-width="2"/>
+<circle cx="1270.3414720450953" cy="1936.6492227040826" r="16" fill="#d9e0e7" stroke="#191b22" stroke-width="2"/>
+<circle cx="1129.6585279549051" cy="1936.6492227040826" r="16" fill="#FFC800" stroke="#191b22" stroke-width="2"/>
+<circle cx="991.5179079373422" cy="1910.0248004747282" r="16" fill="#FFC800" stroke="#191b22" stroke-width="2"/>
+<circle cx="860.9123739217166" cy="1857.7382320046436" r="16" fill="#FFC800" stroke="#191b22" stroke-width="2"/>
+<circle cx="742.5623501967523" cy="1781.6792901096628" r="16" fill="#FFC800" stroke="#191b22" stroke-width="2"/>
+<circle cx="640.7453149778491" cy="1684.5969431195113" r="16" fill="#FFC800" stroke="#191b22" stroke-width="2"/>
+<circle cx="640.7453149778491" cy="1684.5969431195113" r="22" fill="none" stroke="#460082" stroke-width="3" filter="url(#softSpec)"/>
+<circle cx="559.1412011995155" cy="1570.0000000000002" r="16" fill="#FFC800" stroke="#191b22" stroke-width="2"/>
+<circle cx="500.6993941511455" cy="1442.0302928548924" r="16" fill="#FFC800" stroke="#191b22" stroke-width="2"/>
+<circle cx="467.5321330081098" cy="1305.312980322231" r="16" fill="#FFC800" stroke="#191b22" stroke-width="2"/>
+<circle cx="460.83816900457407" cy="1164.7893822904311" r="16" fill="#FFC800" stroke="#191b22" stroke-width="2"/>
+<circle cx="480.8594394405791" cy="1025.538387723024" r="16" fill="#B7410E" stroke="#191b22" stroke-width="2"/>
+<circle cx="526.8723234376561" cy="892.5928903786049" r="16" fill="#B7410E" stroke="#191b22" stroke-width="2"/>
+<circle cx="597.2137954827513" cy="770.7578869173137" r="16" fill="#B7410E" stroke="#191b22" stroke-width="2"/>
+<circle cx="689.3415315032366" cy="664.4368118022486" r="16" fill="#B7410E" stroke="#191b22" stroke-width="2"/>
+<circle cx="799.9257950828573" cy="577.4723857049262" r="16" fill="#B7410E" stroke="#191b22" stroke-width="2"/>
+<circle cx="924.9697828113567" cy="513.0077295681066" r="16" fill="#B7410E" stroke="#191b22" stroke-width="2"/>
+<circle cx="1059.9540791732954" cy="473.37276402559723" r="16" fill="#B7410E" stroke="#191b22" stroke-width="2"/>
+<circle cx="1059.9540791732954" cy="473.37276402559723" r="22" fill="none" stroke="#460082" stroke-width="3" filter="url(#softSpec)"/>
+<line x1="1200" y1="700" x2="1633.0127018922194" y2="1450" stroke="#16121b" stroke-width="10"/>
+<line x1="1633.0127018922194" y1="950" x2="1200" y2="1700" stroke="#16121b" stroke-width="10"/>
+<line x1="1633.0127018922194" y1="1450" x2="766.9872981077806" y2="1450" stroke="#16121b" stroke-width="10"/>
+<line x1="1200" y1="1700" x2="766.9872981077807" y2="950" stroke="#16121b" stroke-width="10"/>
+<line x1="766.9872981077806" y1="1450" x2="1200" y2="700" stroke="#16121b" stroke-width="10"/>
+<line x1="766.9872981077807" y1="950" x2="1633.0127018922194" y2="950" stroke="#16121b" stroke-width="10"/>
+<circle cx="1200" cy="700" r="22" fill="#2a2140" stroke="#d9e0e7" stroke-width="3"/>
+<text x="1200" y="708" font-family="Junicode,serif" font-size="28" text-anchor="middle" fill="#f8f5ef">☉</text>
+<circle cx="1633.0127018922194" cy="950" r="22" fill="#2a2140" stroke="#d9e0e7" stroke-width="3"/>
+<text x="1633.0127018922194" y="958" font-family="Junicode,serif" font-size="28" text-anchor="middle" fill="#f8f5ef">☿</text>
+<circle cx="1633.0127018922194" cy="1450" r="22" fill="#2a2140" stroke="#d9e0e7" stroke-width="3"/>
+<text x="1633.0127018922194" y="1458" font-family="Junicode,serif" font-size="28" text-anchor="middle" fill="#f8f5ef">☾</text>
+<circle cx="1200" cy="1700" r="22" fill="#2a2140" stroke="#d9e0e7" stroke-width="3"/>
+<text x="1200" y="1708" font-family="Junicode,serif" font-size="28" text-anchor="middle" fill="#f8f5ef">🜨</text>
+<circle cx="766.9872981077806" cy="1450" r="22" fill="#2a2140" stroke="#d9e0e7" stroke-width="3"/>
+<text x="766.9872981077806" y="1458" font-family="Junicode,serif" font-size="28" text-anchor="middle" fill="#f8f5ef">♀</text>
+<circle cx="766.9872981077807" cy="950" r="22" fill="#2a2140" stroke="#d9e0e7" stroke-width="3"/>
+<text x="766.9872981077807" y="958" font-family="Junicode,serif" font-size="28" text-anchor="middle" fill="#f8f5ef">♄</text>
+<text x="1200" y="708" font-family="Junicode,serif" font-size="28" text-anchor="middle" fill="#F8F5EF">☉</text>
+<circle cx="1633.0127018922194" cy="950" r="22" fill="#2a2140" stroke="#d9e0e7" stroke-width="3"/>
+<text x="1633.0127018922194" y="958" font-family="Junicode,serif" font-size="28" text-anchor="middle" fill="#F8F5EF">☿</text>
+<circle cx="1633.0127018922194" cy="1450" r="22" fill="#2a2140" stroke="#d9e0e7" stroke-width="3"/>
+<text x="1633.0127018922194" y="1458" font-family="Junicode,serif" font-size="28" text-anchor="middle" fill="#F8F5EF">☾</text>
+<circle cx="1200" cy="1700" r="22" fill="#2a2140" stroke="#d9e0e7" stroke-width="3"/>
+<text x="1200" y="1708" font-family="Junicode,serif" font-size="28" text-anchor="middle" fill="#F8F5EF">🜨</text>
+<circle cx="766.9872981077806" cy="1450" r="22" fill="#2a2140" stroke="#d9e0e7" stroke-width="3"/>
+<text x="766.9872981077806" y="1458" font-family="Junicode,serif" font-size="28" text-anchor="middle" fill="#F8F5EF">♀</text>
+<circle cx="766.9872981077807" cy="950" r="22" fill="#2a2140" stroke="#d9e0e7" stroke-width="3"/>
+<text x="766.9872981077807" y="958" font-family="Junicode,serif" font-size="28" text-anchor="middle" fill="#F8F5EF">♄</text>
+<g>
+  <ellipse cx="1120" cy="1200" rx="320" ry="262.4" fill="none" stroke="#d9e0e7" stroke-width="6"/>
+  <ellipse cx="1280" cy="1200" rx="320" ry="262.4" fill="none" stroke="#d9e0e7" stroke-width="6"/>
+  <!-- Monad circle + point -->
+  <circle cx="1200" cy="1200" r="190" fill="none" stroke="#c9a227" stroke-width="10"/>
+  <circle cx="1200" cy="1200" r="10" fill="#c9a227"/>
+  <!-- Crescent (Moon) -->
+  <path d="M 1160 1080 a 120 120 0 1 0 0 240 a 90 120 0 1 1 0 -240 Z" fill="#141414" stroke="#c9a227" stroke-width="6"/>
+  <!-- Cross (Earth/Body) -->
+  <line x1="980" y1="1200" x2="1420" y2="1200" stroke="#c9a227" stroke-width="10"/>
+  <line x1="1200" y1="980" x2="1200" y2="1420" stroke="#c9a227" stroke-width="10"/>
+  <circle cx="1200" cy="1200" r="190" fill="none" stroke="#C9A227" stroke-width="10"/>
+  <circle cx="1200" cy="1200" r="10" fill="#C9A227"/>
+  <!-- Crescent (Moon) -->
+  <path d="M 1160 1080 a 120 120 0 1 0 0 240 a 90 120 0 1 1 0 -240 Z" fill="#141414" stroke="#C9A227" stroke-width="6"/>
+  <!-- Cross (Earth/Body) -->
+  <line x1="980" y1="1200" x2="1420" y2="1200" stroke="#C9A227" stroke-width="10"/>
+  <line x1="1200" y1="980" x2="1200" y2="1420" stroke="#C9A227" stroke-width="10"/>
+  <!-- Flame/Spirit -->
+  <path d="M 1200 900 C 1120 1020, 1160 1160, 1200 1200 C 1240 1160, 1280 1020, 1200 900 Z" fill="#7f00ff" fill-opacity=".28" stroke="#460082" stroke-width="5"/>
+  <!-- LuxCrux overlay (your symbol) -->
+  <circle cx="1200" cy="1200" r="250" fill="none" stroke="#1F7AF3" stroke-width="4" stroke-opacity=".7"/>
+  <path d="M 1020 1020 L 1380 1380 M 1380 1020 L 1020 1380" stroke="#1F7AF3" stroke-width="4" stroke-opacity=".7"/>
+</g>
+<text x="1200" y="940" font-family="Inter,system-ui" font-size="18" text-anchor="middle" fill="#460082" opacity=".18" transform="rotate(-90 1200 940)">A</text>
+<text x="1443.8582701410392" y="1159.4018669528293" font-family="Inter,system-ui" font-size="18" text-anchor="middle" fill="#460082" opacity=".18" transform="rotate(-9.45205479452055 1443.8582701410392 1159.4018669528293)">B</text>
+<text x="1275.9516167925567" y="1421.7846091412748" font-family="Inter,system-ui" font-size="18" text-anchor="middle" fill="#460082" opacity=".18" transform="rotate(71.0958904109589 1275.9516167925567 1421.7846091412748)">H</text>
+<text x="1004.95071972203" y="1305.2699773430807" font-family="Inter,system-ui" font-size="18" text-anchor="middle" fill="#460082" opacity=".18" transform="rotate(151.64383561643834 1004.95071972203 1305.2699773430807)">O</text>
+<text x="1071.9655117204256" y="1034.9878159094628" font-family="Inter,system-ui" font-size="18" text-anchor="middle" fill="#460082" opacity=".18" transform="rotate(232.1917808219178 1071.9655117204256 1034.9878159094628)">R</text>
+<text x="1333.068718855808" y="1055.9952755318404" font-family="Inter,system-ui" font-size="18" text-anchor="middle" fill="#460082" opacity=".18" transform="rotate(312.73972602739724 1333.068718855808 1055.9952755318404)">S</text>
+<text x="1353.214834446868" y="1300.596147696569" font-family="Inter,system-ui" font-size="18" text-anchor="middle" fill="#460082" opacity=".18" transform="rotate(393.2876712328767 1353.214834446868 1300.596147696569)">E</text>
+<text x="1131.0976438873238" y="1355.959911086623" font-family="Inter,system-ui" font-size="18" text-anchor="middle" fill="#460082" opacity=".18" transform="rotate(473.83561643835617 1131.0976438873238 1355.959911086623)">M</text>
+<text x="1047.226824489066" y="1160.8212327204558" font-family="Inter,system-ui" font-size="18" text-anchor="middle" fill="#460082" opacity=".18" transform="rotate(554.3835616438356 1047.226824489066 1160.8212327204558)">E</text>
+<text x="1212.459007817016" y="1055.6050042355048" font-family="Inter,system-ui" font-size="18" text-anchor="middle" fill="#460082" opacity=".18" transform="rotate(634.931506849315 1212.459007817016 1055.6050042355048)">M</text>
+<text x="1331.7350295754034" y="1189.5846903111744" font-family="Inter,system-ui" font-size="18" text-anchor="middle" fill="#460082" opacity=".18" transform="rotate(715.4794520547945 1331.7350295754034 1189.5846903111744)">…</text>
+<text x="1228.8205912711198" y="1315.82900123295" font-family="Inter,system-ui" font-size="18" text-anchor="middle" fill="#460082" opacity=".18" transform="rotate(796.0273972602739 1228.8205912711198 1315.82900123295)">S</text>
+<text x="1102.2082108117522" y="1242.3682615769628" font-family="Inter,system-ui" font-size="18" text-anchor="middle" fill="#460082" opacity=".18" transform="rotate(876.5753424657534 1102.2082108117522 1242.3682615769628)">O</text>
+<text x="1149.0877041635997" y="1121.2313916120631" font-family="Inter,system-ui" font-size="18" text-anchor="middle" fill="#460082" opacity=".18" transform="rotate(957.1232876712329 1149.0877041635997 1121.2313916120631)">Y</text>
+<text x="1259.8861164593188" y="1145.452838732904" font-family="Inter,system-ui" font-size="18" text-anchor="middle" fill="#460082" opacity=".18" transform="rotate(1037.6712328767123 1259.8861164593188 1145.452838732904)">G</text>
+<text x="1253.596387373863" y="1242.2052546335242" font-family="Inter,system-ui" font-size="18" text-anchor="middle" fill="#460082" opacity=".18" transform="rotate(1118.2191780821918 1253.596387373863 1242.2052546335242)">A</text>
+<circle cx="1200" cy="1200" r="1080" fill="none" stroke="#191b22" stroke-width="8"/>
+<circle cx="1200" cy="1200" r="924" fill="none" stroke="#191b22" stroke-width="6"/>
+<circle cx="1200" cy="1200" r="764" fill="none" stroke="#191b22" stroke-width="4"/>
+</svg>
