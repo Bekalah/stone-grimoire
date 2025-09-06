@@ -1,0 +1,11 @@
+{
+  "version":"1.0.0",
+  "repos":[
+    {"name":"circuitum99","path":"../circuitum99","role":"living_grimoire_game","anchors":{"spine":33,"gates":99}},
+    {"name":"cosmogenesis-learning-engine","path":"../cosmogenesis-learning-engine","role":"codex_engine","anchors":{"codex":144,"helix":"double"}},
+    {"name":"liber-arcanae","path":"../liber-arcanae","role":"tarot_egregores","anchors":{"major":22,"minor":56}},
+    {"name":"stone-grimoire","path":"../stone-grimoire","role":"realms_environs","anchors":{"rooms":144,"cathedral":"nave/crypt/garden"}}
+  ],
+  "numerology":{"master":[11,22,33],"codex":144,"gates":99,"spine":33},
+  "safety":{"autoplay":false,"strobe":false,"motion_default":"reduced"}
+}
