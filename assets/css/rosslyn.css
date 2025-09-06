@@ -75,10 +75,6 @@
   width:2px; height:14px; background:var(--gold);
 }
 .oscillum svg{ width:100%; height:100%; display:block; }
-@media (prefers-reduced-motion:no-preference){
-  .oscillum svg{ animation:osc 14s linear infinite; }
-  @keyframes osc{ to { transform:rotate(360deg); } }
-}
 
 /* Focus / accessibility */
 .rosslyn-sidebar a:focus-visible{
