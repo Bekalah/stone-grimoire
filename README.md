@@ -128,3 +128,15 @@ Each card = portable Monad → meditation yantra, ritual key, world portal.
 See [docs/visionary_world_builder.md](docs/visionary_world_builder.md) for instructions on generating customizable visionary art with palette and pattern options.
 
 ⸻
+
+### Codex Validation
+
+After generating `data/codex_nodes_full.json`, verify its integrity:
+
+```bash
+python scripts/validate_codex.py
+```
+
+The validator checks required fields, enforces locked nodes, and confirms each `lock_hash` matches its node data.
+
+⸻
