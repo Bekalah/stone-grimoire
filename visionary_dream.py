@@ -80,7 +80,6 @@ PATTERNS: dict[str, Callable[[float, float], float]] = {
     "radial": pattern_radial,
     "waves": pattern_waves,
     "flower": pattern_flower,
- main
 }
 
 
@@ -500,7 +499,6 @@ RGB *= gradient[..., None]
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 filename = f"Visionary_Dream_{timestamp}.png"
 Image.fromarray((RGB * 255).astype(np.uint8)).save(filename)
-main
 
 
 # ------------------------------
