@@ -1,51 +1,50 @@
 """Render a museum-quality visionary art piece inspired by Alex Grey."""
 
-# Import required libraries
+# Import numerical and imaging libraries
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageFilter
 
-# Canvas resolution (4K square)
-WIDTH, HEIGHT = 4096, 4096
+# Canvas resolution (square)
+WIDTH, HEIGHT = 1024, 1024
 
-# Craft coordinate grid centered at origin
-x = np.linspace(-np.pi, np.pi, WIDTH)
-y = np.linspace(-np.pi, np.pi, HEIGHT)
-X, Y = np.meshgrid(x, y)
+# Create coordinate grids as the lattice of the dream
+y, x = np.mgrid[0:HEIGHT, 0:WIDTH]
 
-# Polar coordinates for radial symmetry
-R = np.sqrt(X**2 + Y**2)
-T = np.arctan2(Y, X)
+# Compose an ethereal base pattern using gentle harmonic waves
+pattern = np.sin(x * 0.015) + np.cos(y * 0.02) + np.sin((x + y) * 0.01)
 
-# Layered visionary geometry using trigonometric waves
-pattern = (
-    np.sin(3 * R) +
-    np.cos(5 * T) +
-    np.sin(2 * (X + Y)) +
-    np.cos(2 * (X - Y))
-)
+# Layer a radial pulse for a mandala-like center
+cx, cy = WIDTH / 2, HEIGHT / 2
+radius = np.sqrt((x - cx) ** 2 + (y - cy) ** 2)
+pattern += np.cos(radius * 0.03)
 
-# Normalize pattern to [0, 1]
-pattern_norm = (pattern - pattern.min()) / (pattern.max() - pattern.min())
+# Normalize to 0–1 to prepare for color mapping
+pattern = (pattern - pattern.min()) / (pattern.max() - pattern.min())
 
-# Psychedelic palette inspired by Alex Grey (RGB 0-1)
+# Mirror the pattern to evoke sacred symmetry and calm focus
+pattern = (pattern + pattern[:, ::-1] + pattern[::-1, :] + pattern[::-1, ::-1]) / 4
+
+# Define a luminous palette inspired by Alex Grey's visionary spectra
 palette = np.array([
-    [255, 110, 0],   # vivid orange
-    [106, 0, 255],   # deep violet
-    [0, 255, 212],   # electric aqua
-    [255, 0, 133],   # neon magenta
-    [255, 255, 0],   # solar yellow
-]) / 255.0
+    [20, 10, 40],    # deep indigo night
+    [85, 0, 120],    # royal violet ascent
+    [255, 120, 0],   # radiant orange soul
+    [255, 236, 150], # golden enlightenment
+    [0, 200, 150]    # turquoise aura breeze
+])
 
-# Interpolate palette across pattern
-xp = np.linspace(0, 1, len(palette))
-RGB = np.empty((HEIGHT, WIDTH, 3))
-for c in range(3):
-    RGB[..., c] = np.interp(pattern_norm, xp, palette[:, c])
+# Map pattern values to colors through linear interpolation
+scaled = pattern * (len(palette) - 1)
+idx = np.floor(scaled).astype(int)
+frac = scaled - idx
+color = (palette[idx] * (1 - frac[..., None]) +
+         palette[np.clip(idx + 1, 0, len(palette) - 1)] * frac[..., None])
 
-# Radial gradient for depth
-gradient = 1 - np.clip(R / R.max(), 0, 1)
-RGB *= gradient[..., None]
+# Weave the color array into an image
+image = Image.fromarray(color.astype(np.uint8), mode="RGB")
 
-# Convert to 8-bit image and save
-Image.fromarray((RGB * 255).astype(np.uint8)).save("Visionary_Dream.png")
+# Soften edges for gentle gradients, honoring trauma-informed visuals
+image = image.filter(ImageFilter.GaussianBlur(radius=2))
 
+# Render the final dreamscape without noise or flash
+image.save("Visionary_Dream.png")
