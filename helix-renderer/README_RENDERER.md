@@ -16,5 +16,16 @@ Colors are loaded from `data/palette.json`. If that file is missing, the rendere
 - High-contrast yet soft color palette.
 - Simple ES module with no network requests.
 
+## Numerology
+The geometry routines honor key counts:
+- 3 – primary vesica radius and helix amplitude
+- 7 – vesica grid lines
+- 9 – spiral growth factor
+- 11 – vertical rhythm for the Tree of Life
+- 22 – sephirot paths
+- 33 – scaling reference for the spiral
+- 99 – points along the Fibonacci curve
+- 144 – helix lattice struts
+
 ## Usage
 Open `index.html` directly in any modern browser. The canvas is 1440×900 and uses only built-in browser features.
