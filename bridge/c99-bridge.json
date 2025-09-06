@@ -1,7 +1,10 @@
 {
   "meta": {
+
     "project": "Circuitum99 × Stone Grimoire",
+    "project": "circuitum99 × Stone Grimoire",
     "updated": "2025-09-04T06:25:42.678Z",
+    "updated": "2025-09-04T06:26:07.697Z",
     "nd_safe": true,
     "generator": "update-art.js"
   },
@@ -31,6 +34,7 @@
         "#5e4ba8",
         "#e6e6e6"
       ],
+
       "obsidian_glass": "#1c1c1c",
       "obsidian_sheen": "#2e2e2e",
       "obsidian_rainbow": "#545455",
@@ -64,6 +68,57 @@
       "violet_smoke": "#551a8b",
       "violet_aura": "#c9a0dc",
       "grail_gold": "#e4c580"
+      "obsidian_glass": {
+        "base": "#0B0B0B",
+        "sheen": "#1A1A1A",
+        "rainbow": "#3A3A3A"
+      },
+      "shungite": "#101010",
+      "tourmaline": "#2E3A3F",
+      "basalt": "#2B2B2B",
+      "glint_silver": "#C0C0C0",
+      "lava": {
+        "ember": "#FF4500",
+        "core": "#B22222"
+      },
+      "raku": {
+        "copper": "#B87333",
+        "charcoal": "#333333",
+        "violet": "#6A0DAD",
+        "azure": "#007FFF"
+      },
+      "gold_leaf": {
+        "base": "#E6C200",
+        "warm": "#FFD700",
+        "cold": "#C0B283"
+      },
+      "nacre": {
+        "pearl": "#F2F3F4",
+        "moonstone": "#E0E5FF",
+        "moonstone_glow": "#A7C7E7",
+        "abalone_pink": "#FFC0CB",
+        "abalone_green": "#66CDAA",
+        "abalone_blue": "#7FFFD4"
+      },
+      "avalon": {
+        "mist": "#BCC2C6",
+        "night": "#1C2230",
+        "tor_stone": "#8B8C7A",
+        "isle_reed": "#556B2F"
+      },
+      "astral": {
+        "sky": "#5AA9E6",
+        "violet": "#A06CD5"
+      },
+      "starlight": {
+        "silver": "#E5E9F2",
+        "gold": "#F6E27F"
+      },
+      "violet_core": "#460082",
+      "violet_flare": "#8A2BE2",
+      "violet_smoke": "#724A9A",
+      "violet_aura": "#BB86FC",
+      "grail_gold": "#D4AF37"
     },
     "secondary": {},
     "layers": {
@@ -83,6 +138,20 @@
       "inBetweenVeil": "inBetweenVeil",
       "trueFairy": "trueFairy",
       "protectionSigil": "protectionSigil"
+      "goldLeaf": "gold-leaf",
+      "pearl": "pearl",
+      "moonstone": "moonstone",
+      "abalone": "abalone",
+      "gonzVelvet": "gonz-velvet",
+      "faeShimmer": "fae-shimmer",
+      "roseGate": "rose-gate",
+      "violetFlame": "violet-flame",
+      "violetGate": "violet-gate",
+      "respawnGate": "respawn-gate",
+      "avalonGrove": "avalon-grove",
+      "inBetweenVeil": "between-narthex",
+      "trueFairy": "true-fairy",
+      "protectionSigil": "protection-handsigil"
     },
     "adventure_modes": {
       "hermetic_alchemy": [
@@ -113,11 +182,33 @@
         "Outer Isle",
         "Inner Sanctuary",
         "Lady's Veil"
+        "sat",
+        "svabhavat",
+        "manvantara",
+        "pralaya",
+        "rounds",
+        "root_races"
+      ]
+    },
+    "avalon": {
+      "priestess_current": true,
+      "grail_service": true,
+      "tor_isle_polarity": true,
+      "round_table_oath": true,
+      "veils": [
+        "outer_isle",
+        "inner_sanctuary",
+        "ladys_veil"
       ]
     },
     "between_realm": {
       "name": "In-Between Astral Narthex",
       "liminal": "veil eddies and star-motes"
+      "traits": [
+        "liminal_hush",
+        "veil_eddies",
+        "star_motes"
+      ]
     }
   },
   "routes": {
@@ -172,7 +263,10 @@
       "assets": []
     }
   ],
-  "angels": [],
+  "angels": {
+    "list": [],
+    "assets": []
+  },
   "creatures": {
     "dragons": [],
     "daimons": []
@@ -181,6 +275,39 @@
     "overlays": []
   },
   "oracle": [],
+  "pillars": {
+    "assets": []
+  },
+  "egregores": {
+    "assets": []
+  },
+  "between_realm": {
+    "name": "In-Between Astral Narthex",
+    "traits": [
+      "liminal_hush",
+      "veil_eddies",
+      "star_motes"
+    ],
+    "assets": []
+  },
+  "protection": {
+    "sigil": []
+  },
+  "rituals": {
+    "violet_flame": [
+      "invoke",
+      "rotate",
+      "transmute",
+      "replace"
+    ],
+    "respawn_gate": {
+      "alias": "violet_flame",
+      "ray": 6
+    }
+  },
+  "assets": []
+}
+=======
   "angel_assets": [],
   "pillars": [],
   "egregores": [],
@@ -709,7 +836,7 @@
       "type": "png"
     }
   ],
-  "rituals": {
+     "rituals": {
     "violet_flame": {
       "alias": "respawnGate",
       "ray": "VI",
@@ -720,5 +847,45 @@
         "Replace"
       ]
     }
+  ],
+  "seal": {
+    "monad": "/plans/seal/codex_abyssiae_monad_seal.svg",
+  }
+  "pillars": {
+    "assets": []
+  },
+  "egregores": {
+    "assets": []
+  },
+  "between_realm": {
+    "name": "In-Between Astral Narthex",
+    "traits": [
+      "liminal_hush",
+      "veil_eddies",
+      "star_motes"
+    ],
+    "assets": []
+  },
+  "protection": {
+    "sigil": []
+  },
+  "rituals": {
+    "violet_flame": [
+      "invoke",
+      "rotate",
+      "transmute",
+      "replace"
+    ],
+    "respawn_gate": {
+      "alias": "violet_flame",
+      "ray": 6
+    }
+  },
+  "assets": []
+}
+  ],
+  "seal": {
+    "monad": "/stone_grimoire/plans/seal/codex_abyssiae_monad_seal.svg",
+    "version": "1.0.0"
   }
 }

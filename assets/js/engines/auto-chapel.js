@@ -82,7 +82,7 @@
   main.insertBefore(header, main.firstChild);
 
   // ===== Plaque + Ritual block (below header) =====
-  // If neither exists, we’re done (no extra DOM)
+  // If neither exists, we're done (no extra DOM)
   if (!plaque && !ritual) return;
 
   const block = document.createElement('section');

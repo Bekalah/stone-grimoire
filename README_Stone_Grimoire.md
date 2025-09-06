@@ -45,7 +45,7 @@ Every artifact carries provenance: title, author, year, edition, license.
 
 ## Place in the Trinity  
 - **Stone Grimoire = Body**  
-- **Circuitum 99 = Soul**  
+- **circuitum99 = Soul**  
 - **Cosmogenesis Engine = Spirit**  
 
 Together: **Cathedral of Circuits**.  
@@ -54,5 +54,5 @@ Together: **Cathedral of Circuits**.
 
 ## Cross-Link  
 See also:  
-- [README_Circuitum.md](../circuitum99/README_Circuitum.md)  
+- [README_circuitum99.md](../circuitum99/README_circuitum99.md)  
 - [README_Cosmogenesis.md](../cosmogenesis/README_Cosmogenesis.md)  

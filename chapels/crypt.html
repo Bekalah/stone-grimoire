@@ -8,9 +8,9 @@
   <meta name="description" content="Rosslyn Chapel -- Crypt (undercroft): sealed initiatory chamber; descent motif; living folio with schematic, plaque, tone and cymatic bloom.">
 
   <!-- House styles -->
-  <link rel="stylesheet" href="../assets/css/palette.css">
-  <link rel="stylesheet" href="../assets/css/light.css">
-  <link rel="stylesheet" href="../assets/css/folio.css">
+  <link rel="stylesheet" href="/assets/css/palette.css">
+  <link rel="stylesheet" href="/assets/css/light.css">
+  <link rel="stylesheet" href="/assets/css/folio.css">
 
   <style>
     body.mystic{ margin:0; background:#111; color:#f2f2f2; font:18px/1.6 Georgia,serif }
@@ -136,8 +136,8 @@
 
 <script type="module">
   // Engines (correct paths)
-  import { setToneHz, setMuted, getAnalyser } from "../assets/js/engines/ambient-engine.js";
-  import { mountCymaticsCanvas } from "../assets/js/engines/cymatic-engine.js";
+  import { setToneHz, setMuted, getAnalyser } from "/assets/js/engines/ambient-engine.js";
+  import { mountCymaticsCanvas } from "/assets/js/engines/cymatic-engine.js";
 
   const root = document.documentElement;
   const motion = document.getElementById("toggle-motion");
@@ -161,7 +161,7 @@
 
   // Fill plaque from JSON (if present in structure)
   async function loadStructure(){
-    const res = await fetch("../assets/data/structure.json");
+    const res = await fetch("/assets/data/structure.json");
     if(!res.ok) return null;
     return res.json();
   }
@@ -183,7 +183,7 @@
 
   async function boot(){
     // Defaults (safe if structure block missing)
-    let hz = 417, stylepack = "rosicrucian_black", plaqueUrl = "../assets/data/plaques/crypt.json";
+    let hz = 417, stylepack = "rosicrucian_black", plaqueUrl = "/assets/data/plaques/crypt.json";
 
     const structure = await loadStructure();
     if (structure && Array.isArray(structure.rooms)){

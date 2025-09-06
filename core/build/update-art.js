@@ -82,21 +82,30 @@ async function main(){
   }
 
   const creatures = { dragons:[], daimons:[] };
+  const oracleVelvet=[], angelArt=[], pillarArt=[], egregoreArt=[], betweenRealmAssets=[], protectionSigils=[];
+  const assetEntry = a => ({ name:a.name, src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:'', type:a.type });
   for (const a of assets) {
-    if (/dragon/.test(a.name)) creatures.dragons.push({
+    const n = a.name.toLowerCase();
+    if (/dragon/.test(n)) creatures.dragons.push({
       id:a.name.replace(/\..+$/,''),
       title:"Dragon",
       frame_class:"lava-brim obsidian-sculpt obsidian-glint obsidian-facets visionary-grid",
       seal_filter:"obsidianSheen",
       src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:''
     });
-    if (/daimon/.test(a.name)) creatures.daimons.push({
+    if (/daimon/.test(n)) creatures.daimons.push({
       id:a.name.replace(/\..+$/,''),
       title:"Daimon",
       frame_class:"raku-seal obsidian-sculpt visionary-grid",
       seal_filter:"rakuCopperIridescence",
       src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:''
     });
+    if (/oracle|velvet/.test(n)) oracleVelvet.push(assetEntry(a));
+    if (/angel/.test(n)) angelArt.push(assetEntry(a));
+    if (/pillar/.test(n)) pillarArt.push(assetEntry(a));
+    if (/egregore/.test(n)) egregoreArt.push(assetEntry(a));
+    if (/between|narthex|veil|threshold/.test(n)) betweenRealmAssets.push({ ...assetEntry(a), class:"between-narthex" });
+    if (/hamsa|evil.?eye|logo|ward/.test(n)) protectionSigils.push({ ...assetEntry(a), class:"protection-handsigil", layer:"protectionSigil" });
   }
 
   const visionaryAssets = assets.filter(a => /alex[-_ ]?grey|visionary|sacred|grid/.test(a.name));
@@ -108,7 +117,7 @@ async function main(){
   const wardAssets = assets.filter(a => /(hamsa|evil[-_]?eye|logo|ward)/.test(a.name));
 
   const manifest = {
-    meta:{ project:"Circuitum99 × Stone Grimoire", updated:new Date().toISOString(), nd_safe:true, generator:"update-art.js" },
+    meta:{ project:"circuitum99 × Stone Grimoire", updated:new Date().toISOString(), nd_safe:true, generator:"update-art.js" },
     tokens:{ css:"/assets/css/perm-style.css", json:"/assets/tokens/perm-style.json",
       palette:styleTokens.palette||{}, secondary:styleTokens.secondary||{}, layers:styleTokens.layers||{},
       adventure_modes:styleTokens.adventure_modes||{}, avalon:styleTokens.avalon||{}, between_realm:styleTokens.between_realm||{} },
@@ -131,6 +140,17 @@ async function main(){
       assets: assets.map(a => ({ name:a.name, src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:'', type:a.type })),
       rituals:{ violet_flame:{ alias:'respawnGate', ray:'VI', steps:['Invoke','Rotate','Transmute','Replace'] } }
     };
+    angels:{ list:angels, assets:angelArt },
+    creatures,
+    visionary:{ overlays: visionaryAssets.map(a => ({ name:a.name, src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:'' })) },
+    oracle: oracleVelvet,
+    pillars:{ assets:pillarArt },
+    egregores:{ assets:egregoreArt },
+    between_realm: Object.assign({}, styleTokens.between_realm||{}, { assets:betweenRealmAssets }),
+    protection:{ sigil: protectionSigils },
+    rituals: styleTokens.rituals || {},
+    assets: assets.map(a => ({ name:a.name, src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:'', type:a.type }))
+  };
 
   const bridgeRoot = path.resolve(root, '../../bridge');
   fs.mkdirSync(bridgeRoot, {recursive:true});

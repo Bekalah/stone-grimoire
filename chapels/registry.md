@@ -1,4 +1,4 @@
-# Chapels Registry — Circuitum 99 (Alpha et Omega)
+# Chapels Registry — circuitum99 (Alpha et Omega)
 
 | ID | Slug                     | Title                    | Pillar | Vertebra | Gate | Dome |
 |-—|—————————|—————————|———|-———|——|——|
