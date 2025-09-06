@@ -1,3 +1,4 @@
+<<<<<<< main
 """Generate museum-quality visionary art with selectable palettes and patterns.
 
 This version is self-contained and requires only the Python standard library.
@@ -188,6 +189,9 @@ if __name__ == "__main__":
 # Import required libraries
 import argparse
 """Generate visionary art and corresponding music based on user art and tarot."""
+=======
+"""Generate a museum-quality visionary art piece inspired by Alex Grey."""
+>>>>>>> origin/codex/add-new-art-assets-for-inspiration
 
 # Import required libraries
 import argparse
@@ -311,6 +315,7 @@ def main() -> None:
     )
     args = parser.parse_args()
 
+<<<<<<< main
     generate_art(args.width, args.height, args.style, args.output)
 
 
@@ -428,6 +433,14 @@ WIDTH, HEIGHT = 1920, 1080
 # Create coordinate grids centered at origin
 x = np.linspace(-1, 1, WIDTH)
 y = np.linspace(-1, 1, HEIGHT)
+=======
+# Canvas resolution (4K square)
+WIDTH, HEIGHT = 4096, 4096
+
+# Generate coordinate grid centered at the canvas origin
+x = np.linspace(-2, 2, WIDTH)
+y = np.linspace(-2, 2, HEIGHT)
+>>>>>>> origin/codex/add-new-art-assets-for-inspiration
 X, Y = np.meshgrid(x, y)
 
 # ------------------------------
@@ -449,6 +462,7 @@ X, Y = np.meshgrid(x, y)
 R = np.sqrt(X**2 + Y**2)
 theta = np.arctan2(Y, X)
 
+<<<<<<< main
 # ------------------------------
 # Layered trigonometric pattern with tarot phase
 # ------------------------------
@@ -487,6 +501,38 @@ palette = np.array([
 palette = palette * (0.5 + 0.5 * avg_color)
 
 # Interpolate the palette across the normalized pattern
+=======
+# Simulate tesseract-inspired 4D rotations
+theta = np.pi / 4
+x4 = X * np.cos(theta) - Y * np.sin(theta)
+y4 = X * np.sin(theta) + Y * np.cos(theta)
+z4 = np.sin(x4)
+w4 = np.cos(y4)
+
+# Layered trigonometric field for visionary geometry
+pattern = (
+    np.sin(4 * R + 8 * T)
+    + np.cos(4 * (R - T))
+    + np.sin(3 * (x4 + z4))
+    + np.cos(3 * (y4 + w4))
+)
+
+# Normalize pattern to range [0, 1]
+pattern_norm = (pattern - pattern.min()) / (pattern.max() - pattern.min())
+
+# Define a vibrant palette inspired by Alex Grey (RGB 0-1)
+palette = np.array([
+    [75, 0, 130],   # indigo
+    [0, 0, 255],    # blue
+    [0, 255, 255],  # cyan
+    [0, 255, 0],    # green
+    [255, 255, 0],  # yellow
+    [255, 165, 0],  # orange
+    [255, 0, 0],    # red
+]) / 255.0
+
+# Interpolate palette across the normalized pattern
+>>>>>>> origin/codex/add-new-art-assets-for-inspiration
 xp = np.linspace(0, 1, len(palette))
 RGB = np.empty((HEIGHT, WIDTH, 3))
 for c in range(3):
