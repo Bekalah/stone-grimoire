@@ -418,7 +418,6 @@ tarot_phase = (hash(args.tarot) % 360) / 180.0 * math.pi
 # ------------------------------
 # Coordinate grid centered at canvas origin
 # ------------------------------
-=======
 # Set canvas resolution
 WIDTH, HEIGHT = 1920, 1080
 
@@ -435,6 +434,18 @@ X, Y = np.meshgrid(x, y)
 # Radial coordinates for symmetry
 # ------------------------------
 # Compute radial distance and polar angle
+=======
+import colorsys
+
+# Resolution of the output image
+WIDTH, HEIGHT = 1920, 1080
+
+# Generate coordinate grid spanning the aspect ratio
+x = np.linspace(-2, 2, WIDTH)
+y = np.linspace(-1.125, 1.125, HEIGHT)  # maintain 16:9 aspect
+X, Y = np.meshgrid(x, y)
+
+# Convert to polar coordinates for radial symmetry
 R = np.sqrt(X**2 + Y**2)
 theta = np.arctan2(Y, X)
 
@@ -442,8 +453,13 @@ theta = np.arctan2(Y, X)
 # Layered trigonometric pattern with tarot phase
 # ------------------------------
 pattern = np.sin(8 * R + tarot_phase) + np.cos(5 * T - tarot_phase)
+# Layered trigonometric waves for visionary geometry
+layer1 = np.sin(6 * R - 3 * T)
+layer2 = np.cos(8 * T + 5 * R)
+layer3 = np.sin(4 * R + np.cos(12 * T))
+pattern = layer1 + layer2 + layer3
 
-# Normalize pattern to [0, 1]
+# Normalize combined pattern to [0, 1]
 pattern_norm = (pattern - pattern.min()) / (pattern.max() - pattern.min())
 
 # Psychedelic palette inspired by Alex Grey (RGB 0-1)
@@ -542,3 +558,19 @@ rgb = palette[low] * (1 - frac[..., None]) + palette[high] * frac[..., None]
 
 # Convert to image and save
 Image.fromarray((rgb * 255).astype(np.uint8)).save("Visionary_Dream.png")
+# Map to HSV palette inspired by Alex Grey's luminous hues
+HSV = np.zeros((HEIGHT, WIDTH, 3), dtype=np.float32)
+HSV[..., 0] = (pattern_norm + T / (2 * np.pi)) % 1.0  # hue cycles with angle
+HSV[..., 1] = 1.0                                        # full saturation
+HSV[..., 2] = np.clip(1 - R / 2, 0, 1)                   # radial value fade
+
+# Convert HSV to RGB
+RGB = np.zeros_like(HSV)
+for i in range(HEIGHT):
+    for j in range(WIDTH):
+        RGB[i, j] = colorsys.hsv_to_rgb(*HSV[i, j])
+
+# Create and save the final artwork
+img = Image.fromarray((RGB * 255).astype(np.uint8))
+img.save("Visionary_Dream.png")
+print("Visionary_Dream.png saved")
