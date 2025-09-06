@@ -3,7 +3,7 @@ export async function mountFractalShader(canvas, opts = {}) {
   const gl = canvas.getContext('webgl');
   if (!gl) { console.warn('WebGL not available'); return null; }
   const vsSrc = `attribute vec2 a_pos; void main(){ gl_Position = vec4(a_pos,0.0,1.0); }`;
-  const fsSrc = await fetch('../assets/shaders/fractal.glsl').then(r=>r.text());
+  const fsSrc = await fetch('/assets/shaders/fractal.glsl').then(r=>r.text());
 
   const compile = (src, type) => {
     const sh = gl.createShader(type);
