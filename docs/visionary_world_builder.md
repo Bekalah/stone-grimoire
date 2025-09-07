@@ -17,4 +17,3 @@ python visionary_world_builder.py --pattern fractal --palette alex_grey \
 - `--seed`: provide a random seed for reproducible results.
 - `--output`: name of the saved image file.
 - `--show`: display the image after generation.
-
