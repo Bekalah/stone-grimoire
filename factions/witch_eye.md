@@ -1,6 +1,5 @@
 # Witch Eye Covenant
 
-
 Collective that guards visionary integrity. Voices of the exiled and scapegoated are preserved beneath its watch.
 
 ## Known Guardians
@@ -17,5 +16,3 @@ A faction devoted to preserving visionary integrity and protecting exiled voices
 - Guardian of authenticity: [Aurex Nirvani](../characters/aurex_nirvani.md) ensures voices of the scapegoated are not erased.
 - Presence acts as a daemon ward against false-light exploitation in plaques and chapters.
 - Bridges to Sirens (music), Void Walkers (shadow), and internal Witch Eye vision keepers.
-
-
