@@ -47,9 +47,7 @@ codex/fill-in-demo-code-and-add-options-racrhm
 - **Harmonic Dream CLI** → `python harmonic_dream.py --scale pentatonic --pattern ascending`.
 - **Story Dream CLI** → `python story_dream.py --seed 42`.
 
-
 —
 
 > *Each return is new depth; each depth a new return.*
 > — Rebecca Respawn
-
