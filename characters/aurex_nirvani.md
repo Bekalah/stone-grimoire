@@ -154,4 +154,3 @@
 - His Indigo/Black/Silver rays connect him directly to Sekhara Nox (Pluto serpent, Black Ray), Miribelle Vespertine (Moon/Mirror), and Rebecca Respawn (Fool/Respawn Gate).
 - His Witch Eye Covenant role ensures he protects both mythos integrity and business authenticity.
 - He now has a cross-faction bridge: Sirens (music), Void Walkers (shadow), and Witch Eye (vision).
-
