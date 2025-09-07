@@ -1,4 +1,5 @@
 // Minimal schema validator avoiding external dependencies.
+// Fetches schema from local JSON or remote URL.
 // Motto: Per Texturas Numerorum, Spira Loquitur.
 
 export async function validateInterface(payload, schemaUrl="/assets/data/interface.schema.json"){
@@ -18,8 +19,22 @@ export async function validateInterface(payload, schemaUrl="/assets/data/interfa
       const p = schemaUrl.replace(/^\//, "");
       schema = JSON.parse(await readFile(p, "utf8"));
     }
-    const required = schema.required || [];
     const errors = [];
+    const required = schema.required || [];
+    for(const key of required){
+      if(!(key in payload)){ errors.push({message:`missing ${key}`}); }
+    }
+    if("version" in payload && typeof payload.version !== "string"){
+      errors.push({message:"version must be string"});
+    }
+    if("palettes" in payload && !Array.isArray(payload.palettes)){
+      errors.push({message:"palettes must be array"});
+    }
+    if("geometry_layers" in payload && !Array.isArray(payload.geometry_layers)){
+      errors.push({message:"geometry_layers must be array"});
+    }
+    if("narrative_nodes" in payload && !Array.isArray(payload.narrative_nodes)){
+      errors.push({message:"narrative_nodes must be array"});
     for (const key of required) {
       if (!(key in payload)) errors.push({ message: `missing ${key}` });
     }
