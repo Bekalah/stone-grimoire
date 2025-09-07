@@ -1,5 +1,7 @@
 # Cosmic Helix Renderer
 
+*Motto: Per Texturas Numerorum, Spira Loquitur.*
+
 Offline, ND-safe renderer for layered sacred geometry. Double-click `index.html` in this folder to view.
 
 ## Layers
