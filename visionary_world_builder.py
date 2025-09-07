@@ -5,7 +5,6 @@ import argparse
 import numpy as np
 from PIL import Image
 
-
 def fractal_noise(width: int, height: int, octaves: int = 6, persistence: float = 0.5) -> np.ndarray:
     """Create fractal Brownian motion using layered random noise."""
     noise = np.zeros((height, width))
@@ -19,7 +18,6 @@ def fractal_noise(width: int, height: int, octaves: int = 6, persistence: float 
         frequency *= 2.0
     return noise / total_amp
 
-
 def radial_pattern(width: int, height: int) -> np.ndarray:
     """Generate a radial trigonometric pattern for mandala-like symmetry."""
     x = np.linspace(-1, 1, width)
@@ -28,7 +26,6 @@ def radial_pattern(width: int, height: int) -> np.ndarray:
     R = np.sqrt(X**2 + Y**2)
     T = np.arctan2(Y, X)
     return np.sin(8 * R**2 + 6 * T) + np.cos(4 * R - 3 * T)
-
 
 PALETTES = {
     "alex_grey": np.array([
@@ -54,12 +51,10 @@ PALETTES = {
     ]) / 255.0,
 }
 
-
 PATTERNS = {
     "fractal": fractal_noise,
     "radial": radial_pattern,
 }
-
 
 def build_image(width: int, height: int, pattern_fn, palette: np.ndarray, seed: int | None) -> Image.Image:
     """Construct the visionary artwork using the selected pattern and palette."""
@@ -72,7 +67,6 @@ def build_image(width: int, height: int, pattern_fn, palette: np.ndarray, seed: 
     for c in range(3):
         rgb[..., c] = np.interp(pattern_norm, xp, palette[:, c])
     return Image.fromarray((rgb * 255).astype(np.uint8))
-
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Visionary world-building art generator")
@@ -89,7 +83,6 @@ def main() -> None:
     img.save(args.output)
     if args.show:
         img.show()
-
 
 if __name__ == "__main__":
     main()
@@ -153,4 +146,3 @@ img = Image.fromarray((RGB * 255).astype(np.uint8))
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 filename = f"Visionary_Dream_{timestamp}.png"
 img.save(filename)
-

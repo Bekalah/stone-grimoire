@@ -18,12 +18,10 @@ SCALES = {
     "minor": [0, 2, 3, 5, 7, 8, 10],
 }
 
-
 def note_frequency(semitone: int, base: float = 220.0) -> float:
     """Convert semitone offset into frequency in Hz."""
 
     return base * (2 ** (semitone / 12))
-
 
 def render(scale: str, pattern: str, bpm: int, bars: int) -> List[int]:
     """Create a sequence of samples for the chosen musical settings."""
@@ -43,7 +41,6 @@ def render(scale: str, pattern: str, bpm: int, bars: int) -> List[int]:
             samples.append(sample)
     return samples
 
-
 def write_wav(filename: str, samples: List[int]) -> None:
     """Write samples to a mono 16-bit WAV file."""
 
@@ -52,7 +49,6 @@ def write_wav(filename: str, samples: List[int]) -> None:
         w.setsampwidth(2)
         w.setframerate(44100)
         w.writeframes(b"".join(struct.pack("<h", s) for s in samples))
-
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
@@ -65,7 +61,6 @@ def main() -> None:
 
     samples = render(args.scale, args.pattern, args.bpm, args.bars)
     write_wav(args.output, samples)
-
 
 if __name__ == "__main__":
     main()

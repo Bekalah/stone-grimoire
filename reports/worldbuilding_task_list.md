@@ -28,4 +28,3 @@ This document summarizes the current state of the *Stone Grimoire* repository an
 
 ## Actions Completed in This Commit
 - Added this planning document to `reports/worldbuilding_task_list.md` outlining current status and next steps.
-
