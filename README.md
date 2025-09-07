@@ -1,3 +1,13 @@
+<!-- Matrix-style helix header: ND-safe static ASCII art -->
+```
+01\    /10\    /01\    /10
+10 \  / 01 \  / 10 \  / 01
+01  \/  10  \/  01  \/  10
+10  /\  01  /\  10  /\  01
+01 /  \10 /  \01 /  \10
+10/    \01/    \10/    \01
+```
+
 ✦ LIBER ARCANAE: CODEX ABYSSIAE
 
 Abyssian Tarot of the Living Monad Hieroglyphica
