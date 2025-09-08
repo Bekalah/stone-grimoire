@@ -12,6 +12,7 @@ export async function validateInterface(payload, schemaUrl="/assets/data/interfa
       const p = schemaUrl.replace(/^\//, "");
       schema = JSON.parse(await readFile(p, "utf8"));
     }
+
     const errors = [];
     const required = schema.required || [];
     for (const key of required) {
@@ -19,6 +20,7 @@ export async function validateInterface(payload, schemaUrl="/assets/data/interfa
         errors.push({ message: `missing ${key}` });
       }
     }
+
     if ("version" in payload && !/^\d+\.\d+\.\d+$/.test(payload.version)) {
       errors.push({ message: "version format invalid" });
     }
@@ -31,6 +33,7 @@ export async function validateInterface(payload, schemaUrl="/assets/data/interfa
     if ("narrative_nodes" in payload && !Array.isArray(payload.narrative_nodes)) {
       errors.push({ message: "narrative_nodes should be array" });
     }
+
     return { valid: errors.length === 0, errors };
   } catch (e) {
     return { valid: false, errors: [{ message: e.message }] };
