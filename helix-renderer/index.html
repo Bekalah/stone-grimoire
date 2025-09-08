@@ -1,5 +1,4 @@
 <!doctype html>
-<!-- Motto: Per Texturas Numerorum, Spira Loquitur -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -27,7 +26,6 @@
   <p class="note">This static renderer encodes Vesica, Tree-of-Life, Fibonacci, and a static double-helix lattice. No animation, no autoplay, no external libs. Open this file directly.</p>
 
   <script type="module">
-    // Offline-first: import local module; no network requests.
     import { renderHelix } from "./js/helix-renderer.mjs";
 
     const elStatus = document.getElementById("status");
@@ -36,7 +34,6 @@
 
     async function loadJSON(path) {
       try {
-        // Local fetch; avoids external network and falls back safely
         const res = await fetch(path, { cache: "no-store" });
         if (!res.ok) throw new Error(String(res.status));
         return await res.json();
@@ -52,11 +49,6 @@
         layers:["#b1c7ff","#89f7fe","#a0ffa1","#ffd27f","#f5a3ff","#d0d0e6"]
       }
     };
-
-
-    // Load palette file; fall back to calm defaults when missing.
-
-    // Offline-safe: attempts to load local palette; no external requests
 
     const palette = await loadJSON("./data/palette.json");
     const active = palette || defaults.palette;
