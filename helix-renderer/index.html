@@ -27,6 +27,7 @@
   <p class="note">This static renderer encodes Vesica, Tree-of-Life, Fibonacci, and a static double-helix lattice. No animation, no autoplay, no external libs. Open this file directly.</p>
 
   <script type="module">
+    // Offline-first: import local module; no network requests.
     import { renderHelix } from "./js/helix-renderer.mjs";
 
     const elStatus = document.getElementById("status");
@@ -52,7 +53,11 @@
       }
     };
 
+
+    // Load palette file; fall back to calm defaults when missing.
+
     // Offline-safe: attempts to load local palette; no external requests
+
     const palette = await loadJSON("./data/palette.json");
     const active = palette || defaults.palette;
     elStatus.textContent = palette ? "Palette loaded." : "Palette missing; using safe fallback.";
