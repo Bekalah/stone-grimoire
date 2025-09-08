@@ -3,10 +3,12 @@
 // Motto: Per Texturas Numerorum, Spira Loquitur.
 
 
+
 export async function validateInterface(
   payload,
   schemaUrl = "/assets/data/interface.schema.json",
 ) {
+
 
 export async function validateInterface(payload, schemaUrl="/assets/data/interface.schema.json") {
 
@@ -27,7 +29,7 @@ export async function validateInterface(payload, schemaUrl="/assets/data/interfa
         errors.push({ message: `missing ${key}` });
       }
     }
-    
+
     if ("version" in payload && !/^\d+\.\d+\.\d+$/.test(payload.version)) {
       errors.push({ message: "version format invalid" });
     }
