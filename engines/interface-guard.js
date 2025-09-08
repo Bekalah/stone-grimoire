@@ -2,10 +2,14 @@
 // Fetches schema from local JSON or remote URL.
 // Motto: Per Texturas Numerorum, Spira Loquitur.
 
+
 export async function validateInterface(
   payload,
   schemaUrl = "/assets/data/interface.schema.json",
 ) {
+
+export async function validateInterface(payload, schemaUrl="/assets/data/interface.schema.json") {
+
   try {
     let schema;
     if (schemaUrl.startsWith("http")) {
@@ -23,6 +27,7 @@ export async function validateInterface(
         errors.push({ message: `missing ${key}` });
       }
     }
+    
     if ("version" in payload && !/^\d+\.\d+\.\d+$/.test(payload.version)) {
       errors.push({ message: "version format invalid" });
     }
@@ -41,6 +46,7 @@ export async function validateInterface(
     ) {
       errors.push({ message: "narrative_nodes should be array" });
     }
+
     return { valid: errors.length === 0, errors };
   } catch (e) {
     return { valid: false, errors: [{ message: e.message }] };

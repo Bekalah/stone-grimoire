@@ -7,7 +7,7 @@
     1) Vesica field (intersecting circles)
     2) Tree-of-Life scaffold (10 sephirot + 22 paths; simplified layout)
     3) Fibonacci curve (log spiral polyline; static)
-    4) Double-helix lattice (two phase-shifted sine strands)
+    4) Double-helix lattice (two phase-shifted sine strands with 144 vertical struts)
 */
 
 // Small, pure, parameterized functions only; no animation, no external deps.
