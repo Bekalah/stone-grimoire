@@ -3,7 +3,7 @@
 This document summarizes the current state of the *Stone Grimoire* repository and outlines tasks for expanding it into a reusable world‑building toolkit across multiple games and complex environments.
 
 ## Completed Components
-- **Cosmic Helix Renderer** (`helix-renderer/`) provides an offline, ND‑safe HTML/Canvas renderer for layered sacred geometry.
+- **Cosmic Helix Renderer** (`helix-renderer/`) rebuilt as a modern, offline‑first HTML/Canvas module with palette fallback and layered sacred geometry.
 - **Shared Data Contracts** (`data/`) include numerology constants and palette data for consistent theming across projects.
 - **Core Document Structure** (`core/`, `chapels/`, `folios/`) establishes museum‑grade conventions for rooms and archival plates.
 - **Curator Sync Map** (`reports/curator_sync_map.md`) defines standard wiring between chapels, folios, engines and plaques.
@@ -25,6 +25,9 @@ This document summarizes the current state of the *Stone Grimoire* repository an
 3. Create a world‑builder script that reads a realm descriptor and emits chapel/folio stubs.
 4. Expand automated tests to validate that cross‑repo JSON references remain in sync.
 5. Draft contribution guidelines for external games that wish to plug into the Trinity.
+6. Define identity anchors for characters such as Rebecca Respawn and outline toggleable art modes (portrait, illuminated manuscript, alchemical diagram, visionary scene, concept frame).
+7. Wire renderer toggles so book, art, learning, and music settings can switch style layers without breaking ND‑safe guarantees.
 
 ## Actions Completed in This Commit
-- Added this planning document to `reports/worldbuilding_task_list.md` outlining current status and next steps.
+- Replaced the legacy helix renderer with a modern offline HTML/Canvas implementation.
+- Updated this planning document with current components and new tasks.
