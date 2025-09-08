@@ -166,3 +166,17 @@ python scripts/validate_codex.py
 The validator checks required fields, enforces locked nodes, and confirms each `lock_hash` matches its node data.
 
 ⸻
+
+⸻
+
+### Duplicate line guard
+
+To clean up repeated lines caused by accidental double pastes:
+
+```bash
+npm run dedupe
+```
+
+This scans all git-tracked text files and strips consecutive duplicate lines.
+
+⸻

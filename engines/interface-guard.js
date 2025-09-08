@@ -3,13 +3,10 @@
 // Motto: Per Texturas Numerorum, Spira Loquitur.
 
 
-
 export async function validateInterface(
   payload,
   schemaUrl = "/assets/data/interface.schema.json",
 ) {
-
-
 
 export async function validateInterface(payload, schemaUrl="/assets/data/interface.schema.json") {
 
