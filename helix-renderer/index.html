@@ -36,6 +36,7 @@
 
     async function loadJSON(path) {
       try {
+        // Local fetch; avoids external network and falls back safely
         const res = await fetch(path, { cache: "no-store" });
         if (!res.ok) throw new Error(String(res.status));
         return await res.json();
@@ -52,7 +53,11 @@
       }
     };
 
+
     // Load palette file; fall back to calm defaults when missing.
+
+    // Offline-safe: attempts to load local palette; no external requests
+
     const palette = await loadJSON("./data/palette.json");
     const active = palette || defaults.palette;
     elStatus.textContent = palette ? "Palette loaded." : "Palette missing; using safe fallback.";

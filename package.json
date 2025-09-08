@@ -1,13 +1,12 @@
 {
   "name": "stone-grimoire",
-
-  "version": "0.1.0",
-  "private": true,
-
   "version": "1.0.0",
-
+  "private": true,
   "type": "module",
   "scripts": {
-    "test": "node tests/interface.test.js"
+    "test": "node tests/interface.test.js",
+    "dedupe": "node scripts/deduplicate-repo.mjs"
+    "dedupe": "node scripts/dedupe.js"
+
   }
 }

@@ -7,7 +7,6 @@ import pygame
 from pygame import sndarray
 from datetime import datetime
 
-
 def create_background(width: int, height: int) -> pygame.Surface:
     """Generate a simple procedural background pattern."""
     x = np.linspace(0, 1, width)
@@ -18,14 +17,12 @@ def create_background(width: int, height: int) -> pygame.Surface:
     rgb = np.stack([norm * 255] * 3, axis=-1).astype(np.uint8)
     return pygame.surfarray.make_surface(rgb)
 
-
 def tone(frequency: float, duration: float = 0.5, sample_rate: int = 44100) -> pygame.mixer.Sound:
     """Create a sine wave tone for generative music."""
     t = np.linspace(0, duration, int(sample_rate * duration), False)
     wave = np.sin(frequency * t * 2 * np.pi)
     audio = np.int16(wave * 32767)
     return sndarray.make_sound(audio)
-
 
 def main() -> None:
     """Run the immersive creative room."""
@@ -82,7 +79,5 @@ def main() -> None:
 
     pygame.quit()
 
-
 if __name__ == "__main__":
     main()
-

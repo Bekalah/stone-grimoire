@@ -39,7 +39,6 @@ OUTCOMES = [
     "opening the gates of perception",
 ]
 
-
 def craft_story(seed: int | None) -> str:
     """Assemble a tale from the ingredients above."""
 
@@ -50,7 +49,6 @@ def craft_story(seed: int | None) -> str:
     outcome = rnd.choice(OUTCOMES)
     return f"{hero} {quest} {relic}, {outcome}."
 
-
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--seed", type=int, default=None, help="random seed for reproducibility")
@@ -60,7 +58,6 @@ def main() -> None:
     story = craft_story(args.seed)
     with open(args.output, "w", encoding="utf-8") as fh:
         fh.write(textwrap.fill(story, width=80))
-
 
 if __name__ == "__main__":
     main()

@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 import fs from 'fs'; import path from 'path';
 
-
 const ROOT = path.resolve(process.cwd(), 'stone_grimoire');
 const ROOT = path.resolve(process.cwd(), 'stone-grimoire');
 // Resolve project root whether directory uses underscore or hyphen
@@ -80,7 +79,6 @@ push(`<defs>
 push(`<rect x="0" y="0" width="${W}" height="${H}" fill="url(#bgGrad)"/>`);
 push(`<circle cx="${CX}" cy="${CY}" r="${R_OUT+60}" fill="none" stroke="${EDGE}" stroke-width="18"/>`);
 
-
 // OUTER RING — 78 gates (22 Hebrew + 56 minors)
 
 // OUTER RING - 78 gates (22 Hebrew + 56 minors)
@@ -103,7 +101,6 @@ for(let i=0;i<GATES;i++){
   }
 }
 
-
 // SECOND RING - 72 Shem alternating with 72 Goetia (144 ticks)
 const marks = 144, stepMark = 360/marks;
 for(let i=0;i<marks;i++){
@@ -121,7 +118,6 @@ for(let i=0;i<marks;i++){
     push(`<text x="${tx}" y="${ty}" font-family="Inter,system-ui" font-size="16" text-anchor="middle" fill="${isAngel?AZURE:COPPER}" opacity=".8" transform="rotate(${a} ${tx} ${ty})">${esc(label)}</text>`);
   }
 }
-
 
 // THIRD RING - 33 beads (alchemical sequence), Ars Notoria notae at 11/22/33
 const BEADS = 33, stepB = 360/BEADS;
@@ -149,7 +145,6 @@ PLAN.forEach((p,i)=>{
   push(`<circle cx="${px}" cy="${py}" r="22" fill="${C('gonz_2','#2a2140')}" stroke="${SILV}" stroke-width="3"/>`);
   push(`<text x="${px}" y="${py+8}" font-family="Junicode,serif" font-size="28" text-anchor="middle" fill="${INK}">${esc(p.glyph)}</text>`);
 });
-
 
 // CENTER - Vesica + Monad × LuxCrux fusion
 push(`<g>
