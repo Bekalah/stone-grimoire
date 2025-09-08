@@ -11,7 +11,7 @@ Offline, ND-safe renderer for layered sacred geometry. Double-click `index.html`
 4. **Double-helix lattice** – two phase-shifted sine strands with 144 vertical struts.
 
 ## Palette
-Colors are loaded from `data/palette.json`. If that file is missing, the renderer falls back to a safe default palette.
+Colors are loaded from `data/palette.json`. If that file is missing, the renderer displays a small notice and falls back to a safe default palette.
 
 ## ND-Safe Choices
 - No animation, motion, or autoplay.
