@@ -1,3 +1,29 @@
+<!-- Static double-helix ASCII header for ND-safe visual interest -->
+```text
+                         0------------------------------------------------1
+                           0                                            1
+                                  0------------------------------1
+                                            0          1
+                                            1----------0
+                                  1                              0
+                           1--------------------------------------------0
+                         1                                                0
+                           1--------------------------------------------0
+                                  1                              0
+                                            1----------0
+                                            0          1
+                                  0------------------------------1
+                           0                                            1
+                         0------------------------------------------------1
+                           0                                            1
+                                  0------------------------------1
+                                            0          1
+                                            1----------0
+                                  1                              0
+                           1--------------------------------------------0
+                         1                                                0
+```
+
 ✦ LIBER ARCANAE: CODEX ABYSSIAE
 
 Abyssian Tarot of the Living Monad Hieroglyphica
@@ -138,5 +164,19 @@ python scripts/validate_codex.py
 ```
 
 The validator checks required fields, enforces locked nodes, and confirms each `lock_hash` matches its node data.
+
+⸻
+
+⸻
+
+### Duplicate line guard
+
+To clean up repeated lines caused by accidental double pastes:
+
+```bash
+npm run dedupe
+```
+
+This scans all git-tracked text files and strips consecutive duplicate lines.
 
 ⸻

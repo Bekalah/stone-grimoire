@@ -62,7 +62,6 @@ def set_pixel(x, y, color):
     if 0 <= x < WIDTH and 0 <= y < HEIGHT:
         pixels[y][x] = color
 
-
 def draw_line(x1, y1, x2, y2, color, width=1):
     dx, dy = x2 - x1, y2 - y1
     steps = int(max(abs(dx), abs(dy)))
@@ -76,7 +75,6 @@ def draw_line(x1, y1, x2, y2, color, width=1):
             for oy in range(-width // 2, width // 2 + 1):
                 set_pixel(int(round(x + ox)), int(round(y + oy)), color)
 
-
 def draw_circle(cx, cy, r, color, width=1):
     for angle in range(360):
         x = cx + r * math.cos(math.radians(angle))
@@ -84,7 +82,6 @@ def draw_circle(cx, cy, r, color, width=1):
         for ox in range(-width // 2, width // 2 + 1):
             for oy in range(-width // 2, width // 2 + 1):
                 set_pixel(int(round(x + ox)), int(round(y + oy)), color)
-
 
 def draw_polygon(points, color, width=1):
     for i in range(len(points)):
