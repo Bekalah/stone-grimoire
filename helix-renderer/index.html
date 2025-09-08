@@ -51,6 +51,7 @@
       }
     };
 
+    // Offline-safe: attempts to load local palette; no external requests
     const palette = await loadJSON("./data/palette.json");
     const active = palette || defaults.palette;
     elStatus.textContent = palette ? "Palette loaded." : "Palette missing; using safe fallback.";
