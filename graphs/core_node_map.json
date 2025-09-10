@@ -109,6 +109,7 @@
 
     {"from": "hypatia", "to": "agrippa", "type": "rationalizes", "note": "Math/logic clarifies tables"},
     {"from": "hypatia", "to": "hilma", "type": "balances", "note": "Reason ⇄ vision"},
+    {"from": "hypatia", "to": "hilma", "type": "balances", "note": "Reason ⇔ vision"},
     {"from": "tesla", "to": "hypatia", "type": "harmonizes", "note": "Frequency meets number"},
     {"from": "witch-mods", "to": "crowley-shadow", "type": "checks", "note": "Ethical watch on disruption"},
     {"from": "rebecca-respawn", "to": "witch-mods", "type": "authorizes", "note": "Witch Eye brand covenant"},
