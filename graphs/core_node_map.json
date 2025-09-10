@@ -1,0 +1,121 @@
+{
+  "graphId": "cathedral-core-10",
+  "version": "1.0.0",
+  "layers": ["Art", "Science", "Magic", "Psychology", "Healing", "Technology", "Mythos"],
+  "nodes": [
+    {
+      "id": "tesla",
+      "kind": "room",
+      "name": "Nikola Tesla",
+      "domain": ["Science", "Technology", "Magic"],
+      "codexRole": "Tower disruptor / Lightning Master",
+      "tarotOverlay": "XVI The Tower",
+      "artifact": "Lightning Coil Plate"
+    },
+    {
+      "id": "hypatia",
+      "kind": "room",
+      "name": "Hypatia of Alexandria",
+      "domain": ["Science", "Art", "Mythos"],
+      "codexRole": "Garden guide / Star weaver",
+      "tarotOverlay": "XVII The Star",
+      "artifact": "Spiral Star Plate"
+    },
+    {
+      "id": "agrippa",
+      "kind": "room",
+      "name": "H. C. Agrippa",
+      "domain": ["Magic", "Mythos", "Psychology"],
+      "codexRole": "Seed scribe / Lattice architect",
+      "tarotOverlay": "I The Magician",
+      "artifact": "Seed Grid Plate"
+    },
+    {
+      "id": "dee",
+      "kind": "room",
+      "name": "John Dee",
+      "domain": ["Magic", "Science", "Mythos"],
+      "codexRole": "Magician-Navigator of Angelic Lattice",
+      "tarotOverlay": "I The Magician",
+      "artifact": "Monadic Plate"
+    },
+    {
+      "id": "fortune",
+      "kind": "room",
+      "name": "Dion Fortune",
+      "domain": ["Magic", "Psychology", "Healing"],
+      "codexRole": "Guardian of Inner Temple / Lady Chapel",
+      "tarotOverlay": "VIII Strength",
+      "artifact": "Rose Cross Plate"
+    },
+    {
+      "id": "hilma",
+      "kind": "room",
+      "name": "Hilma af Klint",
+      "domain": ["Art", "Healing", "Mythos"],
+      "codexRole": "Visionary Painter of Spiral Gardens",
+      "tarotOverlay": "XVIII The Moon",
+      "artifact": "Spiral Garden Plate"
+    },
+    {
+      "id": "witch-mods",
+      "kind": "faction",
+      "name": "Witch Mods",
+      "domain": ["Technology", "Magic", "Mythos"],
+      "codexRole": "Faction of Vigilance",
+      "tarotOverlay": "XI Justice",
+      "artifact": "Witch Eye Seal"
+    },
+    {
+      "id": "crowley-shadow",
+      "kind": "faction",
+      "name": "Crowley Shadow",
+      "domain": ["Magic", "Mythos"],
+      "codexRole": "Creative Risk / Disruption Agent",
+      "tarotOverlay": "XVI The Tower",
+      "artifact": "Lightning Tower Plate"
+    },
+    {
+      "id": "virelai",
+      "kind": "faction",
+      "name": "Rubescara / Virelai Ezra Lux",
+      "domain": ["Healing", "Art", "Magic"],
+      "codexRole": "Alchemist of Transmutation",
+      "tarotOverlay": "XIV Temperance",
+      "artifact": "Violet Flame Plate"
+    },
+    {
+      "id": "rebecca-respawn",
+      "kind": "faction",
+      "name": "Rebecca Respawn",
+      "domain": ["Mythos", "Psychology", "Healing"],
+      "codexRole": "Reset Gate / Pioneer",
+      "tarotOverlay": "0 The Fool",
+      "artifact": "Respawn Gate Plate"
+    }
+  ],
+  "edges": [
+    {"from": "tesla", "to": "crowley-shadow", "type": "amplifies", "note": "Lightning → Tower disruption"},
+    {"from": "crowley-shadow", "to": "rebecca-respawn", "type": "requiresReset", "note": "After collapse, respawn"},
+    {"from": "rebecca-respawn", "to": "fortune", "type": "seeksProtection", "note": "Stabilize after reset"},
+    {"from": "fortune", "to": "witch-mods", "type": "summons", "note": "Audit false glamour / parasitics"},
+    {"from": "witch-mods", "to": "tesla", "type": "tests", "note": "Integrity check on power systems"},
+
+    {"from": "agrippa", "to": "dee", "type": "influences", "note": "Correspondence grid → angelic lattice"},
+    {"from": "dee", "to": "hilma", "type": "inspires", "note": "Glyphs → visionary spiral diagrams"},
+    {"from": "hilma", "to": "virelai", "type": "feeds", "note": "Spiral art → violet transmutation"},
+    {"from": "virelai", "to": "fortune", "type": "fortifies", "note": "Violet flame supports psychic shield"},
+    {"from": "fortune", "to": "agrippa", "type": "grounds", "note": "Temple form anchors correspondence"},
+
+    {"from": "hypatia", "to": "agrippa", "type": "rationalizes", "note": "Math/logic clarifies tables"},
+    {"from": "hypatia", "to": "hilma", "type": "balances", "note": "Reason ⇄ vision"},
+    {"from": "tesla", "to": "hypatia", "type": "harmonizes", "note": "Frequency meets number"},
+    {"from": "witch-mods", "to": "crowley-shadow", "type": "checks", "note": "Ethical watch on disruption"},
+    {"from": "rebecca-respawn", "to": "witch-mods", "type": "authorizes", "note": "Witch Eye brand covenant"},
+
+    {"from": "dee", "to": "tesla", "type": "bridges", "note": "Monadic geometry → wireless lattice"},
+    {"from": "agrippa", "to": "tesla", "type": "maps", "note": "Planetary tables to coils"},
+    {"from": "virelai", "to": "rebecca-respawn", "type": "heals", "note": "Violet flame restores nerve after trials"},
+    {"from": "crowley-shadow", "to": "fortune", "type": "provokes", "note": "Forces better shielding design"}
+  ]
+}
