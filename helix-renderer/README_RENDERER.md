@@ -1,3 +1,4 @@
+Per Texturas Numerorum, Spira Loquitur.  //
 # Cosmic Helix Renderer
 
 Offline, ND-safe renderer for layered sacred geometry. Double-click `index.html` in this folder to view. This replaces the earlier broken helix demo with a modern, pure ES module version.
