@@ -55,6 +55,9 @@
     const active = palette || defaults.palette;
 
     // Apply palette once to respect existing page structure (why: avoids duplicate assignments)
+    elStatus.textContent = palette ? "Palette loaded." : "Palette missing; using safe fallback.";
+
+    // Apply palette to page for consistent ND-safe colors
     const root = document.documentElement;
     root.style.setProperty("--bg", active.bg);
     root.style.setProperty("--ink", active.ink);
