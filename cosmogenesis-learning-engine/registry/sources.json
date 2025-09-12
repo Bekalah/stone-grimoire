@@ -1,0 +1,5 @@
+{
+  "sources": [
+    { "repo": "cosmogenesis-learning-engine", "globs": ["nodes/**/node-*/node.json"] }
+  ]
+}

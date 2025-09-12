@@ -1,0 +1,41 @@
+{
+  "id": "VFLM-001",
+  "title": "Violet Flame Reiki — Lineage Capsule",
+  "kind": "lineage",
+  "summary": "Mercy-flame transmutation practice; calm, compassionate transformation. Digital atelier bindings for pigment (violet scales) and harmonic (lunar breath).",
+  "lineage": { "codex": "144:99", "path": "lineages/violet_flame_reiki" },
+  "correspondences": {
+    "planet": "Venus (compassion) · Saturn (purification mirror)",
+    "zodiac": "Pisces/Libra (mercy/balance)",
+    "element": "Fire (violet transmutation)",
+    "chakra": "Crown ↔ Heart",
+    "freq_hz": 432,
+    "color_hex": "#7F3FD1"
+  },
+  "assets": [
+    { "path": "assets/plate_violet.png", "role": "plate" },
+    { "path": "assets/sigil_vflm.svg",   "role": "glyph" }
+  ],
+  "links": {
+    "repo": "cosmogenesis-learning-engine",
+    "relpath": "nodes/lineages/node-VFLM-001"
+  },
+  "meta": {
+    "author": "Virelai Ezra Lux",
+    "license": "CC BY-NC-SA 4.0",
+    "tags": ["reiki","violet_flame","transmutation","nd-safe","healing"],
+    "version": "1.0.0"
+  },
+  "safe_use": "ND-safe: slow breath pacing (4-4-6), no strobe, no forced visualization. Opt-in, pause anytime. For crisis, ground first (feet, breath, water).",
+  "procedures": [
+    "Center: 3 breaths, hand to heart.",
+    "Trace violet spiral clockwise from heart to crown (imagination or gentle gaze).",
+    "Intone quietly: 'Mercy, transmute.'",
+    "Close: hands to heart; offer thanks; drink water."
+  ],
+  "references": [
+    "Reiki lineages (public primers).",
+    "Theosophical discussions of violet ray (historic context).",
+    "Contemporary ND-safe trauma-informed practice notes."
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "version":"1.0.0",
+  "map": {
+    "VFLM-001": { "primary_ateliers": ["pigment","harmonic"], "palette_hex": ["#7F3FD1","#EBD4FF","#C9F1E1"] },
+    "RAKU-001": { "primary_ateliers": ["geometry","architecture"], "palette_hex": ["#C84B31","#D9B65A","#1B1B1B"] }
+  }
+}

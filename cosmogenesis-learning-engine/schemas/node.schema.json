@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Cosmogenesis Node",
+  "type": "object",
+  "required": ["id","title","kind","lineage","links"],
+  "properties": {
+    "id":       { "type":"string","pattern":"^[A-Z]{4}-\\d{3}$" },
+    "title":    { "type":"string","minLength":1 },
+    "kind":     { "type":"string","enum":["story","tarot","angel","daemon","realm","engine","ritual","asset","lineage"] },
+    "summary":  { "type":"string" },
+    "lineage":  {
+      "type":"object",
+      "required":["codex","path"],
+      "properties":{
+        "codex": { "type":"string","enum":["144:99","33-spine","72-shem","78-tarot","cathedral","custom"] },
+        "path":  { "type":"string" }
+      }
+    },
+    "correspondences": {
+      "type":"object",
+      "properties":{
+        "planet":    { "type":"string" },
+        "zodiac":    { "type":"string" },
+        "element":   { "type":"string" },
+        "chakra":    { "type":"string" },
+        "freq_hz":   { "type":"number" },
+        "color_hex": { "type":"string","pattern":"^#[0-9A-Fa-f]{6}$" }
+      },
+      "additionalProperties": true
+    },
+    "assets": {
+      "type":"array",
+      "items":{
+        "type":"object",
+        "required":["path"],
+        "properties":{
+          "path": { "type":"string" },
+          "role": { "type":"string" }
+        }
+      }
+    },
+    "links": {
+      "type":"object",
+      "required":["repo","relpath"],
+      "properties":{
+        "repo":    { "type":"string" },
+        "relpath": { "type":"string" },
+        "commit":  { "type":"string" }
+      }
+    },
+    "meta": {
+      "type":"object",
+      "properties":{
+        "author":  { "type":"string" },
+        "license": { "type":"string" },
+        "tags":    { "type":"array","items":{"type":"string"} },
+        "version": { "type":"string" }
+      },
+      "additionalProperties": true
+    },
+    "safe_use": { "type":"string" },
+    "procedures": { "type":"array","items":{"type":"string"}},
+    "references": { "type":"array","items":{"type":"string"}}
+  },
+  "additionalProperties": false
+}

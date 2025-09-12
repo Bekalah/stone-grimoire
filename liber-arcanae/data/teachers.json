@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "teachers": {
+    "MAJOR_02_HighPriestess": {
+      "name": "Dion Fortune",
+      "roles": ["mystic_scholar","avalon_path"],
+      "lineageRefs": ["VFLM-001"],
+      "notes": "Priestess as keeper of the inner temple (Avalon lens)."
+    },
+    "MAJOR_01_Magician": {
+      "name": "Heinrich Cornelius Agrippa",
+      "roles": ["hermeticist","magus"],
+      "lineageRefs": ["RAKU-001"],
+      "notes": "Operator of correspondences; calculus of seals and ratios."
+    },
+    "MAJOR_09_Hermit": {
+      "name": "C. G. Jung",
+      "roles": ["analyst","visionary"],
+      "lineageRefs": [],
+      "notes": "Red Book traveler; archetypal integration."
+    }
+  }
+}

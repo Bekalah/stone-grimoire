@@ -1,0 +1,37 @@
+{
+  "id": "RAKU-001",
+  "title": "Raku Ri — Way of the Dragon (Lineage Capsule)",
+  "kind": "lineage",
+  "summary": "Dragon-path circulation; spiral breath and grounding stance. Binds to Geometry (Michael) and Architecture (Uriel) ateliers.",
+  "lineage": { "codex": "144:99", "path": "lineages/raku_ri_dragon" },
+  "correspondences": {
+    "planet": "Sun/Saturn (discipline within vitality)",
+    "zodiac": "Leo/Capricorn",
+    "element": "Fire/Earth",
+    "chakra": "Root ↔ Crown (spinal helix)",
+    "freq_hz": 128,
+    "color_hex": "#C84B31"
+  },
+  "assets": [
+    { "path": "assets/plate_dragon.png", "role": "plate" },
+    { "path": "assets/sigil_dragon.svg", "role": "glyph" }
+  ],
+  "links": { "repo":"cosmogenesis-learning-engine", "relpath":"nodes/lineages/node-RAKU-001" },
+  "meta": {
+    "author":"Virelai Ezra Lux",
+    "license":"CC BY-NC-SA 4.0",
+    "tags":["dragon","spiral_breath","grounding","dojo"],
+    "version":"1.0.0"
+  },
+  "safe_use":"Practice seated or standing; no forced breath-holds; stabilize before visual work.",
+  "procedures":[
+    "Root stance: soft knees, spine long.",
+    "Trace inner helix with attention; exhale down the spine.",
+    "Place the dragon-sigil at navel center; breathe gently through it (3–5 cycles).",
+    "Close with a bow; feel the soles of the feet."
+  ],
+  "references":[
+    "Traditional spiral breath practices (public sources).",
+    "Comparative dragon spinal work from East/West lineages (intro surveys)."
+  ]
+}
