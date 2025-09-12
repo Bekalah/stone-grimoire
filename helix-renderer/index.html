@@ -54,10 +54,7 @@
     const palette = await loadJSON("./data/palette.json");
     const active = palette || defaults.palette;
 
-    // Apply palette once to respect existing page structure (why: avoids duplicate assignments)
-    elStatus.textContent = palette ? "Palette loaded." : "Palette missing; using safe fallback.";
-
-    // Apply palette to page for consistent ND-safe colors
+    // Apply palette to page and update status once
     const root = document.documentElement;
     root.style.setProperty("--bg", active.bg);
     root.style.setProperty("--ink", active.ink);
