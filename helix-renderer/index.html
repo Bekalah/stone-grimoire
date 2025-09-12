@@ -60,6 +60,13 @@
     root.style.setProperty("--bg", active.bg);
     root.style.setProperty("--ink", active.ink);
 
+    // Apply palette to page for consistent ND-safe colors
+    const root = document.documentElement;
+    root.style.setProperty("--bg", active.bg);
+    root.style.setProperty("--ink", active.ink);
+    // Inline notice signals whether palette file was present (why: offline clarity)
+    elStatus.textContent = palette ? "Palette loaded." : "Palette missing; using safe fallback.";
+
     // Numerology constants used by geometry routines
     const NUM = { THREE:3, SEVEN:7, NINE:9, ELEVEN:11, TWENTYTWO:22, THIRTYTHREE:33, NINETYNINE:99, ONEFORTYFOUR:144 };
 
