@@ -1,0 +1,8 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lineage Plate Test</title><meta name="color-scheme" content="dark light">
+<canvas id="cv" width="1400" height="900" style="width:100%;background:#0e1320"></canvas>
+<script type="module">
+import { drawLineagePlate } from "../src/scenes/lineage_plate.ts";
+const cv=document.getElementById("cv");const ctx=cv.getContext("2d");
+await drawLineagePlate(ctx, cv.width, cv.height, "VFLM-001"); // try "RAKU-001" too
+</script>
