@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atelier Starter Plates — ND-safe</title>
+<meta name="color-scheme" content="dark light">
+<style>
+:root{--bg:#0d0f14;--fg:#e8e9f0;--card:#121621;--muted:#aab0c0;--accent:#b18cff}
+@media (prefers-color-scheme: light){:root{--bg:#fcfcfe;--fg:#171a21;--card:#f1f3f7;--muted:#4d5566;--accent:#6d42ff}}
+*{box-sizing:border-box} html,body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial}
+.wrap{max-width:1200px;margin:0 auto;padding:1rem}
+h1{margin:.5rem 0 1rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+.card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:.8rem}
+.card h3{margin:.2rem 0 .5rem}
+.panel{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:1rem;margin:1rem 0}
+button{background:#0e1421;color:var(--fg);border:1px solid rgba(255,255,255,.12);padding:.5rem .7rem;border-radius:10px;cursor:pointer}
+button:hover{filter:brightness(1.08)}
+small,.muted{color:var(--muted)} canvas{width:100%;height:auto;display:block;border-radius:8px;background:#0e1320}
+.note{font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Atelier Starter Plates — ND-safe</h1>
+  <p class="note">Tap “Save PNG” to download each plate on iPad. Commit PNGs to <code>stone-grimoire/assets/ateliers/</code>. No build needed.</p>
+  <div class="grid" id="cards"></div>
+  <div class="panel"><h3>How to use</h3><ol>
+    <li>Open this file’s <b>Raw</b> view.</li>
+    <li>Tap <b>Save PNG</b> on each card → Download.</li>
+    <li>Upload PNGs to <code>stone-grimoire/assets/ateliers/</code>.</li>
+  </ol><p class="muted">ND-safe: calm gradients, no strobe, no autoplay.</p></div>
+</div>
+<script>
+const PLATES=[
+  {id:"scribal_raphael",title:"Scribal — Raphael (☿)",painter:paintScribal},
+  {id:"pigment_haniel",title:"Pigment — Haniel (♀)",painter:paintPigment},
+  {id:"geometry_michael",title:"Geometry — Michael (☉)",painter:paintGeometry},
+  {id:"harmonic_gabriel",title:"Harmonic — Gabriel (☾)",painter:paintHarmonic},
+  {id:"architecture_uriel",title:"Architecture — Uriel (⊕)",painter:paintArchitecture},
+  {id:"psyche_tzaphkiel",title:"Psyche — Tzaphkiel (♄)",painter:paintPsyche}
+];
+function mkCard(p){return `<div class="card"><h3>${p.title}</h3>
+  <canvas id="cv_${p.id}" width="2048" height="2048" aria-label="${p.title}"></canvas>
+  <div style="display:flex;gap:.5rem;margin-top:.5rem"><button onclick="savePNG('${p.id}')">Save PNG</button>
+  <small class="muted">2048×2048</small></div></div>`;}
+document.getElementById('cards').innerHTML=PLATES.map(mkCard).join("");
+window.addEventListener('load',()=>{for(const p of PLATES){const cv=document.getElementById('cv_'+p.id);const ctx=cv.getContext('2d');renderBase(ctx,cv.width,cv.height);p.painter(ctx,cv.width,cv.height);}});
+function savePNG(id){const cv=document.getElementById('cv_'+id);const a=document.createElement('a');a.download=`atelier_${id}.png`;a.href=cv.toDataURL('image/png');document.body.appendChild(a);a.click();a.remove();}
+function renderBase(ctx,W,H){ctx.fillStyle='#0d0f14';ctx.fillRect(0,0,W,H);const g=ctx.createRadialGradient(W/2,H/2,W*0.05,W/2,H/2,W*0.48);g.addColorStop(0,'rgba(255,255,255,0.06)');g.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(W/2,H/2,W*0.48,0,Math.PI*2);ctx.fill();}
+function polar(cx,cy,r,deg){const a=(deg*Math.PI)/180;return[cx+r*Math.cos(a),cy+r*Math.sin(a)];}
+function ring(ctx,cx,cy,r,w,col){ctx.strokeStyle=col;ctx.lineWidth=w;ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.stroke();}
+function hexagram(ctx,cx,cy,r,col,w=6){ctx.strokeStyle=col;ctx.lineWidth=w;const pts=[];for(let i=0;i<6;i++)pts.push(polar(cx,cy,r,-90+i*60));ctx.beginPath();[0,2,4,0].forEach((k,i)=>i?ctx.lineTo(...pts[k]):ctx.moveTo(...pts[k]));ctx.stroke();ctx.beginPath();[1,3,5,1].forEach((k,i)=>i?ctx.lineTo(...pts[k]):ctx.moveTo(...pts[k]));ctx.stroke();}
+function vesica(ctx,cx,cy,r,col,w=5){ctx.strokeStyle=col;ctx.lineWidth=w;ctx.beginPath();ctx.arc(cx-r/2,cy,r,-Math.PI/2,Math.PI/2);ctx.stroke();ctx.beginPath();ctx.arc(cx+r/2,cy,r,Math.PI/2,-Math.PI/2);ctx.stroke();}
+function rose(ctx,cx,cy,r,petals,palette){const step=360/petals;const prev=ctx.globalAlpha;ctx.globalAlpha=0.88;for(let i=0;i<petals;i++){const ang=-90+i*step;const[x1,y1]=polar(cx,cy,r*0.56,ang-4);const[x2,y2]=polar(cx,cy,r,ang);const[x3,y3]=polar(cx,cy,r*0.56,ang+4);ctx.fillStyle=palette[i%palette.length];ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.lineTo(x3,y3);ctx.closePath();ctx.fill();}ctx.globalAlpha=prev;}
+function paintScribal(ctx,W,H){ctx.fillStyle='rgba(229,216,180,0.16)';ctx.fillRect(0,0,W,H);ctx.strokeStyle='rgba(196,67,42,0.5)';ctx.lineWidth=5;for(let i=0;i<6;i++){const y=H*0.2+i*H*0.08;ctx.beginPath();ctx.moveTo(W*0.15,y);ctx.lineTo(W*0.85,y);ctx.stroke();}ctx.fillStyle='#D9B65A';ctx.fillRect(W*0.16,H*0.22,W*0.12,H*0.16);ctx.fillStyle='#14100C';ctx.font=`${Math.floor(W*0.11)}px serif`;ctx.fillText("R",W*0.185,H*0.34);}
+function paintPigment(ctx,W,H){const g=ctx.createLinearGradient(0,0,W,H);g.addColorStop(0,'#FFE0EB');g.addColorStop(1,'#C9F1E1');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);ctx.strokeStyle='rgba(217,182,90,0.8)';ctx.lineWidth=18;ctx.beginPath();ctx.arc(W/2,H/2,Math.min(W,H)*0.35,0,Math.PI*2);ctx.stroke();}
+function paintGeometry(ctx,W,H){const cx=W/2,cy=H/2,R=Math.min(W,H);rose(ctx,cx,cy,R*0.36,12,['#FFD200','#FFC300','#E5A400']);vesica(ctx,cx,cy,R*0.18,'#E5A400',10);hexagram(ctx,cx,cy,R*0.28,'#FFD700',12);}
+function paintHarmonic(ctx,W,H){const cx=W/2,cy=H/2;ctx.lineWidth=6;for(let i=0;i<10;i++){const r=Math.min(W,H)*(0.1+i*0.06);const a=0.7-i*0.05;ctx.strokeStyle=`rgba(177,140,255,${a})`;ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.stroke();}}
+function paintArchitecture(ctx,W,H){ctx.strokeStyle='rgba(217,182,90,0.8)';ctx.lineWidth=12;function arch(cx,cy,w,h,steps=220){ctx.beginPath();for(let i=0;i<=steps;i++){const t=i/steps;const x=cx-w/2+w*t;const xr=(t<0.5)?x-(cx-w/4):x-(cx+w/4);const y=cy-Math.sqrt(Math.max(0,(h/2)**2 - xr**2));if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);}ctx.stroke();}const cx=W/2,cy=H*0.72;arch(cx,cy,W*0.30,H*0.36);arch(cx,cy,W*0.45,H*0.44);arch(cx,cy,W*0.60,H*0.52);}
+function paintPsyche(ctx,W,H){let x=W/2,y=H/2;ctx.strokeStyle='rgba(72,61,139,0.7)';ctx.lineWidth=6;for(let i=0;i<144;i++){const ang=(i*17)%360;const r=Math.min(W,H)*(0.02+(i%9)*0.003);const nx=x+r*Math.cos(ang*Math.PI/180),ny=y+r*Math.sin(ang*Math.PI/180);ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(nx,ny);ctx.stroke();x=nx;y=ny;}}
+</script>
+</body>
+</html>
