@@ -69,6 +69,8 @@
     root.style.setProperty("--ink", active.ink);
     // Inline notice signals whether palette file was present (why: offline clarity)
     // apply active palette to page chrome for readability
+
+    // Apply palette once to respect existing page structure (why: avoids duplicate assignments)
     const root = document.documentElement;
     root.style.setProperty("--bg", active.bg);
     root.style.setProperty("--ink", active.ink);
