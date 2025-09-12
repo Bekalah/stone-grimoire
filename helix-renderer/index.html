@@ -54,13 +54,11 @@
     const palette = await loadJSON("./data/palette.json");
     const active = palette || defaults.palette;
 
-    // Apply palette once to respect existing page structure (why: avoids duplicate assignments)
-    elStatus.textContent = palette ? "Palette loaded." : "Palette missing; using safe fallback.";
-
     // Apply palette to page for consistent ND-safe colors
     const root = document.documentElement;
     root.style.setProperty("--bg", active.bg);
     root.style.setProperty("--ink", active.ink);
+    // Inline notice signals whether palette file was present (why: offline clarity)
     elStatus.textContent = palette ? "Palette loaded." : "Palette missing; using safe fallback.";
 
     // Numerology constants used by geometry routines
