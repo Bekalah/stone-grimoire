@@ -11,6 +11,7 @@
 */
 
 // Small, pure, parameterized functions only; no animation, no external deps.
+// ND-safe: all drawings are static with high-contrast, calm palette.
 
 export function renderHelix(ctx, opts) {
   const { width, height, palette, NUM } = opts;
