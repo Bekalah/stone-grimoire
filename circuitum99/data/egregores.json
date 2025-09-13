@@ -1,0 +1,16 @@
+{
+  "fool_00": {
+    "name": "Rebecca Respawn",
+    "role": "Fool / Respawn Gate",
+    "daimon": "Gryphon-Cat",
+    "assets": {
+      "avatar": "../../stone-grimoire/assets/avatars/respawn/RebeccaRespawn_Fool00.png",
+      "banner": "../../stone-grimoire/assets/banners/youtube/Fool00_GryphonBanner.png",
+      "card": "../../liber-arcanae/assets/cards/major-arcana/00_fool/RebeccaRespawn_Card.png"
+    },
+    "numerology": {
+      "value": 0,
+      "constants": [33,72,99,144]
+    }
+  }
+}

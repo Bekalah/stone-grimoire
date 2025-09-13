@@ -1,0 +1,8 @@
+{
+  "id": "fool00",
+  "name": "Rebecca Respawn",
+  "archetype": "Fool",
+  "daimon": "Gryphon-Cat",
+  "numerology": [0,33,72,99,144],
+  "toggle_modes": ["art","music","story","geometry"]
+}
