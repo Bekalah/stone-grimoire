@@ -51,36 +51,20 @@
       }
     };
 
-    const palette = await loadJSON("./data/palette.json");
-    const active = palette || defaults.palette;
-    elStatus.textContent = palette ? "Palette loaded." : "Palette missing; using safe fallback.";
+  const palette = await loadJSON("./data/palette.json");
+  const active = palette || defaults.palette;
+  elStatus.textContent = palette ? "Palette loaded." : "Palette missing; using safe fallback.";
 
-    // Apply palette to page for consistent ND-safe colors (why: maintain gentle contrast)
-    const root = document.documentElement;
-    // Apply palette to page for consistent ND-safe colors
-    root.style.setProperty("--bg", active.bg);
-    root.style.setProperty("--ink", active.ink);
+  // apply palette to page chrome for consistent ND-safe colors (why: gentle contrast)
+  const root = document.documentElement;
+  root.style.setProperty("--bg", active.bg);
+  root.style.setProperty("--ink", active.ink);
 
-    // Apply palette to page for consistent ND-safe colors
+  // Numerology constants used by geometry routines
+  const NUM = { THREE:3, SEVEN:7, NINE:9, ELEVEN:11, TWENTYTWO:22, THIRTYTHREE:33, NINETYNINE:99, ONEFORTYFOUR:144 };
 
-    // Apply palette to page and update status once
-    const root = document.documentElement;
-    root.style.setProperty("--bg", active.bg);
-    root.style.setProperty("--ink", active.ink);
-    // Inline notice signals whether palette file was present (why: offline clarity)
-    // apply active palette to page chrome for readability
-
-    // Apply palette once to respect existing page structure (why: avoids duplicate assignments)
-    const root = document.documentElement;
-    root.style.setProperty("--bg", active.bg);
-    root.style.setProperty("--ink", active.ink);
-    elStatus.textContent = palette ? "Palette loaded." : "Palette missing; using safe fallback.";
-
-    // Numerology constants used by geometry routines
-    const NUM = { THREE:3, SEVEN:7, NINE:9, ELEVEN:11, TWENTYTWO:22, THIRTYTHREE:33, NINETYNINE:99, ONEFORTYFOUR:144 };
-
-    // ND-safe rationale: no motion, high readability, soft colors, layered order
-    renderHelix(ctx, { width:canvas.width, height:canvas.height, palette:active, NUM });
+  // ND-safe rationale: no motion, high readability, soft colors, layered order
+  renderHelix(ctx, { width:canvas.width, height:canvas.height, palette:active, NUM });
   </script>
 </body>
 </html>
