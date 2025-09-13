@@ -20,7 +20,7 @@
 <body>
   <header>
     <div><strong>Cosmic Helix Renderer</strong> — layered sacred geometry (offline, ND-safe)</div>
-    <div class="status" id="status">Loading palette…</div>
+    <div class="status" id="status">Loading palette...</div>
   </header>
 
   <canvas id="stage" width="1440" height="900" aria-label="Layered sacred geometry canvas"></canvas>
@@ -35,6 +35,7 @@
 
     async function loadJSON(path) {
       try {
+        // local fetch only; no external network requests
         const res = await fetch(path, { cache: "no-store" });
         if (!res.ok) throw new Error(String(res.status));
         return await res.json();
@@ -53,27 +54,13 @@
 
     const palette = await loadJSON("./data/palette.json");
     const active = palette || defaults.palette;
-    elStatus.textContent = palette ? "Palette loaded." : "Palette missing; using safe fallback.";
 
-    // Apply palette to page for consistent ND-safe colors (why: maintain gentle contrast)
-    const root = document.documentElement;
-    // Apply palette to page for consistent ND-safe colors
-    root.style.setProperty("--bg", active.bg);
-    root.style.setProperty("--ink", active.ink);
-
-    // Apply palette to page for consistent ND-safe colors
-
-    // Apply palette to page and update status once
+    // apply active palette to maintain gentle contrast (why: ND-safe readability)
     const root = document.documentElement;
     root.style.setProperty("--bg", active.bg);
     root.style.setProperty("--ink", active.ink);
-    // Inline notice signals whether palette file was present (why: offline clarity)
-    // apply active palette to page chrome for readability
 
-    // Apply palette once to respect existing page structure (why: avoids duplicate assignments)
-    const root = document.documentElement;
-    root.style.setProperty("--bg", active.bg);
-    root.style.setProperty("--ink", active.ink);
+    // inline notice signals whether palette file was present (why: offline clarity)
     elStatus.textContent = palette ? "Palette loaded." : "Palette missing; using safe fallback.";
 
     // Numerology constants used by geometry routines
