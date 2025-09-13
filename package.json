@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "node tests/interface.test.js",
-    "dedupe": "node scripts/deduplicate-repo.mjs"
-    "dedupe": "node scripts/dedupe.js"
-
+    "dedupe": "node scripts/deduplicate-repo.mjs",
+    "dedupe-file": "node scripts/dedupe.js"
   }
 }
