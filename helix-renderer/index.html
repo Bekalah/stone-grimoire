@@ -59,6 +59,12 @@
     root.style.setProperty("--bg", active.bg);
     root.style.setProperty("--ink", active.ink);
     elStatus.textContent = palette ? "Palette loaded." : "Palette missing; using safe fallback.";
+    elStatus.textContent = palette ? "Palette loaded." : "Palette missing; using safe fallback.";
+
+    // Apply palette to page for gentle contrast (why: ND-safe readability)
+    const root = document.documentElement;
+    root.style.setProperty("--bg", active.bg);
+    root.style.setProperty("--ink", active.ink);
 
     // Numerology constants used by geometry routines
     const NUM = { THREE:3, SEVEN:7, NINE:9, ELEVEN:11, TWENTYTWO:22, THIRTYTHREE:33, NINETYNINE:99, ONEFORTYFOUR:144 };
