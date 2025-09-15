@@ -30,3 +30,5 @@ The geometry routines honor key counts:
 
 ## Usage
 Open `index.html` directly in any modern browser. The canvas is 1440×900 and uses only built-in browser features.
+
+No network requests are made; a small status message notes if the palette file is missing so offline use remains clear.
