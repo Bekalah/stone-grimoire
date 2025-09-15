@@ -19,8 +19,8 @@
 </head>
 <body>
   <header>
-    <div><strong>Cosmic Helix Renderer</strong> — layered sacred geometry (offline, ND-safe)</div>
-    <div class="status" id="status">Loading palette…</div>
+    <div><strong>Cosmic Helix Renderer</strong> -- layered sacred geometry (offline, ND-safe)</div>
+    <div class="status" id="status">Loading palette...</div>
   </header>
 
   <canvas id="stage" width="1440" height="900" aria-label="Layered sacred geometry canvas"></canvas>
@@ -54,12 +54,23 @@
     const palette = await loadJSON("./data/palette.json");
     const active = palette || defaults.palette;
     elStatus.textContent = palette ? "Palette loaded." : "Palette missing; using safe fallback.";
+    applyPaletteToPage(active);
 
     // Numerology constants used by geometry routines
     const NUM = { THREE:3, SEVEN:7, NINE:9, ELEVEN:11, TWENTYTWO:22, THIRTYTHREE:33, NINETYNINE:99, ONEFORTYFOUR:144 };
 
     // ND-safe rationale: no motion, high readability, soft colors, layered order
     renderHelix(ctx, { width:canvas.width, height:canvas.height, palette:active, NUM });
+
+    // Update document colors with the active palette while staying static.
+    function applyPaletteToPage(pal) {
+      const rootStyle = document.documentElement.style;
+      if (pal && pal.bg) rootStyle.setProperty("--bg", pal.bg);
+      if (pal && pal.ink) rootStyle.setProperty("--ink", pal.ink);
+      if (pal && Array.isArray(pal.layers) && pal.layers[0]) {
+        rootStyle.setProperty("--muted", pal.layers[0]);
+      }
+    }
   </script>
 </body>
 </html>
