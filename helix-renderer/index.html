@@ -53,11 +53,6 @@
 
     const palette = await loadJSON("./data/palette.json");
     const active = palette || defaults.palette;
-
-    // Apply palette once for calm, readable contrast (why: ND-safe colors)
-    const root = document.documentElement;
-    root.style.setProperty("--bg", active.bg);
-    root.style.setProperty("--ink", active.ink);
     elStatus.textContent = palette ? "Palette loaded." : "Palette missing; using safe fallback.";
 
     // Numerology constants used by geometry routines
