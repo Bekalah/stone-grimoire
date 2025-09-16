@@ -3,6 +3,8 @@ Per Texturas Numerorum, Spira Loquitur.  //
 
 Offline, ND-safe renderer for layered sacred geometry. Double-click `index.html` in this folder to view. This replaces the earlier broken helix demo with a modern, pure ES module version.
 
+The HTML file works directly from disk: if the palette JSON cannot be read because of local browser restrictions, the module applies a calm fallback palette and the header status line explains why. No network calls leave the machine.
+
 ## Layers
 1. **Vesica field** - intersecting circles establishing the sacred lens.
 2. **Tree-of-Life scaffold** - 10 sephirot and 22 paths drawn with calm symmetry.
@@ -12,6 +14,9 @@ Offline, ND-safe renderer for layered sacred geometry. Double-click `index.html`
 ## Palette
 Colors are loaded from `data/palette.json`. If the file is missing, the renderer displays a small notice and falls back to a safe default palette. Loaded or fallback colors also update the page background and text for consistent contrast. Extended palette sets live in `../export/spiral_palettes.json` for future offline experiments.
 Colors are loaded from `data/palette.json`. If the file is missing, the renderer shows a small notice and falls back to a safe default palette. The chosen colors also set the page background and text for consistent contrast. Extended palette sets live in `../export/spiral_palettes.json` for future offline experiments.
+Colors are loaded from `data/palette.json`. If the file is missing or a browser blocks local `fetch`, the renderer displays a small notice and falls back to a safe default palette. Loaded or fallback colors also update the page background and text for consistent contrast. Extended palette sets live in `../export/spiral_palettes.json` for future offline experiments.
+
+Default palette hues follow the trauma-informed guidance from the master plan: calm blues, restorative greens, mystical purples, and warm neutrals. All hues appear as high-contrast yet gentle strokes layered over the dark canvas.
 
 ## ND-Safe Choices
 - No animation, motion, or autoplay.
