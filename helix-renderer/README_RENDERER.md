@@ -11,6 +11,7 @@ Offline, ND-safe renderer for layered sacred geometry. Double-click `index.html`
 
 ## Palette
 Colors are loaded from `data/palette.json`. If the file is missing, the renderer displays a small notice and falls back to a safe default palette. Loaded or fallback colors also update the page background and text for consistent contrast. Extended palette sets live in `../export/spiral_palettes.json` for future offline experiments.
+Colors are loaded from `data/palette.json`. If the file is missing, the renderer shows a small notice and falls back to a safe default palette. The chosen colors also set the page background and text for consistent contrast. Extended palette sets live in `../export/spiral_palettes.json` for future offline experiments.
 
 ## ND-Safe Choices
 - No animation, motion, or autoplay.
