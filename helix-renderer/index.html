@@ -19,8 +19,8 @@
 </head>
 <body>
   <header>
-    <div><strong>Cosmic Helix Renderer</strong> — layered sacred geometry (offline, ND-safe)</div>
-    <div class="status" id="status">Loading palette…</div>
+    <div><strong>Cosmic Helix Renderer</strong> - layered sacred geometry (offline, ND-safe)</div>
+    <div class="status" id="status">Loading palette...</div>
   </header>
 
   <canvas id="stage" width="1440" height="900" aria-label="Layered sacred geometry canvas"></canvas>
@@ -33,7 +33,15 @@
     const canvas = document.getElementById("stage");
     const ctx = canvas.getContext("2d");
 
+    function getMutedColor(palette) {
+      // ND-safe: keep interface text gentle even if palette omits a muted tone.
+      const fallback = "#a6a6c1";
+      const layerTone = palette.layers && palette.layers[5];
+      return layerTone || fallback;
+    }
+
     async function loadJSON(path) {
+      // Offline-friendly: swallow file errors and fall back to defaults without alerts.
       try {
         const res = await fetch(path, { cache: "no-store" });
         if (!res.ok) throw new Error(String(res.status));
@@ -53,13 +61,23 @@
 
     const palette = await loadJSON("./data/palette.json");
     const active = palette || defaults.palette;
+    const muted = getMutedColor(active);
+    const rootStyle = document.documentElement.style;
+    // ND-safe: apply palette to the entire page for consistent contrast and calm focus.
+    rootStyle.setProperty("--bg", active.bg);
+    rootStyle.setProperty("--ink", active.ink);
+    rootStyle.setProperty("--muted", muted);
     elStatus.textContent = palette ? "Palette loaded." : "Palette missing; using safe fallback.";
 
     // Numerology constants used by geometry routines
     const NUM = { THREE:3, SEVEN:7, NINE:9, ELEVEN:11, TWENTYTWO:22, THIRTYTHREE:33, NINETYNINE:99, ONEFORTYFOUR:144 };
 
     // ND-safe rationale: no motion, high readability, soft colors, layered order
-    renderHelix(ctx, { width:canvas.width, height:canvas.height, palette:active, NUM });
+    if (!ctx) {
+      elStatus.textContent = "Canvas context unavailable; geometry skipped.";
+    } else {
+      renderHelix(ctx, { width:canvas.width, height:canvas.height, palette:active, NUM });
+    }
   </script>
 </body>
 </html>

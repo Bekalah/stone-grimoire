@@ -18,6 +18,7 @@ export function renderHelix(ctx, opts) {
   ctx.fillStyle = palette.bg;
   ctx.fillRect(0, 0, width, height);
 
+  // Layer order preserves depth: vesica base, tree scaffold, spiral path, helix crown.
   drawVesica(ctx, width, height, palette.layers[0], NUM);
   drawTree(ctx, width, height, palette.layers[1], palette.layers[2], NUM);
   drawFibonacci(ctx, width, height, palette.layers[3], NUM);
@@ -104,7 +105,7 @@ function drawFibonacci(ctx, w, h, color, NUM) {
   ctx.strokeStyle = color;
   ctx.lineWidth = 2;
   ctx.beginPath();
-  for (let i = 0; i <= NUM.NINETYNINE; i++) {
+  for (let i = 0; i < NUM.NINETYNINE; i++) { // 99 static points for trauma-safe predictability
     const angle = i * (Math.PI / NUM.ELEVEN); // gentle sweep
     const r = scale * Math.pow(phi, i / NUM.NINE);
     const x = centerX + r * Math.cos(angle);
@@ -120,14 +121,16 @@ function drawHelix(ctx, w, h, strandColor, latticeColor, NUM) {
   const centerY = h / 2;
   const amp = h / NUM.THREE; // amplitude linked to threefold nature
   const steps = NUM.ONEFORTYFOUR; // lattice count
+  const span = steps - 1 || 1; // ensures the final strut reaches the far edge without extra lines
   const freq = NUM.THREE; // three full twists
 
   // vertical struts connecting the two strands
   ctx.strokeStyle = latticeColor;
   ctx.lineWidth = 1;
-  for (let i = 0; i <= steps; i++) {
-    const x = (w / steps) * i;
-    const phase = (i / steps) * freq * Math.PI;
+  for (let i = 0; i < steps; i++) {
+    const ratio = i / span;
+    const x = w * ratio;
+    const phase = ratio * freq * Math.PI;
     const y1 = centerY + amp * Math.sin(phase);
     const y2 = centerY + amp * Math.sin(phase + Math.PI);
     ctx.beginPath();
@@ -139,9 +142,10 @@ function drawHelix(ctx, w, h, strandColor, latticeColor, NUM) {
   // first strand
   ctx.strokeStyle = strandColor;
   ctx.beginPath();
-  for (let i = 0; i <= steps; i++) {
-    const x = (w / steps) * i;
-    const phase = (i / steps) * freq * Math.PI;
+  for (let i = 0; i < steps; i++) {
+    const ratio = i / span;
+    const x = w * ratio;
+    const phase = ratio * freq * Math.PI;
     const y = centerY + amp * Math.sin(phase);
     if (i === 0) ctx.moveTo(x, y);
     else ctx.lineTo(x, y);
@@ -150,9 +154,10 @@ function drawHelix(ctx, w, h, strandColor, latticeColor, NUM) {
 
   // second strand phase-shifted by PI
   ctx.beginPath();
-  for (let i = 0; i <= steps; i++) {
-    const x = (w / steps) * i;
-    const phase = (i / steps) * freq * Math.PI + Math.PI;
+  for (let i = 0; i < steps; i++) {
+    const ratio = i / span;
+    const x = w * ratio;
+    const phase = ratio * freq * Math.PI + Math.PI;
     const y = centerY + amp * Math.sin(phase);
     if (i === 0) ctx.moveTo(x, y);
     else ctx.lineTo(x, y);
