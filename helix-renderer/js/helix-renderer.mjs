@@ -13,20 +13,39 @@
 // Small, pure, parameterized functions only; no animation, no external deps.
 // ND-safe: all drawings are static with high-contrast, calm palette.
 
+const FALLBACK_LAYERS = ["#b1c7ff", "#89f7fe", "#a0ffa1", "#ffd27f", "#f5a3ff", "#d0d0e6"];
+
+function selectLayerTone(layers, index) {
+  if (!Array.isArray(layers)) return FALLBACK_LAYERS[index];
+  const tone = layers[index];
+  return typeof tone === "string" ? tone : FALLBACK_LAYERS[index];
+}
+
 export function renderHelix(ctx, opts) {
   const { width, height, palette, NUM } = opts;
-  ctx.fillStyle = palette.bg;
+  const safeBg = typeof palette.bg === "string" ? palette.bg : "#0b0b12";
+  ctx.save();
+  ctx.fillStyle = safeBg;
   ctx.fillRect(0, 0, width, height);
+  ctx.restore();
 
   // Layer order preserves depth: vesica base, tree scaffold, spiral path, helix crown.
-  drawVesica(ctx, width, height, palette.layers[0], NUM);
-  drawTree(ctx, width, height, palette.layers[1], palette.layers[2], NUM);
-  drawFibonacci(ctx, width, height, palette.layers[3], NUM);
-  drawHelix(ctx, width, height, palette.layers[4], palette.layers[5], NUM);
+  const vesicaTone = selectLayerTone(palette.layers, 0);
+  const treeNodeTone = selectLayerTone(palette.layers, 1);
+  const treePathTone = selectLayerTone(palette.layers, 2);
+  const fibonacciTone = selectLayerTone(palette.layers, 3);
+  const helixStrandTone = selectLayerTone(palette.layers, 4);
+  const latticeTone = selectLayerTone(palette.layers, 5);
+
+  drawVesica(ctx, width, height, vesicaTone, NUM);
+  drawTree(ctx, width, height, treeNodeTone, treePathTone, NUM);
+  drawFibonacci(ctx, width, height, fibonacciTone, NUM);
+  drawHelix(ctx, width, height, helixStrandTone, latticeTone, NUM);
 }
 
 // L1 Vesica field: soft intersecting circles, gentle grid
 function drawVesica(ctx, w, h, color, NUM) {
+  ctx.save();
   const r = Math.min(w, h) / NUM.THREE; // radius tied to numerology
   const cx = w / 2;
   const cy = h / 2;
@@ -48,10 +67,12 @@ function drawVesica(ctx, w, h, color, NUM) {
     ctx.lineTo(x, cy + r);
   }
   ctx.stroke();
+  ctx.restore();
 }
 
 // L2 Tree-of-Life: 10 nodes + 22 paths (NUM.TWENTYTWO)
 function drawTree(ctx, w, h, nodeColor, pathColor, NUM) {
+  ctx.save();
   const stepY = h / NUM.ELEVEN; // vertical rhythm
   const xCenter = w / 2;
   const xOffset = w / NUM.THREE / 2; // three pillars
@@ -93,10 +114,12 @@ function drawTree(ctx, w, h, nodeColor, pathColor, NUM) {
     ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
     ctx.fill();
   }
+  ctx.restore();
 }
 
 // L3 Fibonacci curve: static polyline log spiral
 function drawFibonacci(ctx, w, h, color, NUM) {
+  ctx.save();
   const phi = (1 + Math.sqrt(5)) / 2; // golden ratio
   const centerX = w / 2;
   const centerY = h / 2;
@@ -114,10 +137,12 @@ function drawFibonacci(ctx, w, h, color, NUM) {
     else ctx.lineTo(x, y);
   }
   ctx.stroke();
+  ctx.restore();
 }
 
 // L4 Double-helix lattice: two phase-shifted sine waves with 144 struts
 function drawHelix(ctx, w, h, strandColor, latticeColor, NUM) {
+  ctx.save();
   const centerY = h / 2;
   const amp = h / NUM.THREE; // amplitude linked to threefold nature
   const steps = NUM.ONEFORTYFOUR; // lattice count
@@ -163,4 +188,5 @@ function drawHelix(ctx, w, h, strandColor, latticeColor, NUM) {
     else ctx.lineTo(x, y);
   }
   ctx.stroke();
+  ctx.restore();
 }

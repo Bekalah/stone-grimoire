@@ -10,8 +10,7 @@ Offline, ND-safe renderer for layered sacred geometry. Double-click `index.html`
 4. **Double-helix lattice** - two phase-shifted sine strands with 144 vertical struts.
 
 ## Palette
-Colors are loaded from `data/palette.json`. If the file is missing, the renderer displays a small notice and falls back to a safe default palette. Loaded or fallback colors also update the page background and text for consistent contrast. Extended palette sets live in `../export/spiral_palettes.json` for future offline experiments.
-Colors are loaded from `data/palette.json`. If the file is missing, the renderer shows a small notice and falls back to a safe default palette. The chosen colors also set the page background and text for consistent contrast. Extended palette sets live in `../export/spiral_palettes.json` for future offline experiments.
+Colors are loaded from `data/palette.json`. If the file is missing—or a browser blocks `file://` fetches—the renderer shows a small notice and falls back to a safe default palette. The chosen colors also set the page background and text for consistent contrast. Extended palette sets live in `../export/spiral_palettes.json` for future offline experiments.
 
 ## ND-Safe Choices
 - No animation, motion, or autoplay.
@@ -30,7 +29,6 @@ The geometry routines honor key counts:
 - 144 - helix lattice struts
 
 ## Usage
-Open `index.html` directly in any modern browser. The canvas is 1440×900 and uses only built-in browser features.
-
-No network requests are made; a small status message notes if the palette file is missing so offline use remains clear.
 Open `index.html` directly in any modern browser. The canvas is 1440x900 and uses only built-in browser features.
+
+No network requests are made; a small status message notes if the palette file is missing so offline use remains clear. To tweak tones, edit `data/palette.json` and refresh.
