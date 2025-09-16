@@ -124,6 +124,13 @@
     const activePalette = paletteResult.data || defaults;
     applyPalette(activePalette);
     elStatus.textContent = paletteResult.message;
+    const statusMessage = palette ? "Palette loaded." : "Palette not available; using safe fallback.";
+    elStatus.textContent = statusMessage;
+
+    // Update CSS variables so the surrounding page honors the active palette.
+    const root = document.documentElement;
+    root.style.setProperty("--bg", active.bg);
+    root.style.setProperty("--ink", active.ink);
 
     // Numerology constants used by geometry routines
     const NUM = {

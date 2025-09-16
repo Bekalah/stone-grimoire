@@ -154,6 +154,7 @@ function drawFibonacci(ctx, w, h, color, NUM) {
   ctx.lineJoin = "round";
   ctx.beginPath();
   for (let i = 0; i < NUM.NINETYNINE; i++) { // 99 static points for trauma-safe predictability
+  for (let i = 0; i < NUM.NINETYNINE; i++) {
     const angle = i * (Math.PI / NUM.ELEVEN); // gentle sweep
     const r = Math.min(maxRadius, scale * Math.pow(phi, i / NUM.NINE));
     const x = centerX + r * Math.cos(angle);
@@ -185,6 +186,8 @@ function drawHelix(ctx, w, h, colors, NUM) {
   for (let i = 0; i <= steps; i++) {
     const x = spacing * i;
     const phase = (i / steps) * freq * Math.PI;
+    const x = (w / (steps - 1)) * i;
+    const phase = (i / (steps - 1)) * freq * Math.PI;
     const y1 = centerY + amp * Math.sin(phase);
     const y2 = centerY + amp * Math.sin(phase + Math.PI);
     ctx.beginPath();
@@ -205,6 +208,8 @@ function drawHelix(ctx, w, h, colors, NUM) {
   for (let i = 0; i <= steps; i++) {
     const x = spacing * i;
     const phase = (i / steps) * freq * Math.PI;
+    const x = (w / (steps - 1)) * i;
+    const phase = (i / (steps - 1)) * freq * Math.PI;
     const y = centerY + amp * Math.sin(phase);
     if (i === 0) ctx.moveTo(x, y);
     else ctx.lineTo(x, y);
@@ -220,6 +225,8 @@ function drawHelix(ctx, w, h, colors, NUM) {
   for (let i = 0; i <= steps; i++) {
     const x = spacing * i;
     const phase = (i / steps) * freq * Math.PI + Math.PI;
+    const x = (w / (steps - 1)) * i;
+    const phase = (i / (steps - 1)) * freq * Math.PI + Math.PI;
     const y = centerY + amp * Math.sin(phase);
     if (i === 0) ctx.moveTo(x, y);
     else ctx.lineTo(x, y);
