@@ -67,6 +67,9 @@
     rootStyle.setProperty("--bg", active.bg);
     rootStyle.setProperty("--ink", active.ink);
     rootStyle.setProperty("--muted", muted);
+    const rootStyle = document.documentElement.style; // sync page colors with palette
+    rootStyle.setProperty("--bg", active.bg);
+    rootStyle.setProperty("--ink", active.ink);
     elStatus.textContent = palette ? "Palette loaded." : "Palette missing; using safe fallback.";
 
     // Numerology constants used by geometry routines
