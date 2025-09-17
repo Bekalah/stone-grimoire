@@ -1,4 +1,3 @@
-<!-- Per Texturas Numerorum, Spira Loquitur.  // -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,8 +9,8 @@
     /* ND-safe: calm contrast, no motion, generous spacing */
     :root {
       --bg:#0b0b12;
-      --ink:#e5e5ea;
-      --muted:#7f86a6;
+      --ink:#e8e8f0;
+      --muted:#a6a6c1;
       --frame:#1d1d2a;
     }
     html,body {
@@ -49,90 +48,27 @@
 </head>
 <body>
   <header>
-    <div><strong>Cosmic Helix Renderer</strong> - layered sacred geometry (offline, ND-safe)</div>
-    <div class="status" id="status">Loading palette...</div>
     <div><strong>Cosmic Helix Renderer</strong> &mdash; layered sacred geometry (offline, ND-safe)</div>
     <div class="status" id="status" role="status" aria-live="polite">Loading palette...</div>
   </header>
 
   <canvas id="stage" width="1440" height="900" aria-label="Layered sacred geometry canvas"></canvas>
-  <p class="note">This static renderer encodes Vesica, Tree-of-Life, Fibonacci, and a static double-helix lattice. No animation, no autoplay, no external libs. Open this file directly.</p>
+  <p class="note">This static renderer encodes Vesica, Tree-of-Life, Fibonacci, and a static double-helix lattice. No animation, no autoplay, no external libraries. Open this file directly.</p>
 
   <script type="module">
     import { renderHelix } from "./js/helix-renderer.mjs";
 
-    const elStatus = document.getElementById("status");
+    const statusEl = document.getElementById("status");
     const canvas = document.getElementById("stage");
     const ctx = canvas.getContext("2d");
 
-    function getMutedColor(palette) {
-      // ND-safe: keep interface text gentle even if palette omits a muted tone.
-      const fallback = "#a6a6c1";
-      const layerTone = palette.layers && palette.layers[5];
-      return layerTone || fallback;
-    }
-
-    async function loadJSON(path) {
-      // Offline-friendly: swallow file errors and fall back to defaults without alerts.
-    async function loadPalette(path) {
-      const isFile = window.location.protocol === "file:";
-      try {
-        const res = await fetch(path, { cache: "no-store" });
-        if (!res.ok) throw new Error(String(res.status));
-        const data = await res.json();
-        return { data, message: "Palette loaded from data file." };
-      } catch (err) {
-        const reason = isFile ? "Browser blocked file fetch;" : "Palette file missing;";
-        return { data: null, message: reason + " using safe fallback palette." };
-      }
-    }
-
-    function applyPalette(palette) {
-      const root = document.documentElement;
-      root.style.setProperty("--bg", palette.bg);
-      root.style.setProperty("--ink", palette.ink);
-      root.style.setProperty("--muted", palette.muted || palette.ink);
-      document.body.style.background = palette.bg;
-      document.body.style.color = palette.ink;
-    }
-
     const defaults = {
       bg:"#0b0b12",
-      ink:"#e5e5ea",
-      muted:"#7f86a6",
+      ink:"#e8e8f0",
+      muted:"#a6a6c1",
       layers:["#4a90e2","#7bb3f0","#7ed321","#b8e986","#9013fe","#af52de"]
     };
 
-    const palette = await loadJSON("./data/palette.json");
-    const active = palette || defaults.palette;
-
-    // Apply palette once for calm, readable contrast (why: ND-safe colors)
-    const root = document.documentElement;
-    root.style.setProperty("--bg", active.bg);
-    root.style.setProperty("--ink", active.ink);
-    const muted = getMutedColor(active);
-    const rootStyle = document.documentElement.style;
-    // ND-safe: apply palette to the entire page for consistent contrast and calm focus.
-    rootStyle.setProperty("--bg", active.bg);
-    rootStyle.setProperty("--ink", active.ink);
-    rootStyle.setProperty("--muted", muted);
-    const rootStyle = document.documentElement.style; // sync page colors with palette
-    rootStyle.setProperty("--bg", active.bg);
-    rootStyle.setProperty("--ink", active.ink);
-    elStatus.textContent = palette ? "Palette loaded." : "Palette missing; using safe fallback.";
-    const paletteResult = await loadPalette("./data/palette.json");
-    const activePalette = paletteResult.data || defaults;
-    applyPalette(activePalette);
-    elStatus.textContent = paletteResult.message;
-    const statusMessage = palette ? "Palette loaded." : "Palette not available; using safe fallback.";
-    elStatus.textContent = statusMessage;
-
-    // Update CSS variables so the surrounding page honors the active palette.
-    const root = document.documentElement;
-    root.style.setProperty("--bg", active.bg);
-    root.style.setProperty("--ink", active.ink);
-
-    // Numerology constants used by geometry routines
     const NUM = {
       THREE:3,
       SEVEN:7,
@@ -144,18 +80,51 @@
       ONEFORTYFOUR:144
     };
 
-    // ND-safe rationale: no motion, high readability, soft colors, layered order
-    if (!ctx) {
-      elStatus.textContent = "Canvas context unavailable; geometry skipped.";
-    } else {
-      renderHelix(ctx, { width:canvas.width, height:canvas.height, palette:active, NUM });
+    function updateStatus(message) {
+      statusEl.textContent = message;
     }
-    renderHelix(ctx, {
-      width:canvas.width,
-      height:canvas.height,
-      palette:activePalette,
-      NUM
-    });
+
+    function applyPalette(palette) {
+      const bg = palette.bg || defaults.bg;
+      const ink = palette.ink || defaults.ink;
+      const muted = palette.muted || defaults.muted;
+      const root = document.documentElement.style;
+      root.setProperty("--bg", bg);
+      root.setProperty("--ink", ink);
+      root.setProperty("--muted", muted);
+      document.body.style.background = bg;
+      document.body.style.color = ink;
+    }
+
+    async function loadPalette(path) {
+      const isFile = window.location.protocol === "file:";
+      try {
+        const res = await fetch(path, { cache:"no-store" });
+        if (!res.ok) throw new Error(String(res.status));
+        const data = await res.json();
+        return { palette:data, note:"Palette loaded from data file." };
+      } catch (err) {
+        const reason = isFile ? "Browser blocked local file fetch" : "Palette file missing";
+        return { palette:null, note:reason + "; using safe fallback palette." };
+      }
+    }
+
+    async function init() {
+      const paletteInfo = await loadPalette("./data/palette.json");
+      const active = paletteInfo.palette || defaults;
+      applyPalette(active);
+
+      if (!ctx) {
+        updateStatus(paletteInfo.note + " Canvas context unavailable; geometry skipped.");
+        return;
+      }
+
+      // ND-safe rationale: rendering happens once, layering preserves depth without motion.
+      renderHelix(ctx, { width:canvas.width, height:canvas.height, palette:active, NUM });
+      updateStatus(paletteInfo.note + " Geometry rendered.");
+    }
+
+    init();
   </script>
 </body>
 </html>
