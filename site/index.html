@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>COSMOGENESIS — Cathedral of Circuits</title>
+  <meta name="description" content="A living grimoire: sacred geometry, techno-occult research, and spiral learning." />
+  <link rel="preload" href="assets/img/hero.avif" as="image" />
+  <link rel="stylesheet" href="assets/css/atelier.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <nav class="atelier-nav">
+    <a href="#collections" class="marque-logo">COSMOGENESIS</a>
+    <ul class="nav-collection">
+      <li><a href="#collections">Collections</a></li>
+      <li><a href="#arcana">Living Arcana</a></li>
+      <li><a href="#node-system">Node System</a></li>
+      <li><a href="#atelier">Atelier</a></li>
+    </ul>
+    <button id="calmToggle" class="btn-couture" aria-pressed="false">Calm Mode</button>
+  </nav>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <figure class="hero-visual">
+        <img src="assets/img/hero.avif" width="1280" height="720" alt="Layered circuit sigil with calm indigo gradient." />
+      </figure>
+      <div class="hero-copy">
+        <h1 id="hero-title">Cathedral of Circuits</h1>
+        <p>Spiral learning meets sacred geometry. The atelier is ND-safe, slow crafted, and focused on layered depth rather than spectacle.</p>
+        <p>Calm Mode keeps transitions soft for sensory ease. Reduced motion is always respected for visitors who prefer stillness.</p>
+      </div>
+    </section>
+
+    <section class="section" id="collections" aria-labelledby="collections-title">
+      <h2 id="collections-title">Collections</h2>
+      <p>Harmonic folios curated for different entry points into the cathedral. Every collection balances geometry, lore, and quiet research.</p>
+      <div class="grid" role="list">
+        <article class="card" role="listitem">
+          <h3>Vesica Vault</h3>
+          <p>Archetypal diagrams and meditations anchored by the vesica piscis lattice. Gentle overlays guide the eye without motion.</p>
+        </article>
+        <article class="card" role="listitem">
+          <h3>Arc Forge</h3>
+          <p>Research journals mapping circuitry to tarot correspondences. Includes sensor-friendly palettes and layered annotations.</p>
+        </article>
+        <article class="card" role="listitem">
+          <h3>Helix Atlas</h3>
+          <p>Double helix studies cross-referenced with Fibonacci harmonics. Built for offline study circles and workshop tables.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="arcana" aria-labelledby="arcana-title">
+      <h2 id="arcana-title">Living Arcana</h2>
+      <p>Interactive folios maintain one-to-one parity with the tarot lineage. Nodes are annotated with sensory-safe rituals and optional research paths.</p>
+      <div class="grid" role="list">
+        <article class="card" role="listitem">
+          <h3>Zero - Aurora Gate</h3>
+          <p>Entry sequence for seekers. Offers narrative, game, art, and research lenses without autoplay or sudden motion.</p>
+        </article>
+        <article class="card" role="listitem">
+          <h3>XI - Circuit Choir</h3>
+          <p>Focuses on harmonic resonance. Includes printable overlays and accessible annotations for collaborative study.</p>
+        </article>
+        <article class="card" role="listitem">
+          <h3>XXII - Resonant Crown</h3>
+          <p>Finale of the spiral, combining geometry renders with gentle text layers. Calibrated for mindful pacing.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="node-system" aria-labelledby="node-title">
+      <h2 id="node-title">Node System</h2>
+      <p>The node registry keeps track of living research threads. Data loads locally from <code>data/nodes.json</code> so the atlas stays offline-first.</p>
+      <div id="nodeGrid" class="grid" role="list" aria-live="polite"></div>
+    </section>
+
+    <section class="section" id="atelier" aria-labelledby="atelier-title">
+      <h2 id="atelier-title">Atelier</h2>
+      <p>Commission portals, learning labs, and calm prototypes. Void Lab remains the testing chamber for new experiments.</p>
+      <div class="grid" role="list">
+        <article class="card" role="listitem">
+          <h3>Calm Kits</h3>
+          <p>Printable rituals and sensory-friendly overlays for facilitators. Each kit includes annotations for ND needs.</p>
+        </article>
+        <article class="card" role="listitem">
+          <h3>Node Workshops</h3>
+          <p>Hands-on sessions exploring sacred geometry with layered canvases. No projectors, no flashing lights-just mindful study.</p>
+        </article>
+        <article class="card" role="listitem">
+          <h3>Void Lab</h3>
+          <p><a href="labs/void-lab.html">Enter the void lab</a> to inspect prototypes, view patch notes, and submit feedback without leaving the offline sanctuary.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="maison-footer">
+    <div class="footer-marque">COSMOGENESIS</div>
+    <div class="footer-links">
+      <a href="#collections">Harmonic Research</a>
+      <a href="#node-system">Node System Docs</a>
+      <a href="https://github.com/your-org/your-repo" rel="noopener noreferrer">Open Source</a>
+      <a href="#atelier">Commissions</a>
+    </div>
+    <p class="copyright">© MMXXV - Cathedral of Circuits</p>
+  </footer>
+
+  <script type="module" src="assets/js/calm.js"></script>
+  <script type="module" src="assets/js/nodes.js"></script>
+</body>
+</html>
