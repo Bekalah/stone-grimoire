@@ -11,9 +11,13 @@ The HTML file works directly from disk. If the palette JSON cannot be read becau
 4. **Double-helix lattice** &mdash; two phase-shifted strands linked by 144 struts (Layer 4).
 
 ## Palette
+
+Colors are loaded from `data/palette.json`. If the file is missing—or a browser blocks `file://` fetches—the renderer shows a small notice and falls back to a safe default palette. The chosen colors also set the page background and text for consistent contrast. Extended palette sets live in `../export/spiral_palettes.json` for future offline experiments.
+
 Colors are loaded from `data/palette.json`. If the file is missing or a browser blocks local `fetch`, the renderer displays a small notice and falls back to a safe default palette. The active palette also updates page colors to keep contrast consistent with ND-safe guidelines. Additional palettes can be curated later without changing the rendering code.
 
 Default palette hues follow the trauma-informed guidance from the cosmic brief: calm blues, restorative greens, mystical purples, and warm neutrals. All hues appear as high-contrast yet gentle strokes layered over the dark canvas.
+
 
 ## ND-safe Choices
 - No animation, motion, or autoplay.
@@ -32,4 +36,10 @@ The geometry routines honor key counts:
 - 144 &mdash; helix lattice struts.
 
 ## Usage
+
+Open `index.html` directly in any modern browser. The canvas is 1440x900 and uses only built-in browser features.
+
+No network requests are made; a small status message notes if the palette file is missing so offline use remains clear. To tweak tones, edit `data/palette.json` and refresh.
+
 Open `index.html` directly in any modern browser. The canvas is 1440x900 and relies only on built-in browser features. The header status line will report whether the custom palette loaded or if the safe fallback is in use.
+

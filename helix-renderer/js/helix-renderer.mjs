@@ -12,8 +12,42 @@
 // Small, pure, parameterized functions only; no animation, no external dependencies.
 // ND-safe: all drawings are static with layered order for calm focus.
 
+const FALLBACK_LAYERS = ["#b1c7ff", "#89f7fe", "#a0ffa1", "#ffd27f", "#f5a3ff", "#d0d0e6"];
+
+function selectLayerTone(layers, index) {
+  if (!Array.isArray(layers)) return FALLBACK_LAYERS[index];
+  const tone = layers[index];
+  return typeof tone === "string" ? tone : FALLBACK_LAYERS[index];
+}
+
 export function renderHelix(ctx, opts) {
   const { width, height, palette, NUM } = opts;
+
+  const safeBg = typeof palette.bg === "string" ? palette.bg : "#0b0b12";
+  ctx.save();
+  ctx.fillStyle = safeBg;
+  ctx.fillRect(0, 0, width, height);
+  ctx.restore();
+
+  // Layer order preserves depth: vesica base, tree scaffold, spiral path, helix crown.
+  const vesicaTone = selectLayerTone(palette.layers, 0);
+  const treeNodeTone = selectLayerTone(palette.layers, 1);
+  const treePathTone = selectLayerTone(palette.layers, 2);
+  const fibonacciTone = selectLayerTone(palette.layers, 3);
+  const helixStrandTone = selectLayerTone(palette.layers, 4);
+  const latticeTone = selectLayerTone(palette.layers, 5);
+
+  drawVesica(ctx, width, height, vesicaTone, NUM);
+  drawTree(ctx, width, height, treeNodeTone, treePathTone, NUM);
+  drawFibonacci(ctx, width, height, fibonacciTone, NUM);
+  drawHelix(ctx, width, height, helixStrandTone, latticeTone, NUM);
+}
+
+// L1 Vesica field: soft intersecting circles, gentle grid
+function drawVesica(ctx, w, h, color, NUM) {
+  ctx.save();
+  const r = Math.min(w, h) / NUM.THREE; // radius tied to numerology
+
   const layers = Array.isArray(palette.layers) ? palette.layers : [];
   const ink = palette.ink || "#e8e8f0";
 
@@ -48,6 +82,7 @@ function pickColor(list, index, fallback) {
 // L1 Vesica field: intersecting circles and a gentle grid grounded in numerology.
 function drawVesica(ctx, w, h, tones, NUM) {
   const radius = Math.min(w, h) / NUM.THREE;
+
   const cx = w / 2;
   const cy = h / 2;
 
@@ -72,6 +107,15 @@ function drawVesica(ctx, w, h, tones, NUM) {
   }
   ctx.stroke();
 
+  ctx.restore();
+}
+
+// L2 Tree-of-Life: 10 nodes + 22 paths (NUM.TWENTYTWO)
+function drawTree(ctx, w, h, nodeColor, pathColor, NUM) {
+  ctx.save();
+  const stepY = h / NUM.ELEVEN; // vertical rhythm
+
+
   const horizontalStep = (radius * 2) / NUM.ELEVEN;
   ctx.beginPath();
   for (let j = 0; j <= NUM.ELEVEN; j++) {
@@ -86,6 +130,7 @@ function drawVesica(ctx, w, h, tones, NUM) {
 // L2 Tree-of-Life scaffold: 10 nodes and 22 paths for steady ascent.
 function drawTree(ctx, w, h, tones, NUM) {
   const stepY = h / NUM.ELEVEN;
+
   const xCenter = w / 2;
   const xOffset = w / NUM.THREE / 2; // Three pillars define lateral spacing.
 
@@ -113,6 +158,8 @@ function drawTree(ctx, w, h, tones, NUM) {
     ctx.fill();
   }
   ctx.restore();
+
+
 }
 
 function buildTreeNodes(center, offset, stepY) {
@@ -138,11 +185,17 @@ function buildTreePaths() {
     [5,6],[5,7],[6,7],[6,8],[7,8],[8,9],[5,8],[1,5],
     [2,5],[3,6],[4,7],[1,6],[2,7],[0,5]
   ];
+
 }
 
 // L3 Fibonacci curve: 99 static points create a calm logarithmic spiral.
 function drawFibonacci(ctx, w, h, color, NUM) {
+
+  ctx.save();
+  const phi = (1 + Math.sqrt(5)) / 2; // golden ratio
+
   const phi = (1 + Math.sqrt(5)) / 2;
+
   const centerX = w / 2;
   const centerY = h / 2;
   const scale = Math.min(w, h) / NUM.THIRTYTHREE;
@@ -165,6 +218,16 @@ function drawFibonacci(ctx, w, h, color, NUM) {
   ctx.restore();
 }
 
+
+// L4 Double-helix lattice: two phase-shifted sine waves with 144 struts
+function drawHelix(ctx, w, h, strandColor, latticeColor, NUM) {
+  ctx.save();
+  const centerY = h / 2;
+  const amp = h / NUM.THREE; // amplitude linked to threefold nature
+  const steps = NUM.ONEFORTYFOUR; // lattice count
+  const span = steps - 1 || 1; // ensures the final strut reaches the far edge without extra lines
+  const freq = NUM.THREE; // three full twists
+
 // L4 Double-helix lattice: twin strands bridged by 144 static struts.
 function drawHelix(ctx, w, h, tones, NUM) {
   const steps = NUM.ONEFORTYFOUR;
@@ -174,6 +237,7 @@ function drawHelix(ctx, w, h, tones, NUM) {
   const frequency = NUM.THREE; // Three full waves maintain the trifold pattern.
 
   ctx.save();
+
 
   ctx.strokeStyle = tones.lattice;
   ctx.lineWidth = 1;
@@ -210,4 +274,5 @@ function drawStrand(ctx, steps, span, width, baseY, amplitude, frequency, phaseS
     else ctx.lineTo(x, y);
   }
   ctx.stroke();
+  ctx.restore();
 }

@@ -63,6 +63,33 @@
     const ctx = canvas.getContext("2d");
 
     const defaults = {
+
+      palette: {
+        bg:"#0b0b12",
+        ink:"#e8e8f0",
+        layers:["#b1c7ff","#89f7fe","#a0ffa1","#ffd27f","#f5a3ff","#d0d0e6"]
+      }
+    };
+
+    function getMutedColor(palette, fallbackTone) {
+      // ND-safe: keep interface text gentle even if palette omits a muted tone.
+      if (!palette.layers || typeof palette.layers[5] !== "string") return fallbackTone;
+      return palette.layers[5];
+    }
+
+    function sanitizePalette(source, fallback) {
+      // Trauma-informed: never crash if JSON is partial; fill gaps with calm defaults.
+      if (!source || typeof source !== "object") return fallback;
+      const layers = fallback.layers.map((tone, index) => {
+        const candidate = source.layers && typeof source.layers[index] === "string" ? source.layers[index] : tone;
+        return candidate;
+      });
+      return {
+        bg: typeof source.bg === "string" ? source.bg : fallback.bg,
+        ink: typeof source.ink === "string" ? source.ink : fallback.ink,
+        layers
+      };
+
       bg:"#0b0b12",
       ink:"#e8e8f0",
       muted:"#a6a6c1",
@@ -94,6 +121,7 @@
       root.setProperty("--muted", muted);
       document.body.style.background = bg;
       document.body.style.color = ink;
+
     }
 
     async function loadPalette(path) {
@@ -109,17 +137,41 @@
       }
     }
 
+
+    const paletteData = await loadJSON("./data/palette.json");
+    const active = sanitizePalette(paletteData, defaults.palette);
+
+    function applyPagePalette(palette) {
+      const rootStyle = document.documentElement.style;
+      rootStyle.setProperty("--bg", palette.bg);
+      rootStyle.setProperty("--ink", palette.ink);
+      rootStyle.setProperty("--muted", getMutedColor(palette, defaults.palette.layers[5]));
+    }
+
+    applyPagePalette(active);
+
     async function init() {
       const paletteInfo = await loadPalette("./data/palette.json");
       const active = paletteInfo.palette || defaults;
       applyPalette(active);
+
 
       if (!ctx) {
         updateStatus(paletteInfo.note + " Canvas context unavailable; geometry skipped.");
         return;
       }
 
+
+    const statusBase = paletteData ? "Palette loaded; rendering static geometry." : "Palette missing; using safe fallback palette.";
+
+    // ND-safe rationale: no motion, high readability, soft colors, layered order
+    if (!ctx) {
+      elStatus.textContent = statusBase + " Canvas context unavailable; geometry skipped.";
+    } else {
+      elStatus.textContent = statusBase;
+
       // ND-safe rationale: rendering happens once, layering preserves depth without motion.
+
       renderHelix(ctx, { width:canvas.width, height:canvas.height, palette:active, NUM });
       updateStatus(paletteInfo.note + " Geometry rendered.");
     }
