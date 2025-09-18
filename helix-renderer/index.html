@@ -1,4 +1,6 @@
+
 <!-- Per Texturas Numerorum, Spira Loquitur. //-->
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,8 +12,8 @@
     /* ND-safe: calm contrast, no motion, generous spacing. */
     :root {
       --bg:#0b0b12;
-      --ink:#e5e5ea;
-      --muted:#7f86a6;
+      --ink:#e8e8f0;
+      --muted:#a6a6c1;
       --frame:#1d1d2a;
     }
     html,body {
@@ -54,7 +56,7 @@
   </header>
 
   <canvas id="stage" width="1440" height="900" aria-label="Layered sacred geometry canvas"></canvas>
-  <p class="note">This static renderer encodes Vesica, Tree-of-Life, Fibonacci, and a static double-helix lattice. No animation, no autoplay, no external libs. Open this file directly.</p>
+  <p class="note">This static renderer encodes Vesica, Tree-of-Life, Fibonacci, and a static double-helix lattice. No animation, no autoplay, no external libraries. Open this file directly.</p>
 
   <script type="module">
     import { renderHelix } from "./js/helix-renderer.mjs";
@@ -64,12 +66,46 @@
     const ctx = canvas.getContext("2d");
 
     const defaults = {
+
       palette: {
         bg:"#0b0b12",
         ink:"#e5e5ea",
         muted:"#7f86a6",
         layers:["#4a90e2","#7bb3f0","#7ed321","#b8e986","#9013fe","#af52de"]
       }
+
+
+      palette: {
+        bg:"#0b0b12",
+        ink:"#e8e8f0",
+        layers:["#b1c7ff","#89f7fe","#a0ffa1","#ffd27f","#f5a3ff","#d0d0e6"]
+      }
+    };
+
+    function getMutedColor(palette, fallbackTone) {
+      // ND-safe: keep interface text gentle even if palette omits a muted tone.
+      if (!palette.layers || typeof palette.layers[5] !== "string") return fallbackTone;
+      return palette.layers[5];
+    }
+
+    function sanitizePalette(source, fallback) {
+      // Trauma-informed: never crash if JSON is partial; fill gaps with calm defaults.
+      if (!source || typeof source !== "object") return fallback;
+      const layers = fallback.layers.map((tone, index) => {
+        const candidate = source.layers && typeof source.layers[index] === "string" ? source.layers[index] : tone;
+        return candidate;
+      });
+      return {
+        bg: typeof source.bg === "string" ? source.bg : fallback.bg,
+        ink: typeof source.ink === "string" ? source.ink : fallback.ink,
+        layers
+      };
+
+      bg:"#0b0b12",
+      ink:"#e8e8f0",
+      muted:"#a6a6c1",
+      layers:["#4a90e2","#7bb3f0","#7ed321","#b8e986","#9013fe","#af52de"]
+
     };
 
     const NUM = {
@@ -82,6 +118,7 @@
       NINETYNINE:99,
       ONEFORTYFOUR:144
     };
+
 
     init();
 
@@ -142,6 +179,78 @@
       document.body.style.background = palette.bg;
       document.body.style.color = palette.ink;
     }
+
+    function updateStatus(message) {
+      statusEl.textContent = message;
+    }
+
+    function applyPalette(palette) {
+      const bg = palette.bg || defaults.bg;
+      const ink = palette.ink || defaults.ink;
+      const muted = palette.muted || defaults.muted;
+      const root = document.documentElement.style;
+      root.setProperty("--bg", bg);
+      root.setProperty("--ink", ink);
+      root.setProperty("--muted", muted);
+      document.body.style.background = bg;
+      document.body.style.color = ink;
+
+    }
+
+    async function loadPalette(path) {
+      const isFile = window.location.protocol === "file:";
+      try {
+        const res = await fetch(path, { cache:"no-store" });
+        if (!res.ok) throw new Error(String(res.status));
+        const data = await res.json();
+        return { palette:data, note:"Palette loaded from data file." };
+      } catch (err) {
+        const reason = isFile ? "Browser blocked local file fetch" : "Palette file missing";
+        return { palette:null, note:reason + "; using safe fallback palette." };
+      }
+    }
+
+
+    const paletteData = await loadJSON("./data/palette.json");
+    const active = sanitizePalette(paletteData, defaults.palette);
+
+    function applyPagePalette(palette) {
+      const rootStyle = document.documentElement.style;
+      rootStyle.setProperty("--bg", palette.bg);
+      rootStyle.setProperty("--ink", palette.ink);
+      rootStyle.setProperty("--muted", getMutedColor(palette, defaults.palette.layers[5]));
+    }
+
+    applyPagePalette(active);
+
+    async function init() {
+      const paletteInfo = await loadPalette("./data/palette.json");
+      const active = paletteInfo.palette || defaults;
+      applyPalette(active);
+
+
+      if (!ctx) {
+        updateStatus(paletteInfo.note + " Canvas context unavailable; geometry skipped.");
+        return;
+      }
+
+
+    const statusBase = paletteData ? "Palette loaded; rendering static geometry." : "Palette missing; using safe fallback palette.";
+
+    // ND-safe rationale: no motion, high readability, soft colors, layered order
+    if (!ctx) {
+      elStatus.textContent = statusBase + " Canvas context unavailable; geometry skipped.";
+    } else {
+      elStatus.textContent = statusBase;
+
+      // ND-safe rationale: rendering happens once, layering preserves depth without motion.
+
+      renderHelix(ctx, { width:canvas.width, height:canvas.height, palette:active, NUM });
+      updateStatus(paletteInfo.note + " Geometry rendered.");
+    }
+
+    init();
+
   </script>
 </body>
 </html>
