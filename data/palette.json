@@ -1,6 +1,7 @@
 {
   "bg": "#0b0b12",
   "ink": "#e8e8f0",
+  "muted": "#a6a6c1",
   "layers": [
     "#b1c7ff",
     "#89f7fe",
