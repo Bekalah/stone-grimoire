@@ -7,6 +7,7 @@
   <meta name="description" content="A living grimoire: sacred geometry, techno-occult research, and spiral learning." />
   <link rel="preload" href="assets/img/hero.avif" as="image" />
   <link rel="stylesheet" href="assets/css/atelier.css" />
+  <link rel="stylesheet" href="assets/css/colors.css" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -21,7 +22,7 @@
     <button id="calmToggle" class="btn-couture" aria-pressed="false">Calm Mode</button>
   </nav>
 
-  <main id="main">
+  <main id="main" class="vesica-bg tarot-overlay aurora">
     <section class="hero" aria-labelledby="hero-title">
       <figure class="hero-visual">
         <img src="assets/img/hero.avif" width="1280" height="720" alt="Layered circuit sigil with calm indigo gradient." />
@@ -74,7 +75,9 @@
     <section class="section" id="node-system" aria-labelledby="node-title">
       <h2 id="node-title">Node System</h2>
       <p>The node registry keeps track of living research threads. Data loads locally from <code>data/nodes.json</code> so the atlas stays offline-first.</p>
-      <div id="nodeGrid" class="grid" role="list" aria-live="polite"></div>
+      <section id="node-list" aria-label="Cosmogenesis Chapels" aria-live="polite">
+        <p class="chapel-fallback">Chapels manifest once local data loads. Offline? The Codex still holds their coordinates.</p>
+      </section>
     </section>
 
     <section class="section" id="atelier" aria-labelledby="atelier-title">

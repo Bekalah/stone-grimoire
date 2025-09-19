@@ -196,6 +196,109 @@ main {
   color: var(--ink-muted);
 }
 
+#node-list {
+  display: grid;
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+}
+
+.chapel {
+  padding: clamp(2rem, 3vw, 3rem);
+  border-radius: 2.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(18px);
+  display: grid;
+  gap: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.chapel header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.chapel header h2 {
+  margin: 0;
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.chapel-type {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.chapel .lore {
+  margin: 0;
+  color: var(--ink-muted);
+  max-width: 60ch;
+}
+
+.chapel-listing {
+  display: grid;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.chapel-label {
+  margin: 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.chapel-items {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.chapel-items li {
+  color: var(--ink-muted);
+}
+
+.chapel-protocol {
+  margin: 0;
+  font-style: italic;
+  color: var(--ink-muted);
+  max-width: 55ch;
+}
+
+.chapel-fallback {
+  margin: 0;
+  color: var(--ink-muted);
+  max-width: 60ch;
+}
+
+.open-lab {
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  cursor: pointer;
+  align-self: flex-start;
+  position: relative;
+  z-index: 1;
+}
+
+.open-lab:hover,
+.open-lab:focus {
+  background: rgba(143, 155, 255, 0.18);
+}
+
 .maison-footer {
   padding: 2rem 2.5rem 3rem;
   border-top: 1px solid var(--border);
