@@ -2,12 +2,14 @@
   "bg": "#0b0b12",
   "ink": "#e8e8f0",
   "muted": "#a6a6c1",
+  "bg": "#0a0a11",
+  "ink": "#f0f0ff",
   "layers": [
-    "#b1c7ff",
-    "#89f7fe",
-    "#a0ffa1",
-    "#ffd27f",
-    "#f5a3ff",
-    "#d0d0e6"
+    "#8ba8ff",
+    "#74d8f2",
+    "#98f7c4",
+    "#ffd8a8",
+    "#f6b8ff",
+    "#d8dcff"
   ]
 }
