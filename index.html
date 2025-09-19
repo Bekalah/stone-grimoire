@@ -1,100 +1,64 @@
 <!doctype html>
-<html lang="en" data-codex="144:99" data-app="stone-grimoire">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>circuitum99 -- Cosmogenesis (Pro)</title>
-  <meta name="description" content="Cosmogenesis Learning Engine: tilted-axis cosmos, spiral nodes, and hermetic overlays. ND-safe." />
-  <link rel="stylesheet" href="./assets/css/core.css" />
-  <script type="module">
-    // single-init guard
-    import { guardInit } from './js/core/guard.js';
-    guardInit('cosmogenesis');
-
-    // theme + engine
-    import { loadStylepacks } from './js/engines/theme-engine.js';
-    import { initCosmogenesis } from './js/engines/cosmogenesis.js';
-
-    (async () => {
-      const stylepacks = await loadStylepacks('./assets/data/stylepacks.json');
-      const canvas = document.getElementById('plate');
-      const ui = {
-        tilt: document.getElementById('tilt'),
-        nodes: document.getElementById('nodes'),
-        palette: document.getElementById('palette'),
-        save: document.getElementById('save'),
-        tiltLabel: document.getElementById('tiltLabel'),
-        nodesLabel: document.getElementById('nodesLabel'),
-      };
-
-      const engine = initCosmogenesis(canvas, stylepacks);
-      // hydrate UI
-      for (const key of Object.keys(stylepacks)) {
-        const opt = document.createElement('option');
-        opt.value = key; opt.textContent = key;
-        ui.palette.appendChild(opt);
-      }
-      // restore persisted
-      const state = engine.getState();
-      ui.tilt.value = state.tilt;
-      ui.nodes.value = state.nodes;
-      ui.palette.value = state.palette;
-      ui.tiltLabel.textContent = state.tilt + '°';
-      ui.nodesLabel.textContent = state.nodes;
-
-      // wire events (gentle updates)
-      ui.tilt.addEventListener('input', e => {
-        ui.tiltLabel.textContent = e.target.value + '°';
-        engine.update({ tilt: parseFloat(e.target.value) });
-      });
-      ui.nodes.addEventListener('input', e => {
-        ui.nodesLabel.textContent = e.target.value;
-        engine.update({ nodes: parseInt(e.target.value, 10) });
-      });
-      ui.palette.addEventListener('change', e => {
-        engine.update({ palette: e.target.value });
-      });
-      ui.save.addEventListener('click', () => engine.savePNG());
-    })();
-  </script>
+  <meta charset="utf-8">
+  <title>Cosmic Helix Renderer (ND-safe, Offline)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <style>
+    /* ND-safe: calm contrast, no motion, generous spacing */
+    :root { --bg:#0b0b12; --ink:#e8e8f0; --muted:#a6a6c1; }
+    html,body { margin:0; padding:0; background:var(--bg); color:var(--ink); font:14px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+    header { padding:12px 16px; border-bottom:1px solid #1d1d2a; }
+    .status { color:var(--muted); font-size:12px; }
+    #stage { display:block; margin:16px auto; box-shadow:0 0 0 1px #1d1d2a; }
+    .note { max-width:900px; margin:0 auto 16px; color:var(--muted); }
+    code { background:#11111a; padding:2px 4px; border-radius:3px; }
+  </style>
 </head>
 <body>
-  <div id="nd-settings" style="padding:8px;border-bottom:1px solid #444;max-width:400px;font:14px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif">
-    <label>Motion
-      <select id="motion">
-        <option value="reduced" selected>reduced</option>
-        <option value="full">full</option>
-      </select>
-    </label>
-    <label>Autoplay
-      <input type="checkbox" id="autoplay" />
-    </label>
-    <label>Contrast
-      <select id="contrast">
-        <option value="balanced" selected>balanced</option>
-        <option value="high">high</option>
-      </select>
-    </label>
-  </div>
-  <header class="bar">
-    <h1>✦ Cosmogenesis -- Cathedral of Circuits</h1>
-    <div class="controls">
-      <label> Tilt <span id="tiltLabel"></span>
-        <input id="tilt" type="range" min="0" max="45" step="0.5" value="23.5" />
-      </label>
-      <label> Nodes <span id="nodesLabel"></span>
-        <input id="nodes" type="range" min="12" max="144" step="1" value="72" />
-      </label>
-      <label> Palette
-        <select id="palette"></select>
-      </label>
-      <button id="save" aria-label="Save PNG">Save PNG</button>
-    </div>
+  <header>
+    <div><strong>Cosmic Helix Renderer</strong> — layered sacred geometry (offline, ND-safe)</div>
+    <div class="status" id="status">Loading palette…</div>
   </header>
-  <main class="stage">
-    <canvas id="plate" width="1600" height="900" aria-label="Cosmogenesis canvas"></canvas>
-  </main>
-  <footer class="bar small">ND-safe • no autoplay • gentle motion only</footer>
-  <script type="module" src="./index.js"></script>
+
+  <canvas id="stage" width="1440" height="900" aria-label="Layered sacred geometry canvas"></canvas>
+  <p class="note">This static renderer encodes Vesica, Tree-of-Life, Fibonacci, and a static double-helix lattice. No animation, no autoplay, no external libs. Open this file directly.</p>
+
+  <script type="module">
+    import { renderHelix } from "./js/helix-renderer.mjs";
+
+    const elStatus = document.getElementById("status");
+    const canvas = document.getElementById("stage");
+    const ctx = canvas.getContext("2d");
+
+    async function loadJSON(path) {
+      try {
+        const res = await fetch(path, { cache: "no-store" });
+        if (!res.ok) throw new Error(String(res.status));
+        return await res.json();
+      } catch (err) {
+        return null;
+      }
+    }
+
+    const defaults = {
+      palette: {
+        bg: "#0b0b12",
+        ink: "#e8e8f0",
+        layers: ["#b1c7ff", "#89f7fe", "#a0ffa1", "#ffd27f", "#f5a3ff", "#d0d0e6"]
+      }
+    };
+
+    const palette = await loadJSON("./data/palette.json");
+    const active = palette || defaults.palette;
+    elStatus.textContent = palette ? "Palette loaded." : "Palette missing; using safe fallback.";
+
+    // Numerology constants anchor geometry proportions
+    const NUM = { THREE:3, SEVEN:7, NINE:9, ELEVEN:11, TWENTYTWO:22, THIRTYTHREE:33, NINETYNINE:99, ONEFORTYFOUR:144 };
+
+    // ND-safe rationale: no motion, high readability, soft colors, layered order
+    renderHelix(ctx, { width:canvas.width, height:canvas.height, palette:active, NUM });
+  </script>
 </body>
 </html>
