@@ -1,77 +1,39 @@
-
 Per Texturas Numerorum, Spira Loquitur. //
 
 # Cosmic Helix Renderer
 
-Offline, ND-safe renderer for layered sacred geometry. Double-click `index.html` in this folder to view. This version aligns with the trauma-informed Cosmogenesis plan using pure ES modules and zero external dependencies.
+Offline, ND-safe renderer for layered sacred geometry. Double-click `index.html` in this folder to view. The canvas renders once, holds still, and works without any build step or network connection.
 
-The HTML file works directly from disk. If the palette JSON cannot be read because of browser file restrictions or missing data, the module applies a calm fallback palette and the header status line explains why. No network calls leave the machine.
+## Files
+- `index.html` -- static entry point with inline status notice and palette loader.
+- `js/helix-renderer.mjs` -- pure ES module responsible for layered drawing.
+- `data/palette.json` -- optional palette override; safe defaults apply if missing.
+- `README_RENDERER.md` -- this guide.
 
 ## Layers
-
-1. **Vesica field** – intersecting circles establishing the sacred lens.
-2. **Tree-of-Life scaffold** – 10 sephirot and 22 paths drawn with calm symmetry.
-3. **Fibonacci curve** – static log spiral approximated with 99 points.
-4. **Double-helix lattice** – two phase-shifted sine strands with 144 vertical struts.
-
-## Palette
-Colors are loaded from `data/palette.json`. If the file is missing or a browser blocks local `fetch`, the renderer displays a small notice and falls back to a safe default palette. Loaded or fallback colors also update the page background and text for consistent contrast. Extended palette sets live in `../export/spiral_palettes.json` for future offline experiments.
-
-1. **Vesica field** &mdash; intersecting circles and a gentle vesica grid (Layer 1).
-2. **Tree-of-Life scaffold** &mdash; 10 sephirot and 22 paths, balanced across three pillars (Layer 2).
-3. **Fibonacci curve** &mdash; static logarithmic spiral approximated with 99 points (Layer 3).
-4. **Double-helix lattice** &mdash; two phase-shifted strands linked by 144 struts (Layer 4).
+1. **Vesica field** -- intersecting circles and a gentle grid grounded in numerology (Layer 1).
+2. **Tree-of-Life scaffold** -- 10 sephirot and 22 connective paths balanced across three pillars (Layer 2).
+3. **Fibonacci curve** -- static logarithmic spiral approximated with 99 points, calm line weight (Layer 3).
+4. **Double-helix lattice** -- two phase-shifted sine strands linked by 144 struts (Layer 4).
 
 ## Palette
-
-
-Colors are loaded from `data/palette.json`. If the file is missing—or a browser blocks `file://` fetches—the renderer shows a small notice and falls back to a safe default palette. The chosen colors also set the page background and text for consistent contrast. Extended palette sets live in `../export/spiral_palettes.json` for future offline experiments.
-
-Colors are loaded from `data/palette.json`. If the file is missing or a browser blocks local `fetch`, the renderer displays a small notice and falls back to a safe default palette. The active palette also updates page colors to keep contrast consistent with ND-safe guidelines. Additional palettes can be curated later without changing the rendering code.
-
-Default palette hues follow the trauma-informed guidance from the cosmic brief: calm blues, restorative greens, mystical purples, and warm neutrals. All hues appear as high-contrast yet gentle strokes layered over the dark canvas.
-
+Colors load from `data/palette.json`. When browsers block local `fetch` or the file is absent, the renderer posts a small notice and falls back to a trauma-informed palette of indigo, aqua, green, amber, and violet. The active palette also sets the page background and ink colors to maintain contrast.
 
 ## ND-safe Choices
-- No animation, motion, or autoplay.
-
-- High-contrast yet soft color palette.
-- Simple ES module with no external dependencies.
-
-- High-contrast yet soft color palette with predictable layering.
-- Simple ES module, offline-first. No build steps or workflows required.
-
+- No animation, autoplay, or flashing sequences.
+- Layered ordering preserves depth while staying static.
+- Gentle but legible contrasts; translucency keeps supportive lines soft.
+- Pure ES module with zero dependencies for offline-first use.
 
 ## Numerology Anchors
-The geometry routines honor key counts:
+- 3 -- vesica radius and helix amplitude.
+- 7 -- vesica grid columns.
+- 9 -- spiral growth cadence.
+- 11 -- vertical rhythm for the tree scaffold and helix frequency.
+- 22 -- sephirot paths.
+- 33 -- spiral step cadence per turn.
+- 99 -- points traced along the Fibonacci curve.
+- 144 -- lattice struts linking the double helix.
 
-- 3 – primary vesica radius and helix amplitude.
-- 7 – vesica grid lines.
-- 9 – spiral growth factor.
-- 11 – vertical rhythm for the Tree of Life and spiral sweep.
-- 22 – sephirot paths.
-- 33 – scaling reference for the spiral.
-- 99 – points along the Fibonacci curve.
-- 144 – helix lattice struts.
-
-## Usage
-Open `index.html` directly in any modern browser. The canvas is 1440×900 and uses only built-in browser features. No network requests are made; a small status message notes if the palette file is missing so offline use remains clear.
-
-- 3 &mdash; primary vesica radius, helix amplitude, and wave frequency.
-- 7 &mdash; vesica grid columns.
-- 9 &mdash; spiral growth cadence.
-- 11 &mdash; vertical rhythm for the Tree of Life and spiral angle increments.
-- 22 &mdash; sephirot paths.
-- 33 &mdash; spiral scaling baseline.
-- 99 &mdash; points along the Fibonacci curve.
-- 144 &mdash; helix lattice struts.
-
-## Usage
-
-Open `index.html` directly in any modern browser. The canvas is 1440x900 and uses only built-in browser features.
-
-No network requests are made; a small status message notes if the palette file is missing so offline use remains clear. To tweak tones, edit `data/palette.json` and refresh.
-
-Open `index.html` directly in any modern browser. The canvas is 1440x900 and relies only on built-in browser features. The header status line will report whether the custom palette loaded or if the safe fallback is in use.
-
-
+## Offline Usage
+Open `index.html` directly in any modern browser. The status line reports whether the custom palette loaded or if the safe fallback is active. No requests leave the machine, satisfying the offline-first requirement.
