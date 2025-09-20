@@ -1,12 +1,15 @@
 /**
- * Render an octagram-style decorative field into a canvas element as a static first-paint fallback.
+ * Draws an octagram-style fallback background onto a canvas element.
  *
- * Draws a centered radial gradient background and eight semi-transparent radial spokes.
- * If the canvas element with the given id or its 2D context is unavailable, the function logs a warning and returns early.
+ * Creates a centered radial gradient and paints eight faint radial spokes from the center.
+ * Intended as an ND-safe static "first paint" when images or other assets are not available.
  *
- * @param {string} id - DOM id of the target canvas (default "opus").
- * @param {number} W - Canvas width in pixels (default 1200).
- * @param {number} H - Canvas height in pixels (default 675).
+ * @param {string} [id="opus"] - ID of the target <canvas> element.
+ * @param {number} [W=1200] - Canvas width in CSS pixels; also used for layout calculations.
+ * @param {number} [H=675] - Canvas height in CSS pixels; also used for layout calculations.
+ *
+ * Side effects: sets the canvas size, fills the canvas, and draws lines. If the canvas or its
+ * 2D context is not available this function logs a warning and returns without throwing.
  */
 export function paintOctagram(id = "opus", W = 1200, H = 675){
   const canvas = document.getElementById(id);

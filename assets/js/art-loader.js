@@ -1,13 +1,8 @@
 /**
- * Fetches an art manifest (no-cache) and mounts the hero image into the page if available.
+ * Fetches an art manifest and, if it contains a hero image, creates and appends that image into the DOM element with id "hero-art".
  *
- * Attempts to GET "/assets/art/manifest.json" with cache mode "no-store". If a valid manifest
- * containing `hero.src` is found and an element with id "hero-art" exists, creates an <img>
- * (eager loading, async decoding) with the manifest values and appends it to that element.
- * Logs warnings and exits early when the manifest is missing, incomplete, or the target container
- * cannot be found.
- *
- * @returns {Promise<void>} Resolves after attempting to fetch the manifest and mount the image.
+ * Fetches /assets/art/manifest.json with cache: "no-store". If the manifest is missing or doesn't contain a hero.src, or if the target container is absent, the function logs a warning and exits without throwing. Created images use eager loading and async decoding; the image alt text is taken from manifest.hero.alt when available.
+ * @returns {Promise<void>} Resolves when processing is complete.
  */
 export async function mountArt(){
   const res = await fetch("/assets/art/manifest.json", { cache: "no-store" });
