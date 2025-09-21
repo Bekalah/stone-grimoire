@@ -1,4 +1,5 @@
 [build]
+
   publish = "site"
   command = ""
   [build.environment]
@@ -8,6 +9,14 @@
     # Explicitly fetch only bot-safe formats when a build needs large binaries.
     GIT_LFS_FETCH_INCLUDE = "*.webp,*.jpg,*.jpeg,*.avif"
 
+  command = "npm run build"
+  publish = "/"
+  # User-provided custom instructions respected: offline-first build only.
+
+[build.environment]
+  GIT_LFS_ENABLED = "false"
+
+
 [[headers]]
   for = "/*"
   [headers.values]
@@ -16,3 +25,6 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     Content-Security-Policy = "default-src 'self' https: data:; img-src 'self' https: data:; style-src 'self' 'unsafe-inline' https:; script-src 'self' https:; connect-src 'self' https:; frame-ancestors 'none';"
+
+[images]
+  optimize = false
