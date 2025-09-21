@@ -1,0 +1,15 @@
+# Dockerfile used for Fly.io deployments of the static Cosmic Helix renderer.
+FROM nginx:1.25-alpine
+
+# Replace the default site config with a quiet static server on port 8080.
+RUN rm /etc/nginx/conf.d/default.conf
+COPY fly/nginx.conf /etc/nginx/conf.d/default.conf
+
+# Copy only the static renderer assets to keep the image light.
+COPY index.html /usr/share/nginx/html/index.html
+COPY js /usr/share/nginx/html/js
+COPY data /usr/share/nginx/html/data
+COPY README_RENDERER.md /usr/share/nginx/html/README_RENDERER.md
+
+EXPOSE 8080
+CMD ["nginx", "-g", "daemon off;"]
