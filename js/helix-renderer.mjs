@@ -1,6 +1,6 @@
 /*
   helix-renderer.mjs
-  Static renderer for the Cosmic Helix canvas.
+  ND-safe static renderer for the Cosmic Helix canvas.
   Layers paint bottom to top in four passes to preserve depth without motion:
     1) Vesica field with numerology grid
     2) Tree-of-Life scaffold (10 sephirot, 22 paths)
@@ -8,6 +8,8 @@
     4) Double-helix lattice with 144 struts
   All helpers are pure; they only touch arguments passed to them.
 */
+
+const PHI = (1 + Math.sqrt(5)) / 2;
 
 export function renderHelix(ctx, options) {
   const config = normaliseOptions(options);
@@ -65,7 +67,7 @@ function normaliseNumerology(NUM) {
 }
 
 function paintBackground(ctx, width, height, palette) {
-  /* ND-safe base: solid dusk tone with soft radial glow. */
+  /* ND-safe base: solid dusk tone with soft radial glow to avoid harsh contrast. */
   ctx.fillStyle = palette.bg;
   ctx.fillRect(0, 0, width, height);
 
@@ -155,7 +157,7 @@ function drawTreeOfLife(ctx, width, height, palette, NUM) {
   });
 
   ctx.fillStyle = hexToRgba(pickLayer(palette.layers, 1, palette.ink), 0.9);
-  const nodeRadius = Math.max(4, Math.min(width, height) / NUM.ONEFORTYFOUR * 3);
+  const nodeRadius = computeNodeRadius(width, height, NUM);
   nodes.forEach(node => {
     ctx.beginPath();
     ctx.arc(node.x, node.y, nodeRadius, 0, Math.PI * 2);
@@ -214,14 +216,13 @@ function buildSpiralPoints(width, height, NUM) {
   const centreX = width / 2;
   const centreY = height / 2;
   const baseRadius = Math.min(width, height) / NUM.THIRTYTHREE;
-  const phi = (1 + Math.sqrt(5)) / 2;
   const angleStep = (Math.PI * 2) / NUM.THIRTYTHREE;
   const maxRadius = Math.min(width, height) / 2.1;
   const output = [];
 
   for (let i = 0; i < total; i += 1) {
     const angle = i * angleStep;
-    const radius = Math.min(baseRadius * Math.pow(phi, i / NUM.NINE), maxRadius);
+    const radius = Math.min(baseRadius * Math.pow(PHI, i / NUM.NINE), maxRadius);
     output.push({
       x: centreX + Math.cos(angle) * radius,
       y: centreY + Math.sin(angle) * radius
@@ -288,6 +289,10 @@ function drawPolyline(ctx, points) {
   ctx.stroke();
 }
 
+function computeNodeRadius(width, height, NUM) {
+  return Math.max(4, Math.min(width, height) / NUM.ONEFORTYFOUR * 3);
+}
+
 function pickLayer(layers, index, fallback) {
   if (!Array.isArray(layers)) return fallback;
   const tone = layers[index];
@@ -297,10 +302,10 @@ function pickLayer(layers, index, fallback) {
 function hexToRgba(hex, alpha) {
   const value = hex.replace("#", "");
   if (value.length !== 6) {
-    return `rgba(255,255,255,${alpha})`;
+    return "rgba(255,255,255," + alpha + ")";
   }
   const r = parseInt(value.slice(0, 2), 16);
   const g = parseInt(value.slice(2, 4), 16);
   const b = parseInt(value.slice(4, 6), 16);
-  return `rgba(${r},${g},${b},${alpha})`;
+  return "rgba(" + r + "," + g + "," + b + "," + alpha + ")";
 }

@@ -1,0 +1,62 @@
+{
+  "rulesets": {
+    "cathedral_visionary_v1": {
+      "name": "Cathedral Visionary 1.0",
+      "about": "Standards for rendering Rosslyn-inspired cathedrals, 21 Tara bands, and Morgan le Fey realms at atelier and Vienna Fantastic Realism quality.",
+      "composition": {
+        "full_view": true,
+        "no_cropping": true,
+        "frame_ratio": "phi (1:1.618)",
+        "center_axis": "vesica/double tree symmetry"
+      },
+      "geometry": {
+        "forms": ["octagon", "hexagram", "vesica", "cube"],
+        "double_tree": true,
+        "fractals": "allowed if phi-harmonic",
+        "ratios": ["phi", "pi", "3:2", "5:4", "7:4"]
+      },
+      "color_light": {
+        "taras": 21,
+        "style": "aurora-like silk bands",
+        "gold": "kintsugi lines highlight geometry",
+        "light_source": "inner radiant"
+      },
+      "style": {
+        "art_school": "Vienna Fantastic Realism (Fuchs, Hausner, Brauer)",
+        "japanese_principles": ["ma (spaciousness)", "shibumi (elegance)", "wabi-sabi (sacred asymmetry)"],
+        "mythic_context": "Morgan le Fey realm, enchanted order not chaos"
+      },
+      "perspective": {
+        "include_sky": true,
+        "include_ground": true,
+        "horizon_position": "phi from bottom",
+        "no_distortion": true
+      },
+      "provenance": {
+        "lineage": [
+          "Rosslyn Chapel geometric analyses",
+          "Vienna Fantastic Realism ateliers",
+          "Cosmogenesis learning engine field notes"
+        ],
+        "license": "CC BY-NC",
+        "curator": "Rebecca Respawn",
+        "author": "Virelai Ezra Lux / Rebecca Respawn",
+        "date": "2025-02-13",
+        "notes": "Encoded for Codex 144:99 so every renderer enforces the Rosslyn constants and Tara harmonics.",
+        "ruleset_id": "cathedral_visionary_v1",
+        "geometry": ["octagon", "hexagram", "vesica", "cube"],
+        "color_system": "21 Taras + gold",
+        "ratios": ["phi", "3:2", "5:4", "7:4"],
+        "style_refs": ["Vienna Fantastic Realism", "Japanese Ma/Shibumi", "Rosslyn Chapel"],
+        "full_view": true
+      },
+      "worker_checks": [
+        "Confirm frame ratio = phi",
+        "Confirm full cathedral structure visible",
+        "Apply 21 Tara auroras correctly mapped",
+        "Embed provenance metadata in artifact",
+        "Reject render if symmetry, ratio, or provenance checks fail"
+      ]
+    }
+  }
+}
