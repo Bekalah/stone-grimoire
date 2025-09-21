@@ -1,13 +1,13 @@
 {
-  "bg": "#0b0b12",
-  "ink": "#e8e8f0",
-  "muted": "#a6a6c1",
+  "bg": "#0c1020",
+  "ink": "#e6ecf8",
+  "muted": "#8f96b5",
   "layers": [
-    "#8ba8ff",
-    "#74d8f2",
-    "#98f7c4",
-    "#ffd8a8",
-    "#f6b8ff",
-    "#d8dcff"
+    "#90b7ff",
+    "#6ad5f2",
+    "#8ff0c4",
+    "#f7d7a2",
+    "#f2b5ff",
+    "#dce2ff"
   ]
 }
