@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Cosmic Helix Renderer (Offline, ND-safe)</title>
+  <title>Cosmic Helix Renderer (ND-safe, Offline)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="color-scheme" content="light dark">
   <style>
-    /* ND-safe styling: quiet contrast, no motion, centered breathing room */
+    /* ND-safe: calm contrast, no motion, generous spacing */
     :root {
       --bg:#0b0b12;
       --ink:#e8e8f0;
@@ -19,53 +19,42 @@
       padding:0;
       background:var(--bg);
       color:var(--ink);
-      font:15px/1.5 "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+      font:14px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
     }
 
     header {
-      padding:16px 20px;
-      border-bottom:1px solid rgba(255,255,255,0.08);
+      padding:12px 16px;
+      border-bottom:1px solid #1d1d2a;
     }
 
     header strong {
-      display:block;
+      font-size:13px;
       letter-spacing:0.08em;
       text-transform:uppercase;
-      font-size:12px;
     }
 
-    #status {
+    .status {
       margin-top:4px;
       color:var(--muted);
-      font-size:13px;
-    }
-
-    main {
-      padding:24px 16px 48px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:20px;
+      font-size:12px;
     }
 
     #stage {
       display:block;
-      width:100%;
-      max-width:1440px;
-      height:auto;
-      box-shadow:0 0 0 1px rgba(255,255,255,0.08);
-      background:#080810;
+      margin:16px auto;
+      box-shadow:0 0 0 1px #1d1d2a;
+      background:#090912;
     }
 
     .note {
-      max-width:720px;
+      max-width:900px;
+      margin:0 auto 16px;
+      padding:0 16px 24px;
       color:var(--muted);
-      text-align:center;
-      font-size:14px;
     }
 
     code {
-      background:rgba(255,255,255,0.05);
+      background:#11111a;
       padding:2px 4px;
       border-radius:3px;
     }
@@ -73,31 +62,53 @@
 </head>
 <body>
   <header>
-    <strong>Cosmic Helix Renderer</strong>
-    <span id="status">Loading palette…</span>
+    <div><strong>Cosmic Helix Renderer</strong> — layered sacred geometry (offline, ND-safe)</div>
+    <div class="status" id="status">Loading palette…</div>
   </header>
 
-  <main>
-    <canvas id="stage" width="1440" height="900" aria-label="Layered sacred geometry canvas"></canvas>
-    <p class="note">
-      Layers paint once: Vesica grid, Tree-of-Life scaffold, Fibonacci curve, and static double-helix lattice.
-      Everything runs offline with ND-safe colours and no animation.
-    </p>
-  </main>
+  <canvas id="stage" width="1440" height="900" aria-label="Layered sacred geometry canvas"></canvas>
+  <p class="note">This static renderer encodes Vesica, Tree-of-Life, Fibonacci, and a static double-helix lattice. No animation, no autoplay, no external libs. Open this file directly.</p>
 
   <script type="module">
     import { renderHelix } from "./js/helix-renderer.mjs";
 
-    const statusEl = document.getElementById("status");
+    const elStatus = document.getElementById("status");
     const canvas = document.getElementById("stage");
     const ctx = canvas.getContext("2d");
 
-    const FALLBACK = {
-      bg:"#0b0b12",
-      ink:"#e8e8f0",
-      muted:"#a6a6c1",
-      layers:["#8ba8ff","#74d8f2","#98f7c4","#ffd8a8","#f6b8ff","#d8dcff"]
+    async function loadJSON(path) {
+      try {
+        const res = await fetch(path, { cache:"no-store" });
+        if (!res.ok) throw new Error(String(res.status));
+        return await res.json();
+      } catch (error) {
+        return null;
+      }
+    }
+
+    const defaults = {
+      palette: {
+        bg:"#0b0b12",
+        ink:"#e8e8f0",
+        muted:"#a6a6c1",
+        layers:["#b1c7ff","#89f7fe","#a0ffa1","#ffd27f","#f5a3ff","#d0d0e6"]
+      }
     };
+
+    function applyShellColours(palette) {
+      document.documentElement.style.setProperty("--bg", palette.bg || defaults.palette.bg);
+      document.documentElement.style.setProperty("--ink", palette.ink || defaults.palette.ink);
+      document.documentElement.style.setProperty("--muted", palette.muted || defaults.palette.muted);
+    }
+
+    function isPalette(value) {
+      return Boolean(value) && typeof value.bg === "string" && typeof value.ink === "string";
+    }
+
+    const palette = await loadJSON("./data/palette.json");
+    const active = isPalette(palette) ? palette : defaults.palette;
+    elStatus.textContent = isPalette(palette) ? "Palette loaded." : "Palette missing; using safe fallback.";
+    applyShellColours(active);
 
     const NUM = {
       THREE:3,
@@ -110,42 +121,14 @@
       ONEFORTYFOUR:144
     };
 
-    async function readPalette(path) {
-      try {
-        const response = await fetch(path, { cache:"no-store" });
-        if (!response.ok) throw new Error(String(response.status));
-        return await response.json();
-      } catch (error) {
-        return null;
-      }
-    }
-
-    function applyShellColours(palette) {
-      document.documentElement.style.setProperty("--bg", palette.bg || FALLBACK.bg);
-      document.documentElement.style.setProperty("--ink", palette.ink || FALLBACK.ink);
-      document.documentElement.style.setProperty("--muted", palette.muted || FALLBACK.muted);
-    }
-
-    function isPalette(value) {
-      return Boolean(value) && typeof value.bg === "string" && typeof value.ink === "string";
-    }
-
-    const palette = await readPalette("./data/palette.json");
-    const activePalette = isPalette(palette) ? palette : FALLBACK;
-    const paletteMessage = isPalette(palette)
-      ? "Palette loaded."
-      : "Palette missing or blocked; using safe fallback.";
-
-    applyShellColours(activePalette);
-    statusEl.textContent = paletteMessage;
-
+    // ND-safe rationale: single render pass, soft palette, layered order without motion.
     renderHelix(ctx, {
       width:canvas.width,
       height:canvas.height,
       palette:{
-        bg:activePalette.bg,
-        ink:activePalette.ink,
-        layers:Array.isArray(activePalette.layers) ? activePalette.layers.slice() : FALLBACK.layers
+        bg:active.bg,
+        ink:active.ink,
+        layers:Array.isArray(active.layers) && active.layers.length > 0 ? active.layers.slice() : defaults.palette.layers
       },
       NUM
     });

@@ -8,6 +8,11 @@ This renderer keeps the Stone Cathedral helix accessible without builds or netwo
 - `js/helix-renderer.mjs` – ES module exporting `renderHelix(ctx, options)`. All helpers are pure so the canvas state stays predictable.
 - `data/palette.json` – optional colour overrides. Remove or edit this file to retint the scene while staying offline.
 
+## Cathedral Visionary Ruleset Hook
+
+- `registry/universal.json` now registers the **Cathedral Visionary 1.0** ruleset.
+- Load `rulesets.cathedral_visionary_v1` to enforce Rosslyn geometry, Tara bands, and provenance metadata across renderers.
+
 ## Layer Order and Numerology Anchors
 
 1. **Vesica Field** – twin circles plus a numerology grid (3, 7, 11, 22) to ground the scene.
