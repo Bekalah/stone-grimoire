@@ -3,84 +3,33 @@
 <head>
   <meta charset="utf-8">
   <title>Cosmic Helix Renderer (ND-safe, Offline)</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="color-scheme" content="dark light">
-  <style>
-    /* ND-safe: calm contrast, static layout, generous spacing */
-    :root {
-      --bg:#0b0b12;
-      --ink:#e8e8f0;
-      --muted:#a6a6c1;
-    }
-    html, body {
-      margin:0;
-      padding:0;
-      background:var(--bg);
-      color:var(--ink);
-      font:14px/1.5 "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
-      min-height:100%;
-    }
-    header {
-      padding:16px;
-      border-bottom:1px solid rgba(232,232,240,0.08);
-      background:linear-gradient(180deg, rgba(18,18,26,0.88), rgba(11,11,18,0.66));
-      position:sticky;
-      top:0;
-      backdrop-filter:blur(2px);
-    }
-    header strong {
-      letter-spacing:0.08em;
-      text-transform:uppercase;
-      font-size:13px;
-    }
-    .status {
-      color:var(--muted);
-      font-size:12px;
-      margin-top:4px;
-    }
-    main {
-      padding:24px 16px 40px;
-    }
-    #stage {
-      display:block;
-      margin:0 auto 12px;
-      width:100%;
-      max-width:1440px;
-      height:auto;
-      box-shadow:0 0 0 1px rgba(255,255,255,0.08), 0 24px 64px rgba(0,0,0,0.55);
-      background:radial-gradient(circle at 50% 30%, rgba(255,255,255,0.06), transparent 58%);
-    }
-    .note {
-      max-width:880px;
-      margin:0 auto;
-      color:var(--muted);
-      font-size:13px;
-      text-align:center;
-    }
-    .fallback {
-      color:#f1d27f;
-    }
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="color-scheme" content="light dark">
+  <!-- Integration: this index keeps the renderer offline for cathedral study; no lore overwritten. -->
   <style>
-    /* ND-safe: calm contrast, no motion, generous spacing */
+    /* ND-safe design: calm contrast, no animation, generous breathing room */
     :root { --bg:#0b0b12; --ink:#e8e8f0; --muted:#a6a6c1; }
-    html,body { margin:0; padding:0; background:var(--bg); color:var(--ink); font:14px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+    html, body { margin:0; padding:0; background:var(--bg); color:var(--ink); font:14px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
     header { padding:12px 16px; border-bottom:1px solid #1d1d2a; }
-    .status { color:var(--muted); font-size:12px; }
-    #stage { display:block; margin:16px auto; box-shadow:0 0 0 1px #1d1d2a; }
-    .note { max-width:900px; margin:0 auto 16px; color:var(--muted); }
+    header strong { letter-spacing:0.08em; text-transform:uppercase; font-size:12px; }
+    .status { color:var(--muted); font-size:12px; margin-top:2px; }
+    main { padding:16px; display:flex; flex-direction:column; gap:12px; align-items:center; }
+    #stage { display:block; width:100%; max-width:1440px; height:auto; box-shadow:0 0 0 1px #1d1d2a; background:#080810; }
+    .note { max-width:900px; color:var(--muted); font-size:13px; text-align:center; }
     code { background:#11111a; padding:2px 4px; border-radius:3px; }
+    @media (prefers-reduced-motion: reduce) { * { animation:none !important; transition:none !important; } }
   </style>
 </head>
 <body>
   <header>
     <strong>Cosmic Helix Renderer</strong>
-    <div class="status" id="status">Loading palette…</div>
+    <div class="status" id="status">Loading palette...</div>
   </header>
   <main>
     <canvas id="stage" width="1440" height="900" aria-label="Layered sacred geometry canvas"></canvas>
-    <p class="note">Static layers: Vesica field, Tree-of-Life scaffold, Fibonacci curve, and double-helix lattice. No animation, no autoplay, ND-safe palette.</p>
+    <p class="note">Layers render once: Vesica field, Tree-of-Life scaffold, Fibonacci curve, and static double-helix lattice. Palette stays ND-safe; open this file directly with no network.</p>
   </main>
+
   <script type="module">
     import { renderHelix } from "./js/helix-renderer.mjs";
 
@@ -88,173 +37,18 @@
     const canvas = document.getElementById("stage");
     const ctx = canvas.getContext("2d");
 
-    const NUM = {
-      THREE:3,
-      SEVEN:7,
-      NINE:9,
-      ELEVEN:11,
-      TWENTYTWO:22,
-      THIRTYTHREE:33,
-      NINETYNINE:99,
-      ONEFORTYFOUR:144
-    };
-
-    const defaults = {
-      palette: {
-        bg:"#0b0b12",
-        ink:"#e8e8f0",
-        muted:"#a6a6c1",
-        layers:["#b1c7ff","#89f7fe","#a0ffa1","#ffd27f","#f5a3ff","#d0d0e6"]
-      }
-    };
-
-    function applyPalette(palette) {
-      const root = document.documentElement.style;
-      root.setProperty("--bg", palette.bg || defaults.palette.bg);
-      root.setProperty("--ink", palette.ink || defaults.palette.ink);
-      root.setProperty("--muted", palette.muted || defaults.palette.muted || "#a6a6c1");
-      if (Array.isArray(palette.layers) && palette.layers.length) {
-        const primary = palette.layers[0];
-        const halo = palette.layers[3] || palette.layers[0];
-        root.setProperty("--lattice", primary);
-        root.setProperty("--halo", halo);
-      }
-    }
-
-    async function loadPalette() {
-      try {
-        const module = await import("./data/palette.json", { assert: { type: "json" } });
-        return module.default;
-      } catch (err) {
-        try {
-          const res = await fetch("./data/palette.json", { cache: "no-store" });
-          if (!res.ok) throw new Error(String(res.status));
-          return await res.json();
-        } catch (fallbackErr) {
-          return null;
-        }
-      }
-    }
-
-    async function init() {
-      const palette = await loadPalette();
-      const active = palette || defaults.palette;
-      applyPalette(active);
-      if (palette) {
-        statusEl.textContent = "Palette loaded.";
-        statusEl.classList.remove("fallback");
-      } else {
-        statusEl.textContent = "Palette missing or blocked; using safe fallback.";
-        statusEl.classList.add("fallback");
-      }
-
-      try {
-        renderHelix(ctx, {
-          width: canvas.width,
-          height: canvas.height,
-          palette: active,
-          NUM
-        });
-      } catch (err) {
-        statusEl.textContent = `Renderer error: ${err.message}`;
-        statusEl.classList.add("fallback");
-      }
-    }
-
-    init();
-  </script>
-
-  <style>
-:root{ --lattice:#89a3ff; --halo:#d6b370; }
-.bg-lattice{position:fixed; inset:0; z-index:-1; display:grid; place-items:center; pointer-events:none}
-.lattice{
-  width:min(78vmin,880px); aspect-ratio:1; border-radius:50%; position:relative; isolation:isolate;
-  /* wireframe: meridians + parallels */
-  background:
-   repeating-conic-gradient(from 0deg, transparent 0 10deg, rgba(255,255,255,.08) 10deg 11deg),
-   repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,.08) 0 2px, transparent 2px 38px);
-  /* crisp ring */
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,.10) inset,
-    0 0 120px color-mix(in oklab, var(--lattice) 40%, transparent);
-  backdrop-filter: blur(0.5px);
-}
-.lattice::after{ /* Jovian middle ring */
-  content:""; position:absolute; inset:14%; border-radius:50%;
-  border:1px solid color-mix(in oklab, var(--halo) 75%, transparent);
-  box-shadow: 0 0 42px color-mix(in oklab, var(--halo) 30%, transparent) inset;
-  transform: perspective(700px) rotateX(62deg);
-}
-  </style>
-  <div class="bg-lattice" aria-hidden="true"><div class="lattice"></div></div>
-
-  <canvas id="nodes" width="1024" height="1024" style="position:fixed;inset:0;z-index:-1;pointer-events:none;"></canvas>
-  <script>
-    (() => {
-      const canvas = document.getElementById("nodes");
-      if (!canvas) return;
-      const context = canvas.getContext("2d");
-      // ND-safe: static glow network; redraw only on resize to avoid motion.
-      const draw = () => {
-        const size = Math.min(window.innerWidth, window.innerHeight) * 0.78;
-        const pixel = size * (window.devicePixelRatio || 1);
-        canvas.width = canvas.height = pixel;
-        canvas.style.width = canvas.style.height = size + "px";
-        canvas.style.left = ((window.innerWidth - size) / 2) + "px";
-        canvas.style.top = ((window.innerHeight - size) / 2) + "px";
-        const nodes = 72;
-        const radius = (pixel / 2) * 0.94;
-        const cx = canvas.width / 2;
-        const cy = canvas.height / 2;
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        for (let i = 0; i < nodes; i++) {
-          const angle = (i / nodes) * Math.PI * 2;
-          const x = cx + Math.cos(angle) * radius;
-          const y = cy + Math.sin(angle * 1.618) * radius * 0.65;
-          const glow = context.createRadialGradient(x, y, 0, x, y, 10 * (window.devicePixelRatio || 1));
-          glow.addColorStop(0, "#ffffff");
-          glow.addColorStop(1, "rgba(137,163,255,0.05)");
-          context.fillStyle = glow;
-          context.beginPath();
-          context.arc(x, y, 4 * (window.devicePixelRatio || 1), 0, Math.PI * 2);
-          context.fill();
-        }
-      };
-      draw();
-      window.addEventListener("resize", draw, { passive: true });
-    })();
-  </script>
-  <script>
-    window.addEventListener("cathedral:select", event => {
-      const tint = event.detail && event.detail.payload && event.detail.payload.color ? event.detail.payload.color : "#89a3ff";
-      document.documentElement.style.setProperty("--lattice", tint);
-    });
-  </script>
-    <div><strong>Cosmic Helix Renderer</strong> — layered sacred geometry (offline, ND-safe)</div>
-    <div class="status" id="status">Loading palette…</div>
-  </header>
-
-  <canvas id="stage" width="1440" height="900" aria-label="Layered sacred geometry canvas"></canvas>
-  <p class="note">This static renderer encodes Vesica, Tree-of-Life, Fibonacci, and a static double-helix lattice. No animation, no autoplay, no external libs. Open this file directly.</p>
-
-  <script type="module">
-    import { renderHelix } from "./js/helix-renderer.mjs";
-
-    const elStatus = document.getElementById("status");
-    const canvas = document.getElementById("stage");
-    const ctx = canvas.getContext("2d");
-
     async function loadJSON(path) {
       try {
-        const res = await fetch(path, { cache: "no-store" });
-        if (!res.ok) throw new Error(String(res.status));
-        return await res.json();
-      } catch (err) {
+        const response = await fetch(path, { cache: "no-store" });
+        if (!response.ok) throw new Error(String(response.status));
+        return await response.json();
+      } catch (error) {
+        console.warn("Palette load failed", error);
         return null;
       }
     }
 
-    const defaults = {
+    const DEFAULTS = {
       palette: {
         bg: "#0b0b12",
         ink: "#e8e8f0",
@@ -262,15 +56,27 @@
       }
     };
 
+    const NUM = {
+      THREE: 3,
+      SEVEN: 7,
+      NINE: 9,
+      ELEVEN: 11,
+      TWENTYTWO: 22,
+      THIRTYTHREE: 33,
+      NINETYNINE: 99,
+      ONEFORTYFOUR: 144
+    };
+
     const palette = await loadJSON("./data/palette.json");
-    const active = palette || defaults.palette;
-    elStatus.textContent = palette ? "Palette loaded." : "Palette missing; using safe fallback.";
+    const activePalette = palette || DEFAULTS.palette;
+    statusEl.textContent = palette ? "Palette loaded." : "Palette missing; using safe fallback.";
 
-    // Numerology constants anchor geometry proportions
-    const NUM = { THREE:3, SEVEN:7, NINE:9, ELEVEN:11, TWENTYTWO:22, THIRTYTHREE:33, NINETYNINE:99, ONEFORTYFOUR:144 };
-
-    // ND-safe rationale: no motion, high readability, soft colors, layered order
-    renderHelix(ctx, { width:canvas.width, height:canvas.height, palette:active, NUM });
+    renderHelix(ctx, {
+      width: canvas.width,
+      height: canvas.height,
+      palette: activePalette,
+      NUM
+    });
   </script>
 </body>
 </html>
