@@ -1,10 +1,21 @@
 [build]
+
+  publish = "site"
+  command = ""
+  [build.environment]
+    # Allow Netlify to understand LFS metadata but skip automatic smudging for PNG masters.
+    GIT_LFS_ENABLED = "true"
+    GIT_LFS_SKIP_SMUDGE = "1"
+    # Explicitly fetch only bot-safe formats when a build needs large binaries.
+    GIT_LFS_FETCH_INCLUDE = "*.webp,*.jpg,*.jpeg,*.avif"
+
   command = "npm run build"
   publish = "/"
   # User-provided custom instructions respected: offline-first build only.
 
 [build.environment]
   GIT_LFS_ENABLED = "false"
+
 
 [[headers]]
   for = "/*"

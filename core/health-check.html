@@ -24,7 +24,13 @@
   <h1>Stone Grimoire -- Health Check</h1>
   <p class="small">Verifies JSON, pages, engines, overlays, shaders, and plaque wiring.</p>
 </header>
-<div class="wrap"><div id="results" class="card">Running checks…</div></div>
+<div class="wrap">
+  <div id="gate" class="card">
+    <h3>Gate status</h3>
+    <p>Auth: <span id="auth">checking…</span></p>
+  </div>
+  <div id="results" class="card">Running checks…</div>
+</div>
 
 <script type="module">
 const rel = p => ('../' + p);
@@ -72,6 +78,10 @@ const optional = [
   'docs/bridge_code.md',
   'docs/bridge_dossier.md'
 ];
+
+const authSpan = document.getElementById('auth');
+const gateOn = document.cookie.includes('nf_jwt') || Boolean(window.netlifyIdentity);
+authSpan.textContent = gateOn ? 'possible gate detected' : 'none';
 
 async function headOk(path){
   try{

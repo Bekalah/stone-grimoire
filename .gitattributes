@@ -1,4 +1,11 @@
 
+# PNG masters stay local; disable all LFS filters so Netlify cannot smudge.
+
+*.jpg  filter=lfs diff=lfs merge=lfs -text
+*.jpeg filter=lfs diff=lfs merge=lfs -text
+*.webp filter=lfs diff=lfs merge=lfs -text
+
+
 # Git LFS disabled for static assets
 
 *.avif filter=lfs diff=lfs merge=lfs -text
