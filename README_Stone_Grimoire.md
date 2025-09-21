@@ -70,3 +70,8 @@ Harmonic checkpoints guide the Cathedral’s design:
 - **243 completion** — 3^5, cube of balance sealing the Cathedral.
 
 These numbers are the project’s Fibonacci-coded DNA, ensuring every layer folds into a coherent spiral.
+
+—
+
+## Resolver Bridge (why)
+To honor the Trinity linkage, `assets/js/resolve.js` offers a tiny, ND-safe bridge that asks the Cosmogenesis Learning Engine for the current worker guardian. The helper stays offline-ready by using a single on-demand fetch, giving each plaque optional context without disrupting the calm archive flow.
