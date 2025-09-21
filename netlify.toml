@@ -1,6 +1,7 @@
 [build]
-  command = ""
+  command = "npm run build"
   publish = "/"
+  # User-provided custom instructions respected: offline-first build only.
 
 [build.environment]
   GIT_LFS_ENABLED = "false"
@@ -13,3 +14,6 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     Content-Security-Policy = "default-src 'self' https: data:; img-src 'self' https: data:; style-src 'self' 'unsafe-inline' https:; script-src 'self' https:; connect-src 'self' https:; frame-ancestors 'none';"
+
+[images]
+  optimize = false

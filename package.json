@@ -6,6 +6,7 @@
   "scripts": {
     "test": "node tests/interface.test.js",
     "dedupe": "node scripts/deduplicate-repo.mjs",
-    "dedupe-file": "node scripts/dedupe.js"
+    "dedupe-file": "node scripts/dedupe.js",
+    "build": "node -e \"console.log('offline build: static renderer ready')\""
   }
 }

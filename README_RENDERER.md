@@ -1,62 +1,32 @@
 # Cosmic Helix Renderer
 
-Static, offline-safe renderer for the Cathedral lattice. Double-click `index.html` and the 1440×900 canvas will layer sacred geometry without motion.
+Static, offline renderer that paints the Cosmic Helix layers on a 1440x900 canvas. Double-click `index.html` in any browser and the geometry appears instantly with no network calls.
 
-## Features
+## Layers and Safety
 
-- **Layer order** (ND-safe): Vesica field → Tree-of-Life scaffold → Fibonacci curve → Double-helix lattice.
-- **Palette aware:** reads `data/palette.json` via native ES modules; if blocked (e.g., local file restrictions) it falls back to a built-in ND-safe palette and shows a status notice.
-- **Numerology alignment:** geometry dimensions reference the constants 3, 7, 9, 11, 22, 33, 99, and 144 for spacing and repetitions.
-- **Offline-first:** no network calls; everything lives inside `/index.html`, `/js/helix-renderer.mjs`, and `/data/palette.json`.
+- Vesica field anchors the scene with intersecting circles derived from constants 3, 7, 9, 11.
+- Tree-of-Life scaffold plots 10 sephirot plus Daath and wires 22 static paths.
+- Fibonacci curve traces three calm turns of a logarithmic spiral for gentle motion cues without animation.
+- Double-helix lattice adds two strands and 22 crossbars to complete the weave.
 
-## Files
-
-- `index.html` — entry point with ND-safe styles, wireframe lattice backdrop, luminous node halo, and renderer bootstrapping.
-- `js/helix-renderer.mjs` — pure ES module; exports `renderHelix(ctx, options)` and draws the four layers.
-- `data/palette.json` — optional theme overrides (background, ink, layer colors). If removed, defaults are used.
-
-## Usage
-
-1. Open the repository locally.
-2. Double-click `index.html` (no server required).
-3. Observe status line: "Palette loaded." means JSON was read, otherwise fallback palette is active.
-
-To adjust colors, edit `data/palette.json` (hex values only). Reload the page to apply the tint. The cathedral lattice background listens for custom `cathedral:select` events, so other scripts can retint the wireframe if desired.
-
-## Accessibility & ND Safety
-
-- Zero animation or autoplay; only static gradients and lines.
-- High contrast text (`--ink`) against deep background (`--bg`).
-- Layer comments in the module explain why each step preserves ND safety (soft glows, limited shadow blur).
-- Background and halo color variables respect Codex tint events without introducing motion.
-
-## Extending
-
-If you introduce new data files, keep them under `/data/` and prefer module imports (`import ... assert { type: "json" }`) so the renderer stays offline-friendly. For new geometry layers, follow the same pattern: derive counts from the numerology constants and keep helpers pure and documented.
-This lightweight offline renderer draws four layers of sacred geometry — Vesica field, Tree-of-Life scaffold, Fibonacci curve, and a static double-helix lattice — on a 1440×900 canvas. The palette is ND-safe: calm contrast, no motion, and every layer is annotated in code comments.
+Design notes are written directly in `js/helix-renderer.mjs`. Each helper is pure, and comments explain the ND-safe rationale (no motion, soft gradients, layered ordering).
 
 ## Files
 
-- `index.html` – entry point with inline status messaging and a `<canvas>` sized to 1440×900.
-- `js/helix-renderer.mjs` – pure ES module that renders the layered geometry with no external dependencies.
-- `data/palette.json` – optional palette override; edit or remove to adjust colors. Fallback colors load automatically if the file is missing or blocked by the browser.
+- `index.html` - entry point with header status line and a `<canvas>` sized to 1440x900.
+- `js/helix-renderer.mjs` - ES module exporting `renderHelix(ctx, options)`; contains pure helpers for each layer.
+- `data/palette.json` - optional palette override. Remove or edit to retint the renderer while staying offline.
 
 ## Usage (Offline)
 
-1. Ensure the directory structure is intact (`index.html`, `js/`, `data/`).
-2. Double-click `index.html` in any modern browser. No server or build step is required.
-3. If the palette fails to load (common when using the `file://` protocol), the header status will note the fallback and the default palette will render safely.
+1. Keep the three files together (plus `js/` and `data/` directories).
+2. Double-click `index.html`. The header reports whether the palette JSON loaded or the fallback palette is active.
+3. Study the static output. There are no listeners, timers, or transitions.
 
-## Geometry Notes
+## Customising
 
-- Vesica field uses intersecting circles spaced by numerology constants (3, 7, 9) to form the foundational lattice.
-- Tree-of-Life layer plots 10 sephirot plus translucent Daath, wiring 22 static paths.
-- Fibonacci curve samples 22 steps of a logarithmic spiral using the golden ratio (φ) to keep the arc smooth without animation.
-- Double helix forms three static cycles with 22 crossbars, referencing constants 11, 22, 33, and 144 for spacing and resolution.
+- Edit `data/palette.json` to change colors. If the file is missing, built-in ND-safe values render automatically.
+- Pass a custom `NUM` object to `renderHelix` if you need alternative numerology constants for experiments.
+- Additional layers should follow the same pattern: pure helper, generous comments about safety, and offline-only data.
 
-## Customisation
-
-- Adjust palette colors inside `data/palette.json` to retint layers.
-- Geometry scale factors are expressed via the numerology constants object inside `index.html`; tweak values there or pass new ones to `renderHelix` for experiments.
-
-ND-safe oath: no animation, no flashing, no external calls. The renderer is fully offline and respects trauma-informed design.
+Why this document: it explains how the renderer upholds the circuitum99 canon while keeping every asset offline-first and trauma-informed.
