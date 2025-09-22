@@ -6,10 +6,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="color-scheme" content="light dark">
   <style>
-
-    /* ND-safe: calm contrast, no motion, generous breathing room */
     :root { --bg:#0b0b12; --ink:#e8e8f0; --muted:#a6a6c1; }
-    html,body { margin:0; padding:0; background:var(--bg); color:var(--ink); font:14px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+    html,body { margin:0; padding:0; background:var(--bg); color:var(--ink); font:14px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
     header { padding:12px 16px; border-bottom:1px solid #1d1d2a; }
     header strong { letter-spacing:0.08em; text-transform:uppercase; font-size:12px; }
     .status { color:var(--muted); font-size:12px; margin-top:2px; }
@@ -17,60 +15,6 @@
     #stage { display:block; width:100%; max-width:1440px; height:auto; box-shadow:0 0 0 1px #1d1d2a; background:#080810; }
     .note { max-width:900px; color:var(--muted); font-size:13px; text-align:center; }
     code { background:#11111a; padding:2px 4px; border-radius:3px; }
-
-    /* ND-safe: calm contrast, no motion, generous spacing */
-    :root {
-      --bg:#0b0b12;
-      --ink:#e8e8f0;
-      --muted:#a6a6c1;
-    }
-
-    html,
-    body {
-      margin:0;
-      padding:0;
-      background:var(--bg);
-      color:var(--ink);
-      font:14px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-    }
-
-    header {
-      padding:12px 16px;
-      border-bottom:1px solid #1d1d2a;
-    }
-
-    header strong {
-      font-size:13px;
-      letter-spacing:0.08em;
-      text-transform:uppercase;
-    }
-
-    .status {
-      margin-top:4px;
-      color:var(--muted);
-      font-size:12px;
-    }
-
-    #stage {
-      display:block;
-      margin:16px auto;
-      box-shadow:0 0 0 1px #1d1d2a;
-      background:#090912;
-    }
-
-    .note {
-      max-width:900px;
-      margin:0 auto 16px;
-      padding:0 16px 24px;
-      color:var(--muted);
-    }
-
-    code {
-      background:#11111a;
-      padding:2px 4px;
-      border-radius:3px;
-    }
-
   </style>
 </head>
 <body>
@@ -84,11 +28,6 @@
     <p class="note">This static renderer paints four calm layers in order: Vesica field, Tree-of-Life scaffold, Fibonacci curve, and a static double-helix lattice. Open this file directly—no external network calls occur.</p>
   </main>
 
-
-  <canvas id="stage" width="1440" height="900" aria-label="Layered sacred geometry canvas"></canvas>
-  <p class="note">This static renderer encodes Vesica, Tree-of-Life, Fibonacci, and a static double-helix lattice. No animation, no autoplay, no external libs. Open this file directly.</p>
-
-
   <script type="module">
     import { renderHelix } from "./js/helix-renderer.mjs";
 
@@ -98,22 +37,13 @@
 
     async function loadJSON(path) {
       try {
-        const res = await fetch(path, { cache:"no-store" });
+        const res = await fetch(path, { cache: "no-store" });
         if (!res.ok) throw new Error(String(res.status));
         return await res.json();
       } catch (error) {
         return null;
       }
     }
-
-    const defaults = {
-      palette: {
-        bg:"#0b0b12",
-        ink:"#e8e8f0",
-        muted:"#a6a6c1",
-        layers:["#b1c7ff","#89f7fe","#a0ffa1","#ffd27f","#f5a3ff","#d0d0e6"]
-      }
-    };
 
     function applyShellColours(palette) {
       document.documentElement.style.setProperty("--bg", palette.bg || defaults.palette.bg);
@@ -125,30 +55,38 @@
       return Boolean(value) && typeof value.bg === "string" && typeof value.ink === "string";
     }
 
+    const defaults = {
+      palette: {
+        bg: "#0b0b12",
+        ink: "#e8e8f0",
+        muted: "#a6a6c1",
+        layers: ["#b1c7ff", "#89f7fe", "#a0ffa1", "#ffd27f", "#f5a3ff", "#d0d0e6"]
+      }
+    };
+
     const palette = await loadJSON("./data/palette.json");
     const active = isPalette(palette) ? palette : defaults.palette;
     elStatus.textContent = isPalette(palette) ? "Palette loaded." : "Palette missing; using safe fallback.";
     applyShellColours(active);
 
     const NUM = {
-      THREE:3,
-      SEVEN:7,
-      NINE:9,
-      ELEVEN:11,
-      TWENTYTWO:22,
-      THIRTYTHREE:33,
-      NINETYNINE:99,
-      ONEFORTYFOUR:144
+      THREE: 3,
+      SEVEN: 7,
+      NINE: 9,
+      ELEVEN: 11,
+      TWENTYTWO: 22,
+      THIRTYTHREE: 33,
+      NINETYNINE: 99,
+      ONEFORTYFOUR: 144
     };
 
-    // ND-safe rationale: single render pass, soft palette, layered order without motion.
     renderHelix(ctx, {
-      width:canvas.width,
-      height:canvas.height,
-      palette:{
-        bg:active.bg,
-        ink:active.ink,
-        layers:Array.isArray(active.layers) && active.layers.length > 0 ? active.layers.slice() : defaults.palette.layers
+      width: canvas.width,
+      height: canvas.height,
+      palette: {
+        bg: active.bg,
+        ink: active.ink,
+        layers: Array.isArray(active.layers) && active.layers.length ? active.layers.slice() : defaults.palette.layers
       },
       NUM
     });

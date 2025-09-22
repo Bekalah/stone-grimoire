@@ -1,0 +1,12 @@
+{
+  "id": "coven-default",
+  "name": "Cathedral Seed",
+  "witch": "profiles/default.witch.json",
+  "members": ["profiles/default.witch.json"],
+  "packs": ["packs/sample-world.pack.json"],
+  "policy": {
+    "nd_safe": true,
+    "sharing": "private-by-default",
+    "license": "BY creator, non-commercial unless specified"
+  }
+}
