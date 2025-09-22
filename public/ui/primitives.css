@@ -1,0 +1,204 @@
+/*
+  primitives.css
+  Structural primitives for the cathedral hub two-panel shell.
+  ND-safe: static layout, calm gradients, enforced 44px touch targets.
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: var(--ui-space-5);
+  min-height: 100vh;
+  font-family: var(--ui-font-sans);
+  font-size: var(--ui-font-size-base);
+  line-height: 1.5;
+  background: radial-gradient(circle at top, rgba(66, 70, 112, 0.35), transparent 65%), var(--ui-color-bg-deep);
+  color: var(--ui-color-ink-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 960px) {
+  body {
+    padding: var(--ui-space-4);
+  }
+}
+
+.ui-shell {
+  width: min(1200px, 100%);
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(420px, 2fr);
+  gap: var(--ui-space-5);
+  background: linear-gradient(160deg, rgba(26, 26, 44, 0.95), rgba(12, 12, 20, 0.9));
+  border-radius: var(--ui-radius-m);
+  box-shadow: var(--ui-shadow-frame);
+  border: var(--ui-border-soft);
+  padding: var(--ui-space-5);
+}
+
+@media (max-width: 900px) {
+  .ui-shell {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel {
+  background: var(--ui-color-bg-panel);
+  border-radius: var(--ui-radius-s);
+  padding: var(--ui-space-5);
+  border: var(--ui-border-soft);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-space-4);
+}
+
+.panel--nav {
+  background: linear-gradient(180deg, rgba(32, 32, 56, 0.92), rgba(22, 22, 38, 0.95));
+}
+
+.panel h1,
+.panel h2,
+.panel h3 {
+  margin: 0;
+  font-family: var(--ui-font-sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: var(--ui-font-size-heading);
+}
+
+.panel h1 {
+  font-size: var(--ui-font-size-title);
+}
+
+.panel p {
+  margin: 0;
+  color: var(--ui-color-ink-muted);
+}
+
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-space-2);
+}
+
+.nav-item {
+  display: block;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: var(--ui-space-touch);
+  padding: 0 var(--ui-space-3);
+  border-radius: var(--ui-radius-s);
+  color: var(--ui-color-ink-strong);
+  text-decoration: none;
+  background: rgba(122, 144, 210, 0.16);
+  border: var(--ui-border-soft);
+}
+
+.nav-link:focus-visible,
+.nav-link:hover {
+  outline: none;
+  border-color: rgba(123, 179, 240, 0.7);
+  box-shadow: 0 0 0 2px rgba(123, 179, 240, 0.35);
+}
+
+.motion-gate {
+  border: var(--ui-border-soft);
+  border-radius: var(--ui-radius-s);
+  padding: var(--ui-space-4);
+  background: rgba(12, 12, 24, 0.65);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-space-3);
+}
+
+.motion-gate__title {
+  font-size: var(--ui-font-size-heading);
+}
+
+.motion-gate__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ui-space-3);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--ui-space-touch);
+  min-height: var(--ui-space-touch);
+  padding: 0 var(--ui-space-4);
+  border-radius: var(--ui-radius-s);
+  border: 1px solid rgba(123, 179, 240, 0.6);
+  background: rgba(123, 179, 240, 0.22);
+  color: var(--ui-color-ink-strong);
+  font-size: var(--ui-font-size-small);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+
+.button:focus-visible,
+.button:hover {
+  outline: none;
+  border-color: rgba(160, 255, 161, 0.8);
+  box-shadow: 0 0 0 2px rgba(160, 255, 161, 0.35);
+}
+
+.button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-space-3);
+}
+
+.section__title {
+  font-size: var(--ui-font-size-heading);
+}
+
+.section__content {
+  max-width: 70ch;
+  color: var(--ui-color-ink-muted);
+}
+
+.code-snippet {
+  font-family: var(--ui-font-mono);
+  background: rgba(18, 18, 28, 0.8);
+  border-radius: var(--ui-radius-s);
+  padding: var(--ui-space-3);
+  border: var(--ui-border-soft);
+  overflow-x: auto;
+}
+
+[data-motion="still"] .motion-enabled {
+  display: none;
+}
+
+[data-gate-state="dismissed"] .motion-gate {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001s !important;
+    transition-duration: 0.001s !important;
+  }
+}
