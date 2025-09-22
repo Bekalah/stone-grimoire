@@ -1,4 +1,3 @@
-
 /*
   helix-renderer.mjs
   ND-safe static renderer for the Cosmic Helix canvas.
@@ -77,10 +76,12 @@ function normaliseOptions(options) {
 function normalisePalette(palette) {
   const base = palette || {};
   const fallbackLayers = ["#8ba8ff", "#74d8f2", "#98f7c4", "#ffd8a8", "#f6b8ff", "#d8dcff"];
+  const providedLayers = Array.isArray(base.layers) ? base.layers.filter(tone => typeof tone === "string") : [];
+  const layers = providedLayers.length > 0 ? providedLayers : fallbackLayers;
   return {
     bg: typeof base.bg === "string" ? base.bg : "#0b0b12",
     ink: typeof base.ink === "string" ? base.ink : "#e8e8f0",
-    layers: Array.isArray(base.layers) && base.layers.length > 0 ? base.layers.slice() : fallbackLayers
+    layers: layers.slice()
   };
 }
 
@@ -126,22 +127,35 @@ function normaliseNumerology(NUM) {
  * @param {object} palette - Palette object containing `bg` (background color), `ink`, and `layers` (array); used to select colors for the fill and glow.
  */
 function paintBackground(ctx, width, height, palette) {
-  /* ND-safe base: solid dusk tone with soft radial glow to avoid harsh contrast. */
+  /* ND-safe base: solid dusk tone with soft gradients to avoid harsh contrast. */
   ctx.fillStyle = palette.bg;
   ctx.fillRect(0, 0, width, height);
 
-  const gradient = ctx.createRadialGradient(
+  const radial = ctx.createRadialGradient(
     width / 2,
     height / 2,
     Math.min(width, height) / 8,
     width / 2,
     height / 2,
-    Math.max(width, height) / 1.2
+    Math.max(width, height) / 1.1
   );
-  gradient.addColorStop(0, hexToRgba(pickLayer(palette.layers, 1, palette.ink), 0.18));
-  gradient.addColorStop(1, hexToRgba(palette.bg, 0));
+  radial.addColorStop(0, hexToRgba(pickLayer(palette.layers, 1, palette.ink), 0.22));
+  radial.addColorStop(1, hexToRgba(palette.bg, 0));
+  ctx.fillStyle = radial;
+  ctx.fillRect(0, 0, width, height);
 
-  ctx.fillStyle = gradient;
+  const glassSheen = ctx.createLinearGradient(0, 0, width, 0);
+  glassSheen.addColorStop(0, hexToRgba(pickLayer(palette.layers, 5, palette.ink), 0.08));
+  glassSheen.addColorStop(0.45, hexToRgba(palette.bg, 0));
+  glassSheen.addColorStop(1, hexToRgba(pickLayer(palette.layers, 0, palette.ink), 0.06));
+  ctx.fillStyle = glassSheen;
+  ctx.fillRect(0, 0, width, height);
+
+  const verticalGlow = ctx.createLinearGradient(width * 0.2, 0, width * 0.8, 0);
+  verticalGlow.addColorStop(0, hexToRgba(palette.bg, 0));
+  verticalGlow.addColorStop(0.5, hexToRgba(pickLayer(palette.layers, 2, palette.ink), 0.08));
+  verticalGlow.addColorStop(1, hexToRgba(palette.bg, 0));
+  ctx.fillStyle = verticalGlow;
   ctx.fillRect(0, 0, width, height);
 }
 
@@ -160,18 +174,11 @@ function paintBackground(ctx, width, height, palette) {
 function drawVesicaField(ctx, width, height, palette, NUM) {
   /* Layer 1: Vesica grid. Calm line weights keep intersections gentle. */
   const field = buildVesicaField(width, height, NUM);
-  const rimColour = hexToRgba(pickLayer(palette.layers, 0, palette.ink), 0.8);
-  const gridColour = hexToRgba(pickLayer(palette.layers, 2, palette.ink), 0.35);
+  const rimColour = hexToRgba(pickLayer(palette.layers, 0, palette.ink), 0.85);
+  const gridColour = hexToRgba(pickLayer(palette.layers, 2, palette.ink), 0.32);
 
   ctx.save();
-  ctx.strokeStyle = rimColour;
-  ctx.lineWidth = 2;
-  field.circles.forEach(circle => {
-    ctx.beginPath();
-    ctx.arc(circle.x, circle.y, circle.r, 0, Math.PI * 2);
-    ctx.stroke();
-  });
-
+  clipToVesica(ctx, field.circles);
   ctx.strokeStyle = gridColour;
   ctx.lineWidth = 1;
   ctx.setLineDash([NUM.THREE, NUM.THREE]);
@@ -179,6 +186,17 @@ function drawVesicaField(ctx, width, height, palette, NUM) {
     ctx.beginPath();
     ctx.moveTo(segment.ax, segment.ay);
     ctx.lineTo(segment.bx, segment.by);
+    ctx.stroke();
+  });
+  ctx.restore();
+
+  ctx.save();
+  ctx.strokeStyle = rimColour;
+  ctx.lineWidth = 2;
+  ctx.lineJoin = "round";
+  field.circles.forEach(circle => {
+    ctx.beginPath();
+    ctx.arc(circle.x, circle.y, circle.r, 0, Math.PI * 2);
     ctx.stroke();
   });
   ctx.restore();
@@ -248,6 +266,7 @@ function drawTreeOfLife(ctx, width, height, palette, NUM) {
   ctx.strokeStyle = hexToRgba(pickLayer(palette.layers, 3, palette.ink), 0.6);
   ctx.lineWidth = 1.5;
   ctx.lineCap = "round";
+  ctx.lineJoin = "round";
   paths.forEach(pair => {
     const start = nodes[pair[0]];
     const end = nodes[pair[1]];
@@ -259,6 +278,8 @@ function drawTreeOfLife(ctx, width, height, palette, NUM) {
 
   ctx.fillStyle = hexToRgba(pickLayer(palette.layers, 1, palette.ink), 0.9);
   const nodeRadius = computeNodeRadius(width, height, NUM);
+  ctx.shadowColor = hexToRgba(pickLayer(palette.layers, 1, palette.ink), 0.28);
+  ctx.shadowBlur = nodeRadius * 0.9;
   nodes.forEach(node => {
     ctx.beginPath();
     ctx.arc(node.x, node.y, nodeRadius, 0, Math.PI * 2);
@@ -335,6 +356,8 @@ function drawFibonacciCurve(ctx, width, height, palette, NUM) {
   ctx.save();
   ctx.strokeStyle = hexToRgba(pickLayer(palette.layers, 4, palette.ink), 0.85);
   ctx.lineWidth = 2;
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
   ctx.beginPath();
   points.forEach((point, index) => {
     if (index === 0) ctx.moveTo(point.x, point.y);
@@ -396,6 +419,7 @@ function drawDoubleHelix(ctx, width, height, palette, NUM) {
   ctx.save();
   ctx.strokeStyle = latticeColour;
   ctx.lineWidth = 1;
+  ctx.lineCap = "round";
   helix.crossbars.forEach(bar => {
     ctx.beginPath();
     ctx.moveTo(bar.ax, bar.ay);
@@ -405,6 +429,8 @@ function drawDoubleHelix(ctx, width, height, palette, NUM) {
 
   ctx.strokeStyle = strandColour;
   ctx.lineWidth = 2;
+  ctx.lineJoin = "round";
+  ctx.lineCap = "round";
   drawPolyline(ctx, helix.strandA);
   drawPolyline(ctx, helix.strandB);
   ctx.restore();
@@ -469,6 +495,16 @@ function computeNodeRadius(width, height, NUM) {
 }
 
 
+/* Clip helper keeps the vesica grid inside the twin circle lens. */
+function clipToVesica(ctx, circles) {
+  ctx.beginPath();
+  circles.forEach(circle => {
+    ctx.moveTo(circle.x + circle.r, circle.y);
+    ctx.arc(circle.x, circle.y, circle.r, 0, Math.PI * 2);
+  });
+  ctx.clip();
+}
+
 /**
  * Safely select a color string from a palette layers array.
  *
@@ -497,7 +533,10 @@ function pickLayer(layers, index, fallback) {
  * @returns {string} CSS `rgba(r,g,b,a)` string representing the color with the given alpha.
  */
 function hexToRgba(hex, alpha) {
-  const value = hex.replace("#", "");
+  if (typeof hex !== "string") {
+    return "rgba(255,255,255," + alpha + ")";
+  }
+  const value = hex.replace("#", "").trim();
   if (value.length !== 6) {
     return "rgba(255,255,255," + alpha + ")";
   }
