@@ -1,8 +1,5 @@
 {
   "meta": {
-codex/update-world-of-enchantment-assets
-    "name": "Circuitum99 -- Perm Style",
-=======
     "name": "circuitum99 -- Perm Style",
     "version": "3.7.0",
     "source": [
@@ -11,82 +8,128 @@ codex/update-world-of-enchantment-assets
       "cosmogenesis/registry/datasets/palettes.core.json"
     ],
     "nd_safe": true,
-odex/update-world-of-enchantment-assets
-=======
-    "notes": "World-of-Enchantment baseline; Avalon fixed; Aeons flavor; Violet Flame ↔ Respawn Gate alias; Witch-as-the-Coven ward; Solfeggio × BioGeometry; Egregores, Consecration Angels, Pillars; True-fairy shimmer."
- main
     "notes": "World-of-Enchantment baseline; Avalon (Dion Fortune) fixed; Theosophical Aeons available as flavor; Violet Flame ↔ Respawn Gate alias; Witch-as-the-Coven protection sigil encoded; Solfeggio × BioGeometry; Egregores, Consecration Angels, Pillars; True-fairy shimmer."
   },
   "palette": {
     "void": "#0B0B0B",
     "ink": "#141414",
     "bone": "#F8F5EF",
-
     "indigo": "#280050",
     "violet": "#460082",
     "blue": "#0080FF",
     "green": "#00FF80",
     "amber": "#FFC800",
     "light": "#FFFFFF",
-
     "crimson": "#B7410E",
     "gold": "#C9A227",
     "obsidian": "#0B0B0B",
     "rose_quartz": "#FFB6C1",
     "teal_glow": "#00CED1",
     "violet_alt": "#8A2BE2",
-
     "gonzalez_palette": ["#0b0b0b", "#16121b", "#2a2140", "#5e4ba8", "#e6e6e6"],
-    "obsidian_glass": "#1c1c1c",
-    "obsidian_sheen": "#2e2e2e",
+    "obsidian_glass": "#1C1C1C",
+    "obsidian_sheen": "#2E2E2E",
     "obsidian_rainbow": "#545455",
     "shungite": "#252525",
-    "tourmaline": "#1b2e34",
-    "basalt": "#2d2d30",
-    "glint_silver": "#d9dfe4",
-    "lava_ember": "#ff4500",
-    "lava_core": "#b22222",
-    "raku_copper": "#b87333",
+    "tourmaline": "#1B2E34",
+    "basalt": "#2D2D30",
+    "glint_silver": "#D9DFE4",
+    "lava_ember": "#FF4500",
+    "lava_core": "#B22222",
+    "raku_copper": "#B87333",
     "raku_charcoal": "#333333",
-    "raku_violet": "#6a0dad",
-    "raku_azure": "#007fff",
-    "gold_leaf": "#d4af37",
-    "gold_leaf_warm": "#ffcc66",
-    "gold_leaf_cold": "#c0c080",
-    "nacre_pearl": "#f0ead6",
-    "moonstone": "#e0e4f3",
-    "moonstone_glow": "#cfd8dc",
-    "abalone_shell": "#7fffd4",
-    "avalon_mist": "#ccd6d9",
-    "avalon_night": "#1a1a2e",
-    "tor_stone": "#8e8e83",
-    "isle_reed": "#6b8e23",
-    "astral_dusk": "#4b0082",
-    "astral_dawn": "#ffefd5",
-    "starlight_silver": "#f8f8ff",
-    "starlight_gold": "#fff8dc",
-    "violet_core": "#8a2be2",
-    "violet_flare": "#bf00ff",
-    "violet_smoke": "#551a8b",
-    "violet_aura": "#c9a0dc",
-    "grail_gold": "#e4c580"
-    "obsidian_glass": {"base":"#0B0B0B","sheen":"#1A1A1A","rainbow":"#3A3A3A"},
-    "shungite": "#101010",
-    "tourmaline": "#2E3A3F",
-    "basalt": "#2B2B2B",
-    "glint_silver": "#C0C0C0",
-    "lava": {"ember":"#FF4500","core":"#B22222"},
-    "raku": {"copper":"#B87333","charcoal":"#333333","violet":"#6A0DAD","azure":"#007FFF"},
-    "gold_leaf": {"base":"#E6C200","warm":"#FFD700","cold":"#C0B283"},
-    "nacre": {"pearl":"#F2F3F4","moonstone":"#E0E5FF","moonstone_glow":"#A7C7E7","abalone_pink":"#FFC0CB","abalone_green":"#66CDAA","abalone_blue":"#7FFFD4"},
-    "avalon": {"mist":"#BCC2C6","night":"#1C2230","tor_stone":"#8B8C7A","isle_reed":"#556B2F"},
-    "astral": {"sky":"#5AA9E6","violet":"#A06CD5"},
-    "starlight": {"silver":"#E5E9F2","gold":"#F6E27F"},
+    "raku_violet": "#6A0DAD",
+    "raku_azure": "#007FFF",
+    "gold_leaf": "#D4AF37",
+    "gold_leaf_warm": "#FFCC66",
+    "gold_leaf_cold": "#C0C080",
+    "nacre_pearl": "#F0EAD6",
+    "moonstone": "#E0E4F3",
+    "moonstone_glow": "#CFD8DC",
+    "abalone_shell": "#7FFFD4",
+    "avalon_mist": "#CCD6D9",
+    "avalon_night": "#1A1A2E",
+    "tor_stone": "#8E8E83",
+    "isle_reed": "#6B8E23",
+    "astral_dusk": "#4B0082",
+    "astral_dawn": "#FFEFD5",
+    "starlight_silver": "#F8F8FF",
+    "starlight_gold": "#FFF8DC",
     "violet_core": "#460082",
-    "violet_flare": "#8A2BE2",
-    "violet_smoke": "#724A9A",
-    "violet_aura": "#BB86FC",
-    "grail_gold": "#D4AF37"
+    "violet_core_alt": "#8A2BE2",
+    "violet_flare": "#BF00FF",
+    "violet_flare_alt": "#8A2BE2",
+    "violet_smoke": "#551A8B",
+    "violet_smoke_soft": "#724A9A",
+    "violet_aura": "#C9A0DC",
+    "violet_aura_bright": "#BB86FC",
+    "grail_gold": "#E4C580",
+    "grail_gold_bright": "#D4AF37",
+    "obsidian_glass_set": {
+      "base": "#0B0B0B",
+      "sheen": "#1A1A1A",
+      "rainbow": "#3A3A3A"
+    },
+    "shungite_deep": "#101010",
+    "tourmaline_ridge": "#2E3A3F",
+    "basalt_ash": "#2B2B2B",
+    "glint_silver_alt": "#C0C0C0",
+    "lava_set": {
+      "ember": "#FF4500",
+      "core": "#B22222"
+    },
+    "raku_set": {
+      "copper": "#B87333",
+      "charcoal": "#333333",
+      "violet": "#6A0DAD",
+      "azure": "#007FFF"
+    },
+    "gold_leaf_set": {
+      "base": "#E6C200",
+      "warm": "#FFD700",
+      "cold": "#C0B283"
+    },
+    "nacre_set": {
+      "pearl": "#F2F3F4",
+      "moonstone": "#E0E5FF",
+      "moonstone_glow": "#A7C7E7",
+      "abalone_pink": "#FFC0CB",
+      "abalone_green": "#66CDAA",
+      "abalone_blue": "#7FFFD4"
+    },
+    "avalon_set": {
+      "mist": "#BCC2C6",
+      "night": "#1C2230",
+      "tor_stone": "#8B8C7A",
+      "isle_reed": "#556B2F"
+    },
+    "astral_set": {
+      "sky": "#5AA9E6",
+      "violet": "#A06CD5"
+    },
+    "starlight_set": {
+      "silver": "#E5E9F2",
+      "gold": "#F6E27F"
+    },
+    "fae_mist": "#C8D8FF",
+    "fae_glow": "#A7F3CE",
+    "star_cobalt": "#27408B",
+    "rose_heart": "#F6B3C6",
+    "rose_leaf": "#6FAF7F",
+    "avalon_moss": "#4F6B3C",
+    "pink_grace": "#F8CDEB",
+    "violet_flame_core": "#6B2FE0",
+    "violet_flame_halo": "#F0D0FF"
+  },
+  "secondary": {
+    "sec_bg": "#101018",
+    "sec_ink": "#F5F5FA",
+    "sec_edge": "#2F2F44",
+    "sec_sun": "#F6C177",
+    "sec_sea": "#4FB7DD",
+    "sec_fern": "#70D39B",
+    "sec_rose": "#F5A3B7",
+    "sec_amethyst": "#B68CFF"
   },
   "line": {
     "hair": 1,
@@ -97,7 +140,13 @@ odex/update-world-of-enchantment-assets
     "display": "'EB Garamond','Junicode',serif",
     "gothic": "'Cinzel',serif",
     "ui": "'Inter',system-ui,sans-serif",
-    "scale": { "h1": 1.888, "h2": 1.555, "h3": 1.333, "body": 1.0, "small": 0.888 }
+    "scale": {
+      "h1": 1.888,
+      "h2": 1.555,
+      "h3": 1.333,
+      "body": 1,
+      "small": 0.888
+    }
   },
   "geometry": {
     "vesica_ratio": 1.732,
@@ -109,36 +158,104 @@ odex/update-world-of-enchantment-assets
   "layers": {
     "visionary": "visionary-grid",
     "rakuPatina": "raku-patina",
-    "goldLeaf": "goldLeaf",
-    "pearl": "nacre",
-    "moonstone": "adularescence",
+    "goldLeaf": "gold-leaf",
+    "pearl": "nacre-pearl",
+    "moonstone": "moonstone-glow",
     "abalone": "abalone-shell",
     "gonzVelvet": "oracle-velvet",
-    "faeShimmer": "true-fairy",
-    "roseGate": "roseGate",
-    "violetFlame": "violetFlame",
-    "violetGate": "violetGate",
-    "respawnGate": "respawnGate",
-    "avalonGrove": "avalonGrove",
-    "inBetweenVeil": "inBetweenVeil",
-    "trueFairy": "trueFairy",
-    "protectionSigil": "protectionSigil"
+    "faeShimmer": "fae-veil",
+    "roseGate": "rose-gate",
+    "violetFlame": "violet-flame",
+    "violetGate": "violet-gate",
+    "respawnGate": "respawn-gate",
+    "avalonGrove": "avalon-grove",
+    "inBetweenVeil": "between-narthex",
+    "trueFairy": "true-fairy",
+    "protectionSigil": "protection-handsigil",
+    "helixLattice": "helix-lattice"
+  },
+  "layer_aliases": {
+    "visionary_grid": "visionary-grid",
+    "raku-patina": "raku-patina",
+    "goldLeaf": "gold-leaf",
+    "gold_leaf": "gold-leaf",
+    "pearl": "nacre-pearl",
+    "moonstone": "moonstone-glow",
+    "abalone": "abalone-shell",
+    "oracle_velvet": "oracle-velvet",
+    "fae_shimmer": "fae-veil",
+    "rose_gate": "rose-gate",
+    "violet_flame": "violet-flame",
+    "violet_gate": "violet-gate",
+    "respawn_gate": "respawn-gate",
+    "avalon_grove": "avalon-grove",
+    "between_realm": "between-narthex",
+    "true_fairy": "true-fairy",
+    "protection_sigil": "protection-handsigil"
   },
   "materials": {
-    "volcanic_obsidian": ["obsidian_glass","obsidian_sheen","obsidian_rainbow"],
-    "shungite": ["shungite","tourmaline","basalt","glint_silver"],
-    "raku_lineage": ["raku_copper","raku_charcoal","raku_violet","raku_azure"],
-    "gold_leaf": ["gold_leaf","gold_leaf_warm","gold_leaf_cold"],
-    "mother_of_pearl": ["nacre_pearl"],
-    "moonstone": ["moonstone","moonstone_glow"],
-    "abalone": ["abalone_shell"]
+    "groups": {
+      "volcanic_obsidian": ["obsidian_glass", "obsidian_sheen", "obsidian_rainbow"],
+      "shungite": ["shungite", "tourmaline", "basalt", "glint_silver"],
+      "raku_lineage": ["raku_copper", "raku_charcoal", "raku_violet", "raku_azure"],
+      "gold_leaf": ["gold_leaf", "gold_leaf_warm", "gold_leaf_cold"],
+      "mother_of_pearl": ["nacre_pearl"],
+      "moonstone": ["moonstone", "moonstone_glow"],
+      "abalone": ["abalone_shell"]
+    },
+    "order": [
+      "volcanic_obsidian",
+      "shungite",
+      "raku_lineage",
+      "gold_leaf",
+      "mother_of_pearl",
+      "moonstone",
+      "abalone"
+    ]
   },
   "effects": {
-    "stars": "twinkle",
-    "ember_eyes": true
+    "stars": {
+      "token": "twinkle",
+      "nd_safe": true,
+      "notes": "Static twilight shimmer; no flicker."
+    },
+    "ember_eyes": {
+      "enabled": true,
+      "nd_safe": true,
+      "notes": "Slow ember warmth for guardian art; no strobe."
+    },
+    "fae_veil": {
+      "class": "fae-veil",
+      "palette": ["fae_mist", "fae_glow", "star_cobalt"],
+      "nd_safe": true,
+      "notes": "Gossamer Avalon overlay with layered depth."
+    },
+    "violet_flame": {
+      "class": "violet-flame",
+      "steps": ["Invoke", "Rotate", "Transmute", "Replace"],
+      "ray": "VI",
+      "nd_safe": true,
+      "notes": "Four-step radial field; motion only on opt-in."
+    },
+    "rose_gate": {
+      "class": "rose-gate",
+      "geometry": "phi-spiral",
+      "nd_safe": true,
+      "notes": "Petal lattice for heart gateways."
+    },
+    "morgan_sigil": {
+      "class": "morgan-sigil",
+      "nd_safe": true,
+      "notes": "Static protective border; no flash."
+    },
+    "helix_lattice": {
+      "class": "helix-lattice",
+      "nd_safe": true,
+      "notes": "Double-helix weave rendered without motion."
+    }
   },
   "healing": {
-    "solfeggio": {
+    "solfeggio_map": {
       "396": "liberation from fear",
       "417": "transmutation",
       "528": "miracles",
@@ -147,140 +264,88 @@ odex/update-world-of-enchantment-assets
       "852": "return to spirit",
       "963": "oneness"
     },
-    "biogeometry_angles": [27,36,45,63,81]
+    "solfeggio": [
+      { "freq": 396, "theme": "liberation" },
+      { "freq": 417, "theme": "transmutation" },
+      { "freq": 528, "theme": "miracles" },
+      { "freq": 639, "theme": "harmony" },
+      { "freq": 741, "theme": "intuition" },
+      { "freq": 852, "theme": "awakening" },
+      { "freq": 963, "theme": "oneness" }
+    ],
+    "biogeometry_angles": [27, 36, 45, 63, 81]
   },
   "avatars": {
-    "incarnate_self": "Incarnate Self",
-    "rebecca_respawn": {"name":"Rebecca Respawn","numerology":11},
-    "drag_persona": {"name":"Drag Persona","numerology":22},
-    "virelai_ezra_lux": {"name":"Virelai Ezra Lux","numerology":33,"note":"Lavender Quan Yin Reiki"}
+    "index": {
+      "incarnate_self": "Incarnate Self",
+      "rebecca_respawn": { "name": "Rebecca Respawn", "numerology": 11 },
+      "drag_persona": { "name": "Drag Persona", "numerology": 22 },
+      "virelai_ezra_lux": { "name": "Virelai Ezra Lux", "numerology": 33, "note": "Lavender Quan Yin Reiki" }
+    },
+    "list": [
+      { "name": "Incarnate Self", "numerology": 1 },
+      { "name": "Rebecca Respawn", "numerology": 11 },
+      { "name": "Drag Persona", "numerology": 22 },
+      { "name": "Virelai Ezra Lux", "numerology": 33, "note": "Lavender Quan Yin Reiki" }
+    ]
   },
   "avalon": {
-    "current":"Priestess",
-    "service":"Grail",
-    "tor_isle_polarity":true,
-    "round_table_oath":true,
-    "veils":["Outer Isle","Inner Sanctuary","Lady's Veil"]
+    "current": "Priestess",
+    "service": "Grail",
+    "tor_isle_polarity": true,
+    "round_table_oath": true,
+    "veils": {
+      "display": ["Outer Isle", "Inner Sanctuary", "Lady's Veil"],
+      "slug": ["outer_isle", "inner_sanctuary", "ladys_veil"]
+    }
   },
   "between_realm": {
-    "name":"In-Between Astral Narthex",
-    "liminal":"veil eddies and star-motes"
+    "name": "In-Between Astral Narthex",
+    "liminal": "veil eddies and star-motes",
+    "traits": ["liminal_hush", "veil_eddies", "star_motes"]
   },
   "adventure_modes": {
-    "hermetic_alchemy":["nigredo","albedo","citrinitas","rubedo"],
-    "tree_of_life":{"sephiroth":10,"paths":22},
-    "theosophical_aeons":["Sat","Svabhavat","Manvantara","Pralaya","Rounds","Root-Races"]
+    "hermetic_alchemy": ["nigredo", "albedo", "citrinitas", "rubedo"],
+    "tree_of_life": { "sephiroth": 10, "paths": 22 },
+    "theosophical_aeons": ["sat", "svabhavat", "manvantara", "pralaya", "rounds", "root_races"],
+    "aliases": {
+      "theosophical_aeons_display": ["Sat", "Svabhavat", "Manvantara", "Pralaya", "Rounds", "Root-Races"]
+    }
   },
   "rituals": {
     "violet_flame": {
-      "steps":["Invoke","Rotate","Transmute","Replace"],
-      "alias":"respawnGate",
-      "ray":"VI"
-    }
+      "steps": ["Invoke", "Rotate", "Transmute", "Replace"],
+      "alias": "respawnGate",
+      "ray": "VI"
+    },
+    "respawn_gate": {
+      "alias": "violet_flame",
+      "ray": 6
+    },
+    "fae_tea": ["prepare", "sip", "journal"],
+    "journeys": ["middle", "lower", "upper"]
   },
-  "angels": { "consecration": 72 },
-  "pillars": { "columns":["Severity","Mildness","Mercy"], "levels":7 },
-  "egregores": { "ray":"VI", "pillar":"middle" },
+  "angels": {
+    "consecration": 72,
+    "dataset": "consecration_angels_72"
+  },
+  "pillars": {
+    "columns": ["Severity", "Mildness", "Mercy"],
+    "levels": 7
+  },
+  "egregores": {
+    "ray": "VI",
+    "pillar": "middle",
+    "schema": "default",
+    "defaults": { "ray": 6, "pillar": "middle" }
+  },
+  "tarot": {
+    "majors": "egregores"
+  },
   "a11y": {
     "min_contrast": 4.5,
     "motion": "reduce",
     "autoplay": false,
     "strobe": false
-  },
-
-  "layers": {
-    "visionary": "visionary-grid",
-    "rakuPatina": "raku-patina",
-    "goldLeaf": "gold-leaf",
-    "pearl": "pearl",
-    "moonstone": "moonstone",
-    "abalone": "abalone",
-    "gonzVelvet": "gonz-velvet",
-    "faeShimmer": "fae-shimmer",
-    "roseGate": "rose-gate",
-    "violetFlame": "violet-flame",
-    "violetGate": "violet-gate",
-    "respawnGate": "respawn-gate",
-    "avalonGrove": "avalon-grove",
-    "inBetweenVeil": "between-narthex",
-    "trueFairy": "true-fairy",
-    "protectionSigil": "protection-handsigil"
-  },
-
-  "materials": [
-    "volcanic_obsidian",
-    "shungite",
-    "raku_lineage",
-    "gold_leaf",
-    "mother_of_pearl",
-    "moonstone",
-    "abalone"
-  ],
-
-  "effects": {
-    "stars": "twinkle",
-    "ember_eyes": true
-  },
-
-  "healing": {
-    "solfeggio": [
-      {"freq":396,"theme":"liberation"},
-      {"freq":417,"theme":"transmutation"},
-      {"freq":528,"theme":"miracles"},
-      {"freq":639,"theme":"harmony"},
-      {"freq":741,"theme":"intuition"},
-      {"freq":852,"theme":"awakening"},
-      {"freq":963,"theme":"oneness"}
-    ],
-    "biogeometry_angles": [27,36,45,63,81]
-  },
-
-  "avatars": [
-    {"name":"Incarnate Self","numerology":1},
-    {"name":"Rebecca Respawn","numerology":11},
-    {"name":"Drag Persona","numerology":22},
-    {"name":"Virelai Ezra Lux","numerology":33,"note":"Lavender Quan Yin Reiki"}
-  ],
-
-  "avalon": {
-    "priestess_current": true,
-    "grail_service": true,
-    "tor_isle_polarity": true,
-    "round_table_oath": true,
-    "veils": ["outer_isle","inner_sanctuary","ladys_veil"]
-  },
-
-  "between_realm": {
-    "name": "In-Between Astral Narthex",
-    "traits": ["liminal_hush","veil_eddies","star_motes"]
-  },
-
-  "adventure_modes": {
-    "hermetic_alchemy": ["nigredo","albedo","citrinitas","rubedo"],
-    "tree_of_life": {"sephiroth":10,"paths":22},
-    "theosophical_aeons": ["sat","svabhavat","manvantara","pralaya","rounds","root_races"]
-  },
-
-  "rituals": {
-    "violet_flame": ["invoke","rotate","transmute","replace"],
-    "respawn_gate": {"alias":"violet_flame","ray":6}
-  },
-
-  "angels": {
-    "dataset": "consecration_angels_72"
-  },
-
-  "pillars": {
-    "columns": ["severity","mildness","mercy"],
-    "levels": 7
-  },
-
-  "egregores": {
-    "schema": "default",
-    "defaults": {"ray":6,"pillar":"middle"}
-  },
-
-  "tarot": {
-    "majors": "egregores"
   }
 }
