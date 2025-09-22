@@ -21,6 +21,15 @@ try {
 
 const allowedExtensions = new Set(['.png', '.jpg', '.jpeg', '.webp', '.svg']);
 
+/**
+ * Read and parse a JSON file, returning its contents or null on any error.
+ *
+ * Attempts to synchronously read UTF-8 text from the given file path and parse it as JSON.
+ * If the file does not exist, is unreadable, or contains invalid JSON, this returns null.
+ *
+ * @param {string} filePath - Path to the JSON file to read.
+ * @return {any|null} The parsed JSON value, or null if reading/parsing failed.
+ */
 function safeReadJSON(filePath) {
   try {
     return JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -29,6 +38,26 @@ function safeReadJSON(filePath) {
   }
 }
 
+/**
+ * Ingests image files from the inbox into the project's art directories and returns metadata for each asset.
+ *
+ * Scans the inbox directory for files with allowed image extensions, normalizes each filename, moves the file
+ * into the originals directory, copies it to the processed directory, and — when a raster image and the `sharp`
+ * library are available — attempts to generate a 512px JPEG thumbnail and a WebP derivative. Each processed file
+ * is represented by an object describing its paths and type.
+ *
+ * Side effects: moves files from the inbox to the originals directory, writes copies to the processed directory,
+ * and may write thumbnail and webp files into the thumbs and webp directories.
+ *
+ * @return {Promise<Array<Object>>} Promise resolving to an array of asset descriptors. Each descriptor has:
+ *   - name {string} normalized filename (lowercase, hyphenated, sanitized)
+ *   - type {string} file extension without leading dot (e.g., "png", "jpg")
+ *   - original {string} relative path to the original under assets/art/originals
+ *   - processed {string} relative path to the processed copy under assets/art/processed
+ *   - thumb {string} relative path to the generated thumbnail (empty string when not produced)
+ *   - webp {string} relative path to the generated WebP (empty string when not produced)
+ *   - nd_safe {boolean} flag indicating the asset is safe for general use
+ */
 async function ingestArt() {
   if (!fs.existsSync(inbox)) return [];
   const list = fs.readdirSync(inbox);
@@ -87,6 +116,15 @@ async function ingestArt() {
   return assets;
 }
 
+/**
+ * Return a validated rooms array from a structure JSON, falling back to a default set when missing or invalid.
+ *
+ * If the provided structureJSON does not contain a non-empty array at `structureJSON.rooms`, a predefined
+ * fallback list of four room descriptors is returned. Otherwise the function returns `structureJSON.rooms` as-is.
+ *
+ * @param {Object|null|undefined} structureJSON - Parsed JSON object that may include a `rooms` array.
+ * @return {Array<Object>} An array of room descriptor objects.
+ */
 function buildRooms(structureJSON) {
   const fallback = [
     { id: 'crypt', title: 'The Crypt', element: 'earth', stylepack: 'Rosicrucian Black', tone: 110, geometry: 'vesica' },
@@ -101,6 +139,20 @@ function buildRooms(structureJSON) {
   return structureJSON.rooms;
 }
 
+/**
+ * Build a standardized manifest entry for an asset.
+ *
+ * Converts an internal asset object into a public-facing descriptor used in the manifest,
+ * prefixing file paths with a leading '/' and providing empty strings for missing thumb/webp.
+ *
+ * @param {Object} asset - Source asset object.
+ * @param {string} asset.name - Display name or identifier for the asset.
+ * @param {string} asset.processed - Relative path to the processed image (without leading '/').
+ * @param {string} [asset.thumb] - Relative path to the thumbnail image (optional).
+ * @param {string} [asset.webp] - Relative path to the WebP image (optional).
+ * @param {string} asset.type - Asset type (e.g., "image", "sprite").
+ * @return {{name:string,src:string,thumb:string,webp:string,type:string}} A manifest-friendly asset entry.
+ */
 function assetEntry(asset) {
   return {
     name: asset.name,
@@ -111,6 +163,22 @@ function assetEntry(asset) {
   };
 }
 
+/**
+ * Orchestrates ingestion of artwork and builds the bridge manifest for the C99 Stone Grimoire.
+ *
+ * Reads assets from the inbox (via ingestArt), classifies and groups them into rooms and categories,
+ * merges style tokens and optional cosmogenesis/angels data, and writes a manifest JSON to
+ * bridge/c99-bridge.json. Also mirrors perm-style tokens and CSS into any found C99 public targets.
+ *
+ * Side effects:
+ * - May generate thumbnails and WebP derivatives (if image pipeline is available).
+ * - Moves/copies files between asset directories during ingestion.
+ * - Writes the bridge manifest to ../../bridge/c99-bridge.json relative to the project root.
+ * - Copies perm-style.json and perm-style.css into discovered C99 public directories when present.
+ * - Logs progress messages to the console.
+ *
+ * This function is intended to be executed as a top-level script step and does not return a value.
+ */
 async function main() {
   const assets = await ingestArt();
 
