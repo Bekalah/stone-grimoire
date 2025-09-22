@@ -8,6 +8,19 @@ const addPath = path.resolve('assets/tokens/perm-style.merge.json');
 const readJSON = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
 const writeJSON = (p, o) => fs.writeFileSync(p, JSON.stringify(o, null, 2) + '\n');
 
+/**
+ * Merge two values, preferring existing (base) values while filling missing entries from add.
+ *
+ * For arrays: returns `base` if it's non-empty, otherwise `add`.
+ * For plain objects: returns a new object that contains all keys from `add` and `base` where `base` values take precedence; overlapping keys are merged recursively using the same rules.
+ * For other types: returns `base` if it is defined (not null/undefined), otherwise `add`.
+ *
+ * This function does not mutate the input objects/arrays; it returns a new merged value for objects and returns original arrays/values as described.
+ *
+ * @param {*} base - The primary value whose existing entries should be kept when possible.
+ * @param {*} add - The supplemental value used to fill in missing entries from `base`.
+ * @return {*} The merged result.
+ */
 function mergeKeepExisting(base, add) {
   if (Array.isArray(base) && Array.isArray(add)) {
     return base.length ? base : add;
