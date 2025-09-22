@@ -82,7 +82,7 @@ async function main(){
   }
 
   const creatures = { dragons:[], daimons:[] };
-  const oracleVelvet=[], angelArt=[], pillarArt=[], egregoreArt=[], betweenRealmAssets=[], protectionSigils=[];
+  const oracleVelvet=[], angelArt=[], pillarArt=[], egregoreArt=[], betweenRealmAssets=[], protectionSigils=[], visionaryOverlays=[];
   const assetEntry = a => ({ name:a.name, src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:'', type:a.type });
   for (const a of assets) {
     const n = a.name.toLowerCase();
@@ -100,6 +100,7 @@ async function main(){
       seal_filter:"rakuCopperIridescence",
       src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:''
     });
+    if (/alex[-_ ]?grey|visionary|sacred|grid/.test(n)) visionaryOverlays.push(assetEntry(a));
     if (/oracle|velvet/.test(n)) oracleVelvet.push(assetEntry(a));
     if (/angel/.test(n)) angelArt.push(assetEntry(a));
     if (/pillar/.test(n)) pillarArt.push(assetEntry(a));
@@ -107,20 +108,13 @@ async function main(){
     if (/between|narthex|veil|threshold/.test(n)) betweenRealmAssets.push({ ...assetEntry(a), class:"between-narthex" });
     if (/hamsa|evil.?eye|logo|ward/.test(n)) protectionSigils.push({ ...assetEntry(a), class:"protection-handsigil", layer:"protectionSigil" });
   }
-
-  const visionaryAssets = assets.filter(a => /alex[-_ ]?grey|visionary|sacred|grid/.test(a.name));
-  const oracleVelvet = assets.filter(a => /oracle|velvet/.test(a.name));
-  const angelArt = assets.filter(a => /angel/.test(a.name));
-  const pillarArt = assets.filter(a => /pillar/.test(a.name));
-  const egregoreArt = assets.filter(a => /egregore/.test(a.name));
-  const betweenAssets = assets.filter(a => /(between|narthex|veil|threshold)/.test(a.name));
-  const wardAssets = assets.filter(a => /(hamsa|evil[-_]?eye|logo|ward)/.test(a.name));
-
   const manifest = {
     meta:{ project:"circuitum99 × Stone Grimoire", updated:new Date().toISOString(), nd_safe:true, generator:"update-art.js" },
     tokens:{ css:"/assets/css/perm-style.css", json:"/assets/tokens/perm-style.json",
       palette:styleTokens.palette||{}, secondary:styleTokens.secondary||{}, layers:styleTokens.layers||{},
-      adventure_modes:styleTokens.adventure_modes||{}, avalon:styleTokens.avalon||{}, between_realm:styleTokens.between_realm||{} },
+      layer_aliases:styleTokens.layer_aliases||{}, materials:styleTokens.materials||{}, effects:styleTokens.effects||{},
+      healing:styleTokens.healing||{}, adventure_modes:styleTokens.adventure_modes||{}, avalon:styleTokens.avalon||{},
+      between_realm:styleTokens.between_realm||{}, avatars:styleTokens.avatars||{} },
     routes:{
       stone_grimoire:{ base:"/", chapels:"/chapels/", assets:"/assets/", bridge:"/bridge/c99-bridge.json" },
       cosmogenesis:{ tokens:"/c99/tokens/perm-style.json", css:"/c99/css/perm-style.css", public:"/c99/", bridge:"/bridge/c99-bridge.json" }
@@ -129,27 +123,16 @@ async function main(){
       id:r.id, title:r.title, element:r.element, tone:r.tone, geometry:r.geometry, stylepack:r.stylepack,
       assets:(assetsByRoom[r.id]||[]).map(a => ({ name:a.name, thumb:`/${a.thumb}`, webp:a.webp?`/${a.webp}`:'', src:`/${a.processed}`, type:a.type }))
     })),
-      angels, creatures,
-      visionary:{ overlays: visionaryAssets.map(a => ({ name:a.name, src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:'' })) },
-      oracle: oracleVelvet.map(a => ({ name:a.name, src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:'' })),
-      angel_assets: angelArt.map(a => ({ name:a.name, src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:'' })),
-      pillars: pillarArt.map(a => ({ name:a.name, src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:'' })),
-      egregores: egregoreArt.map(a => ({ name:a.name, src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:'' })),
-      between_realm:{ ...(styleTokens.between_realm||{}), assets: betweenAssets.map(a => ({ name:a.name, class:'between-narthex', src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:'' })) },
-      protection: wardAssets.length?{ sigil: wardAssets.map(a => ({ name:a.name, class:'protection-handsigil', layer:'protectionSigil', src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:'' })) }:undefined,
-      assets: assets.map(a => ({ name:a.name, src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:'', type:a.type })),
-      rituals:{ violet_flame:{ alias:'respawnGate', ray:'VI', steps:['Invoke','Rotate','Transmute','Replace'] } }
-    };
-    angels:{ list:angels, assets:angelArt },
-    creatures,
-    visionary:{ overlays: visionaryAssets.map(a => ({ name:a.name, src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:'' })) },
+    angels, creatures,
+    visionary:{ overlays: visionaryOverlays },
     oracle: oracleVelvet,
-    pillars:{ assets:pillarArt },
-    egregores:{ assets:egregoreArt },
-    between_realm: Object.assign({}, styleTokens.between_realm||{}, { assets:betweenRealmAssets }),
-    protection:{ sigil: protectionSigils },
-    rituals: styleTokens.rituals || {},
-    assets: assets.map(a => ({ name:a.name, src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:'', type:a.type }))
+    angel_assets: angelArt,
+    pillars: pillarArt,
+    egregores: egregoreArt,
+    between_realm:{ ...(styleTokens.between_realm||{}), assets: betweenRealmAssets },
+    protection: protectionSigils.length?{ sigil: protectionSigils }:undefined,
+    assets: assets.map(a => ({ name:a.name, src:`/${a.processed}`, thumb:a.thumb?`/${a.thumb}`:'', webp:a.webp?`/${a.webp}`:'', type:a.type })),
+    rituals: styleTokens.rituals || {}
   };
 
   const bridgeRoot = path.resolve(root, '../../bridge');
