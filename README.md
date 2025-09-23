@@ -26,6 +26,8 @@
 
 ✦ LIBER ARCANAE: CODEX ABYSSIAE
 
+> Padding Law: All renders (artifacts, seals, realms, exports) must include a minimum 5–10% clearspace buffer. No sacred form is ever cut by canvas edges.
+
 Abyssian Tarot of the Living Monad Hieroglyphica
 
 Author: Rebecca Susan Lemke (Rebecca Respawn)
