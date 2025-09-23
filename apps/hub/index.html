@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Cathedral Hub — Vault Preview</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg:#080a0f;
+      --ink:#e5e5ec;
+      --muted:#9aa4c7;
+      --frame:#1a1f2c;
+      --accent:#e0c469;
+    }
+    html,body {
+      margin:0;
+      padding:0;
+      background:var(--bg);
+      color:var(--ink);
+      font:14px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    }
+    header {
+      padding:16px;
+      border-bottom:1px solid var(--frame);
+    }
+    main {
+      max-width:1200px;
+      margin:0 auto;
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+    h1 {
+      margin:0 0 4px 0;
+      font-size:1.6rem;
+    }
+    p {
+      margin:0;
+      color:var(--muted);
+    }
+    iframe {
+      width:100%;
+      height:480px;
+      border:none;
+      border-radius:10px;
+      box-shadow:0 0 0 1px var(--frame);
+    }
+    a {
+      color:var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Cathedral Hub</h1>
+    <p>Preview the walkable vault or open it full screen via the controls inside.</p>
+  </header>
+  <main>
+    <section aria-label="Stone Vault Embed">
+      <iframe src="../stone/index.html" width="100%" height="480" style="border:none;border-radius:10px;"></iframe>
+    </section>
+    <section aria-label="Offline guidance">
+      <p>Open <a href="../stone/index.html">apps/stone/index.html</a> directly for the full pointer-lock experience. Drop HDRI
+      files into <code>shared/assets/hdri</code> to enrich the lighting.</p>
+    </section>
+  </main>
+</body>
+</html>
