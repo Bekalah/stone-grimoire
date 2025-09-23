@@ -6,38 +6,88 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="color-scheme" content="dark light">
   <style>
-    /* ND-safe glass/dark shell: static gradients, no motion, high contrast. */
+    /* ND-safe shell: calm contrast, no motion, generous breathing room. */
     :root {
       --bg:#0b0b12;
       --ink:#e8e8f0;
       --muted:#a6a6c1;
       --frame:#1d1d2a;
-      --glaze:#151523;
-      --accent:#8fb4ff;
-      --fallback:#f2c27d;
-      --minimal:#f59aa7;
+      --notice-fallback:#f2c27d;
+      --notice-minimal:#f59aa7;
     }
 
-    * {
+    *, *::before, *::after {
       box-sizing:border-box;
     }
 
-    html,body {
+    html, body {
       margin:0;
       padding:0;
-      min-height:100%;
       background:var(--bg);
       color:var(--ink);
-      font:15px/1.5 "Segoe UI",Roboto,system-ui,sans-serif;
+      font:14px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
     }
 
     body {
       display:flex;
       flex-direction:column;
+      min-height:100vh;
+    }
+
+    header {
+      padding:14px 18px;
+      border-bottom:1px solid var(--frame);
+      background:rgba(11,11,18,0.88);
+    }
+
+    header strong {
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      font-size:12px;
+    }
+
+    #status {
+      margin:4px 0 0;
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    body[data-mode="fallback"] #status {
+      color:var(--notice-fallback);
+    }
+
+    body[data-mode="minimal"] #status {
+      color:var(--notice-minimal);
+    }
+
+    main {
+      flex:1;
+      padding:18px;
+      display:flex;
+      flex-direction:column;
       align-items:center;
       gap:16px;
+    }
+
+    .panel {
+      width:min(960px, 100%);
       padding:16px;
-      position:relative;
+      border:1px solid var(--frame);
+      border-radius:14px;
+      background:rgba(16,16,28,0.78);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+    }
+
+    #stage {
+      display:block;
+      width:100%;
+      max-width:1440px;
+      height:auto;
+      box-shadow:0 0 0 1px var(--frame);
+      background:#080810;
     }
 
     .visually-hidden {
@@ -52,205 +102,64 @@
       border:0;
     }
 
-    body::before {
-      /* Glass wash overlay to keep depth without motion. */
-      content:"";
-      position:fixed;
-      inset:0;
-      background:radial-gradient(circle at 20% 20%,rgba(143,180,255,0.12),transparent 45%),
-        radial-gradient(circle at 80% 15%,rgba(245,163,255,0.10),transparent 40%),
-        linear-gradient(135deg,rgba(21,21,35,0.85),rgba(11,11,18,0.92));
-      pointer-events:none;
-      z-index:-2;
-    }
-
-    body::after {
-      /* Quiet gridded glint for stained-glass impression. */
-      content:"";
-      position:fixed;
-      inset:0;
-      background:linear-gradient(90deg,rgba(255,255,255,0.03) 0, rgba(255,255,255,0.01) 50%, transparent 50%),
-        linear-gradient(0deg,rgba(255,255,255,0.02) 0, transparent 55%);
-      background-size:140px 140px;
-      mix-blend-mode:screen;
-      opacity:0.45;
-      pointer-events:none;
-      z-index:-3;
-    }
-
-    header,
-    .surface {
-      width:min(960px, 100%);
-      border:1px solid var(--frame);
-      border-radius:18px;
-      padding:18px;
-      background:linear-gradient(155deg,rgba(15,16,28,0.85),rgba(11,11,18,0.9));
-      box-shadow:0 18px 40px rgba(4,5,12,0.65);
-    }
-
-    @supports (backdrop-filter: blur(14px)) {
-      header,
-      .surface {
-        backdrop-filter:blur(18px);
-        background:rgba(15,16,28,0.72);
-      }
-    }
-
-    header {
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-      text-align:left;
-    }
-
-    header strong {
-      letter-spacing:0.12em;
-      text-transform:uppercase;
-      font-size:12px;
-      color:var(--accent);
-    }
-
-    .status {
+    #notice {
+      width:100%;
       margin:0;
-      font-size:13px;
-      color:var(--muted);
-    }
-
-    [data-mode="fallback"] .status {
-      color:var(--fallback);
-    }
-
-    [data-mode="minimal"] .status {
-      color:var(--minimal);
-    }
-
-    main {
-      width:100%;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:18px;
-    }
-
-    .surface {
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      align-items:center;
-    }
-
-    #stage {
-      display:block;
-      width:100%;
-      max-width:1440px;
-      height:auto;
-      border-radius:12px;
-      box-shadow:0 0 0 1px var(--frame);
-      background:var(--glaze);
-    }
-
-    .notice {
-      margin:0;
-      padding:10px 14px;
-      width:100%;
+      padding:10px 12px;
       border-radius:10px;
       border:1px solid rgba(255,255,255,0.12);
-      background:rgba(20,20,34,0.85);
-      color:var(--fallback);
-      font-size:13px;
+      background:rgba(20,20,34,0.9);
+      color:var(--notice-fallback);
+      font-size:12px;
+    }
+
+    [hidden] {
+      display:none !important;
     }
 
     .note {
-      max-width:960px;
+      max-width:900px;
       margin:0;
       color:var(--muted);
       font-size:13px;
       text-align:center;
     }
 
-    .note strong {
-      color:var(--ink);
+    code {
+      background:#11111a;
+      padding:2px 4px;
+      border-radius:3px;
     }
-
-    a {
-      color:var(--accent);
-      text-decoration:none;
-    }
-
-    a:hover,
-    a:focus {
-      text-decoration:underline;
-    }
-    :root { --bg:#0b0b12; --ink:#e8e8f0; --muted:#a6a6c1; }
-    html,body { margin:0; padding:0; background:var(--bg); color:var(--ink); font:14px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
-    header { padding:12px 16px; border-bottom:1px solid #1d1d2a; }
-    header strong { letter-spacing:0.08em; text-transform:uppercase; font-size:12px; }
-    .status { color:var(--muted); font-size:12px; margin-top:2px; }
-    main { padding:16px; display:flex; flex-direction:column; gap:12px; align-items:center; }
-    #stage { display:block; width:100%; max-width:1440px; height:auto; box-shadow:0 0 0 1px #1d1d2a; background:#080810; }
-    .note { max-width:900px; color:var(--muted); font-size:13px; text-align:center; }
-    code { background:#11111a; padding:2px 4px; border-radius:3px; }
   </style>
 </head>
 <body data-mode="loading">
   <header>
     <div><strong>Cosmic Helix Renderer</strong> — layered sacred geometry (offline, ND-safe)</div>
-    <p class="status" id="status" role="status" aria-live="polite">Calibrating palette…</p>
+    <p id="status" role="status" aria-live="polite">Loading palette…</p>
   </header>
 
   <main role="main">
-    <section class="surface" aria-labelledby="canvas-title">
+    <section class="panel" aria-labelledby="canvas-title">
       <h1 id="canvas-title" class="visually-hidden">Layered sacred geometry canvas</h1>
       <canvas id="stage" width="1440" height="900" aria-describedby="canvas-note"></canvas>
-      <p id="notice" class="notice" role="status" aria-live="polite" hidden></p>
+      <p id="notice" role="status" aria-live="polite" hidden></p>
     </section>
 
     <p id="canvas-note" class="note">
-      This static renderer honours four calm layers in order: <strong>Vesica field</strong>, <strong>Tree-of-Life scaffold</strong>, <strong>Fibonacci curve</strong>, and a <strong>double-helix lattice</strong>. Modes follow the implementation guide discipline — custom palette, fallback palette, or minimal fail-safe.
+      The renderer paints four still layers in order: <strong>Vesica field</strong>, <strong>Tree-of-Life scaffold</strong>,
+      <strong>Fibonacci curve</strong>, and a <strong>double-helix lattice</strong>. Open this page directly—no network calls.
     </p>
-  <main>
-    <canvas id="stage" width="1440" height="900" aria-label="Layered sacred geometry canvas"></canvas>
-    <p class="note">This static renderer paints four calm layers in order: Vesica field, Tree-of-Life scaffold, Fibonacci curve, and a static double-helix lattice. Open this file directly—no external network calls occur.</p>
   </main>
 
   <script type="module">
     import { renderHelix } from "./js/helix-renderer.mjs";
 
-    const canvas = document.getElementById("stage");
-    const ctx = canvas.getContext("2d");
     const statusEl = document.getElementById("status");
     const noticeEl = document.getElementById("notice");
+    const canvas = document.getElementById("stage");
+    const ctx = canvas.getContext("2d");
 
-    const DEFAULTS = {
-      palette: {
-        bg:"#0b0b12",
-        ink:"#e8e8f0",
-        muted:"#a6a6c1",
-        layers:["#8fb4ff","#6fd0f2","#8ff0c4","#ffd7a6","#f3a8ff","#d9dcff"]
-      }
-    };
-
-    async function loadJSON(path) {
-      try {
-        const res = await fetch(path, { cache: "no-store" });
-        if (!res.ok) throw new Error(String(res.status));
-        return await res.json();
-      } catch (error) {
-        return null;
-      }
-    }
-
-    function applyShellColours(palette) {
-      document.documentElement.style.setProperty("--bg", palette.bg || defaults.palette.bg);
-      document.documentElement.style.setProperty("--ink", palette.ink || defaults.palette.ink);
-      document.documentElement.style.setProperty("--muted", palette.muted || defaults.palette.muted);
-    }
-
-    function isPalette(value) {
-      return Boolean(value) && typeof value.bg === "string" && typeof value.ink === "string";
-    }
-
-    const defaults = {
+    const FALLBACK = {
       palette: {
         bg: "#0b0b12",
         ink: "#e8e8f0",
@@ -258,11 +167,6 @@
         layers: ["#b1c7ff", "#89f7fe", "#a0ffa1", "#ffd27f", "#f5a3ff", "#d0d0e6"]
       }
     };
-
-    const palette = await loadJSON("./data/palette.json");
-    const active = isPalette(palette) ? palette : defaults.palette;
-    elStatus.textContent = isPalette(palette) ? "Palette loaded." : "Palette missing; using safe fallback.";
-    applyShellColours(active);
 
     const NUM = {
       THREE: 3,
@@ -275,34 +179,25 @@
       ONEFORTYFOUR: 144
     };
 
-    const MODES = {
-      CUSTOM:{ id:"custom", status:"Mode: Custom palette — data/palette.json loaded." },
-      FALLBACK:{ id:"fallback", status:"Mode: Fallback palette — using internal ND-safe tones." },
-      MINIMAL:{ id:"minimal", status:"Mode: Minimal — canvas context unavailable; geometry skipped." }
-    };
+    const paletteState = await loadPalette("./data/palette.json", FALLBACK.palette);
+    applyShellPalette(paletteState.palette);
+    setMode(paletteState.mode);
+    setStatus(paletteState.status);
+    showNotice(paletteState.notice);
 
-    init();
-
-    async function init() {
-      const paletteState = await loadPalette("./data/palette.json", DEFAULTS.palette);
-      applyShellPalette(paletteState.palette);
-      setMode(paletteState.mode, paletteState.status);
-      toggleNotice(paletteState.notice);
-
-      if (!ctx) {
-        setMode(MODES.MINIMAL);
-        toggleNotice("Canvas context unavailable; the browser will still display the notes above.");
-        return;
-      }
-
-      // ND-safe rationale: render once, preserve depth without motion.
+    if (!ctx) {
+      setMode("minimal");
+      setStatus("Mode: minimal — canvas context unavailable; shell only.");
+      showNotice("Canvas context missing. Geometry skipped to stay ND-safe.");
+    } else {
+      // ND-safe rationale: draw once, static layers only, no timers.
       renderHelix(ctx, {
-        width:canvas.width,
-        height:canvas.height,
-        palette:{
-          bg:paletteState.palette.bg,
-          ink:paletteState.palette.ink,
-          layers:paletteState.palette.layers.slice()
+        width: canvas.width,
+        height: canvas.height,
+        palette: {
+          bg: paletteState.palette.bg,
+          ink: paletteState.palette.ink,
+          layers: paletteState.palette.layers.slice()
         },
         NUM
       });
@@ -310,98 +205,87 @@
 
     async function loadPalette(path, fallback) {
       try {
-        const res = await fetch(path, { cache:"no-store" });
+        const res = await fetch(path, { cache: "no-store" });
         if (!res.ok) throw new Error("HTTP " + res.status);
         const raw = await res.json();
         const { palette, valid } = normalisePalette(raw, fallback);
         if (!valid) {
           return {
             palette,
-            mode:MODES.FALLBACK,
-            status:"Mode: Fallback palette — palette file was incomplete; using internal ND-safe tones.",
-            notice:"Palette file was missing required keys; using safe fallback palette."
+            mode: "fallback",
+            status: "Mode: fallback — palette file malformed; using safe defaults.",
+            notice: "Palette data incomplete. Applied ND-safe fallback tones."
           };
         }
         return {
           palette,
-          mode:MODES.CUSTOM,
-          status:MODES.CUSTOM.status
+          mode: "custom",
+          status: "Mode: custom — palette loaded from data/palette.json.",
+          notice: ""
         };
       } catch (error) {
-        const reason = window.location && window.location.protocol === "file:" ?
-          "Browser blocked local palette fetch" : "Palette file unavailable";
         return {
-          palette:{ ...fallback, layers:fallback.layers.slice() },
-          mode:MODES.FALLBACK,
-          status:MODES.FALLBACK.status,
-          notice:reason + "; safe fallback palette applied."
+          palette: copyPalette(fallback),
+          mode: "fallback",
+          status: "Mode: fallback — palette file missing; using safe defaults.",
+          notice: "Palette file not found. Applied ND-safe fallback tones."
         };
       }
+    }
+
+    function normalisePalette(input, fallback) {
+      if (!input || typeof input !== "object") {
+        return { palette: copyPalette(fallback), valid: false };
+      }
+      const layers = Array.isArray(input.layers)
+        ? input.layers.filter(tone => typeof tone === "string" && tone.trim().length > 0)
+        : [];
+      const palette = {
+        bg: typeof input.bg === "string" ? input.bg : fallback.bg,
+        ink: typeof input.ink === "string" ? input.ink : fallback.ink,
+        muted: typeof input.muted === "string" ? input.muted : fallback.muted,
+        layers: layers.length >= 3 ? layers.slice() : fallback.layers.slice()
+      };
+      const valid = Boolean(
+        typeof input.bg === "string" &&
+        typeof input.ink === "string" &&
+        Array.isArray(input.layers) && input.layers.length >= 3
+      );
+      return { palette, valid };
     }
 
     function applyShellPalette(palette) {
-      const root = document.documentElement.style;
-      root.setProperty("--bg", palette.bg || DEFAULTS.palette.bg);
-      root.setProperty("--ink", palette.ink || DEFAULTS.palette.ink);
-      root.setProperty("--muted", palette.muted || palette.ink || DEFAULTS.palette.ink);
-      document.body.style.background = palette.bg || DEFAULTS.palette.bg;
-      document.body.style.color = palette.ink || DEFAULTS.palette.ink;
+      const root = document.documentElement;
+      root.style.setProperty("--bg", palette.bg);
+      root.style.setProperty("--ink", palette.ink);
+      root.style.setProperty("--muted", palette.muted || FALLBACK.palette.muted);
     }
 
-    function setMode(mode, explicitStatus) {
-      const target = mode || MODES.FALLBACK;
-      document.body.setAttribute("data-mode", target.id);
-      statusEl.textContent = explicitStatus || target.status;
+    function setMode(mode) {
+      document.body.dataset.mode = mode;
     }
 
-    function toggleNotice(message) {
-      if (!message) {
+    function setStatus(message) {
+      statusEl.textContent = message;
+    }
+
+    function showNotice(message) {
+      if (message) {
+        noticeEl.textContent = message;
+        noticeEl.hidden = false;
+      } else {
         noticeEl.hidden = true;
-        noticeEl.textContent = "";
-        return;
       }
-      noticeEl.hidden = false;
-      noticeEl.textContent = message;
     }
 
-    function normalisePalette(raw, fallback) {
-      if (!raw || typeof raw !== "object") {
-        return { palette:fallback, valid:false };
-      }
-      let valid = true;
-      const layerState = normaliseLayers(raw.layers, fallback.layers);
-      const palette = {
-        bg: typeof raw.bg === "string" ? raw.bg : (valid = false, fallback.bg),
-        ink: typeof raw.ink === "string" ? raw.ink : (valid = false, fallback.ink),
-        muted: typeof raw.muted === "string" ? raw.muted : (raw.ink && typeof raw.ink === "string" ? raw.ink : fallback.ink),
-        layers: layerState.layers
+    function copyPalette(palette) {
+      return {
+        bg: palette.bg,
+        ink: palette.ink,
+        muted: palette.muted,
+        layers: Array.isArray(palette.layers) ? palette.layers.slice() : []
       };
-      if (!layerState.valid) {
-        valid = false;
-      }
-      return { palette:{ ...palette, layers:palette.layers.slice() }, valid };
     }
-
-    function normaliseLayers(layers, fallbackLayers) {
-      if (!Array.isArray(layers) || layers.length === 0) {
-        return { layers:fallbackLayers.slice(), valid:false };
-      }
-      const cleaned = layers.filter(tone => typeof tone === "string");
-      if (cleaned.length === 0) {
-        return { layers:fallbackLayers.slice(), valid:false };
-      }
-      return { layers:cleaned.slice(), valid:true };
-    }
-    renderHelix(ctx, {
-      width: canvas.width,
-      height: canvas.height,
-      palette: {
-        bg: active.bg,
-        ink: active.ink,
-        layers: Array.isArray(active.layers) && active.layers.length ? active.layers.slice() : defaults.palette.layers
-      },
-      NUM
-    });
   </script>
 </body>
 </html>
