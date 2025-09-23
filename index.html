@@ -181,6 +181,15 @@
     a:focus {
       text-decoration:underline;
     }
+    :root { --bg:#0b0b12; --ink:#e8e8f0; --muted:#a6a6c1; }
+    html,body { margin:0; padding:0; background:var(--bg); color:var(--ink); font:14px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+    header { padding:12px 16px; border-bottom:1px solid #1d1d2a; }
+    header strong { letter-spacing:0.08em; text-transform:uppercase; font-size:12px; }
+    .status { color:var(--muted); font-size:12px; margin-top:2px; }
+    main { padding:16px; display:flex; flex-direction:column; gap:12px; align-items:center; }
+    #stage { display:block; width:100%; max-width:1440px; height:auto; box-shadow:0 0 0 1px #1d1d2a; background:#080810; }
+    .note { max-width:900px; color:var(--muted); font-size:13px; text-align:center; }
+    code { background:#11111a; padding:2px 4px; border-radius:3px; }
   </style>
 </head>
 <body data-mode="loading">
@@ -199,6 +208,9 @@
     <p id="canvas-note" class="note">
       This static renderer honours four calm layers in order: <strong>Vesica field</strong>, <strong>Tree-of-Life scaffold</strong>, <strong>Fibonacci curve</strong>, and a <strong>double-helix lattice</strong>. Modes follow the implementation guide discipline — custom palette, fallback palette, or minimal fail-safe.
     </p>
+  <main>
+    <canvas id="stage" width="1440" height="900" aria-label="Layered sacred geometry canvas"></canvas>
+    <p class="note">This static renderer paints four calm layers in order: Vesica field, Tree-of-Life scaffold, Fibonacci curve, and a static double-helix lattice. Open this file directly—no external network calls occur.</p>
   </main>
 
   <script type="module">
@@ -218,15 +230,49 @@
       }
     };
 
+    async function loadJSON(path) {
+      try {
+        const res = await fetch(path, { cache: "no-store" });
+        if (!res.ok) throw new Error(String(res.status));
+        return await res.json();
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function applyShellColours(palette) {
+      document.documentElement.style.setProperty("--bg", palette.bg || defaults.palette.bg);
+      document.documentElement.style.setProperty("--ink", palette.ink || defaults.palette.ink);
+      document.documentElement.style.setProperty("--muted", palette.muted || defaults.palette.muted);
+    }
+
+    function isPalette(value) {
+      return Boolean(value) && typeof value.bg === "string" && typeof value.ink === "string";
+    }
+
+    const defaults = {
+      palette: {
+        bg: "#0b0b12",
+        ink: "#e8e8f0",
+        muted: "#a6a6c1",
+        layers: ["#b1c7ff", "#89f7fe", "#a0ffa1", "#ffd27f", "#f5a3ff", "#d0d0e6"]
+      }
+    };
+
+    const palette = await loadJSON("./data/palette.json");
+    const active = isPalette(palette) ? palette : defaults.palette;
+    elStatus.textContent = isPalette(palette) ? "Palette loaded." : "Palette missing; using safe fallback.";
+    applyShellColours(active);
+
     const NUM = {
-      THREE:3,
-      SEVEN:7,
-      NINE:9,
-      ELEVEN:11,
-      TWENTYTWO:22,
-      THIRTYTHREE:33,
-      NINETYNINE:99,
-      ONEFORTYFOUR:144
+      THREE: 3,
+      SEVEN: 7,
+      NINE: 9,
+      ELEVEN: 11,
+      TWENTYTWO: 22,
+      THIRTYTHREE: 33,
+      NINETYNINE: 99,
+      ONEFORTYFOUR: 144
     };
 
     const MODES = {
@@ -346,6 +392,16 @@
       }
       return { layers:cleaned.slice(), valid:true };
     }
+    renderHelix(ctx, {
+      width: canvas.width,
+      height: canvas.height,
+      palette: {
+        bg: active.bg,
+        ink: active.ink,
+        layers: Array.isArray(active.layers) && active.layers.length ? active.layers.slice() : defaults.palette.layers
+      },
+      NUM
+    });
   </script>
 </body>
 </html>
