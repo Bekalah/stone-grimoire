@@ -81,12 +81,27 @@
       gap:12px;
     }
 
+    .canvas-frame {
+      width:100%;
+      max-width:1440px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:rgba(8,8,16,0.92);
+      border-radius:12px;
+      box-shadow:0 0 0 1px var(--frame);
+    }
+
+    .canvas {
+      /* Padding law enforcement: 5% wrapper clearspace before drawing area. */
+      padding:5%;
+      box-sizing:border-box;
+    }
+
     #stage {
       display:block;
       width:100%;
-      max-width:1440px;
       height:auto;
-      box-shadow:0 0 0 1px var(--frame);
       background:#080810;
     }
 
@@ -141,13 +156,16 @@
   <main role="main">
     <section class="panel" aria-labelledby="canvas-title">
       <h1 id="canvas-title" class="visually-hidden">Layered sacred geometry canvas</h1>
-      <canvas id="stage" width="1440" height="900" aria-describedby="canvas-note"></canvas>
+      <div class="canvas-frame canvas" role="presentation">
+        <canvas id="stage" width="1440" height="900" aria-describedby="canvas-note"></canvas>
+      </div>
       <p id="notice" role="status" aria-live="polite" hidden></p>
     </section>
 
     <p id="canvas-note" class="note">
       The renderer paints four still layers in order: <strong>Vesica field</strong>, <strong>Tree-of-Life scaffold</strong>,
-      <strong>Fibonacci curve</strong>, and a <strong>double-helix lattice</strong>. Open this page directly—no network calls.
+      <strong>Fibonacci curve</strong>, and a <strong>double-helix lattice</strong>. A golden-ratio safe frame preserves a
+      minimum 5–10% clearspace so no sacred geometry touches the canvas edge. Open this page directly—no network calls.
     </p>
   </main>
 
@@ -190,7 +208,7 @@
       setStatus("Mode: minimal — canvas context unavailable; shell only.");
       showNotice("Canvas context missing. Geometry skipped to stay ND-safe.");
     } else {
-      // ND-safe rationale: draw once, static layers only, no timers.
+      // ND-safe rationale: draw once, static layers only, no timers; safe frame enforces padding law.
       renderHelix(ctx, {
         width: canvas.width,
         height: canvas.height,

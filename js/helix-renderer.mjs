@@ -23,19 +23,22 @@
 
 
 const PHI = (1 + Math.sqrt(5)) / 2;
+const SAFE_FRAME_STROKE = 6;
 
 export function renderHelix(ctx, options) {
   const config = normaliseOptions(options);
   const { width, height, palette, NUM } = config;
+  const frame = computeSafeFrame(width, height);
 
   ctx.save();
   ctx.clearRect(0, 0, width, height);
 
   paintBackground(ctx, width, height, palette);
-  drawVesicaField(ctx, width, height, palette, NUM);
-  drawTreeOfLife(ctx, width, height, palette, NUM);
-  drawFibonacciCurve(ctx, width, height, palette, NUM);
-  drawDoubleHelix(ctx, width, height, palette, NUM);
+  drawVesicaField(ctx, frame, palette, NUM);
+  drawTreeOfLife(ctx, frame, palette, NUM);
+  drawFibonacciCurve(ctx, frame, palette, NUM);
+  drawDoubleHelix(ctx, frame, palette, NUM);
+  drawSafeFrame(ctx, frame, palette);
 
   ctx.restore();
 }
@@ -117,6 +120,55 @@ function normaliseNumerology(NUM) {
 }
 
 /**
+ * Compute the safe drawing frame that enforces the padding / clearspace rule.
+ *
+ * The margin is calculated as the larger of 5% of the shorter canvas dimension
+ * or the outer stroke width (SAFE_FRAME_STROKE). The resulting frame is used
+ * by all geometry builders so sacred forms never touch the canvas edge. Golden
+ * ratio guide positions are precomputed for the safe frame.
+ *
+ * @param {{left:number,top:number,right:number,bottom:number,width:number,height:number,centreX:number,centreY:number}} frame -
+ *   Safe frame metadata describing the padded drawing area.
+ * @return {{margin:number,left:number,top:number,right:number,bottom:number,width:number,height:number,centreX:number,centreY:number,golden:{vertical:number[],horizontal:number[]}}}
+ *   Layout metadata describing the usable drawing area.
+*/
+function computeSafeFrame(width, height) {
+  const minDim = Math.min(width, height);
+  const margin = Math.max(minDim * 0.05, SAFE_FRAME_STROKE);
+  const frameWidth = Math.max(0, width - margin * 2);
+  const frameHeight = Math.max(0, height - margin * 2);
+  const left = margin;
+  const top = margin;
+  const right = left + frameWidth;
+  const bottom = top + frameHeight;
+  const centreX = left + frameWidth / 2;
+  const centreY = top + frameHeight / 2;
+
+  const phiInsetX = frameWidth / PHI;
+  const phiInsetY = frameHeight / PHI;
+  const verticalRaw = [left + phiInsetX, right - phiInsetX];
+  const horizontalRaw = [top + phiInsetY, bottom - phiInsetY];
+  const vertical = verticalRaw.sort((a, b) => a - b);
+  const horizontal = horizontalRaw.sort((a, b) => a - b);
+
+  return {
+    margin,
+    left,
+    top,
+    right,
+    bottom,
+    width: frameWidth,
+    height: frameHeight,
+    centreX,
+    centreY,
+    golden: {
+      vertical,
+      horizontal
+    }
+  };
+}
+
+/**
  * Paints the canvas background: fills the entire area with the palette background
  * and overlays a centered soft radial glow.
  *
@@ -162,18 +214,18 @@ function paintBackground(ctx, width, height, palette) {
 /**
  * Render the Vesica field layer (two rim circles and a dashed numerology grid) onto the provided canvas context.
  *
- * Uses buildVesicaField(width, height, NUM) to obtain geometry, strokes the circle rims using palette.layers[0]
+ * Uses buildVesicaField(frame, NUM) to obtain geometry, strokes the circle rims using palette.layers[0]
  * (falls back to palette.ink) and renders the grid lines using palette.layers[2] (falls back to palette.ink).
  * The grid dash pattern is driven by NUM.THREE.
  *
- * @param {number} width - Canvas drawing width in pixels.
- * @param {number} height - Canvas drawing height in pixels.
+ * @param {{left:number,top:number,right:number,bottom:number,width:number,height:number,centreX:number,centreY:number}} frame -
+ *   Safe frame metadata describing the padded drawing area.
  * @param {Object} palette - Palette object containing at least `ink` and `layers` (array of hex colors).
  * @param {Object} NUM - Numerology mapping (e.g., keys like `THREE`) whose numeric values influence spacing and dash lengths.
  */
-function drawVesicaField(ctx, width, height, palette, NUM) {
+function drawVesicaField(ctx, frame, palette, NUM) {
   /* Layer 1: Vesica grid. Calm line weights keep intersections gentle. */
-  const field = buildVesicaField(width, height, NUM);
+  const field = buildVesicaField(frame, NUM);
   const rimColour = hexToRgba(pickLayer(palette.layers, 0, palette.ink), 0.85);
   const gridColour = hexToRgba(pickLayer(palette.layers, 2, palette.ink), 0.32);
 
@@ -208,18 +260,18 @@ function drawVesicaField(ctx, width, height, palette, NUM) {
  * The function computes two equal-radius circles centered vertically and slightly offset horizontally to form a vesica
  * shape, then generates vertical and horizontal grid line segments that span the overlapping region.
  *
- * @param {number} width - Canvas width used to position and size the field.
- * @param {number} height - Canvas height used to position and size the field.
+ * @param {{left:number,top:number,right:number,bottom:number,width:number,height:number,centreX:number,centreY:number}} frame -
+ *   Safe frame describing the padded drawing region.
  * @param {Object} NUM - Numerology map providing numeric constants used for layout (expects keys like THREE, SEVEN, ELEVEN, TWENTYTWO).
  * @returns {{ circles: Array<{x:number,y:number,r:number}>, grid: Array<{ax:number,ay:number,bx:number,by:number}> }}
  *   An object with:
  *     - circles: two circle descriptors ({x, y, r}) for the vesica pair.
  *     - grid: an array of line segment objects ({ax, ay, bx, by}) representing vertical and horizontal grid lines across the vesica.
  */
-function buildVesicaField(width, height, NUM) {
-  const radius = Math.min(width, height) / NUM.THREE;
-  const centreX = width / 2;
-  const centreY = height / 2;
+function buildVesicaField(frame, NUM) {
+  const radius = Math.min(frame.width, frame.height) / NUM.THREE;
+  const centreX = frame.centreX;
+  const centreY = frame.centreY;
   const circles = [
     { x: centreX - radius / 2, y: centreY, r: radius },
     { x: centreX + radius / 2, y: centreY, r: radius }
@@ -227,15 +279,19 @@ function buildVesicaField(width, height, NUM) {
 
   const grid = [];
   const verticalStep = (radius * 2) / NUM.TWENTYTWO;
+  const top = Math.max(frame.top, centreY - radius);
+  const bottom = Math.min(frame.bottom, centreY + radius);
   for (let i = -NUM.ELEVEN; i <= NUM.ELEVEN; i += 1) {
     const x = centreX + i * verticalStep;
-    grid.push({ ax: x, ay: centreY - radius, bx: x, by: centreY + radius });
+    grid.push({ ax: x, ay: top, bx: x, by: bottom });
   }
 
   const horizontalStep = radius / NUM.SEVEN;
+  const leftBound = centreX - radius;
+  const rightBound = centreX + radius;
   for (let j = -NUM.SEVEN; j <= NUM.SEVEN; j += 1) {
     const y = centreY + j * horizontalStep;
-    grid.push({ ax: centreX - radius, ay: y, bx: centreX + radius, by: y });
+    grid.push({ ax: leftBound, ay: y, bx: rightBound, by: y });
   }
 
   return { circles, grid };
@@ -247,19 +303,19 @@ function buildVesicaField(width, height, NUM) {
  * Draws each connection produced by buildTreePaths() as a stroked line, then renders
  * every node from buildTreeNodes(...) as a filled circle. Path stroke color comes from
  * palette.layers[3] (fallback to palette.ink) at 0.6 alpha; node fill color comes from
- * palette.layers[1] (fallback to palette.ink) at 0.9 alpha. Node radius is computed as
- * Math.max(4, Math.min(width, height) / NUM.ONEFORTYFOUR * 3).
+ * palette.layers[1] (fallback to palette.ink) at 0.9 alpha. Node radius is computed from the
+ * safe frame dimensions to respect the padding law.
  *
- * @param {number} width - Canvas drawing width in pixels.
- * @param {number} height - Canvas drawing height in pixels.
+ * @param {{left:number,top:number,right:number,bottom:number,width:number,height:number,centreX:number,centreY:number}} frame -
+ *   Safe frame metadata describing the padded drawing area.
  * @param {Object} palette - Palette object with color tokens. Expected to include a
  *   layers array and an ink fallback (palette.ink). Layer indexes 1 and 3 are used.
  * @param {Object} NUM - Numerology constants object. Must include numeric ONEFORTYFOUR
  *   (used to scale node radius).
  */
-function drawTreeOfLife(ctx, width, height, palette, NUM) {
+function drawTreeOfLife(ctx, frame, palette, NUM) {
   /* Layer 2: Tree-of-Life scaffold. Paths first, nodes second for clarity. */
-  const nodes = buildTreeNodes(width, height, NUM);
+  const nodes = buildTreeNodes(frame, NUM);
   const paths = buildTreePaths();
 
   ctx.save();
@@ -277,7 +333,7 @@ function drawTreeOfLife(ctx, width, height, palette, NUM) {
   });
 
   ctx.fillStyle = hexToRgba(pickLayer(palette.layers, 1, palette.ink), 0.9);
-  const nodeRadius = computeNodeRadius(width, height, NUM);
+  const nodeRadius = computeNodeRadius(frame, NUM);
   ctx.shadowColor = hexToRgba(pickLayer(palette.layers, 1, palette.ink), 0.28);
   ctx.shadowBlur = nodeRadius * 0.9;
   nodes.forEach(node => {
@@ -292,29 +348,30 @@ function drawTreeOfLife(ctx, width, height, palette, NUM) {
  * Build coordinates for the Tree-of-Life nodes laid out vertically on the canvas.
  *
  * Returns an array of 10 {x, y} positions (in canvas pixels) arranged as a central pillar
- * with two lateral pillars. Horizontal placement uses the canvas centre and a pillar offset
- * derived from width / NUM.THREE; vertical spacing divides the height into NUM.ELEVEN + 2 steps.
+ * with two lateral pillars. Horizontal placement uses the safe frame centre and a pillar offset
+ * derived from frame.width / NUM.THREE; vertical spacing divides the safe frame height into
+ * NUM.ELEVEN + 2 steps.
  *
- * @param {number} width - Canvas width in pixels.
- * @param {number} height - Canvas height in pixels.
+ * @param {{left:number,top:number,right:number,bottom:number,width:number,height:number,centreX:number,centreY:number}} frame -
+ *   Safe frame metadata describing the padded drawing area.
  * @param {Object} NUM - Numerology map providing numeric constants (e.g., THREE, ELEVEN).
  * @return {Array<{x:number,y:number}>} Array of 10 node coordinates for drawing nodes and edges.
  */
-function buildTreeNodes(width, height, NUM) {
-  const centreX = width / 2;
-  const pillarOffset = (width / NUM.THREE) / 2;
-  const stepY = height / (NUM.ELEVEN + 2);
+function buildTreeNodes(frame, NUM) {
+  const centreX = frame.centreX;
+  const pillarOffset = (frame.width / NUM.THREE) / 2;
+  const stepY = frame.height / (NUM.ELEVEN + 2);
   return [
-    { x: centreX, y: stepY * 1 },
-    { x: centreX - pillarOffset, y: stepY * 2 },
-    { x: centreX + pillarOffset, y: stepY * 2 },
-    { x: centreX, y: stepY * 3 },
-    { x: centreX - pillarOffset, y: stepY * 4 },
-    { x: centreX + pillarOffset, y: stepY * 4 },
-    { x: centreX - pillarOffset, y: stepY * 5 },
-    { x: centreX + pillarOffset, y: stepY * 5 },
-    { x: centreX, y: stepY * 6 },
-    { x: centreX, y: stepY * 7 }
+    { x: centreX, y: frame.top + stepY * 1 },
+    { x: centreX - pillarOffset, y: frame.top + stepY * 2 },
+    { x: centreX + pillarOffset, y: frame.top + stepY * 2 },
+    { x: centreX, y: frame.top + stepY * 3 },
+    { x: centreX - pillarOffset, y: frame.top + stepY * 4 },
+    { x: centreX + pillarOffset, y: frame.top + stepY * 4 },
+    { x: centreX - pillarOffset, y: frame.top + stepY * 5 },
+    { x: centreX + pillarOffset, y: frame.top + stepY * 5 },
+    { x: centreX, y: frame.top + stepY * 6 },
+    { x: centreX, y: frame.top + stepY * 7 }
   ];
 }
 
@@ -345,14 +402,14 @@ function buildTreePaths() {
  * The stroke color is taken from palette.layers[4] with alpha fallback to palette.ink; stroke width is 2.
  *
  * @param {CanvasRenderingContext2D} ctx - Canvas 2D rendering context to draw into.
- * @param {number} width - Canvas width used to position and scale the spiral.
- * @param {number} height - Canvas height used to position and scale the spiral.
+ * @param {{left:number,top:number,right:number,bottom:number,width:number,height:number,centreX:number,centreY:number}} frame -
+ *   Safe frame metadata describing the padded drawing area used to position and scale the spiral.
  * @param {object} palette - Palette object; layer color at index 4 is preferred for the stroke.
  * @param {object} NUM - Numerology/config object used by buildSpiralPoints to determine spiral sampling and scale.
  */
-function drawFibonacciCurve(ctx, width, height, palette, NUM) {
+function drawFibonacciCurve(ctx, frame, palette, NUM) {
   /* Layer 3: Fibonacci spiral. Static polyline; no animation. */
-  const points = buildSpiralPoints(width, height, NUM);
+  const points = buildSpiralPoints(frame, NUM);
   ctx.save();
   ctx.strokeStyle = hexToRgba(pickLayer(palette.layers, 4, palette.ink), 0.85);
   ctx.lineWidth = 2;
@@ -373,19 +430,19 @@ function drawFibonacciCurve(ctx, width, height, palette, NUM) {
  * The spiral is generated by stepping an angle by 2π/NUM.THIRTYTHREE and increasing radius roughly by powers of the golden ratio (phi),
  * capped at half the smallest canvas dimension. Useful for plotting a smooth spiral polyline.
  *
- * @param {number} width - Canvas width in pixels.
- * @param {number} height - Canvas height in pixels.
+ * @param {{left:number,top:number,right:number,bottom:number,width:number,height:number,centreX:number,centreY:number}} frame -
+ *   Safe frame metadata describing the padded drawing area.
  * @param {Object} NUM - Numerology map; function reads NUM.NINETYNINE (number of points), NUM.THIRTYTHREE (angular step divisor),
  *                       and NUM.NINE (exponential divisor for radial growth).
  * @return {Array<{x:number,y:number}>} Array of points in canvas coordinates describing the spiral, length = NUM.NINETYNINE.
  */
-function buildSpiralPoints(width, height, NUM) {
+function buildSpiralPoints(frame, NUM) {
   const total = NUM.NINETYNINE;
-  const centreX = width / 2;
-  const centreY = height / 2;
-  const baseRadius = Math.min(width, height) / NUM.THIRTYTHREE;
+  const centreX = frame.centreX;
+  const centreY = frame.centreY;
+  const baseRadius = Math.min(frame.width, frame.height) / NUM.THIRTYTHREE;
   const angleStep = (Math.PI * 2) / NUM.THIRTYTHREE;
-  const maxRadius = Math.min(width, height) / 2.1;
+  const maxRadius = Math.min(frame.width, frame.height) / 2.1;
   const output = [];
 
   for (let i = 0; i < total; i += 1) {
@@ -405,14 +462,14 @@ function buildSpiralPoints(width, height, NUM) {
  * Draws 144 crossbars (from the helix builder) and two strand polylines onto the provided 2D canvas context using colors selected from the palette.
  *
  * @param {CanvasRenderingContext2D} ctx - Canvas 2D context to draw into.
- * @param {number} width - Canvas width in pixels.
- * @param {number} height - Canvas height in pixels.
+ * @param {{left:number,top:number,right:number,bottom:number,width:number,height:number,centreX:number,centreY:number}} frame -
+ *   Safe frame metadata describing the padded drawing area.
  * @param {Object} palette - Normalised palette object containing `ink`, `bg`, and `layers` color entries.
  * @param {Object} NUM - Numerology constants (normalized via normaliseNumerology) used for segment counts and sizing for the helix generation.
  */
-function drawDoubleHelix(ctx, width, height, palette, NUM) {
+function drawDoubleHelix(ctx, frame, palette, NUM) {
   /* Layer 4: Double-helix lattice. Two strands with 144 crossbars stay static. */
-  const helix = buildHelixStrands(width, height, NUM);
+  const helix = buildHelixStrands(frame, NUM);
   const strandColour = hexToRgba(pickLayer(palette.layers, 5, palette.ink), 0.9);
   const latticeColour = hexToRgba(pickLayer(palette.layers, 0, palette.ink), 0.35);
 
@@ -443,16 +500,16 @@ function drawDoubleHelix(ctx, width, height, palette, NUM) {
  * given width and computes straight crossbar segments that join corresponding
  * points between the two strands.
  *
- * @param {number} width - Canvas width in pixels.
- * @param {number} height - Canvas height in pixels.
+ * @param {{left:number,top:number,right:number,bottom:number,width:number,height:number,centreX:number,centreY:number}} frame -
+ *   Safe frame metadata describing the padded drawing area.
  * @param {Object} NUM - Numerology constants used for spacing and scale (expects keys such as `ONEFORTYFOUR`, `THREE`, `ELEVEN`).
  * @return {{strandA: Array<{x:number,y:number}>, strandB: Array<{x:number,y:number}>, crossbars: Array<{ax:number,ay:number,bx:number,by:number}>}} Object containing two strand point arrays and an array of crossbar segments.
  */
-function buildHelixStrands(width, height, NUM) {
+function buildHelixStrands(frame, NUM) {
   const segments = NUM.ONEFORTYFOUR;
-  const amplitude = height / NUM.THREE / 2;
-  const centreY = height / 2;
-  const stepX = width / segments;
+  const amplitude = frame.height / NUM.THREE / 2;
+  const centreY = frame.centreY;
+  const stepX = frame.width / segments;
   const frequency = (Math.PI * 2) / (NUM.ELEVEN * NUM.THREE);
 
   const strandA = [];
@@ -460,7 +517,7 @@ function buildHelixStrands(width, height, NUM) {
   const crossbars = [];
 
   for (let i = 0; i <= segments; i += 1) {
-    const x = i * stepX;
+    const x = frame.left + i * stepX;
     const phase = i * frequency;
     const yA = centreY + Math.sin(phase) * amplitude;
     const yB = centreY + Math.sin(phase + Math.PI) * amplitude;
@@ -472,6 +529,42 @@ function buildHelixStrands(width, height, NUM) {
   }
 
   return { strandA, strandB, crossbars };
+}
+
+/**
+ * Draw the safe frame outline and golden-ratio guides that enforce the padding rule.
+ *
+ * The outline uses SAFE_FRAME_STROKE so the clearspace rule (>= stroke width, >= 5%)
+ * is visible. Dashed golden ratio guides stay subtle to avoid sensory overload while
+ * signalling the underlying compositional grid.
+ */
+function drawSafeFrame(ctx, frame, palette) {
+  ctx.save();
+  const guideColour = hexToRgba(pickLayer(palette.layers, 2, palette.ink), 0.2);
+  const outlineColour = hexToRgba(pickLayer(palette.layers, 0, palette.ink), 0.55);
+  const dash = Math.max(4, frame.margin * 0.5);
+
+  ctx.strokeStyle = guideColour;
+  ctx.lineWidth = 1;
+  ctx.setLineDash([dash, dash]);
+  frame.golden.vertical.forEach(x => {
+    ctx.beginPath();
+    ctx.moveTo(x, frame.top);
+    ctx.lineTo(x, frame.bottom);
+    ctx.stroke();
+  });
+  frame.golden.horizontal.forEach(y => {
+    ctx.beginPath();
+    ctx.moveTo(frame.left, y);
+    ctx.lineTo(frame.right, y);
+    ctx.stroke();
+  });
+
+  ctx.setLineDash([]);
+  ctx.lineWidth = SAFE_FRAME_STROKE;
+  ctx.strokeStyle = outlineColour;
+  ctx.strokeRect(frame.left, frame.top, frame.width, frame.height);
+  ctx.restore();
 }
 
 /**
@@ -488,10 +581,14 @@ function drawPolyline(ctx, points) {
   });
   ctx.stroke();
 }
-
-
-function computeNodeRadius(width, height, NUM) {
-  return Math.max(4, Math.min(width, height) / NUM.ONEFORTYFOUR * 3);
+/**
+ * Compute the Tree-of-Life node radius using the safe frame dimensions.
+ *
+ * Ensures node size respects the padding margin by scaling relative to the
+ * usable drawing area instead of the full canvas.
+ */
+function computeNodeRadius(frame, NUM) {
+  return Math.max(4, Math.min(frame.width, frame.height) / NUM.ONEFORTYFOUR * 3);
 }
 
 
