@@ -22,6 +22,12 @@ Static, trauma-informed canvas study for the Stone Cathedral helix. Keep the fou
 
 The renderer exposes constants for 3, 7, 9, 11, 22, 33, 99, and 144. Adjust them in `index.html` before calling `renderHelix` if you need alternative ratios.
 
+## Padding & Clearspace Law
+- **Padding Law:** All renders (artifacts, seals, realms, exports) must include a minimum 5–10% clearspace buffer. No sacred form is ever cut by canvas edges.
+- The HTML shell wraps the `<canvas>` in a `.canvas` frame that applies a 5% padding buffer per side before any pixels are drawn.
+- `renderHelix` computes a safe frame margin as the larger of 5% of the shorter dimension or the outer stroke width, then routes every layer through that padded frame so geometry never touches the edge.
+- A golden-ratio grid is lightly stroked on top of the render to signal the composition lattice without overwhelming ND viewers.
+
 ## Palette & Status Discipline
 - The script first tries to fetch `data/palette.json`. When the file loads and passes validation, the body switches to **mode: custom**.
 - If the file is missing, blocked, or malformed, the renderer clones the built-in ND-safe palette, marks **mode: fallback**, and posts a small inline notice.
