@@ -92,7 +92,8 @@
     // --- Helpers ---
     const $ = (q)=>document.querySelector(q);
     const params = new URLSearchParams(location.search);
-    let MODE = params.get("mode") || "story";
+    const ALLOWED_MODES = ["story", "game", "art", "research"];
+    let MODE = ALLOWED_MODES.includes(params.get("mode")) ? params.get("mode") : "story";
 
     const views = {
       story(o){ return `<p class="note">${o.role || ""} · narrative lens</p>`; },
@@ -107,7 +108,11 @@
       ops.innerHTML = (bundle.operators||[]).map(o=>`
         <article class="card" role="listitem">
           <h3>${o.label || o.id}</h3>
-          ${views[MODE](o)}
+          ${
+            (Object.prototype.hasOwnProperty.call(views, MODE) && typeof views[MODE] === "function")
+              ? views[MODE](o)
+              : views["story"](o)
+          }
           ${(bundle.symbols||[]).slice(0,4).map(t=>`<span class="tag">#${t}</span>`).join(" ")}
         </article>`).join("");
     }
