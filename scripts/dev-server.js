@@ -29,8 +29,17 @@ function isLocalUrl(p) {
 
 const server = http.createServer(async (req, res) => {
   const reqUrl = url.parse(req.url).pathname;
-  const filePath = path.join(root, reqUrl);
+  // Securely resolve and validate file path
+  let requestedPath = path.resolve(root, '.' + reqUrl); // prevent absolute reqUrl from escaping
   try {
+    // Resolve symlinks and normalize
+    const filePath = await fs.realpath(requestedPath);
+    // Check that file is strictly inside the root directory
+    if (!filePath.startsWith(root + path.sep)) {
+      res.writeHead(403);
+      res.end('Forbidden');
+      return;
+    }
     const stat = await fs.stat(filePath);
     if (stat.isDirectory()) {
       // Normalize and sanitize directory path, ensuring redirect always local and canonical
