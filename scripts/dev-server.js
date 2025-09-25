@@ -17,14 +17,25 @@ function isSafeLocalPath(p) {
   );
 }
 
+// Only allow redirects to local URLs
+function isLocalUrl(p) {
+  try {
+    // If your app is using a different hostname, adjust accordingly.
+    return new URL(p, 'http://localhost').origin === 'http://localhost';
+  } catch {
+    return false;
+  }
+}
+
 const server = http.createServer(async (req, res) => {
   const reqUrl = url.parse(req.url).pathname;
   const filePath = path.join(root, reqUrl);
   try {
     const stat = await fs.stat(filePath);
     if (stat.isDirectory()) {
-      if (isSafeLocalPath(reqUrl)) {
-        res.writeHead(302, {Location: reqUrl.replace(/\/?$/, '/') + 'index.html'});
+      let redirectPath = reqUrl.replace(/\/?$/, '/') + 'index.html';
+      if (isSafeLocalPath(reqUrl) && isLocalUrl(redirectPath)) {
+        res.writeHead(302, {Location: redirectPath});
       } else {
         res.writeHead(302, {Location: '/'});
       }
