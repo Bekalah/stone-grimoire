@@ -33,8 +33,11 @@ const server = http.createServer(async (req, res) => {
   try {
     const stat = await fs.stat(filePath);
     if (stat.isDirectory()) {
-      let redirectPath = reqUrl.replace(/\/?$/, '/') + 'index.html';
-      if (isSafeLocalPath(reqUrl) && isLocalUrl(redirectPath)) {
+      // Normalize and sanitize directory path, ensuring redirect always local and canonical
+      let safeDir = path.posix.normalize(reqUrl + '/').replace(/\\/g, '/');
+      if (isSafeLocalPath(safeDir)) {
+        // Compose canonical index.html path, starting with single "/"
+        let redirectPath = safeDir.replace(/\/+$/, '/') + 'index.html';
         res.writeHead(302, {Location: redirectPath});
       } else {
         res.writeHead(302, {Location: '/'});
