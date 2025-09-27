@@ -84,6 +84,7 @@ function normalisePalette(palette) {
   return {
     bg: typeof base.bg === "string" ? base.bg : "#0b0b12",
     ink: typeof base.ink === "string" ? base.ink : "#e8e8f0",
+    muted: typeof base.muted === "string" ? base.muted : "#a6a6c1",
     layers: layers.slice()
   };
 }

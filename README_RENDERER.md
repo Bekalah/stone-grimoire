@@ -4,14 +4,17 @@ Static, trauma-informed canvas study for the Stone Cathedral helix. Keep the fou
 
 ## Quick Start
 1. Store `index.html`, the `js/` folder, the `data/` folder, and this README in the same directory.
-2. Open `index.html` directly in any modern browser (offline is fine).
-3. Watch the header status — it reports whether the custom palette loaded or the fallback palette took over.
-4. Study or capture the canvas. The geometry is static and safe for ND viewers.
+2. Keep `_headers` and `.cfignore` beside them when you are preparing a Cloudflare Pages deploy — they apply global security headers and trim dev-only files.
+3. Open `index.html` directly in any modern browser (offline is fine).
+4. Watch the header status — it reports whether the custom palette loaded or the fallback palette took over.
+5. Study or capture the canvas. The geometry is static and safe for ND viewers.
 
 ## Files
 - `index.html` — offline shell, palette loader, status + notice discipline, and 1440×900 `<canvas>`.
 - `js/helix-renderer.mjs` — pure ES module that paints the four layers in order.
 - `data/palette.json` — optional palette override; missing or malformed data triggers an inline fallback notice.
+- `_headers` — security + CORS defaults for static hosting.
+- `.cfignore` — excludes dev tooling from the Pages artifact.
 - `README_RENDERER.md` — this guide.
 
 ## Layer Order & Numerology Anchors
@@ -51,3 +54,11 @@ The renderer exposes constants for 3, 7, 9, 11, 22, 33, 99, and 144. Adjust them
 ```
 
 Copy this structure to customise the tones. The script clones arrays internally so palette edits never mutate the defaults.
+
+## Cloudflare Pages (Zero Build Step)
+1. Create a new Pages project that points at this repository.
+2. When prompted for build settings, choose **No build command** and set the output directory to the repo root (`/`).
+3. Publish. `_headers` injects CORS + security headers for every route and keeps `/data/*` cache-free so JSON tweaks land instantly.
+4. `.cfignore` keeps dev-only folders (tests, scripts, CI helpers) out of the artifact so each repo stays self-contained.
+
+If you later assemble multiple projects under a single Worker router, each Pages site will already answer with the correct headers.
