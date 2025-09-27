@@ -8,6 +8,6 @@
     "dedupe": "node scripts/deduplicate-repo.mjs",
     "dedupe-file": "node scripts/dedupe.js",
     "prebuild": "node scripts/verify-absent.mjs",
-    "build": "node -e \"console.log('offline build: static renderer ready')\""
+    "build": "node -e \"console.log('offline build: apps/renderer ready')\""
   }
 }

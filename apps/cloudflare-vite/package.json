@@ -1,0 +1,21 @@
+{
+  "name": "cloudflare-vite-client",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "wasm": "emcc src/native/helix.cpp -s WASM=1 -O3 -o public/helix.wasm"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.2.0",
+    "wrangler": "^3.57.1"
+  }
+}

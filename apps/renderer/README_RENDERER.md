@@ -1,6 +1,6 @@
 # Cosmic Helix Renderer — Offline Study Deck
 
-Static, trauma-informed canvas study for the Stone Cathedral helix. Keep the four files together, double-click `index.html`, and a 1440×900 canvas renders once: Vesica field, Tree-of-Life scaffold, Fibonacci curve, and a static double-helix lattice. No build tools, no motion, no external calls.
+Static, trauma-informed canvas study for the Stone Cathedral helix. Keep the four files together inside `apps/renderer`, double-click `index.html`, and a 1440×900 canvas renders once: Vesica field, Tree-of-Life scaffold, Fibonacci curve, and a static double-helix lattice. No build tools, no motion, no external calls.
 
 ## Quick Start
 1. Store `index.html`, the `js/` folder, the `data/` folder, and this README in the same directory.
@@ -12,6 +12,7 @@ Static, trauma-informed canvas study for the Stone Cathedral helix. Keep the fou
 - `index.html` — offline shell, palette loader, status + notice discipline, and 1440×900 `<canvas>`.
 - `js/helix-renderer.mjs` — pure ES module that paints the four layers in order.
 - `data/palette.json` — optional palette override; missing or malformed data triggers an inline fallback notice.
+- `data/visionary.json` — archived palette variant stored alongside the active JSON so every `.json` asset lives in one folder.
 - `README_RENDERER.md` — this guide.
 
 ## Layer Order & Numerology Anchors

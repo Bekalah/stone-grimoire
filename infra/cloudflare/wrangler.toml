@@ -1,0 +1,14 @@
+name = "stone-grimoire-cloudflare"
+compatibility_date = "2024-06-01"
+pages_build_output_dir = "../../apps/cloudflare-vite/dist"
+
+[build]
+command = "npm --prefix ../../apps/cloudflare-vite run build"
+working_directory = "../../apps/cloudflare-vite"
+
+[dev]
+port = 8787
+local_protocol = "http"
+
+[vars]
+HELIX_WASM_PATH = "helix.wasm"
