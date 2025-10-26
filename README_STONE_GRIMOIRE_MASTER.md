@@ -2,7 +2,7 @@
 
 ## DIRECTORY STRUCTURE
 
-```
+```markdown
 stone-grimoire/
 ├── chapels/          # Interactive HTML spaces
 │   ├── apprentice-pillar.html
