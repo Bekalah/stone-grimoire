@@ -1,0 +1,72 @@
+site:
+  name: "Stone Grimoire — Rosslyn Pattern"
+  orientation: "West (entrance) → East (Lady Chapel)"
+  statement: "This is a study-façade: factual anchors presented plainly; legends labeled as legend; modern commentary clearly marked."
+
+zones:
+  - id: nave
+    label: "Nave"
+    notes: "Central hall; processional axis; framed by aisles."
+  - id: north-aisle
+    label: "North Aisle"
+    notes: "Boaz side; reports of foliate heads (Green Man) among capitals."
+  - id: south-aisle
+    label: "South Aisle"
+    notes: "Jachin side; angel-musician carvings attested."
+  - id: lady-chapel
+    label: "Lady Chapel (Choir)"
+    notes: "East end; densest canopy/capital work; devotional focus."
+  - id: crypt
+    label: "Crypt"
+    notes: "Undercroft; patronage context; legendary caches discussed as legend."
+
+pillars:
+  - id: boaz
+    side: "north"
+    title: "Boaz (Strength)"
+    motifs: ["vine", "geometric bands"]
+    gloss: "Strength, foundation; paired to Jachin."
+  - id: jachin
+    side: "south"
+    title: "Jachin (Establishment)"
+    motifs: ["vine", "knotwork"]
+    gloss: "Establishment, mercy; paired to Boaz."
+  - id: apprentice
+    side: "center-east"
+    title: "Apprentice Pillar"
+    motifs: ["helical vine", "clustered fruit", "serpents/dragons (interpretations vary)"]
+    gloss: "Helical ascent; associated 'Apprentice' legend (presented as legend)."
+
+motifs:
+  - "Green Man: foliate heads; seasonal life-force."
+  - "Angel musicians: psaltery, fiddle, bagpipe (iconographic choir)."
+  - "Vine scrolls: vegetal arabesque; Word as living growth."
+  - "Bestiary: moralized animals in bosses/capitals."
+  - "Heraldry: Sinclair/St. Clair patronal devices."
+
+heraldry:
+  patrons: "Sinclair (St. Clair) family"
+  usage: "Coats, bosses, shields; denote patronage and claims."
+
+folios:
+  - id: folio1
+    title: "Archive Plate (Folio I)"
+    path: "chapels/folio1.html"
+    realm: "Assiah"
+    stage: "nigredo"
+    license: "CC-BY 4.0"
+
+links:
+  frontispiece: "index.html"
+  nave: "cathedral.html"
+  standards: "standards/README.md"
+  floorplan: "plans/floorplan.svg"
+
+sources:
+  - type: "PD summary"
+    title: "General history & plan of Rosslyn Chapel (Roslin, Scotland)"
+    note: "Use lawful encyclopedic sources; cite links rather than re-host photos."
+
+accessibility:
+  policy: "Describe form + meaning; use aria-labels for glyphs; captions as museum wall-text."
+  alt_example: "Gargoyle: crouching winged beast in stone, guardian of the aisle; emblem of vigilance and transformation."

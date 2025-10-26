@@ -1,0 +1,20 @@
+{
+  "rooms": [
+    { "id": "N01", "title": "Apprentice Pillar", "summary": "Phyllotaxis harmonics anchored to Rosslyn cube lore." },
+    { "id": "N02", "title": "Angelic Choir", "summary": "Ambient chants woven with Solfeggio intervals." },
+    { "id": "N03", "title": "Crystal Nave", "summary": "Refractive lattice guiding pilgrims to tonal waypoints." },
+    { "id": "N04", "title": "Garden Cloister", "summary": "Bioluminescent orchids paired with restorative pools." },
+    { "id": "N05", "title": "Archive Spire", "summary": "Codex reliquaries suspended in golden ratio helices." },
+    { "id": "N06", "title": "Choir Loft", "summary": "Harmonic deck tuned to 396/528/963 breath cycles." },
+    { "id": "N07", "title": "Scribe Alcove", "summary": "Manuscript tables for ND-safe study and notation." },
+    { "id": "N08", "title": "Portal Rotunda", "summary": "Converging arches bridging hub, codex, and chapels." },
+    { "id": "N09", "title": "Luminous Reliquary", "summary": "Crystal vessels containing prismatized tones." },
+    { "id": "N10", "title": "Shadow Gallery", "summary": "Matte-black reliefs revealing hidden correspondences." },
+    { "id": "N11", "title": "Sephirot Arcade", "summary": "Ten-node walkway aligned to Tree-of-Life geometry." },
+    { "id": "N12", "title": "Cosmogenesis Gate", "summary": "Threshold leading toward the spiral learning engine." },
+    { "id": "N13", "title": "Atrium of Stillness", "summary": "Quiet chamber for grounding before traversal." },
+    { "id": "N14", "title": "Altar of Resonance", "summary": "Stone altar tuned to 33 harmonic pillars." },
+    { "id": "N15", "title": "Helix Walk", "summary": "Ribbon staircase echoing double-helix lattice." },
+    { "id": "N16", "title": "Golden Vesica", "summary": "Sanctum marking the cathedral's harmonic center." }
+  ]
+}

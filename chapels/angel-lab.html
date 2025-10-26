@@ -1,0 +1,365 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Stone Grimoire -- Angel Cubes Lab</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Match cube -> ratio -> tone -> angel. Harmonic lab wired to ND-safe sound, cymatics, and the 72 Shem mapping.">
+
+  <!-- Site styles (same stack as cathedral) -->
+  <link rel="stylesheet" href="/assets/css/palette.css">
+  <link rel="stylesheet" href="/assets/css/light.css">
+  <script src="/assets/js/theme.js" defer></script>
+
+  <style>
+    :root{
+      --parch-bg: #f8f2e6;
+      --parch-edge:#e7dbc6;
+    }
+    body.mystic{
+      margin:0;
+      background: radial-gradient(circle at 50% 18%, var(--bg, var(--parch-bg)) 78%, #ece7dc 100%);
+      color: var(--ink, #2b2520);
+      font: 18px/1.6 "Iowan Old Style", Georgia, serif;
+    }
+    header, footer{
+      max-width:1100px; margin:18px auto; background:var(--wash, #fff8e7);
+      border:1px solid var(--line,#d9d1c4); border-radius:12px; padding:14px 18px; text-align:center;
+    }
+    header h1{ margin:.2rem 0 .3rem; color:var(--accent,#2f5a9e) }
+    .wrap{ max-width:1100px; margin:0 auto; padding:10px 14px 24px }
+
+    /* Lab layout */
+    .lab{
+      display:grid; grid-template-columns: 1.2fr 1fr; gap:14px;
+    }
+    @media (max-width: 920px){ .lab{ grid-template-columns: 1fr } }
+
+    .panel{
+      background:#ffffffcc; border:1px solid var(--line,#d9d1c4);
+      border-radius:12px; padding:14px 16px;
+    }
+    h2{ margin:.2rem 0 .6rem; color:var(--accent-2,#b89635); font-size:1.15rem }
+
+    /* Cubes grid */
+    .cubes{
+      display:grid; grid-template-columns: repeat(auto-fill,minmax(88px,1fr)); gap:10px;
+    }
+    .cube{
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      height:86px; border:1px solid var(--line,#d0c8bc); border-radius:10px;
+      background:#fff; cursor:pointer; transition:transform .12s, background .12s;
+      user-select:none;
+    }
+    .cube:hover{ transform:translateY(-1px); background:#fffef8 }
+    .cube .n{ font-weight:700; color:#3d3a34 }
+    .cube .r{ font-size:.9rem; color:#6b6257 }
+
+    /* Output + plaque */
+    .out{ font-size:1rem; color:#3d3a34 }
+    .kv{ margin:.3rem 0 }
+    .kv span{ display:inline-block; min-width:120px; color:#6b6257 }
+    .btns{ margin:.6rem 0; display:flex; gap:8px; flex-wrap:wrap }
+    button, select{
+      font: 16px/1.2 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      border:1px solid var(--line,#cfc7ba); background:#fff; border-radius:8px; padding:.4rem .6rem; cursor:pointer;
+    }
+    button:hover{ background:#fffdf6 }
+    .small{ font-size:.92rem }
+
+    /* Cymatics canvas */
+    .cymwrap{ position:relative; background:#fff; border:1px solid var(--line,#d9d1c4); border-radius:12px; overflow:hidden }
+    .cymhead{ padding:8px 12px; border-bottom:1px solid var(--line,#e6ded1); color:#6b6257; background:#fffef8 }
+    #cymatics{ display:block; width:100%; height:300px; background:#fff; }
+
+    /* Footer nav */
+    .site-footer nav ul{ list-style:none; padding:0; margin:.4rem 0; display:flex; flex-wrap:wrap; gap:8px; justify-content:center }
+    .site-footer nav a{ color:var(--accent,#2f5a9e); text-decoration:none; border:1px solid var(--line,#d9d1c4); border-radius:999px; padding:.25rem .6rem; background:#fff }
+    .site-footer nav a:hover{ text-decoration:underline }
+    .seal{ color:#6b6257; margin:.4rem 0 }
+  </style>
+</head>
+<body class="mystic" data-theme="tiphereth">
+  <header>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+      <div><a href="../cathedral.html">⟵ Back to Cathedral</a></div>
+      <h1>Angel Cubes Lab</h1>
+      <div><a href="./shem-ladder.html">Shem Ladder (72)</a></div>
+    </div>
+    <p>Match cube -> ratio -> tone -> angel. ND-safe tone and cymatic bloom on tap; export your mapping.</p>
+  </header>
+
+  <div class="wrap lab">
+    <!-- Left: cubes + controls + results -->
+    <section class="panel">
+      <h2>Choose a Cube</h2>
+      <div class="small" style="margin:.2rem 0 .6rem">
+        Base tuning:
+        <select id="base">
+          <option value="432">A4 = 432 Hz (gentle)</option>
+          <option value="440">A4 = 440 Hz (standard)</option>
+          <option value="528">Center = 528 Hz (solfeggio center)</option>
+        </select>
+      </div>
+
+      <div id="cubes" class="cubes" role="list" aria-label="Harmonic cubes"></div>
+
+      <div class="out" id="out" aria-live="polite" style="margin-top:.8rem">
+        <div class="kv"><span>Selection:</span> None</div>
+        <div class="kv"><span>Ratio:</span> --</div>
+        <div class="kv"><span>Tone (Hz):</span> --</div>
+        <div class="kv"><span>Angel:</span> --</div>
+        <div class="kv"><span>Sign / Element:</span> --</div>
+        <div class="kv"><span>Stylepack:</span> --</div>
+      </div>
+
+      <div class="btns">
+        <button id="btn-copy">Copy YAML</button>
+        <button id="btn-save">Download YAML</button>
+        <button id="btn-mute">Quietus</button>
+      </div>
+
+      <!-- Curator plaque -->
+      <aside class="panel" style="margin-top:.6rem" role="note" aria-label="Curator Plaque">
+        <strong>Plaque -- Angel Cubes Lab</strong><br>
+        Intention: Translate Rosslyn-style cube ratios into tones and angelic correspondences.<br>
+        Technique: ND-safe pad (ambient engine), cymatic bloom (analyser canvas), stylepack handoff.<br>
+        Lineage: Rosslyn musical lore, Pythagorean ratios, Shem ladder (72).<br>
+        Evidence: angels72.json mapping; YAML export.<br>
+        Reflection: Use as a gentle research tool; no medical claims.
+      </aside>
+    </section>
+
+    <!-- Right: cymatics -->
+    <section class="cymwrap">
+      <div class="cymhead">Cymatic Bloom (responsive, ND-safe)</div>
+      <canvas id="cymatics"></canvas>
+    </section>
+  </div>
+
+  <footer class="site-footer" role="contentinfo">
+    <nav aria-label="Site links">
+      <ul>
+        <li><a href="../index.html">Frontispiece</a></li>
+        <li><a href="../cathedral.html">Cathedral Nave</a></li>
+        <li><a href="../chapels/apprentice-pillar.html">Apprentice Pillar</a></li>
+        <li><a href="../chapels/crypt.html">Crypt</a></li>
+        <li><a href="../chapels/lady-chapel.html">Lady Chapel</a></li>
+        <li><a href="../chapels/crystal-grid.html">Crystal Grid</a></li>
+        <li><a href="../chapels/musical-cubes.html">Musical Cubes</a></li>
+        <li><a href="../chapels/cubes-visual-lab.html">Cubes Visual Lab</a></li>
+        <li><a href="../chapels/helix-totem.html">Jacob's Ladder</a></li>
+        <li><a href="../angels72.html">72 Angels</a></li>
+        <li><a href="../main/Thelemic-Alignment-Brief.html">Thelemic Alignment</a></li>
+        <li><a href="../main/05_ateliers/manifesto.html">Ateliers Manifesto</a></li>
+      </ul>
+    </nav>
+    <p class="seal">𓂀 ✦ Codex 144:99 ✦ 𓂀</p>
+  </footer>
+
+  <script type="module">
+    // Module imports (paths are from /chapels/)
+    import { start, setToneHz, setMuted, getAnalyser } from "/assets/js/engines/ambient-engine.js";
+    import { mountCymaticsCanvas } from "/assets/js/engines/cymatic-engine.js";
+
+    // Optional: stylepack handoff, if your style-engine exists
+    let applyStylepack = null;
+    try {
+      const mod = await import("/assets/js/style-engine.js");
+      applyStylepack = mod.applyStylepack || null;
+    } catch(_){ /* style engine optional */ }
+
+    // Data sources (note the path to assets/data)
+    const ANGELS_URL = "/assets/data/angels72.json";
+
+    // Cube set (Pythagorean/just intervals; use labels that look like engraved ratios)
+    const CUBES = [
+      { n:1,  ratio:[1,1],   label:"1:1 (Unison)" },
+      { n:2,  ratio:[9,8],   label:"9:8 (Major 2nd)" },
+      { n:3,  ratio:[5,4],   label:"5:4 (Major 3rd)" },
+      { n:4,  ratio:[4,3],   label:"4:3 (Perfect 4th)" },
+      { n:5,  ratio:[3,2],   label:"3:2 (Perfect 5th)" },
+      { n:6,  ratio:[5,3],   label:"5:3 (Major 6th)" },
+      { n:7,  ratio:[15,8],  label:"15:8 (Major 7th)" },
+      { n:8,  ratio:[2,1],   label:"2:1 (Octave)" }
+    ];
+
+    // DOM
+    const grid   = document.getElementById("cubes");
+    const out    = document.getElementById("out");
+    const baseEl = document.getElementById("base");
+    const copyEl = document.getElementById("btn-copy");
+    const saveEl = document.getElementById("btn-save");
+    const muteEl = document.getElementById("btn-mute");
+
+    // State
+    let angels = [];
+    let selections = [];
+    let muted = false;
+
+    // Build UI cubes
+    CUBES.forEach(c => {
+      const btn = document.createElement("button");
+      btn.className = "cube";
+      btn.setAttribute("type", "button");
+      btn.setAttribute("aria-label", "Cube " + c.n + " ratio " + c.ratio[0] + ":" + c.ratio[1]);
+      btn.innerHTML = '<div class="n">Cube ' + c.n + '</div><div class="r">' + c.label + '</div>';
+      btn.addEventListener("click", () => onCubeSelect(c));
+      grid.appendChild(btn);
+    });
+
+    // Load angels and mount cymatics
+    window.addEventListener("DOMContentLoaded", async () => {
+      try {
+        const res = await fetch(ANGELS_URL, { cache:"no-cache" });
+        angels = await res.json();
+      } catch(e){
+        angels = [];
+      }
+      // Start audio chain on first tap via ambient-engine's internal gesture unlock
+      // Mount cymatics visualizer
+      mountCymaticsCanvas("#cymatics");
+    });
+
+    // Helpers
+    function baseHz(){
+      const v = baseEl.value;
+      if (v === "432") return 432; // A4=432
+      if (v === "440") return 440; // A4=440
+      return 528;                  // solfeggio center
+    }
+
+    function hzFromRatio(r){
+      const b = baseHz();
+      const hz = (b * r[0]) / r[1];
+      // gentle range; round to 1 decimal for display, but keep float for sound
+      return hz;
+    }
+
+    function nearestAngelByHz(hz){
+      if (!angels || !angels.length) return null;
+      let best = null, bestd = Infinity;
+      for (const a of angels){
+        const d = Math.abs((a.toneHz || 0) - hz);
+        if (d < bestd){ best = a; bestd = d; }
+      }
+      return best;
+    }
+
+    function updateOut(sel){
+      const kv = (k,v) => '<div class="kv"><span>'+k+':</span> '+(v||"--")+'</div>';
+      out.innerHTML =
+        kv("Selection","Cube " + sel.cube.n) +
+        kv("Ratio", sel.cube.ratio[0] + ":" + sel.cube.ratio[1] + " (" + sel.cube.label + ")") +
+        kv("Tone (Hz)", sel.hz.toFixed(1)) +
+        kv("Angel", sel.angel ? sel.angel.name : "--") +
+        kv("Sign / Element", sel.angel ? ((sel.angel.sign||"") + " / " + (sel.angel.element||"")) : "--") +
+        kv("Stylepack", sel.angel ? (sel.angel.stylepack||"") : "--");
+    }
+
+    async function onCubeSelect(cube){
+      const hz = hzFromRatio(cube.ratio);
+      const angel = nearestAngelByHz(hz);
+
+      // start audio (safe to call multiple times)
+      await start();
+      setToneHz(hz);
+
+      // style handoff if available
+      if (angel && applyStylepack){
+        try { applyStylepack(angel.stylepack); } catch(_){}
+      }
+
+      const sel = {
+        time: new Date().toISOString(),
+        baseHz: baseHz(),
+        cube: { n: cube.n, ratio: cube.ratio, label: cube.label },
+        hz: hz,
+        angel: angel ? {
+          n: angel.n, id: angel.id, name: angel.name,
+          sign: angel.sign, element: angel.element,
+          toneHz: angel.toneHz, stylepack: angel.stylepack
+        } : null
+      };
+      selections.push(sel);
+      updateOut(sel);
+    }
+
+    // Quietus toggle
+    muteEl.addEventListener("click", () => {
+      muted = !muted;
+      setMuted(muted);
+      muteEl.textContent = muted ? "Resume" : "Quietus";
+    });
+
+    // YAML export (tiny inline)
+    function toYAML(rows){
+      const esc = s => String(s).replace(/"/g,'\\"');
+      let y = "session:\n";
+      y += "  started: \"" + (rows[0]?.time || new Date().toISOString()) + "\"\n";
+      y += "  count: " + rows.length + "\n";
+      y += "selections:\n";
+      rows.forEach(r => {
+        y += "  - time: \""+r.time+"\"\n";
+        y += "    baseHz: "+r.baseHz+"\n";
+        y += "    cube:\n";
+        y += "      n: "+r.cube.n+"\n";
+        y += "      ratio: \""+r.cube.ratio[0]+":"+r.cube.ratio[1]+"\"\n";
+        y += "      label: \""+esc(r.cube.label)+"\"\n";
+        y += "    toneHz: "+r.hz.toFixed(3)+"\n";
+        if (r.angel){
+          y += "    angel:\n";
+          y += "      n: "+(r.angel.n||0)+"\n";
+          y += "      id: \""+esc(r.angel.id||"")+"\"\n";
+          y += "      name: \""+esc(r.angel.name||"")+"\"\n";
+          y += "      sign: \""+esc(r.angel.sign||"")+"\"\n";
+          y += "      element: \""+esc(r.angel.element||"")+"\"\n";
+          y += "      toneHz: "+(r.angel.toneHz||0)+"\n";
+          y += "      stylepack: \""+esc(r.angel.stylepack||"")+"\"\n";
+        } else {
+          y += "    angel: null\n";
+        }
+      });
+      return y;
+    }
+
+    function download(filename, text){
+      const blob = new Blob([text], {type:"text/plain"});
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 250);
+    }
+
+    copyEl.addEventListener("click", async () => {
+      const y = toYAML(selections);
+      try {
+        await navigator.clipboard.writeText(y);
+        copyEl.textContent = "Copied!";
+        setTimeout(()=> copyEl.textContent = "Copy YAML", 900);
+      } catch(_){
+        // fallback: open a window
+        alert("YAML copied below:\n\n" + y);
+      }
+    });
+
+    saveEl.addEventListener("click", () => {
+      const y = toYAML(selections);
+      download("angel-cubes-session.yaml", y);
+    });
+
+    // Wire cymatics to current analyser
+    mountCymaticsCanvas("#cymatics");
+    // Nothing else needed; the visual listens to analyser frames
+  </script>
+  
+  <script type="module">
+  import { setToneHz, onToneChange, setMuted, getAnalyser } from "/assets/js/engines/ambient-engine.js";
+  import { mountCymaticsCanvas } from "/assets/js/engines/cymatic-engine.js";
+</script>
+
+</body>
+</html>

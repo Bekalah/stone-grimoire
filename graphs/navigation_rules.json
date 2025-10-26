@@ -1,0 +1,34 @@
+{
+  "graphId": "cathedral-core-10",
+  "rulesVersion": "1.0.0",
+  "edgeBehaviors": {
+    "amplifies": {"onEnter": ["increaseIntensity:lightning", "spawnEvent:towerShock"], "onExit": []},
+    "requiresReset": {"onEnter": ["callFaction:rebecca-respawn", "enableRespawn:true"], "onExit": []},
+    "seeksProtection": {"onEnter": ["callFaction:fortune", "grant:shield:rose-cross"], "onExit": []},
+    "summons": {"onEnter": ["callFaction:witch-mods", "perform:glamourAudit"], "onExit": []},
+    "tests": {"onEnter": ["challenge:integrityCheck"], "onExit": []},
+
+    "influences": {"onEnter": ["boost:correspondenceAccuracy"], "onExit": []},
+    "inspires": {"onEnter": ["open:visionaryChannel"], "onExit": []},
+    "feeds": {"onEnter": ["charge:violetFlame"], "onExit": []},
+    "fortifies": {"onEnter": ["reinforce:psychicShield"], "onExit": []},
+    "grounds": {"onEnter": ["apply:templeFormConstraints"], "onExit": []},
+
+    "rationalizes": {"onEnter": ["enforce:logicCheck"], "onExit": []},
+    "balances": {"onEnter": ["equalize:leftRightBrain"], "onExit": []},
+    "harmonizes": {"onEnter": ["tune:frequencyToNumber"], "onExit": []},
+    "checks": {"onEnter": ["audit:ethicalUseOfDisruption"], "onExit": []},
+    "authorizes": {"onEnter": ["seal:witchEyeBrand"], "onExit": []},
+
+    "bridges": {"onEnter": ["link:geometryToLattice"], "onExit": []},
+    "maps": {"onEnter": ["translate:tablesToHardware"], "onExit": []},
+    "heals": {"onEnter": ["restore:nervousSystem", "reduce:overwhelm"], "onExit": []},
+    "provokes": {"onEnter": ["stressTest:shield"], "onExit": []}
+  },
+  "safety": {
+    "respawnEnabled": true,
+    "noAutoplay": true,
+    "gatedAudio": true,
+    "maxIntensity": 0.85
+  }
+}

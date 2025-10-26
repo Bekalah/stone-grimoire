@@ -1,0 +1,62 @@
+{
+  "_provenance": {
+    "license": "CC-BY 4.0",
+    "version": "1.0.0",
+    "updated": "2025-08-22",
+    "curator": "bekalah",
+    "notes": "JSON-driven visuals: shaders, postfx, motion curves, tone->visual mappings. ND-safe."
+  },
+
+  "palettes": {
+    "soft_parchment": ["#f7f3ea", "#d9cfbf", "#a79a8a", "#3b3732"],
+    "hilma_violet":  ["#f8e6f0", "#c49bc7", "#8b5c9e", "#3b1e58"],
+    "solar_gold":    ["#f6e8b1", "#f4c76a", "#e8893a", "#5f4a2f"],
+    "angelic_ice":   ["#e7f0ff", "#bcd2ff", "#8faef2", "#546aa9"]
+  },
+
+  "motion": {
+    "nd_gentle": { "zoom": 0.0006, "drift": 0.003, "exposure": 0.9 },
+    "temple_breath": { "zoom": 0.0008, "drift": 0.004, "exposure": 1.0 }
+  },
+
+  "tones": {
+    "396": { "palette": "soft_parchment", "motion": "nd_gentle" },
+    "417": { "palette": "soft_parchment", "motion": "nd_gentle" },
+    "528": { "palette": "hilma_violet",   "motion": "temple_breath" },
+    "639": { "palette": "angelic_ice",    "motion": "nd_gentle" },
+    "741": { "palette": "solar_gold",     "motion": "temple_breath" },
+    "852": { "palette": "angelic_ice",    "motion": "temple_breath" },
+    "963": { "palette": "angelic_ice",    "motion": "temple_breath" }
+  },
+
+  "shaders": [
+    {
+      "id": "spiral_field",
+      "title": "Spiral Field (Hilma)",
+      "fragment": "assets/shaders/spiral-field.glsl",
+      "palettes": ["hilma_violet", "soft_parchment"],
+      "safe": true,
+      "defaults": {
+        "gain": 0.18,
+        "speed": 0.8
+      }
+    },
+    {
+      "id": "glass_vitrail",
+      "title": "Glass Vitrail (Rosslyn)",
+      "fragment": "assets/shaders/glass-vitrail.glsl",
+      "palettes": ["solar_gold", "soft_parchment"],
+      "safe": true,
+      "defaults": {
+        "gain": 0.16,
+        "speed": 0.7
+      }
+    }
+  ],
+
+  "map": {
+    "hilma_spiral": "spiral_field",
+    "sun_solaris": "glass_vitrail",
+    "angelic_chorus": "spiral_field"
+  }
+}

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="1000" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+  <title>Codex 144:99 -- Jacob's Ladder (33 rungs)</title>
+  <desc>Double rails with 33 evenly spaced rungs; use for ascent plates and choir overlays. Faint, rounded, no numerals.</desc>
+  <metadata>{ "role":"geometry_scaffold", "rungs":33 }</metadata>
+  <defs>
+    <style type="text/css"><![CDATA[
+      .g { fill: none; stroke: #222; stroke-opacity: 0.18; stroke-linecap: round; stroke-linejoin: round }
+      .r { stroke-opacity: 0.10 }
+      .b { stroke-opacity: 0.28 }
+    ]]></style>
+  </defs>
+
+  <!-- margin frame -->
+  <rect class="g r" x="60" y="60" width="880" height="880" rx="8"/>
+
+  <!-- rails -->
+  <line class="g b" x1="360" y1="120" x2="360" y2="880"/>
+  <line class="g b" x1="640" y1="120" x2="640" y2="880"/>
+
+  <!-- 33 rungs -->
+  <g class="g">
+    <!-- computed step ~24px from 120..880 for 33 rungs -->
+    <line x1="360" y1="120" x2="640" y2="120"/>
+    <line x1="360" y1="144" x2="640" y2="144"/>
+    <line x1="360" y1="168" x2="640" y2="168"/>
+    <line x1="360" y1="192" x2="640" y2="192"/>
+    <line x1="360" y1="216" x2="640" y2="216"/>
+    <line x1="360" y1="240" x2="640" y2="240"/>
+    <line x1="360" y1="264" x2="640" y2="264"/>
+    <line x1="360" y1="288" x2="640" y2="288"/>
+    <line x1="360" y1="312" x2="640" y2="312"/>
+    <line x1="360" y1="336" x2="640" y2="336"/>
+    <line x1="360" y1="360" x2="640" y2="360"/>
+    <line x1="360" y1="384" x2="640" y2="384"/>
+    <line x1="360" y1="408" x2="640" y2="408"/>
+    <line x1="360" y1="432" x2="640" y2="432"/>
+    <line x1="360" y1="456" x2="640" y2="456"/>
+    <line x1="360" y1="480" x2="640" y2="480"/>
+    <line x1="360" y1="504" x2="640" y2="504"/>
+    <line x1="360" y1="528" x2="640" y2="528"/>
+    <line x1="360" y1="552" x2="640" y2="552"/>
+    <line x1="360" y1="576" x2="640" y2="576"/>
+    <line x1="360" y1="600" x2="640" y2="600"/>
+    <line x1="360" y1="624" x2="640" y2="624"/>
+    <line x1="360" y1="648" x2="640" y2="648"/>
+    <line x1="360" y1="672" x2="640" y2="672"/>
+    <line x1="360" y1="696" x2="640" y2="696"/>
+    <line x1="360" y1="720" x2="640" y2="720"/>
+    <line x1="360" y1="744" x2="640" y2="744"/>
+    <line x1="360" y1="768" x2="640" y2="768"/>
+    <line x1="360" y1="792" x2="640" y2="792"/>
+    <line x1="360" y1="816" x2="640" y2="816"/>
+    <line x1="360" y1="840" x2="640" y2="840"/>
+    <line x1="360" y1="864" x2="640" y2="864"/>
+    <line x1="360" y1="880" x2="640" y2="880"/>
+  </g>
+</svg>

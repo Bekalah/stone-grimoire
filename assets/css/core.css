@@ -1,0 +1,20 @@
+/* ND-safe, high-contrast, gentle motion only */
+:root {
+  --ink: #0b0b0b;
+  --wash: #f6f5f2;
+  --accent: #6b5cff;
+  --gold: #c7a95a;
+  --bar: #111418cc;
+}
+* { box-sizing: border-box; }
+html, body { margin:0; height:100%; background: var(--ink); color: var(--wash); font-family: ui-serif, Georgia, "EB Garamond", serif; }
+.bar { display:flex; gap:1rem; align-items:center; justify-content:space-between; padding:.75rem 1rem; background: var(--bar); backdrop-filter: blur(6px); }
+.bar.small { font-size:.85rem; opacity:.8; }
+h1 { font-size:1.1rem; margin:0; letter-spacing:.03em; }
+.controls { display:flex; gap:1rem; align-items:center; flex-wrap: wrap; }
+label { font-size:.9rem; display:flex; gap:.5rem; align-items:center; }
+input[type="range"] { width:160px; }
+select, button { background:#1a1e26; color:var(--wash); border:1px solid #2a2f38; padding:.35rem .5rem; border-radius:6px; }
+button:hover { border-color: var(--accent); }
+.stage { display:grid; place-items:center; height: calc(100vh - 120px); padding: 1rem; }
+canvas { width: min(92vw, 1600px); height: auto; border:1px solid #2a2f38;

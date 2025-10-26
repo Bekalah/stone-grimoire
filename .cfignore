@@ -1,0 +1,16 @@
+# Keep Cloudflare Pages deploys lean; omit dev-only artifacts.
+.git/
+.github/
+node_modules/
+ci/
+tests/
+scripts/
+fly/
+updates/
+Dockerfile.fly
+fly.toml
+dev-server.js
+*.log
+*.tmp
+*.psd
+*.ai

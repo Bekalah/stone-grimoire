@@ -1,0 +1,37 @@
+/* Ambient corner panel - subtle, museum label tone */
+.ambient-panel {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  z-index: 50;
+  background: #ffffffd0;
+  backdrop-filter: blur(3px);
+  border: 1px solid var(--line, #d9cfbf);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font: 14px/1.3 Georgia, "Iowan Old Style", serif;
+  color: #3d3a34;
+  box-shadow: 0 4px 18px rgba(0,0,0,.08);
+}
+
+.ambient-panel .ambient-title {
+  font-weight: bold;
+  color: var(--accent, #2f5a9e);
+  margin-bottom: 4px;
+}
+
+.ambient-panel label {
+  display: block;
+  margin: 3px 0;
+}
+
+.ambient-panel input[type="range"] {
+  width: 140px;
+}
+
+.ambient-panel .ambient-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}

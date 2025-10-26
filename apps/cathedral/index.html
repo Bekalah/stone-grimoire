@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Cosmogenesis Cathedral &mdash; Stone Grimoire (Body)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- REQUIRED NAV -->
+<nav class="container-fluid">
+  <ul><li><strong>Cosmogenesis Cathedral</strong></li></ul>
+  <ul>
+    <li><a href="#map">Map</a></li>
+    <li><a href="#overlay" id="openOverlay">Overlay</a></li>
+    <li><a href="#" role="button" id="toggleFX">Toggle FX</a></li>
+  </ul>
+</nav>
+
+<!-- REQUIRED MAIN.CONTAINER -->
+<main class="container">
+  <div class="grid">
+    <section>
+      <hgroup>
+        <h2>Stone Grimoire &mdash; Body of the Temple</h2>
+        <h3>Walk the golden-ratio nave. Portals are living chapters &amp; nodes.</h3>
+      </hgroup>
+      <p>Controls: <kbd>WASD</kbd>/<kbd>&larr;&uarr;&rarr;&darr;</kbd> move &middot; <kbd>Mouse</kbd> look &middot; <kbd>E</kbd> interact &middot; <kbd>F</kbd> focus nearest portal &middot; <kbd>G/H/J</kbd> tones &middot; <kbd>Space</kbd> stop audio &middot; <kbd>Tab</kbd> Overlay.</p>
+      <figure>
+        <canvas id="viewport" aria-label="Stone Grimoire Nave"></canvas>
+        <figcaption><a href="#" id="enter">Enter the vault</a></figcaption>
+      </figure>
+      <div id="map" class="mini-map box pad" aria-live="polite"></div>
+    </section>
+  </div>
+</main>
+
+<!-- REQUIRED SUBSCRIBE SECTION -->
+<section aria-label="Subscribe example">
+  <div class="container">
+    <article>
+      <hgroup><h2>Notes</h2><h3>ND-safe visuals &amp; sound</h3></hgroup>
+      <form class="grid">
+        <input type="text" id="firstname" name="firstname" placeholder="Name (optional)" aria-label="Name">
+        <input type="email" id="email" name="email" placeholder="Email (optional)" aria-label="Email">
+        <button type="submit" onclick="event.preventDefault()">Okay</button>
+      </form>
+    </article>
+  </div>
+</section>
+
+<!-- REQUIRED FOOTER -->
+<footer class="container">
+  <small>
+    <a href="https://github.com/bekalah/cathedral">GitHub</a> &bull;
+    <a href="#">&copy; 2025 Cosmogenesis Cathedral</a>
+  </small>
+</footer>
+
+<!-- libraries -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.160/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160/examples/js/controls/PointerLockControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160/examples/js/loaders/RGBELoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160/examples/js/postprocessing/EffectComposer.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160/examples/js/postprocessing/RenderPass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160/examples/js/postprocessing/UnrealBloomPass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160/examples/js/postprocessing/FilmPass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160/examples/js/shaders/CopyShader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160/examples/js/postprocessing/ShaderPass.js"></script>
+
+<!-- your existing logic reused in overlay -->
+<script src="../hub/js/modal.js"></script>
+<script src="../hub/js/sound.js"></script>
+<script src="../hub/js/fractal.js"></script>
+<script src="../hub/js/circuitum.js"></script>
+<script src="../hub/js/house.js"></script>
+<script src="../hub/js/tarot.js"></script>
+<script src="../hub/js/corpus.js"></script>
+<script src="../hub/js/search-ui.js"></script>
+
+<!-- body-specific -->
+<script src="js/shaders.js"></script>
+<script src="js/overlay.js"></script>
+<script src="js/body.js"></script>
+</body>
+</html>

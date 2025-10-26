@@ -1,0 +1,110 @@
+/* ===========================
+   Light CSS -- Codex 144:99
+   =========================== */
+
+/* ---------------------------
+   Plaque (Curator Card)
+   --------------------------- */
+.c99-plaque {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 50;
+  background: rgba(255, 255, 255, .85);
+  backdrop-filter: saturate(120%) blur(6px);
+  border: 1px solid rgba(0, 0, 0, .15);
+  border-radius: .5rem;
+  padding: .75rem 1rem;
+  font-family: ui-serif, "EB Garamond", Georgia, serif;
+  max-width: 22rem;
+}
+.c99-plaque__title {
+  font-weight: 700;
+  letter-spacing: .02em;
+  margin-bottom: .25rem;
+}
+.c99-plaque__meta {
+  font-size: .85rem;
+  opacity: .8;
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+.c99-plaque__controls {
+  margin-top: .5rem;
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+}
+.c99-plaque.is-on {
+  box-shadow:
+    0 0 0 .125rem rgba(212,175,55,.25),
+    0 8px 30px rgba(0,0,0,.18);
+}
+
+/* ---------------------------
+   Ritual Controls
+   --------------------------- */
+.c99-ritual {
+  position: fixed;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 50;
+  background: rgba(0, 0, 0, .55);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: .5rem;
+  padding: .5rem .75rem;
+  font-family: ui-sans-serif, system-ui;
+}
+.c99-ritual__row {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+.c99-ritual button {
+  background: #fff;
+  color: #111;
+  border: 0;
+  border-radius: .35rem;
+  padding: .4rem .6rem;
+}
+.c99-ritual button:hover {
+  filter: brightness(.95);
+}
+
+/* ---------------------------
+   Ritual Neutralization Hooks
+   --------------------------- */
+:root[data-ritual="banished"] .overlay-vitrail {
+  opacity: .06 !important;
+}
+:root[data-ritual="banished"] .geometry-frame img {
+  filter: grayscale(1) contrast(.9) opacity(.4);
+}
+:root[data-ritual="centered"] .overlay-vitrail {
+  opacity: .25;
+}
+:root[data-ritual="consecrated"] .overlay-vitrail {
+  opacity: .42;
+}
+
+/* ---------------------------
+   Planetary / Zodiac Light
+   --------------------------- */
+:root {
+  --hour-bg: #c49bc7;      /* default tint if engine idle */
+  --hour-bg-alpha: 0.16;   /* strength of overlay */
+}
+
+body.mystic {
+  background:
+    radial-gradient(
+      circle at 50% 18%,
+      color-mix(in srgb, var(--bg), var(--hour-bg) calc(var(--hour-bg-alpha) * 100%)) 78%,
+      #ece7dc 100%
+    );
+  color: var(--ink);
+  font: 18px/1.6 Georgia, "Iowan Old Style", serif;
+  margin: 0;
+}

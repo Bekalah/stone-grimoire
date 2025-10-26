@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Crystal Grid Sanctuary -- Seed of Life</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Walkable crystal grid with tones, law of octaves coloring, and save-to-image.">
+  <link rel="stylesheet" href="/assets/css/palette.css">
+  <link rel="stylesheet" href="/assets/css/light.css">
+  <link rel="stylesheet" href="/assets/css/folio.css">
+  <style>
+    body.mystic{ background: radial-gradient(circle at 50% 18%, var(--wash) 78%, #efe7d9 100%); color: var(--ink); }
+
+    header, footer{
+      margin:18px auto; max-width:1000px; text-align:center;
+      background:var(--wash); border:1px solid var(--line); border-radius:12px; padding:14px 18px;
+      box-shadow: 0 1px 0 #fff inset, 0 0 0 3px rgba(212,175,55,.08) inset;
+    }
+    header h1{ margin:.2rem 0 .3rem; color:var(--accent) }
+
+    .wrap{ max-width:1100px; margin:0 auto; padding:10px 12px 24px }
+
+    .controls{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:10px 0 }
+    .controls label{ display:inline-flex; align-items:center; gap:6px; font-size:.95rem }
+
+    .stage{
+      position:relative; background:#ffffff; border:1px solid var(--line);
+      border-radius:14px; padding:8px; box-shadow: var(--shadow);
+    }
+    #grid{ display:block; width:100%; height:auto; border-radius:10px; background:#fefbf5 }
+
+    .legend{
+      position:absolute; right:10px; bottom:10px;
+      background:#fff8e7; border-left:4px solid var(--accent-2);
+      padding:.5rem .75rem; border-radius:8px; font-size:.9rem; color:#5a534b
+    }
+
+    .panel{ padding:14px; background:#fff; border:1px solid var(--line);
+      border-radius:12px; margin-top:10px; }
+
+    .site-footer{margin:2rem auto;max-width:1000px;padding:12px;
+      background:var(--wash);border-top:2px solid var(--accent-2);text-align:center}
+    .site-footer ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+    .site-footer a{color:var(--accent);text-decoration:none;font-size:.95rem}
+    .site-footer a:hover{text-decoration:underline}
+    .site-footer .seal{margin-top:.8rem;color:var(--accent-2)}
+  </style>
+</head>
+<body class="mystic" data-theme="netzach">
+<header>
+  <h1>Crystal Grid Sanctuary</h1>
+  <p class="small">Seed of Life pavilion. Tap a node to bloom a tone and color via the law of octaves. Build a chord, then save your talisman.</p>
+</header>
+
+<div class="wrap">
+  <div class="controls" role="group" aria-label="Modes">
+    <label><input id="toggle-contrast" type="checkbox"> High Contrast</label>
+    <label><input id="toggle-motion" type="checkbox" checked> Reduced Motion</label>
+    <label><input id="toggle-mute" type="checkbox"> Mute</label>
+    <label>Base Tone
+      <select id="base-tone">
+        <option value="396">396 Hz</option>
+        <option value="417">417 Hz</option>
+        <option value="528" selected>528 Hz</option>
+        <option value="639">639 Hz</option>
+        <option value="741">741 Hz</option>
+        <option value="852">852 Hz</option>
+        <option value="963">963 Hz</option>
+      </select>
+    </label>
+    <button id="btn-clear" type="button">Clear</button>
+    <button id="btn-harmonize" type="button">Harmonize</button>
+    <button id="btn-save" type="button">Save PNG</button>
+  </div>
+
+  <section class="stage" aria-label="Crystal Grid">
+    <canvas id="grid" width="1000" height="720" aria-label="Seed of Life"></canvas>
+    <div class="legend">Tap nodes to toggle selection. Harmonic color follows octave distance.</div>
+  </section>
+
+  <aside class="panel plaque" role="note" aria-label="Curator Plaque" id="plaque">
+    <strong>Plaque -- Provenance</strong><br>
+    Intention: Make a living talisman from tone, color, and crystal geometry.<br>
+    Technique: Seed of Life nodes → law of octaves color map → ND-safe WebAudio; export to image.<br>
+    Lineage: Pythagorean ratios; Hilma/Kunz visionary geometry; Rosicrucian manuscript light.<br>
+    Evidence: assets/js/ambient-engine.js · assets/data/stylepacks.json.<br>
+    Reflection: From play emerges pattern; from pattern, consecration.
+  </aside>
+</div>
+
+<footer class="site-footer" role="contentinfo">
+  <nav aria-label="Site links">
+    <ul>
+      <li><a href="../index.html">✦ Frontispiece (Door)</a></li>
+      <li><a href="../cathedral.html">✦ Cathedral Nave</a></li>
+      <li><a href="./apprentice-pillar.html">Apprentice Pillar</a></li>
+      <li><a href="./crypt.html">Crypt</a></li>
+      <li><a href="./lady-chapel.html">Lady Chapel</a></li>
+      <li><a href="./crystal-grid.html">Crystal Grid</a></li>
+      <li><a href="./musical-cubes.html">Musical Cubes</a></li>
+      <li><a href="./cubes-visual-lab.html">Cubes Visual Lab</a></li>
+      <li><a href="./helix-totem.html">Jacob's Ladder</a></li>
+      <li><a href="./shem-ladder.html">Shem Ladder (72)</a></li>
+      <li><a href="../main/Thelemic-Alignment-Brief.html">Thelemic Alignment</a></li>
+      <li><a href="../main/05_ateliers/manifesto.html">Ateliers Manifesto</a></li>
+    </ul>
+  </nav>
+  <p class="seal">𓂀 ✦ Codex 144:99 ✦ 𓂀</p>
+</footer>
+
+<script type="module">
+  import { setToneHz, setMuted } from "/assets/js/ambient-engine.js";
+
+  // Toggles
+  const root = document.documentElement;
+  const contrast = document.getElementById("toggle-contrast");
+  const motion = document.getElementById("toggle-motion");
+  const mute = document.getElementById("toggle-mute");
+  contrast.addEventListener("change", ()=> root.toggleAttribute("data-contrast","high", contrast.checked));
+  const applyMotion=()=> root.classList.toggle("reduced-motion", motion.checked);
+  motion.addEventListener("change", applyMotion); applyMotion();
+  mute.addEventListener("change", ()=> setMuted(!!mute.checked));
+
+  // Canvas + geometry
+  const cv = document.getElementById("grid");
+  const ctx = cv.getContext("2d");
+  const W = cv.width, H = cv.height;
+  const CX = W*0.5, CY = H*0.52;
+  const R = Math.min(W,H)*0.18; // circle radius
+
+  // Build Seed of Life centers: 1 center + 6 around
+  const centers = [
+    [CX, CY],
+    [CX + R, CY],
+    [CX - R, CY],
+    [CX + R/2, CY + Math.sin(Math.PI/3)*R],
+    [CX - R/2, CY + Math.sin(Math.PI/3)*R],
+    [CX + R/2, CY - Math.sin(Math.PI/3)*R],
+    [CX - R/2, CY - Math.sin(Math.PI/3)*R]
+  ];
+
+  // Node set: circle centers + their intersections (approx via polar grid)
+  const nodes = [];
+  const pushNode = (x,y)=>nodes.push({x,y,sel:false});
+  centers.forEach(([x,y])=>pushNode(x,y));
+  // add a simple ring of points
+  for(let i=0;i<12;i++){
+    const a = i*(Math.PI*2/12);
+    pushNode(CX + Math.cos(a)*R, CY + Math.sin(a)*R);
+  }
+
+  // Tone mapping via law of octaves
+  const baseSelect = document.getElementById("base-tone");
+  function octaveColorForHz(hzBase, steps){
+    const hz = hzBase * Math.pow(2, steps/12);
+    // map to HSV-ish palette then convert roughly to RGB
+    const t = (hz % 600) / 600; // cycle feel
+    const r = Math.floor(200 + 55*Math.sin(2*Math.PI*(t)));
+    const g = Math.floor(180 + 55*Math.sin(2*Math.PI*(t + 0.33)));
+    const b = Math.floor(200 + 55*Math.sin(2*Math.PI*(t + 0.66)));
+    return "rgb("+r+","+g+","+b+")";
+  }
+
+  function draw(){
+    // backdrop
+    ctx.clearRect(0,0,W,H);
+    // aureole
+    const grad = ctx.createRadialGradient(CX,CY,0, CX,CY,R*2.2);
+    grad.addColorStop(0,"rgba(212,175,55,0.10)");
+    grad.addColorStop(1,"rgba(47,90,158,0.06)");
+    ctx.fillStyle = grad; ctx.fillRect(0,0,W,H);
+
+    // circles
+    ctx.lineWidth = 1.2; ctx.strokeStyle = "#c9bda9";
+    centers.forEach(([x,y])=>{
+      ctx.beginPath(); ctx.arc(x,y,R,0,Math.PI*2); ctx.stroke();
+    });
+
+    // nodes
+    const hzBase = parseFloat(baseSelect.value);
+    nodes.forEach((n, i)=>{
+      const octaveSteps = Math.round((i%12)*2); // ring step spacing → simple scale
+      const col = octaveColorForHz(hzBase, octaveSteps);
+      ctx.beginPath(); ctx.arc(n.x, n.y, n.sel? 9:6, 0, Math.PI*2);
+      ctx.fillStyle = n.sel ? col : "#ffffff";
+      ctx.fill();
+      ctx.lineWidth = n.sel? 3:1.5;
+      ctx.strokeStyle = n.sel? col : "#b8afa2";
+      ctx.stroke();
+    });
+  }
+
+  function pickNode(x,y){
+    for (let i=0;i<nodes.length;i++){
+      const n=nodes[i];
+      const dx=n.x-x, dy=n.y-y;
+      if (dx*dx+dy*dy <= 14*14) return i;
+    }
+    return -1;
+  }
+
+  function playNode(i){
+    if (mute.checked) return;
+    const base = parseFloat(baseSelect.value);
+    const steps = Math.round((i%12)*2);
+    const hz = base * Math.pow(2, steps/12);
+    setToneHz(hz);
+  }
+
+  // pointer events
+  cv.addEventListener("click", (e)=>{
+    const rect = cv.getBoundingClientRect();
+    const x = (e.clientX - rect.left) * (cv.width/rect.width);
+    const y = (e.clientY - rect.top) * (cv.height/rect.height);
+    const idx = pickNode(x,y);
+    if (idx>=0){
+      nodes[idx].sel = !nodes[idx].sel;
+      draw();
+      if (nodes[idx].sel) playNode(idx);
+    }
+  });
+
+  // controls
+  document.getElementById("btn-clear").addEventListener("click", ()=>{
+    nodes.forEach(n=>n.sel=false); draw();
+  });
+  document.getElementById("btn-harmonize").addEventListener("click", async ()=>{
+    // gentle arpeggio across selected nodes
+    const sel = nodes.map((n,i)=>({n,i})).filter(x=>x.n.sel).map(x=>x.i);
+    for (const i of sel){
+      playNode(i);
+      await new Promise(r=>setTimeout(r, 330));
+    }
+  });
+  document.getElementById("btn-save").addEventListener("click", ()=>{
+    // watermark
+    ctx.save();
+    ctx.fillStyle = "rgba(0,0,0,0.18)";
+    ctx.font = "16px Georgia, serif";
+    ctx.fillText("Codex 144:99 -- Crystal Grid Sanctuary", 16, H-16);
+    ctx.restore();
+
+    const url = cv.toDataURL("image/png");
+    const a = document.createElement("a");
+    a.href = url; a.download = "crystal-grid.png";
+    document.body.appendChild(a); a.click(); a.remove();
+    draw(); // redraw without watermark for continued work
+  });
+
+  baseSelect.addEventListener("change", draw);
+
+  // boot
+  window.addEventListener("resize", ()=>{
+    // keep fixed canvas for crisp export; if you later want responsive, scale via CSS only
+    draw();
+  });
+  draw();
+
+  // user gesture to warm up audio on iPad
+  window.addEventListener("touchstart", ()=> setToneHz(0), { once:true });
+  window.addEventListener("mousedown", ()=> setToneHz(0), { once:true });
+</script>
+</body>
+</html>

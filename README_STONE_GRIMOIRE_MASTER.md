@@ -93,6 +93,7 @@ Main Systems (chapels/folios/assets)
 ```
 
 ### Standards Implementation
+
 - ND-safe design ( лиш reduced motion, gentle pacing)
 - Museum-grade preservation (intact provenance)
 - Archival quality digitization

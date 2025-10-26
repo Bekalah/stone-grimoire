@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Crystal Pavilion -- Seed of Life Grid</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Interactive crystal grid: Platonic solids, solfeggio tones, cymatic blooms, and PNG export.">
+  <link rel="stylesheet" href="/assets/css/palette.css">
+  <link rel="stylesheet" href="/assets/css/light.css">
+  <link rel="stylesheet" href="/assets/css/ambient.css">
+  <link rel="stylesheet" href="/assets/css/rosslyn.css">
+  <style>
+    body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Georgia,"Iowan Old Style",serif}
+    header{max-width:1100px;margin:14px auto;background:var(--wash);border:1px solid var(--line);
+      border-radius:12px;padding:12px 14px;text-align:center}
+    header h1{margin:.2rem 0 .3rem;color:var(--accent)}
+    .wrap{max-width:1100px;margin:0 auto;padding:10px}
+    .stage{position:relative;background:#fff;border:1px solid #d9cfbf;border-radius:12px;box-shadow:var(--shadow)}
+    #grid{display:block;width:100%;height:auto;border-radius:12px}
+    .legend{position:absolute;right:.5rem;bottom:.5rem;background:#efe7d6;border-left:4px solid var(--accent-2);
+      padding:.5rem .75rem;border-radius:8px;color:#5a534b}
+    .controls{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+    .controls button,.controls label{font:14px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial; 
+      border:1px solid var(--line); background:#fff; padding:.45rem .7rem; border-radius:10px; cursor:pointer}
+    .controls label{display:inline-flex;align-items:center;gap:.45rem}
+    .controls input[type="checkbox"]{transform:scale(1.1)}
+    .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+    .spacer{flex:1}
+    .small{font-size:.9rem;color:#6b6257}
+    footer.site-footer{margin:1.2rem auto;max-width:1100px;padding:12px;background:var(--wash);
+      border-top:2px solid var(--accent-2);text-align:center;border-radius:12px}
+    footer.site-footer ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+    footer.site-footer a{color:var(--accent);text-decoration:none;font-size:.95rem}
+    footer.site-footer a:hover{text-decoration:underline}
+    footer.site-footer .seal{margin-top:.6rem;color:var(--accent-2)}
+  </style>
+</head>
+<body data-stylepack="alchemical_bloom">
+<header>
+  <h1>Crystal Pavilion</h1>
+  <p class="small">Tap a node to bloom a tone (ND-safe, no autoplay). "Harmonize" blends the Platonic chord; "Export PNG" saves your grid art.</p>
+</header>
+
+<div class="wrap">
+  <nav class="controls" aria-label="Modes and Actions">
+    <div class="row">
+      <label><input type="checkbox" id="toggle-calm" checked> Calm Mode</label>
+      <label><input type="checkbox" id="toggle-contrast"> High Contrast</label>
+      <label><input type="checkbox" id="toggle-reduced" checked> Reduced Motion</label>
+      <label><input type="checkbox" id="toggle-mute"> Mute</label>
+      <span class="spacer"></span>
+      <button id="btn-harmonize" type="button">Harmonize</button>
+      <button id="btn-stop" type="button">Stop</button>
+      <button id="btn-export" type="button">Export PNG</button>
+    </div>
+  </nav>
+
+  <section class="room stage" data-room="crystal-pavilion" aria-label="Crystal Pavilion">
+    <canvas id="grid" width="1100" height="700" aria-label="Seed of Life crystal grid"></canvas>
+    <div class="legend" role="note">Seed of Life · Platonic Solids · 396/417/528/639/741/852/963 Hz</div>
+  </section>
+</div>
+
+<!-- Engines -->
+<script type="module">
+  import { ensureAudio, setToneHz, stopTone, onToneChange, getAnalyser, setMuted } from "/assets/js/engines/ambient-engine.js";
+  import { mountCrystalGrid } from "/assets/js/effects/crystal-grid.js";
+
+  // UI toggles (CSS helpers)
+  const root = document.documentElement;
+  const setToggle = (id, cls, on) => {
+    const el = document.getElementById(id); if (!el) return;
+    el.checked = on;
+    root.classList.toggle(cls, on);
+    el.addEventListener("change", () => root.classList.toggle(cls, el.checked));
+  };
+  setToggle("toggle-calm", "calm", true);
+  setToggle("toggle-contrast", "contrast", false);
+  setToggle("toggle-reduced", "reduced-motion", true);
+
+  // Mute toggle -> ambient engine
+  const muteBox = document.getElementById("toggle-mute");
+  muteBox.addEventListener("change", () => setMuted(muteBox.checked));
+
+  // First user gesture unlocks audio (iPad safe)
+  const unlock = async () => { await ensureAudio(); document.removeEventListener("pointerdown", unlock, {capture:true}); };
+  document.addEventListener("pointerdown", unlock, {capture:true, once:true});
+
+  // Mount grid painter + interaction
+  const canvas = document.getElementById("grid");
+  await mountCrystalGrid(canvas, {
+    crystalsUrl: "/assets/data/crystals.json",
+    gridsUrl: "/assets/data/grids.json",
+    gridId: "seed_of_life_relationships",
+    analyser: getAnalyser(),
+    onSelect: (node) => setToneHz(node.toneHz) // broadcast selected frequency
+  });
+
+  // Controls
+  document.getElementById("btn-harmonize").addEventListener("click", async () => {
+    await ensureAudio();
+    const event = new CustomEvent("crystal:harmonize");
+    window.dispatchEvent(event);
+  });
+  document.getElementById("btn-stop").addEventListener("click", () => stopTone());
+  document.getElementById("btn-export").addEventListener("click", () => {
+    const url = canvas.toDataURL("image/png");
+    const a = document.createElement("a");
+    a.href = url; a.download = "crystal-pavilion.png"; a.click();
+  });
+
+  // Optional: react page tint to tone (gentle)
+  onToneChange((hz) => {
+    document.body.style.setProperty("--accent-2", hz >= 800 ? "#c7b8ff" : "#caa44a");
+  });
+</script>
+
+<footer class="site-footer" role="contentinfo">
+  <nav aria-label="Site links">
+    <ul>
+      <li><a href="../index.html">✦ Frontispiece (Door)</a></li>
+      <li><a href="../cathedral.html">✦ Cathedral Nave</a></li>
+      <li><a href="../chapels/apprentice-pillar.html">Apprentice Pillar</a></li>
+      <li><a href="../chapels/crypt.html">Crypt</a></li>
+      <li><a href="../chapels/lady-chapel.html">Lady Chapel</a></li>
+      <li><a href="../chapels/crystal-grid.html">Crystal Grid</a></li>
+      <li><a href="../chapels/musical-cubes.html">Musical Cubes</a></li>
+      <li><a href="../chapels/cubes-visual-lab.html">Cubes Visual Lab</a></li>
+      <li><a href="../chapels/helix-totem.html">Jacob's Ladder</a></li>
+      <li><a href="../chapels/shem-ladder.html">Shem Ladder (72)</a></li>
+      <li><a href="../main/Thelemic-Alignment-Brief.html">Thelemic Alignment</a></li>
+      <li><a href="../main/05_ateliers/manifesto.html">Ateliers Manifesto</a></li>
+    </ul>
+  </nav>
+  <p class="seal">𓂀 ✦ Codex 144:99 ✦ 𓂀</p>
+</footer>
+</body>
+</html>

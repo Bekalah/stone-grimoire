@@ -1,0 +1,19 @@
+{
+  "id": "witch-default",
+  "name": "Architect-Scribe",
+  "title": "Witch-as-a-Coven",
+  "roles": ["creator", "scribe", "guardian"],
+  "numerology": {
+    "root": 2,
+    "scribe": 11,
+    "star": 22,
+    "guardian": 33
+  },
+  "palette_preference": "deep-velvet",
+  "safety": {
+    "autoplay": false,
+    "strobe": false,
+    "motion": "reduce"
+  },
+  "codex": "assets/data/codex.144_99.json"
+}

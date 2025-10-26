@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Angels 72 -- Cathedral Ladder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="Angels 72 -- Living Cathedral">
+  <meta property="og:description" content="A breathing, visionary ladder of angels -- tone, bloom, and living sculpture.">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    :root{ --bg:#0b0d10; --fg:#eae6d7; --wash:#0b0d10; --accent:rgba(47,90,158,0.35); --accent-2:rgba(212,175,55,0.40); }
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--fg)}
+    .wrap{max-width:1200px;margin:0 auto;padding:16px}
+    figure.plaque{margin:0 0 16px 0}
+    #cymatics{display:block;width:100%;height:auto;max-height:60vh;pointer-events:none}
+    #plaque-caption{font:14px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;opacity:.9;margin-top:8px}
+    .bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:12px 0 18px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
+    .angel{background:#141a21;color:var(--fg);border:1px solid #22303f;border-radius:8px;padding:10px;cursor:pointer}
+    .angel:focus{outline:2px solid #7aa2ff;outline-offset:2px}
+    button,select,input[type=range]{background:#141a21;color:var(--fg);border:1px solid #22303f;border-radius:8px;padding:8px 10px;cursor:pointer}
+    @media (max-width:480px){#cymatics{max-height:50vh}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+
+    <figure class="plaque" aria-label="Cymatic Bloom">
+      <canvas id="cymatics" aria-hidden="true"></canvas>
+      <figcaption id="plaque-caption">Tap an angel to activate tone and bloom.</figcaption>
+    </figure>
+
+    <div class="bar">
+      <label for="vol" style="font-size:12px;opacity:.85">Volume</label>
+      <input id="vol" type="range" min="0" max="0.12" step="0.01" value="0.04" style="width:160px">
+      <span style="flex:1"></span>
+      <button id="btnSave">Save Plate (PNG)</button>
+      <button id="btnShare">Share Link</button>
+      <button id="btnClip">Record 6s Clip</button>
+    </div>
+
+    <!-- Replace the sample tiles with your 72; keep data-angel-id -->
+    <section id="angel-grid" class="grid" aria-label="Angels">
+      <button class="angel"
+        data-angel
+        data-angel-id="01"
+        data-name="Vehuiah"
+        data-element="Fire"
+        data-stylepack="rosslyn-gothic"
+        data-tone-hz="396">Vehuiah</button>
+
+      <button class="angel"
+        data-angel
+        data-angel-id="02"
+        data-name="Jeliel"
+        data-element="Earth"
+        data-stylepack="hilma-spiral"
+        data-tone-hz="417">Jeliel</button>
+    </section>
+
+  </main>
+
+  <script type="module">
+    import { ensureAudio, onToneChange, setVolume } from "./assets/js/engines/ambient-engine.js";
+    import { mountCymaticsCanvas } from "./assets/js/engines/cymatic-engine.js";
+    import { resolveFusion, ensureFusionMaps } from "./assets/js/engines/fusion-router.js";
+    import { exportCompositePNG, shareURL, recordCompositeWebM } from "./assets/js/utils/share-export.js";
+
+    await ensureFusionMaps();
+    await mountCymaticsCanvas("#cymatics");
+    try { await ensureAudio(); } catch(_) {}
+
+    document.getElementById("vol")?.addEventListener("input", e => setVolume(e.target.value), { passive:true });
+
+    document.addEventListener("click", (ev)=>{
+      const btn = ev.target.closest("[data-angel]");
+      if (!btn) return;
+      const angelId = btn.getAttribute("data-angel-id");
+      const name = btn.getAttribute("data-name")||"";
+      const element = btn.getAttribute("data-element")||"";
+      const stylepack = btn.getAttribute("data-stylepack")||"";
+      // Let fusion router pick tone/style from data maps; falls back to stylepack if set
+      const state = resolveFusion({ angelId, stylepack });
+      const cap = document.getElementById("plaque-caption");
+      if (cap) cap.textContent = (name||state.meta.name||"") + (state.hz ? (" -- "+state.hz+" Hz") : "") + (element?(" -- "+element):"") + (state.meta.stylepack?(" -- "+state.meta.stylepack):"");
+    }, { passive:true });
+
+    onToneChange((payload)=>{
+      const cap=document.getElementById("plaque-caption");
+      if (cap && payload && payload.hz) {
+        cap.textContent = (payload.name||"") + " -- " + payload.hz + " Hz" + (payload.element?(" -- "+payload.element):"") + (payload.stylepack?(" -- "+payload.stylepack):"");
+      }
+    });
+
+    // Save / Share / Clip (no relief on this page)
+    document.getElementById("btnSave")?.addEventListener("click", ()=> {
+      exportCompositePNG({ halo:"#cymatics", relief:null, width:2160, height:1215, caption: document.getElementById("plaque-caption")?.textContent || "Angels 72", subcaption:"Cathedral of Circuits • Codex 144:99" });
+    });
+    document.getElementById("btnShare")?.addEventListener("click", ()=> {
+      const cap = document.getElementById("plaque-caption")?.textContent||"";
+      const hz = (cap.match(/(\d+)\s*Hz/i)||[])[1] || "";
+      shareURL({ hz, title:"Angels 72 -- Cathedral Plate" });
+    });
+    document.getElementById("btnClip")?.addEventListener("click", async ()=> {
+      try { await recordCompositeWebM("#cymatics", null, 6, 30); } catch(e){ alert("Recording not supported: "+e.message); }
+    });
+  </script>
+  
+  <!-- Planetary Hour (opt-in, ND-safe). Adds a gentle tint once/hour.
+     This DOES NOTHING unless body[data-hourly="on"] is present. Safe to keep in place. -->
+<script>
+  // feature flag: remove or toggle this attribute whenever you want
+  document.body.setAttribute('data-hourly','on');
+</script>
+
+<script>
+(function(){
+  // no-op unless opted in
+  if (document.body.getAttribute('data-hourly') !== 'on') return;
+
+  // Chaldean order + weekday rulers
+  var ORDER    = ["Saturn","Jupiter","Mars","Sun","Venus","Mercury","Moon"];
+  var DAYRULE  = {0:"Sun",1:"Moon",2:"Mars",3:"Mercury",4:"Jupiter",5:"Venus",6:"Saturn"};
+
+  // gentle planet tints (edit to taste). Uses inline CSS vars so it won't collide with your CSS.
+  var TINT = {
+    Saturn:  "#2f2a38",  // indigo-black
+    Jupiter: "#3a2f1a",  // warm umber
+    Mars:    "#4a1f1f",  // soft oxblood
+    Sun:     "#f6e8b1",  // vellum gold-wash
+    Venus:   "#e6d5df",  // rose-violet glaze
+    Mercury: "#cad6ef",  // airy blue
+    Moon:    "#e9eef2"   // pearl grey
+  };
+
+  // apply tint by setting CSS custom properties on <html>
+  function applyPlanet(planet){
+    var root = document.documentElement;
+    var bg   = TINT[planet] || "#f8f5ef";
+    // set subtle variables ONLY if they exist, else fall back to body background
+    root.style.setProperty('--hour-bg', bg);
+    // add very gentle wash layer
+    if (!document.getElementById('hour-wash-style')){
+      var st = document.createElement('style');
+      st.id='hour-wash-style';
+      st.textContent = `
+        :root { --hour-bg: transparent; --hour-fade: .85s; }
+        html, body { transition: background-color var(--hour-fade) ease, color var(--hour-fade) ease; }
+        body { background-color: var(--hour-bg); }
+      `;
+      document.head.appendChild(st);
+    }
+  }
+
+  // pick planet by "clock mode" (simple, dependency-free)
+  function tick(){
+    var now = new Date();
+    var wd  = now.getDay(); // 0=Sun..6=Sat
+    var hr  = now.getHours();
+    var start = ORDER.indexOf(DYRUL(wd));
+    var idx = ( (hr - 6) + start ) % ORDER.length; // hour ~ seed at 06:00
+    if (idx < 0) idx += ORDER.length;
+    var planet = ORDER[idx];
+    if (planet !== last) { applyPlanet(planet); last = planet; }
+  }
+  function DYRUL(d){ return DAYRULE[d]; }
+
+  var last = "";
+  tick();
+  // check once per minute; extremely light
+  var timer = setInterval(tick, 60*1000);
+
+  // rollback helper if anything feels off
+  window.CodexHours = {
+    off: function(){
+      clearInterval(timer);
+      document.documentElement.style.removeProperty('--hour-bg');
+      var s = document.getElementById('hour-wash-style'); if (s) s.remove();
+    }
+  };
+})();
+</script>
+
+</body>
+</html>

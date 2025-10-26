@@ -1,0 +1,32 @@
+{
+  "id": "world-sample-velvet-avalon",
+  "title": "Velvet Avalon Sample",
+  "version": "1.0.0",
+  "witch": "profiles/default.witch.json",
+  "stylepack_key": "velvet-avalon",
+  "tokens": "/public/c99/tokens/perm-style.json",
+  "css": "/public/c99/css/perm-style.css",
+  "flavors": {
+    "hermetic_alchemy": true,
+    "tree_of_life": true,
+    "theosophical_aeons": true
+  },
+  "respawn_alias_violet": true,
+  "between_realm": {
+    "enable": true,
+    "class": "between-narthex",
+    "layer": "inBetweenVeil"
+  },
+  "protection": {
+    "enable": true,
+    "class": "protection-handsigil",
+    "layer": "protectionSigil"
+  },
+  "solfeggio": [396, 417, 528, 639, 741, 852, 963],
+  "egregores_hint": "assets/data/egregores.core.json",
+  "angels_hint": "assets/data/angels72.json",
+  "bridge_overrides": {
+    "adventure.default": "hermetic_alchemy"
+  },
+  "notes": "Portable pack; couture tokens/CSS mirrored."
+}

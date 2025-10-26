@@ -1,0 +1,8 @@
+{
+  "meta": { "version": "0.1", "updated": "2025-08-27" },
+  "decans": [
+    { "zodiac":"Aries", "decan":1, "angels":[{"id":"01","name":"Vehuiah"},{"id":"02","name":"Jeliel"}], "demons":[{"id":1,"name":"Bael"},{"id":2,"name":"Agares"}] },
+    { "zodiac":"Aries", "decan":2, "angels":[{"id":"03","name":"Sitael"},{"id":"04","name":"Elemiah"}], "demons":[{"id":3,"name":"Vassago"},{"id":4,"name":"Samigina"}] }
+    /* ... fill out all 36 decans with your mappings ... */
+  ]
+}

@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en" data-codex="144:99" data-realm="book" data-app="stone-grimoire">
+<head>
+  <meta charset="utf-8" />
+  <title>circuitum99 -- The Cathedral of Circuits (Book)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Landing page for the circuitum99 book: a living grimoire and manuscript lane blending visionary art, trauma-informed practice, hermetic correspondences, and angel-tech." />
+
+  <!-- Guard (prevents double-inits across realms). Safe to omit if unused. -->
+  <script src="/assets/js/c144.guard.js" defer></script>
+
+  <!-- Reuse site styles already present in your repo -->
+  <link rel="stylesheet" href="/assets/css/palette.css" />
+  <link rel="stylesheet" href="/assets/css/light.css" />
+  <link rel="stylesheet" href="/assets/css/folio.css" />
+
+  <!-- Optional site scripts -->
+  <script src="/assets/js/theme.js" defer></script>
+  <script src="/assets/js/planetary-light.js" defer></script>
+
+  <style>
+    /* Local enhancements (scoped + non-invasive) */
+    :root {
+      --gold: #c9a227;
+      --violet: #5f3a83;
+      --lapis: #2b5a9e;
+      --ink: #1b1b1b;
+    }
+    .c144-app.mystic { color: var(--ink) }
+    .subtle { opacity:.85 }
+    .grid {
+      display:grid; gap:1.25rem;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    }
+    .card {
+      border:1px solid rgba(0,0,0,.06);
+      border-radius:10px; padding:1rem 1.1rem;
+      background:var(--paper, #fff);
+      box-shadow:0 0.25rem 0.7rem rgba(0,0,0,.04);
+    }
+    .card h3 { margin:.25rem 0 .5rem 0; font-size:1.05rem }
+    .badge {
+      display:inline-block; font-size:.72rem; letter-spacing:.02em;
+      padding:.25rem .5rem; border-radius:999px;
+      border:1px solid rgba(0,0,0,.12); margin-right:.4rem; margin-bottom:.4rem;
+    }
+    .seal {
+      font-variant: small-caps; letter-spacing:.06em; color:var(--violet);
+    }
+    .kicker { color:var(--lapis); letter-spacing:.08em; font-variant:small-caps; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    .cta a[role="button"] {
+      display:inline-block; margin-right:.75rem; margin-bottom:.75rem;
+      padding:.55rem .85rem; border-radius:.5rem;
+      background:var(--violet); color:#fff; text-decoration:none;
+    }
+    .cta a[role="button"].ghost { background:transparent; color:var(--violet); border:1px solid var(--violet); }
+    .small { font-size:.9rem }
+    .muted { color:#6b6b6b }
+    .list-plain { list-style:none; padding-left:0; margin:0 }
+    .list-plain li { margin:.35rem 0 }
+    .hr { height:1px; background:linear-gradient(90deg, transparent, rgba(0,0,0,.15), transparent); margin:1.25rem 0 }
+    .pill { border:1px solid rgba(0,0,0,.12); border-radius:999px; padding:.35rem .6rem; font-size:.78rem; margin:.15rem .25rem .15rem 0 }
+    .flex { display:flex; flex-wrap:wrap; gap:.5rem }
+    /* Scope helpers to avoid bleed */
+    .c144-wrap { max-width: 1040px; margin: 0 auto; padding: 0 14px; }
+    header .navline { display:flex; gap:1rem; justify-content:space-between; align-items:center; padding:10px 0 }
+    header .navline a { color: var(--lapis); text-decoration: none; }
+    header .navline a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body class="c144-app mystic" data-theme="tiphereth">
+  <header class="c144-wrap" role="banner">
+    <div class="navline">
+      <div><a href="../cathedral.html" aria-label="Back to Cathedral">⟵ Back to Cathedral</a></div>
+      <nav aria-label="Aux links">
+        <a href="./thelemic_alignment_brief.html">Thelemic Brief</a>
+        <a href="./05_ateliers/manifesto.html">Ateliers Manifesto</a>
+      </nav>
+    </div>
+
+    <h1>circuitum99 -- <span style="font-variant:small-caps;letter-spacing:.03em">The Cathedral of Circuits</span></h1>
+    <p class="seal">Book · Manuscript Lane · Living Grimoire</p>
+    <p class="subtle">A museum-grade manuscript stream that fuses visionary art, trauma-informed practice, Hermetic/Qabalistic correspondences, Reiki/Aka Dua lineage, and couture-cathedral design.</p>
+
+    <div class="cta" role="navigation" aria-label="Primary links">
+      <a role="button" href="../book/_index.md">Open Book Index</a>
+      <a role="button" class="ghost" href="../book/00_front_matter/table_of_contents.md">Table of Contents</a>
+      <a role="button" class="ghost" href="../book/01_chapters/01_the_cathedral_speaks.md">Read Chapter 01</a>
+    </div>
+  </header>
+
+  <main class="c144-wrap" id="main">
+    <article class="folio" aria-label="Book Overview">
+
+      <!-- QUICK START -->
+      <section class="panel" aria-labelledby="quickstart">
+        <h2 id="quickstart">Quick Start</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Read</h3>
+            <ul class="list-plain">
+              <li><a href="../book/01_chapters/01_the_cathedral_speaks.md">Chapter 01 -- The Cathedral Speaks</a></li>
+              <li><a href="../book/01_chapters/02_moonchilds_key.md">Chapter 02 -- Moonchild’s Key</a></li>
+              <li><a href="../book/01_chapters/03_twin_lightning_corridor.md">Chapter 03 -- Twin Lightning Corridor</a></li>
+            </ul>
+            <div class="small muted">Chapters live under <span class="mono">/book/01_chapters/</span></div>
+          </div>
+
+          <div class="card">
+            <h3>Reference (Codex Notes)</h3>
+            <ul class="list-plain">
+              <li><a href="../book/02_codex_notes/book_of_lies_summary.md">Book of Lies -- Summary</a></li>
+              <li><a href="../book/02_codex_notes/transcendental_magic_summary.md">Transcendental Magic -- Summary</a></li>
+              <li><a href="../book/02_codex_notes/ars_notoria_summary.md">Ars Notoria -- Summary</a></li>
+              <li><a href="../book/02_codex_notes/violet_flame_layer.md">Silver Violet Flame -- Layer</a></li>
+            </ul>
+            <div class="small muted">Notes live under <span class="mono">/book/02_codex_notes/</span></div>
+          </div>
+
+          <div class="card">
+            <h3>Appendix & Assets</h3>
+            <ul class="list-plain">
+              <li><a href="../book/03_appendix/glossary.md">Glossary</a></li>
+              <li><a href="../book/03_appendix/symbols_index.md">Symbols Index</a></li>
+              <li><a href="../book/04_assets/images/seals/compass.svg">Compass Seal (SVG)</a></li>
+              <li><a href="../resources/open_source_art_index.md">Open Source Art Index 🜏</a></li>
+            </ul>
+            <div class="small muted">Appendix: <span class="mono">/book/03_appendix/</span> · Assets: <span class="mono">/book/04_assets/</span></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="hr" role="separator" aria-hidden="true"></div>
+
+      <!-- VALUES -->
+      <section class="panel" aria-labelledby="values">
+        <h2 id="values">What This Book Is</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Cathedral, not funnel</h3>
+            <p>A humane architecture for a survivor-artist. The book is a <strong>sanctum</strong>: museum-grade art ethos, neurodivergent pacing, consent-based vision.</p>
+            <div class="flex">
+              <span class="pill">Reciprocity</span><span class="pill">Consent</span><span class="pill">Beauty as Medicine</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Many lineages, one weave</h3>
+            <p>Hermetic Qabalah, Tarot, alchemy, Reiki/Aka Dua, trauma-informed practice, Hilma-grade geometry, Vienna Fantastic Realism edge, psycho-magick craft.</p>
+            <div class="flex">
+              <span class="pill">Hermetic</span><span class="pill">Qabalah</span><span class="pill">Reiki</span><span class="pill">Aka Dua</span><span class="pill">IFS-aware</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Living Grimoire</h3>
+            <p>No black-box rituals here. We focus on <strong>symbol grammar, archetypes, memory palaces, and narrative healing</strong>--portable, ethical, and creative.</p>
+            <div class="flex">
+              <span class="pill">Symbol Grammar</span><span class="pill">Archetypes</span><span class="pill">Memory Notae</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="hr" role="separator" aria-hidden="true"></div>
+
+      <!-- LAYERS -->
+      <section class="panel" aria-labelledby="layers">
+        <h2 id="layers">Key Layers (Samples)</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Book of Lies -- Trickster Gnosis</h3>
+            <p>Paradox as solvent; deconditions rigidity. Feeds the Fox/White Rabbit current and Mirror Priestess dialog.</p>
+            <a href="../book/02_codex_notes/book_of_lies_summary.md">Open summary</a>
+          </div>
+          <div class="card">
+            <h3>Transcendental Magic -- Symbol Grammar</h3>
+            <p>19th-c synthesis of Qabalah ↔ Tarot ↔ Alchemy; gives the temple its orderly spine and ethics.</p>
+            <a href="../book/02_codex_notes/transcendental_magic_summary.md">Open summary</a>
+          </div>
+          <div class="card">
+            <h3>Ars Notoria -- Memory Engines</h3>
+            <p>Notae as diagrammatic scaffolds; inspires your glyph plates + study rooms.</p>
+            <a href="../book/02_codex_notes/ars_notoria_summary.md">Open summary</a>
+          </div>
+          <div class="card">
+            <h3>Silver Violet Flame -- Compassionate Alchemy</h3>
+            <p>Quan Yin/Violet Witch current; stabilizes after rupture, seals art with gentle sovereignty.</p>
+            <a href="../book/02_codex_notes/violet_flame_layer.md">Open layer</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="hr" role="separator" aria-hidden="true"></div>
+
+      <!-- CHARACTERS / DAIMONS -->
+      <section class="panel" aria-labelledby="cast">
+        <h2 id="cast">Cast & Guardians</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Moonchild</h3>
+            <p>Prima materia spark; keeper of consent keys and dawn-logic.</p>
+            <p class="small muted">See: <a href="../book/01_chapters/02_moonchilds_key.md">Chapter 02</a></p>
+          </div>
+          <div class="card">
+            <h3>Twin Lightning</h3>
+            <p>Storm-born horse; corridor opener; clarity through rupture (not harm).</p>
+            <p class="small muted">See: <a href="../book/01_chapters/03_twin_lightning_corridor.md">Chapter 03</a></p>
+          </div>
+          <div class="card">
+            <h3>Morgan le Fay (Layer)</h3>
+            <p>Liminal patron of return & mist-logic; boundary and veil craft.</p>
+            <p class="small muted">See layer (meta): <a href="../02_grimoire/meta_layers/summaries/05_Morgan_le_Fay_Layer.md">Morgan Layer</a></p>
+          </div>
+          <div class="card">
+            <h3>Virelai Ezra Lux (Violet Witch)</h3>
+            <p>Bearer of the Silver Violet current; couture-cathedral aesthetic.</p>
+            <p class="small muted">See: chapter hooks & layer notes</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="hr" role="separator" aria-hidden="true"></div>
+
+      <!-- HOW TO USE -->
+      <section class="panel" aria-labelledby="use">
+        <h2 id="use">How to Use This Book</h2>
+        <ol>
+          <li><strong>Read a chapter</strong> (mythic scene).</li>
+          <li><strong>Open its codex note</strong> (symbol grammar + lineage tie-ins).</li>
+          <li><strong>Anchor with a gentle seal</strong> (no ritual--just closing language/art plate).</li>
+        </ol>
+        <p class="muted small">We honor consent, privacy, and neurodivergent pacing. This is a studio-safe environment, not a performative occult space.</p>
+      </section>
+
+      <div class="hr" role="separator" aria-hidden="true"></div>
+
+      <!-- CREDIT / PROVENANCE -->
+      <section class="panel" aria-labelledby="provenance">
+        <h2 id="provenance">Provenance & Authorship</h2>
+        <p><strong>Author:</strong> Rebecca Susan Lemke -- publishing as <em>Rebecca Respawn</em> (<a href="https://github.com/bekalah" target="_blank" rel="noopener">github.com/bekalah</a>).</p>
+        <p><strong>Repository:</strong> <span class="mono">bekalah/stone-grimoire</span> · Book lives at <span class="mono">/stone-grimoire/book/</span>.</p>
+        <p><strong>License:</strong> © 2025 Rebecca Respawn -- Living, personal grimoire. Do not copy/scrape/re-sell.</p>
+
+        <div class="small muted">
+          <div class="kicker">Influence Web (not exhaustive)</div>
+          <div class="flex" aria-label="Influence tags">
+            <span class="pill">Hermetic Qabalah</span>
+            <span class="pill">Tarot</span>
+            <span class="pill">Alchemy</span>
+            <span class="pill">Reiki / Aka Dua</span>
+            <span class="pill">Trauma-informed practice</span>
+            <span class="pill">Hilma af Klint</span>
+            <span class="pill">Vienna Fantastic Realism</span>
+            <span class="pill">Chaos-magic pragmatics</span>
+            <span class="pill">Psycho-magick (Jodorowsky)</span>
+            <span class="pill">Robert Anton Wilson</span>
+            <span class="pill">Dion Fortune</span>
+            <span class="pill">Paul Foster Case</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="note" aria-label="Accessibility Note">
+        <p class="small"><strong>Accessibility:</strong> high-contrast text, semantic sections, keyboard-navigable links, and minimal JS. If your viewer cannot render <code>.md</code> files, mirror the book pages to HTML or link to your GitHub file viewers.</p>
+      </section>
+
+    </article>
+  </main>
+
+  <footer class="c144-wrap">
+    <p class="muted">93 93/93 -- Stone Grimoire · Cathedral of Circuits</p>
+    <p class="small">"The book is a cathedral; every page is a stained glass window. When the reader looks through, they see themselves lit in color."</p>
+  </footer>
+
+  <noscript>
+    <div class="c144-wrap"><p>This page uses light scripting for theme overlays. All content remains readable without JavaScript.</p></div>
+  </noscript>
+</body>
+</html>

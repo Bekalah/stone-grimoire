@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 160" role="img"
+     aria-label="Corn/maize schematic: central stalk with leaves and cob motif (symbolic botanical).">
+  <rect width="140" height="160" fill="#fff8e7"/>
+  <line x1="70" y1="140" x2="70" y2="20" stroke="#4f6c46" stroke-width="3"/>
+  <path d="M70,60 q-30,10 -40,30 q30,-4 40,-30" fill="#7aa36e" opacity=".9"/>
+  <path d="M70,80 q30,10 40,30 q-30,-4 -40,-30" fill="#7aa36e" opacity=".9"/>
+  <ellipse cx="70" cy="80" rx="10" ry="18" fill="#d4af37" stroke="#8d7a2c"/>
+  <text x="10" y="18" font-family="Georgia,serif" font-size="10" fill="#6b6257">Plant motif — symbolic.</text>
+</svg>

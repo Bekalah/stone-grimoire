@@ -1,0 +1,77 @@
+{
+  "id": "spiral-crypt-metatron",
+  "title": "Spiral Crypt of Metatron",
+  "route": "chapels/spiral-crypt-metatron.html",
+  "stylepack": "rosicrucian_black",
+  "realm": "Chapels",
+  "pillar": 3,
+  "vertebra": 11,
+  "gate": 33,
+  "dome": 99
+},
+{
+  "id": "vesica-oracle-pool",
+  "title": "Vesica Oracle Pool",
+  "route": "chapels/vesica-oracle-pool.html",
+  "stylepack": "rosae_illumination",
+  "realm": "Chapels",
+  "pillar": 7,
+  "vertebra": 22,
+  "gate": 44,
+  "dome": 72
+},
+{
+  "id": "chiasm-gate",
+  "title": "Chiasm Gate",
+  "route": "chapels/chiasm-gate.html",
+  "stylepack": "enochian_astral",
+  "realm": "Chapels",
+  "pillar": 9,
+  "vertebra": 13,
+  "gate": 27,
+  "dome": 81
+},
+{
+  "id": "lattice-144-lights",
+  "title": "Lattice of 144 Lights",
+  "route": "chapels/lattice-144-lights.html",
+  "stylepack": "angelic_chorus",
+  "realm": "Chapels",
+  "pillar": 11,
+  "vertebra": 33,
+  "gate": 99,
+  "dome": 144
+},
+{
+  "id": "obsidian-womb",
+  "title": "Obsidian Womb",
+  "route": "chapels/obsidian-womb.html",
+  "stylepack": "rosslyn_gothic",
+  "realm": "Chapels",
+  "pillar": 10,
+  "vertebra": 1,
+  "gate": 9,
+  "dome": 36
+},
+{
+  "id": "lantern-archive",
+  "title": "Lantern Archive",
+  "route": "chapels/lantern-archive.html",
+  "stylepack": "alchemical_bloom",
+  "realm": "Chapels",
+  "pillar": 5,
+  "vertebra": 17,
+  "gate": 56,
+  "dome": 108
+},
+{
+  "id": "choral-forge",
+  "title": "Choral Forge",
+  "route": "chapels/choral-forge.html",
+  "stylepack": "angelic_chorus",
+  "realm": "Chapels",
+  "pillar": 6,
+  "vertebra": 21,
+  "gate": 63,
+  "dome": 111
+}

@@ -1,0 +1,65 @@
+{
+  "graphId": "cathedral-core-10",
+  "renderHints": {
+    "tesla": {
+      "harmonics": ["396Hz", "528Hz"],
+      "palette": ["#B8F3FF", "#FFD340", "#110F20"],
+      "crystal": "pyrite-coil",
+      "geometry": ["zigzag-lightning", "coil-helix"]
+    },
+    "hypatia": {
+      "harmonics": ["639Hz", "741Hz"],
+      "palette": ["#D8E6FF", "#7DA0D4", "#1F2C48"],
+      "crystal": "sodalite-icosa",
+      "geometry": ["golden-spiral", "astral-grid"]
+    },
+    "agrippa": {
+      "harmonics": ["432Hz", "285Hz"],
+      "palette": ["#C0B08D", "#2D2314", "#EEE6C9"],
+      "crystal": "hematite-cube",
+      "geometry": ["soyga-square", "planetary-sigils"]
+    },
+    "dee": {
+      "harmonics": ["528Hz", "852Hz"],
+      "palette": ["#E0FFE8", "#355C43", "#0D1E13"],
+      "crystal": "emerald-octagon",
+      "geometry": ["monas-glyph", "angelic-lattice"]
+    },
+    "fortune": {
+      "harmonics": ["417Hz", "528Hz"],
+      "palette": ["#FCE7F0", "#C2255C", "#1A0C14"],
+      "crystal": "rose-quartz-cross",
+      "geometry": ["rose-cross", "temple-grid"]
+    },
+    "hilma": {
+      "harmonics": ["963Hz", "432Hz"],
+      "palette": ["#F6F0FF", "#A77BD1", "#2E1042"],
+      "crystal": "amethyst-flower",
+      "geometry": ["concentric-rings", "swan-curve"]
+    },
+    "witch-mods": {
+      "harmonics": ["741Hz"],
+      "palette": ["#0E1116", "#3FFFD7", "#F6FF52"],
+      "crystal": "obsidian-eye",
+      "geometry": ["watchful-eye", "hex-mesh"]
+    },
+    "crowley-shadow": {
+      "harmonics": ["396Hz"],
+      "palette": ["#1A0C14", "#FF2E63", "#FFD340"],
+      "crystal": "meteorite-frag",
+      "geometry": ["fracture-planes", "tower-strike"]
+    },
+    "virelai": {
+      "harmonics": ["528Hz", "639Hz"],
+      "palette": ["#9B59B6", "#E8D3FF", "#FFF8E6"],
+      "crystal": "ametrine-prism",
+      "geometry": ["violet-flame", "temperance-flow"]
+    },
+    "rebecca-respawn": {
+      "harmonics": ["256Hz", "432Hz"],
+      "palette": ["#FFFFFF", "#C7C7FF", "#121212"],
+      "crystal": "moonstone-disc",
+      "geometry": ["ouroboros-circuit", "respawn-ring"]
+    }
+  }
+}

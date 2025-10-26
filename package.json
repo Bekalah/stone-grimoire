@@ -1,0 +1,13 @@
+{
+  "name": "stone-grimoire",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/interface.test.js",
+    "dedupe": "node scripts/deduplicate-repo.mjs",
+    "dedupe-file": "node scripts/dedupe.js",
+    "prebuild": "node scripts/verify-absent.mjs",
+    "build": "node -e \"console.log('offline build: static renderer ready')\""
+  }
+}

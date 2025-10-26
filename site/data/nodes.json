@@ -1,0 +1,80 @@
+[
+  {
+    "id": "00-void",
+    "name": "Void Chapel",
+    "type": "Chapel",
+    "thelemicPath": "Aleph",
+    "lore": "Vesica cradle for first breath; initiates calm modulation before any circuitry ignites.",
+    "summary": "Triadic zero-point anchoring breath practice and sensing rituals.",
+    "curriculum": [
+      "Breathwork triptych — inhale, hold, release (3 beats)",
+      "Sevenfold sensory check-in for ND-safe grounding",
+      "Nine-sigil tracing to map calm pathways"
+    ],
+    "labProtocol": "Follow the calm toggle before any helix overlays; respect reduced-motion requests first.",
+    "assets": [
+      "pdf/void-chapel-manual.pdf",
+      "audio/void-temple-tone.avif",
+      "notes/void-field-notebook.md"
+    ],
+    "lab": "labs/void-lab.html"
+  },
+  {
+    "id": "03-crucible",
+    "name": "Harmonic Crucible",
+    "type": "Chapel",
+    "thelemicPath": "Gimel",
+    "lore": "Triadic resonance field exploring vesica alignments and calm chromatics for studio rituals.",
+    "summary": "Triadic resonance field exploring vesica alignments and calm chromatics for studio rituals.",
+    "curriculum": [
+      "Three-tone harmonic ladder drills",
+      "Seven spiral sketches mapping vesica crossings",
+      "Eleven-minute journaling on choir resonance"
+    ],
+    "labProtocol": "Mix pigments at 33% opacity before layering; keep gradients soft within a 10% luminance delta.",
+    "assets": [
+      "sketches/harmonic-crucible-grid.png",
+      "pdf/harmonic-crucible-folio.pdf"
+    ],
+    "lab": ""
+  },
+  {
+    "id": "09-choir",
+    "name": "Choir of Circuits",
+    "type": "Chapel",
+    "thelemicPath": "Teth",
+    "lore": "Choral study of tarot correspondences mapped to circuit sigils with printable overlays.",
+    "summary": "Choral study of tarot correspondences mapped to circuit sigils with printable overlays.",
+    "curriculum": [
+      "Nine-voice resonance braid for ND vocal pacing",
+      "Twenty-two card correspondences cross-index",
+      "Ninety-nine beat metronome pattern for calm cadence"
+    ],
+    "labProtocol": "Use spiral metronome under 60 BPM and mute any bright leds; overlay prints only after contrast audit.",
+    "assets": [
+      "pdf/choir-of-circuits-sheet.pdf",
+      "charts/arcanae-correspondence.csv"
+    ],
+    "lab": ""
+  },
+  {
+    "id": "22-spiral",
+    "name": "Spiral Archive",
+    "type": "Chapel",
+    "thelemicPath": "Tav",
+    "lore": "Offline-first library of Fibonacci spirals, double-helix notes, and workshop prompts.",
+    "summary": "Offline-first library of Fibonacci spirals, double-helix notes, and workshop prompts.",
+    "curriculum": [
+      "Eleven spiral diagram meditations",
+      "Thirty-three helix lattice case studies",
+      "One-hundred-forty-four step archive review"
+    ],
+    "labProtocol": "Catalog updates offline, then sync to Codex manually; never break the calm lighting matrix.",
+    "assets": [
+      "spreads/spiral-archive-blueprint.tif",
+      "notes/spiral-archive-ledger.md",
+      "models/double-helix-static.obj"
+    ],
+    "lab": ""
+  }
+]
