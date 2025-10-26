@@ -1,3 +1,5 @@
+# Project Documentation
+
 crypt.html` (to be added)  
 - **Stylepack:** `rosicrucian_black`  
 - **Tone:** 432 Hz (Saturn, grounding)  
@@ -7,7 +9,10 @@ crypt.html` (to be added)
 
 —
 
+# Section
+
 ## 4. Ateliers Wing — Venus Covenant
+
 - **File:** `main/05_ateliers/MANIFESTO.md`  
 - **Stylepacks:**  
   - Atelier Lux → `hilma_spiral`  
@@ -21,6 +26,7 @@ crypt.html` (to be added)
 —
 
 ## 5. Jacob’s Ladder (Visionary Axis)
+
 - **File:** `main/rooms/jacobs-ladder.html` (existing / update)  
 - **Stylepack:** `angelic_chorus` + `enochian_astral`  
 - **Tone:** Ascending Solfeggio scale (396–963 Hz)  
@@ -30,6 +36,7 @@ crypt.html` (to be added)
 —
 
 ## 6. Egregore Vault (Crypt Annex)
+
 - **File:** `main/rooms/egregores.html` (to be added)  
 - **Stylepack:** `enochian_astral`  
 - **Tone:** Planetary hours + numerological squares  
@@ -40,6 +47,7 @@ crypt.html` (to be added)
 —
 
 ## Integration Rules
+
 1. Every room declares: stylepack, tone (Hz), geometry, atelier tie-in, provenance plaque.  
 2. Every artifact shows layered **depth** (halos, veils, glazes).  
 3. Every gallery links back to the **Cathedral spine (Thelemic Brief)**.  

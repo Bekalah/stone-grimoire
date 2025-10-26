@@ -8,7 +8,8 @@ Adapters let external repositories extend the cathedral view without mutating co
   "path": "../example-repo",
   "adapter": "scripts/adapter.mjs"
 }
-```
+
+```text
 
 ## Module contract
 
@@ -20,7 +21,8 @@ export function init(view){
   view.adapters = view.adapters || [];
   view.adapters.push("example-repo");
 }
-```
+
+```text
 
 * `init(view)` — called after the base view is composed.
 * The `view` parameter is the global `__CATHEDRAL_VIEW__` object.

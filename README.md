@@ -1,4 +1,7 @@
+# Project Documentation
+
 <!-- Static double-helix ASCII header for ND-safe visual interest -->
+
 ```text
                          0------------------------------------------------1
                            0                                            1
@@ -22,7 +25,8 @@
                                   1                              0
                            1--------------------------------------------0
                          1                                                0
-```
+
+```text
 
 ✦ LIBER ARCANAE: CODEX ABYSSIAE
 
@@ -151,6 +155,10 @@ Each card = portable Monad → meditation yantra, ritual key, world portal.
 
 ⸻
 
+# Section
+
+## Section
+
 ### Visionary World Builder Demo
 
 See [docs/visionary_world_builder.md](docs/visionary_world_builder.md) for instructions on generating customizable visionary art with palette and pattern options.
@@ -163,7 +171,8 @@ After generating `data/codex_nodes_full.json`, verify its integrity:
 
 ```bash
 python scripts/validate_codex.py
-```
+
+```text
 
 The validator checks required fields, enforces locked nodes, and confirms each `lock_hash` matches its node data.
 
@@ -177,7 +186,8 @@ To clean up repeated lines caused by accidental double pastes:
 
 ```bash
 npm run dedupe
-```
+
+```text
 
 This scans all git-tracked text files and strips consecutive duplicate lines.
 

@@ -70,4 +70,3 @@ function sanitizeSeed(seed) {
 }
 
 export { RESOLVE_ENDPOINT };
-

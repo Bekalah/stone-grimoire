@@ -1,6 +1,7 @@
 # circuitum99 × STONE_GRIMOIRE × COSMOGENESIS — MASTER FOLDERS • PATHS • CODE • RITUAL
 
 ## WHY
+
 One style spine, three bodies:
 - **stone_grimoire/** = the living cathedral & art archive (source of truth for tokens, CSS, art ingest).
 - **circuitum99/** = the Book (reader-facing; renders rooms/angels/creatures via the shared bridge).
@@ -25,9 +26,11 @@ Accessibility: `”a11y”: { “min_contrast”: 4.5, “motion”: “reduce�
 —
 
 # 1) REPO: stone_grimoire
+
 **Purpose:** Art & style source. Ingests art → writes processed assets, thumbnails/webp, and the **bridge manifest**. Mirrors tokens+css to the learning engine’s public folder.
 
 ## 1.1 Folder Tree (unchanged + confirmed)
+
 stone_grimoire/
 ├─ index.html
 ├─ structure.json                             # optional; rooms fallback if absent
@@ -55,19 +58,24 @@ stone_grimoire/
 └─ package.json
 
 ## 1.2 Tokens (drop in exactly; JSON is valid)
+
 PATH: stone_grimoire/assets/tokens/perm-style.json  
 (Use the same JSON you approved in your last message.)
 
 ## 1.3 CSS (drop in exactly)
+
 PATH: stone_grimoire/assets/css/perm-style.css  
 (Use the same CSS you approved with `.visionary-grid` and the obsidian/raku classes.)
 
 ## 1.4 SVG Filters (include once)
+
 PATH: stone_grimoire/chapels/_filters.html  
 (Use the same snippet you approved: `obsidianSheen` and `rakuCopperIridescence`.)
 
 ## 1.5 Bridge Helper (for consumers that prefer a tiny JS helper)
+
 PATH: stone_grimoire/bridge/c99-bridge.js
+
 ```js
 // Minimal helper to fetch the manifest once
 export async function loadBridge(url = ‘/bridge/c99-bridge.json’) {

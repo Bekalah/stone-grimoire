@@ -7,7 +7,8 @@ Generate museum-quality visionary art with configurable patterns and palettes.
 ```bash
 python visionary_world_builder.py --pattern fractal --palette alex_grey \
   --width 3840 --height 2160 --output Visionary_Dream.png
-```
+
+```text
 
 ## Options
 

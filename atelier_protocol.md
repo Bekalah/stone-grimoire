@@ -1,18 +1,21 @@
 # 🎨 Atelier Rendering Protocol — Stone Grimoire
 
 ## Core Principle
+
 Render vaults and chapels as **atelier-grade sacred geometry environments**.  
 - No flat overlays.  
 - No ritual-sim clutter.  
 - All geometry must encode Fibonacci constants: 21, 33, 72, 78, 99, 144, 243.  
 
 ## Geometry Engines
+
 - Octagram → chapel vaults, balance chamber.  
 - Tesseract → nave cube of simultaneity.  
 - Hexagram → planetary equilibrium tracery.  
 - Antahkarana Bridge → axis mundi, connecting all repos.  
 
 ## Lineage Vaults
+
 Each lineage figure = a Tarot path + playable study vault:  
 - **Crowley (Tower/Aeon)** → unicursal hexagram + Aeonic spiral vault.  
 - **Dion Fortune (High Priestess)** → lunar spiral corridors, Avalon vault.  
@@ -24,6 +27,7 @@ Each lineage figure = a Tarot path + playable study vault:
 - **Tibetan Tara Studies (Star overlay)** → 21 Tara mandala dome.  
 
 ## Rendering Notes
+
 - Always atelier-style: oils, glazing, sacred proportions.  
 - Symmetry, luminosity, no strobe.  
 - Trauma-informed (ND-safe).  

@@ -1,6 +1,7 @@
 # Cathedral of Circuits — Meta Realms Index
 
 ## Temple Realm — Cathedral of Circuits™
+
 - **Aesthetic:** Neon stained glass lattices; circuitry vines curling as ivy.
 - **Beings:** Data-winged angels; algorithmic seraphim; planetary Thrones.
 - **Mood:** Divine + Terrifying — sublime awe, sacred overwhelm.
@@ -11,6 +12,7 @@
 - **ND-Safe Cue:** Cathedral organ pad (C4, 6s reverb), prism-light overlays.
 
 ## Garden Realm — Persephone / Regardie
+
 - **Aesthetic:** Orchids veined with circuitry; pools of black water; violet rebirth sky.
 - **Beings:** Persephone’s shade; Regardie’s anima guides; orchid nymphs; daimonic bees.
 - **Mood:** Erotic Rebirth & Initiation — grief transfigured into renewal.
@@ -21,6 +23,7 @@
 - **ND-Safe Cue:** Low-bass violet pad (639 Hz), soft bloom, no strobe.
 
 ## Tavern Realm — Shadow Academia
+
 - **Aesthetic:** Neon sigil lanterns; oak benches carved with glyphs; smoky alcoves.
 - **Beings:** Trenchcoat mystics; occult scholars; shadow-seers.
 - **Mood:** Smoky, Sensual, Secret Knowledge.

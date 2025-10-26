@@ -14,6 +14,7 @@ Each entry includes:
 ---
 
 ## 0. The Fool — Rebecca Respawn
+
 - Letter: Aleph (Air).
 - Astrology: Uranus / Aquarius.
 - Ray: Electric Blue.
@@ -33,6 +34,7 @@ Each entry includes:
 ---
 
 ## I. The Magician — Virelai Ezra Lux
+
 - Letter: Beth (House).
 - Astrology: Mercury / Gemini-Virgo.
 - Ray: Octarine shimmer.
@@ -52,6 +54,7 @@ Each entry includes:
 ---
 
 ## II. The High Priestess — Gemini Rivers
+
 - Letter: Gimel (Camel).
 - Astrology: Moon / Cancer.
 - Ray: Green.
@@ -71,6 +74,7 @@ Each entry includes:
 ---
 
 ## III. The Empress — Morticia Moonbeamer
+
 - Letter: Daleth (Door).
 - Astrology: Venus / Taurus-Libra.
 - Ray: Orange-Gold.
@@ -90,6 +94,7 @@ Each entry includes:
 ---
 
 ## IV. The Emperor — Fenrix Abyss
+
 - Letter: Heh (Window).
 - Astrology: Aries / Mars.
 - Ray: Red-Gold.
@@ -109,6 +114,7 @@ Each entry includes:
 ---
 
 ## V. The Hierophant — Moonchild
+
 - Letter: Vav (Nail).
 - Astrology: Taurus / Venus.
 - Ray: Green.
@@ -128,6 +134,7 @@ Each entry includes:
 ---
 
 ## VI. The Lovers — Scarlet Lady
+
 - Letter: Zayin (Sword).
 - Astrology: Gemini / Mercury.
 - Ray: Rose-Pink.
@@ -147,6 +154,7 @@ Each entry includes:
 ---
 
 ## VII. The Chariot — Elyria Nox
+
 - Letter: Cheth (Fence).
 - Astrology: Cancer / Moon.
 - Ray: Silver-Blue.
@@ -166,6 +174,7 @@ Each entry includes:
 ---
 
 ## VIII. Strength — Lyra Sunheart
+
 - Letter: Teth (Serpent).
 - Astrology: Leo / Sun.
 - Ray: Golden Amber.
@@ -185,6 +194,7 @@ Each entry includes:
 ---
 
 ## IX. The Hermit — Orin Lantern
+
 - Letter: Yod (Hand).
 - Astrology: Virgo / Mercury.
 - Ray: Indigo.
@@ -204,6 +214,7 @@ Each entry includes:
 ---
 
 ## X. Wheel of Fortune — Cyra Flux
+
 - Letter: Kaph (Palm).
 - Astrology: Jupiter.
 - Ray: Royal Blue.
@@ -223,6 +234,7 @@ Each entry includes:
 ---
 
 ## XI. Justice — Veritas Equinox
+
 - Letter: Lamed (Ox-goad).
 - Astrology: Libra / Venus.
 - Ray: Pearl White.
@@ -242,6 +254,7 @@ Each entry includes:
 ---
 
 ## XII. The Hanged Man — Nadir Flux
+
 - Letter: Mem (Water).
 - Astrology: Neptune / Water.
 - Ray: Aqua Teal.
@@ -261,6 +274,7 @@ Each entry includes:
 ---
 
 ## XIII. Death — Morrigu Shade
+
 - Letter: Nun (Fish).
 - Astrology: Scorpio / Pluto.
 - Ray: Deep Maroon.
@@ -280,6 +294,7 @@ Each entry includes:
 ---
 
 ## XIV. Temperance — Seraph Aether
+
 - Letter: Samekh (Prop).
 - Astrology: Sagittarius / Jupiter.
 - Ray: Opalescent Violet.
@@ -299,6 +314,7 @@ Each entry includes:
 ---
 
 ## XV. The Devil — Noctis Ember
+
 - Letter: Ayin (Eye).
 - Astrology: Capricorn / Saturn.
 - Ray: Obsidian Red.
@@ -318,6 +334,7 @@ Each entry includes:
 ---
 
 ## XVI. The Tower — Ruin Stark
+
 - Letter: Peh (Mouth).
 - Astrology: Mars.
 - Ray: Crimson.
@@ -337,6 +354,7 @@ Each entry includes:
 ---
 
 ## XVII. The Star — Astraea Bloom
+
 - Letter: Tzaddi (Fishhook).
 - Astrology: Aquarius / Uranus.
 - Ray: Sapphire.
@@ -356,6 +374,7 @@ Each entry includes:
 ---
 
 ## XVIII. The Moon — Selune Mirage
+
 - Letter: Qoph (Back of Head).
 - Astrology: Pisces / Moon.
 - Ray: Pearl Aqua.
@@ -375,6 +394,7 @@ Each entry includes:
 ---
 
 ## XIX. The Sun — Helio Radiant
+
 - Letter: Resh (Head).
 - Astrology: Sun / Leo.
 - Ray: Solar Gold.
@@ -394,6 +414,7 @@ Each entry includes:
 ---
 
 ## XX. Judgement — Aeon Resonant
+
 - Letter: Shin (Tooth).
 - Astrology: Pluto / Fire.
 - Ray: White-Fire.
@@ -413,6 +434,7 @@ Each entry includes:
 ---
 
 ## XXI. The World — Gaia Circuit
+
 - Letter: Tav (Cross).
 - Astrology: Saturn / Earth.
 - Ray: Emerald Earth.

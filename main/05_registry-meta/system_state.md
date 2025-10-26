@@ -1,9 +1,11 @@
 # 🜍 Codex 144:99 — System State Log
+
 *A living repair & update ledger for the Cathedral of Circuits.*
 
 —
 
 ## Core Instructions (as of 2025-08-24)
+
 - **Engines Integration**  
   - `structure.json` = single truth.  
   - `cathedral-engine.js` reads → applies stylepack, overlays, tones.  
@@ -25,6 +27,7 @@
 —
 
 ## Chapel + Lab Pages (current HTML folios)
+
 - Jacob’s Ladder (33 full) → full sefirot + path mapping, interpretive labels.  
 - Apprentice Pillar → spiral vine schematic, legend marked as legend.  
 - Lady Chapel → Marian apse, flowering Sophia.  
@@ -39,6 +42,7 @@
 —
 
 ## Standards to Maintain
+
 - **Sound:** cathedral impulse reverb, organ-depth bass, no flat sine.  
 - **Visuals:** no flat icons; depth, glaze, reflection.  
 - **Atmosphere:** planetary light cycles, breath-motion.  
@@ -48,6 +52,7 @@
 —
 
 ## Registry / Changelog
+
 - 📜 Archive: `seals/compass.svg`  
 - ✨ Consecrate: `assets/data/geometry/compass.svg`  
   *Reason: consolidate all scaffolds under `/assets/data/geometry/`.*  

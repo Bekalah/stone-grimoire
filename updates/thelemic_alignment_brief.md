@@ -11,6 +11,7 @@
 ---
 
 ## 📜 Lineage Map
+
 - **Ancient:** *Picatrix, Key of Solomon, Abramelin, Goetia, Corpus Hermeticum*.  
 - **Modern:** *Aleister Crowley, Israel Regardie, Chaos Magicians (Carroll, Hine), Robert Anton Wilson, Timothy Leary, Antero Alli, EJ Gold, Alan Moore, Hilma af Klint*.  
 - **Parallel:** Where tradition sought hierarchy/control, Codex **144:99** seeks reciprocity, witness, and adaptive **angel-tech**.  
@@ -18,6 +19,7 @@
 ---
 
 ## ✦ Thrones / Archetypes
+
 - **Moonchild 2000** → prima materia spark.  
 - **Ann Abyss** → *Nigredo* (sacred grief, void).  
 - **IGNI** → *Rubedo* (fire, completion).  
@@ -31,6 +33,7 @@
 ---
 
 ## ⚜️ In short
+
 Codex **144:99** sits naturally in the Thelemic current: **93/99/2 harmonics**, structured around Moonchild’s spark, and designed as a **living, adaptive spine** rather than a rigid hierarchy.  
 
 It is Thelemic in **number**, Hermetic in **root**, and visionary in **art**.

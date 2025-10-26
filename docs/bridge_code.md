@@ -1,4 +1,5 @@
 # Code Annex Bridge
+
 - Source: docs/Cathedral_Code_Annex.html
 - Function: Technical appendix — all configs, engines, schema, and HTML skeletons.
 - Cross-links:

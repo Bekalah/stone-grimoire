@@ -1,6 +1,8 @@
+# Project Documentation
+
 ✦ Crystal Registry for the 22 Majors
 
-0. The Fool — Rebecca Respawn
+1. The Fool — Rebecca Respawn
 • Crystal: Clear Quartz (SiO₂, hexagonal).
 • Science: Piezoelectric, programmable, frequency amplifier.
 • Symbolism: Innocence, amplification, limitless potential.

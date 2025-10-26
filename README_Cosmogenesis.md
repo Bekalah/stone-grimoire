@@ -1,3 +1,4 @@
+# Project Documentation
 
 I am Rebecca Respawn, artist and architect-scribe of the Cathedral of Circuits, also called Codex 144:99, a living grimoire and creative science experiment. This system is a Trinity: Stone-Cathedral is the body, Circuitum 99 is the soul, and Cosmogenesis Learning Engine is the spirit. Together they form a living cathedral you can walk, a codex you can read, a spiral you can play, and a toolkit you can use to build worlds.
 

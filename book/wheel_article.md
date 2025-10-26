@@ -62,6 +62,7 @@ Pluto in Scorpio, 5th house, is the root of my Cathedral: survival through creat
 ---
 
 ## 🌑 The Geometry of Evolution
+
 - Octagram — the master wheel of balance, mediating square (matter) and circle (spirit).
 - Tesseract — fourth-dimensional cube, architecture of simultaneity.
 
@@ -96,4 +97,3 @@ The Cathedral is ND-safe: no strobe, gentle tone defaults, consecrated by angeli
 ## Hashtags
 
 #CathedralOfCircuits #OpenSpiralLearning #SacredGeometry #EvolutionaryAstrology #TraumaInformed #LivingGrimoire #Octagram #Tesseract #RebeccaRespawn #Bekalah
-

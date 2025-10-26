@@ -1,9 +1,11 @@
 # MASTER_UPDATE_NO_CI_FINAL_PLUS_ALEXGREY.md
 
-# PURPOSE: Preserve old SG style, add volcanic obsidian + Raku reiki, KEEP Alex Grey/visionary layer, and add a Secondary palette.
-# NOTE: No tree changes. Uses existing folders only.
+# PURPOSE: Preserve old SG style, add volcanic obsidian + Raku reiki, KEEP Alex Grey/visionary layer, and add a Secondary palette
+
+# NOTE: No tree changes. Uses existing folders only
 
 # PATHS (unchanged)
+
 stone_grimoire/assets/tokens/perm-style.json
 stone_grimoire/assets/css/perm-style.css
 stone_grimoire/chapels/_filters.html
@@ -15,6 +17,7 @@ bridge/c99-bridge.json
 bridge/c99-bridge.js
 
 # 1) TOKENS — merge/overwrite (adds secondary palette + visionary layers, keeps everything else)
+
 stone_grimoire/assets/tokens/perm-style.json
 {
   “meta”: {
@@ -78,6 +81,7 @@ stone_grimoire/assets/tokens/perm-style.json
 }
 
 # 2) CSS — replace file (preserves SG, adds Secondary + Visionary layer classes)
+
 stone_grimoire/assets/css/perm-style.css
 :root{
   /* primary palette */

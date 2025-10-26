@@ -1,4 +1,5 @@
 # Cathedral of Circuits — The Trinity Project
+
 *Ordo in aeternum resonat ✦ Order Resounds Forever*  
 *A Living Grimoire for Neurodivergent Learning, Visionary Art, and Cultural Technology*
 

@@ -1,3 +1,5 @@
+# Project Documentation
+
 🜍 circuitum99 — Cathedral Annex (Unified)
 
 A living codex of art standards, chapel schematics, and archive references.

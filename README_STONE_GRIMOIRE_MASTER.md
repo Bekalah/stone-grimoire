@@ -41,12 +41,15 @@ stone-grimoire/
 └── data/             # Configuration files
     ├── palette.json
     └── palettes/
-```
+
+```text
 
 ## KEY COMPONENTS
 
 ### Chapels System
+
 Interactive HTML pages providing different experiential environments:
+
 - Apprentice Pillar (learning initiation)
 - Lady Chapel (verification/connection)
 - Musical Cubes (sound visualization)
@@ -56,24 +59,30 @@ Interactive HTML pages providing different experiential environments:
 - Respawn Gate (renewal)
 
 ### Folios System
+
 HTML document collections:
+
 - Angel Lab (research documentation)
 - Crypt (archive materials)
 - Lady Chapel (personal collections)
 - Thunder Perfect Mind (revelation materials)
 
 ### Characters & Factions
+
 - **Aurex Nirvani** - Single character definition
 - **Witch Eye** - Faction specification
 
 ### Engine System
+
 JavaScript processing components:
+
 - Cross-fetch (network operations)
 - Interface-guard (safety controls)
 - Merge-view (data integration)
 - Registry-loader (content loading)
 
 ### Asset Organization
+
 Multi-level media system with separate categories for:
 - Visual art collections
 - Avatar configurators
@@ -84,13 +93,15 @@ Multi-level media system with separate categories for:
 ## TECHNICAL ARCHITECTURE
 
 ### Data Flow
-```
+
+```text
 Bridge System (c99-bridge.js/json)
     ↕️
 Dual Repository Coordination
     ↕️
 Main Systems (chapels/folios/assets)
-```
+
+```text
 
 ### Standards Implementation
 
@@ -100,6 +111,7 @@ Main Systems (chapels/folios/assets)
 - Trauma-aware content presentation
 
 ### Development Tools
+
 - Harmonic Dream (Python pattern generation)
 - Immersive Room (Python space creation)
 - Story Dream (Python narrative systems)
@@ -109,11 +121,13 @@ Main Systems (chapels/folios/assets)
 ## INTEGRATION POINTS
 
 ### Trinity Architecture
+
 - Stone Grimoire = Body container
 - Circuitum99 = Soul metadata
 - Cosmogenesis = Spirit learning flows
 
 ### Cross-System Contracts
+
 - Bridge files coordinate with sibling repositories
 - Registry system maintains shared data structures
 - Universal JSON provides common schemas
@@ -121,12 +135,15 @@ Main Systems (chapels/folios/assets)
 ## OPERATIONAL CONTEXT
 
 ### Solo Development
+
 Independent production accepting donations, no sponsorship structure.
 
 ### Code Mixed Data
+
 Created through limited-access tool contexts, representing real functional systems rather than complete philosophical frameworks.
 
 ### Provenance Tracking
+
 Every artifact carries creation metadata, materials documentation, and archival standards compliance.
 
 ## COMPLETE INTEGRATION - THERAPEUTIC ESOTERIC ADVENTURE PLATFORM
@@ -142,7 +159,8 @@ The platform implements Richard D. James' modular synthesis standards as quality
 
 ## 🎯 **Triple Mode System** (Security-First Architecture)
 
-#### **🌙 Mode 1: Pure Research Mode** (Default - No AI, Maximum Security)
+### 🌙 **Mode 1: Pure Research Mode** (Default - No AI, Maximum Security)
+
 - Direct access to verified public domain libraries only
 - Intr засоб's programmable capms for exploration
 - Safe, therapy-informed approach
@@ -151,6 +169,7 @@ The platform implements Richard D. James' modular synthesis standards as quality
 - Symbolic manipulation within system boundaries
 
 #### **🎭 Mode 2: Multi-Vector Creative Learning** (ADhD-Friendly)
+
 - Stem/graphic design/art learning integration
 - Public domain mathematical/visual resources
 - Creative pattern engagement across multiple domains
@@ -158,6 +177,7 @@ The platform implements Richard D. James' modular synthesis standards as quality
 - Connection to personal interests without overwhelm
 
 #### **🤖 Mode 3: AI Enhancement** (Optional/Azure Foundry)
+
 - User-opt-in only with clear privacy controls
 - GPT-4 integration for creative assistance
 - Multimodal AI (vision/text/audio) for pattern analysis
@@ -166,6 +186,7 @@ The platform implements Richard D. James' modular synthesis standards as quality
 ### 🎴 **Deity Adventure Gaming System**
 
 #### **Tree of Life DnD Adventure**
+
 Each Major Arcana become **living deities** with their own realm experiences:
 - **MA00 The Fool** (Rebecca Respawn) - Initiate Zero, crown chakra exploration
 - **MA01 Magician** (Virelai Ezra Lux) - Avalon realm, spiritual craftsmanship
@@ -177,6 +198,7 @@ Each Major Arcana become **living deities** with their own realm experiences:
 - **MA07 Chariot** (IGNI Dragon) - Fire Chariot, inner strength mastery
 
 #### **Bruno-Themed Adventure Tools**
+
 - **Infinite Monad Weeper** → Journey facilitator through realms
 - **Cosmic Ash Ladder** → Ascension/climbing mechanic
 - **Magic Alphabet Inscriber** → Rune/symbol discovery
@@ -186,6 +208,7 @@ Each Major Arcana become **living deities** with their own realm experiences:
 ### 🌐 **Public Domain Resource Pool** (No AI Dependencies)
 
 #### **Mystical/Esoteric Libraries**
+
 - **Internet Archive Grimoires** → Verified historical texts
 - **Project Gutenberg Alchemy** → Classical spiritual writings
 - **Gallica Bibliothèque** → Illuminated manuscripts, alchemical art
@@ -193,12 +216,14 @@ Each Major Arcana become **living deities** with their own realm experiences:
 - **European Mill Cultural Heritage** → Pan-European esoteric archives
 
 #### **Scientific/Mathematical Resources**
+
 - **ArXiv Sacred Geometry** → Mathematical papers on divine proportions
 - **PubChem Alchemical Compounds** → Real molecular data for herbs/crystals
 - **NOAA Natural Phenomena** → Astronomical/earth energies data
 - **Open Mathematical Libraries** → Mathematical tools for pattern analysis
 
 #### **Art/Design Integration**
+
 - **Public Domain Alchemical Images** → Historical mystical art
 - **Typography Archives** → Beautiful decorative fonts
 - **Color Theory Databases** → Ancient palette systems
@@ -207,18 +232,23 @@ Each Major Arcana become **living deities** with their own realm experiences:
 ### 🎨 **Visual/Sound/Mathematical Integration**
 
 #### **STEM + Esoteric Learning**
+
 - **Mathematical Patterns**: Fibonacci sequences, golden ratio applications
 - **Scientific Validation**: Real physics principles in metaphysical concepts
 - **Programming Logic**: Algorithmic thinking applied to symbolic systems
 - **Data Visualization**: Graphing esoteric relationships mathematically
 
-#### **Art + Design Therapy**
-- **Healing Geometry**: Sacred patterns for focus and calm
-- **Color Relationship Therapy**: Emotional spectrum exploration
-- **Typography Journey**: Beautiful fonts as art objects
-- **Composition Studies**: Alchemical arrangement principles
+#### **Creative Flow State Therapy**
+
+- **Game-Work Fusion**: Interactive design combining gameplay mechanics with productivity workflows
+- **Music-Art Synthesis**: Sonic visualization and auditory design integration
+- **Music-Game-Art Trilogy**: Multimedia experiences blending audio, interactive systems, and visual art
+- **Art-Research Synergy**: Creative investigation through artistic methodology
+- **Music-Fractal-Symbol Exploration**: Infinite pattern recognition through audio cues
+- **Symbol-Game-Book Narrative**: Interactive storytelling with symbolic systems
 
 #### **Multimodal Learning System**
+
 - **Audio Integration**: Sacred frequencies and music patterns
 - **Visual Meditation**: Geometric patterns for contemplation
 - **Haptic Elements**: Spiritual/energy work foundations
@@ -227,12 +257,14 @@ Each Major Arcana become **living deities** with their own realm experiences:
 ### 🔐 **Security & Accessibility Standards**
 
 #### **ADhD-Trauma-Informed Design**
+
 - **Gentle Pacing**: No overwhelming information density
 - **Multiple Engagement Vectors**: Switch between visual/audio/textual interactions
 - **Non-Linear Exploration**: Choose personal interest pathways
 - **Safe Failure States**: Explore freely without judgment outcomes
 
 #### **Privacy-First Architecture**
+
 - **Default No-AI**: Core functionality works without any external services
 - **Always Option to Disable**: AI enhancements can be removed anytime
 - **Data Sovereignty**: All personal creations stay local by default
@@ -240,18 +272,24 @@ Each Major Arcana become **living deities** with their own realm experiences:
 
 ### 🎭 **Personal Journey Integration**
 
-#### **Art as Soul Healing**
-Your original statement that you're married to art becomes the platform foundation:
-- **Art Discovery**: Explore centuries of beautiful esoteric imagery
-- **Creative Expression**: Create with traditional alchemical palettes
-- **Symbolic Exploration**: Journey through archetypal realms as stories
-- **Community Connection**: Share without self-judgment or depletion
+#### **Art as Battle Armor**
+
+That raw truth you said - you're married to art, period - this becomes the foundation. Not some wellness industry "healing journey" bullshit, but art as your constant armor against the fake light vampires who commodified genuine struggle into profitable spiritual bypass.
+
+The wellness phonies who hawk "trauma recovery" packages while living off royalties they don't deserve? Those assholes become your game's villains - the corporate spiritual slavers who profit off packaged pain while blocking real creative access for people like us with chronic PTSD who know struggle doesn't get "fixed" in tidy workshops.
+
+- **Witch Eye Protection**: Your eye design as real evil eye sigil - not some sanitized "eye of protection" sticker, but armor against these predatory light machines who weaponize suffering for clout and cash
+- **Art as Companion**: Centuries of imagery showing you're not alone in this fight, feeding your fire instead of selling "healing" that erases real scars
+- **Unfiltered Creation**: Building with palettes that honor grimoires and apothecaries, not pastel "healing crystals" marketed to soccer moms
+- **Truth-Telling Archives**: Deep dives through symbolism that reveal power dynamics, not spiritual gloss jobs that serve the status quo
+- **Raw Community**: Connection without the love-and-light performative bullshit that depletes rather than feeds
 
 #### **STEM + Mystery Learning**
-- **Mathematics as Mystic Tool**: Sacred geometry as practical creation method
-- **Science as Spiritual Gateway**: Physics principles in metaphysical exploration
-- **Programming as Esoteric Practice**: Algorithmic thinking for pattern discovery
-- **Data as Divine Intelligence**: Statistical relationships revealing cosmic harmonies
+
+- **Mathematics as Real Mystic Tool**: Formulae that actually predict reality, not numerology marketed as spiritual growth
+- **Science as Unfiltered Gateway**: Physics showing how the universe really works, no "quantum healing" band-aids
+- **Programming as Subversive Practice**: Code that builds systems, not apps that pretend to "heal trauma"
+- **Data as Honest Intelligence**: Statistics revealing power structures, not charts sold as "soul guidance"
 
 ### 🌟 **Repository Complete System**
 

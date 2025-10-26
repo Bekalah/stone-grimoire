@@ -1,3 +1,5 @@
+# Project Documentation
+
 ✦ LIBER ARCANAE: CODEX OF ABYSSIAE — MASTER SCROLL ✦  
 Author: Rebecca Susan Lemke (Rebecca Respawn)  
 ORCID: 0009-0002-2834-3956  

@@ -3,6 +3,7 @@
 The Cosmogenesis learning engine models the Tetragrammaton as two small pure functions. Each half returns harmonic hints that other modules can reuse without side effects.
 
 ## YH fusion — spark + vessel
+
 _File: `cosmogenesis-learning-engine/engines/yh-fusion.js`_
 
 `yhSignature({ seed=14499, yod=1, heh=5, tuning=432 })`
@@ -12,6 +13,7 @@ _File: `cosmogenesis-learning-engine/engines/yh-fusion.js`_
 - Guides color selection and melodic seeds across the cathedral stack.
 
 ## VH fusion — channel + embodiment
+
 _File: `cosmogenesis-learning-engine/engines/vh-fusion.js`_
 
 `vhSignature({ seed=14499, vav=6, heh_final=5, base=432 })`
@@ -21,6 +23,7 @@ _File: `cosmogenesis-learning-engine/engines/vh-fusion.js`_
 - Marks the element as `earth-channel` for downstream layers.
 
 ## Full cycle
+
 _File: `cosmogenesis-learning-engine/engines/yhvh.js`_
 
 `yhvhFull(seed=14499)`
@@ -29,5 +32,5 @@ _File: `cosmogenesis-learning-engine/engines/yhvh.js`_
 - The `yhvh` string (e.g., `15-65`) records the passage from spark + vessel to channel + embodiment.
 
 ## Meaning
-YH sketches the idea and palette; VH nails it to the ground. Together they map the four letters into color, number, and scale, giving every artifact a traceable lineage.
 
+YH sketches the idea and palette; VH nails it to the ground. Together they map the four letters into color, number, and scale, giving every artifact a traceable lineage.

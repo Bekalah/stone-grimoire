@@ -1,6 +1,8 @@
 # ✦ Codex 144:99 — Task Master (Alpha et Omega)
-# Single entry instructions for Codex inside this chat.
-# Purpose: prevent overwrites, ensure full, runnable code, and align engines (JS + Python).
+
+# Single entry instructions for Codex inside this chat
+
+# Purpose: prevent overwrites, ensure full, runnable code, and align engines (JS + Python)
 
 ROLE
 - Codex acts as scribe-engine. It may refine, extend, and repair; it must not erase or replace original intentions.

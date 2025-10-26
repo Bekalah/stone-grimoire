@@ -30,7 +30,7 @@ test("validateInterface: rejects non-object payloads", async () => {
 
 test("validateInterface: flags missing required fields with paths", async () => {
   const base = await loadSample();
-  for (const key of ["id", "name", "version", "flags", "items"]) {
+  for (const key of ["version", "palettes", "geometry_layers", "narrative_nodes"]) {
     const clone = structuredClone(base);
     delete clone[key];
     const res = await validateInterface(clone);
@@ -43,11 +43,10 @@ test("validateInterface: flags missing required fields with paths", async () => 
 test("validateInterface: flags wrong types for fields", async () => {
   const base = await loadSample();
   const wrongs = [
-    [{ ...base, id: 123 }, "/id"],
-    [{ ...base, name: 999 }, "/name"],
     [{ ...base, version: 100 }, "/version"],
-    [{ ...base, flags: [] }, "/flags"],
-    [{ ...base, items: {} }, "/items"]
+    [{ ...base, palettes: "not-array" }, "/palettes"],
+    [{ ...base, geometry_layers: "not-array" }, "/geometry_layers"],
+    [{ ...base, narrative_nodes: "not-array" }, "/narrative_nodes"]
   ];
   for (const [payload, path] of wrongs) {
     const res = await validateInterface(payload);
@@ -56,20 +55,19 @@ test("validateInterface: flags wrong types for fields", async () => {
   }
 });
 
-test("validateInterface: validates items array entries with detailed path errors", async () => {
+test("validateInterface: validates narrative_nodes array entries with detailed path errors", async () => {
   const base = await loadSample();
 
-  const p1 = { ...base, items: [ { key: "ok", value: 1 }, 7 ] };
+  const p1 = { ...base, narrative_nodes: [ { node_id: 1, name: "test", locked: false, egregore_id: "test" }, "invalid" ] };
   const r1 = await validateInterface(p1);
   assert.equal(r1.valid, false);
-  assert.ok(r1.errors.map(e => e.path).includes("/items/1"));
+  assert.ok(r1.errors.map(e => e.path).includes("/narrative_nodes/1"));
 
-  const p2 = { ...base, items: [ { key: "ok", value: 1 }, { key: 9, value: "bad" } ] };
+  const p2 = { ...base, narrative_nodes: [ { node_id: 1, name: "test", locked: false, egregore_id: "test" }, { node_id: "invalid", name: "test", locked: false, egregore_id: "test" } ] };
   const r2 = await validateInterface(p2);
   assert.equal(r2.valid, false);
   const paths2 = r2.errors.map(e => e.path);
-  assert.ok(paths2.includes("/items/1/key"));
-  assert.ok(paths2.includes("/items/1/value"));
+  assert.ok(paths2.includes("/narrative_nodes/1/node_id"));
 });
 
 test("validateInterface: accepts additional unknown fields without failing (if allowed)", async () => {

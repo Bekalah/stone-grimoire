@@ -1,4 +1,5 @@
 # 🜏 Open Source Art & Esoteric Resource Guide
+
 *A Museum-Grade Archive for Visionary Art, Mystical Design, and Creative Technology*  
 Codex 144:99 — Cathedral of Circuits  
 Version 1.0 | August 2025

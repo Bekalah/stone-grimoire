@@ -1,3 +1,5 @@
+# Project Documentation
+
 ✦ LIBER ARCANAE: CODEX ABYSSIAE
 
 Abyssian Tarot of the Living Monad Hieroglyphica

@@ -1,4 +1,5 @@
 # ✦ circuitum99: Alpha et Omega ✦  
+
 *A Living Crucible — Cathedral of Circuits*
 
 —
@@ -8,6 +9,7 @@
 This folder contains the **keystone texts** of the Codex. Together, they anchor the project’s **identity, architecture, and intent**.
 
 ### 📖 Core Files
+
 - **manifesto.md**  
   Primary charter of the Cathedral of Circuits (vision, mythos, principles).
 
@@ -20,6 +22,7 @@ This folder contains the **keystone texts** of the Codex. Together, they anchor 
 —
 
 ## 🜍 Roles
+
 - **Manifesto** = *Soul / Vision*  
 - **Annex** = *Mind / Architecture*  
 - **Dossier** = *Hands / Construction*  
@@ -27,6 +30,7 @@ This folder contains the **keystone texts** of the Codex. Together, they anchor 
 —
 
 ## 🔗 Where This Leads
+
 - **Docs (unchanged)** → `../docs/`  
 - **Characters** → `../characters/`  
 - **Codexes** → `../03_codexes/`  

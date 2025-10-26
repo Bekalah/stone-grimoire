@@ -1,3 +1,5 @@
+# Project Documentation
+
 Stone Grimoire — Cathedral Integration Framework
 
 (Codex 144:99 · Sponsor-grade / Team-ready)
@@ -61,6 +63,8 @@ Accessibility / ND-Friendly
 
 ⸻
 
+# Section
+
 ## Multiclass Templates (Agate)
 
 Stone Grimoire exports a small set of ES module templates so that other
@@ -68,24 +72,28 @@ repositories can reuse cathedral features without copying code. Each
 template is ND-safe and side-effect free.
 
 ### cross-fetch.js
+
 - `loadFromRepo(registry, repoName, relPath, kind="json")`
   - Resolves a file from a sibling repo listed in `registry`.
   - `kind` may be "json", "text", or "module".
   - Returns parsed JSON, text, or a dynamic import.
 
 ### interface-guard.js
+
 - `validateInterface(payload, schemaUrl="/assets/data/interface.schema.json")`
   - Loads a JSON schema (local path or remote URL).
   - Checks required keys, semantic version, and array fields.
   - Returns `{ valid:boolean, errors:[] }`.
 
 ### merge-view.js
+
 - `composeView({palettes=[], geometry_layers=[], narrative_nodes=[]}, overlays={})`
   - Deep-freezes arrays to prevent mutation.
   - Merges overlay arrays into a new view object.
   - Returns an immutable snapshot.
 
 ### registry-loader.js
+
 - `loadRegistry(url="/assets/data/registry.json")`
   - Fetches and parses the repository registry.
   - Throws if the file is missing.

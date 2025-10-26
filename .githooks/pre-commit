@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# MARKDOWN-FIXER Git Hook
+# Automatically fixes all markdown files before commit
+
+echo "🔧 MARKDOWN-FIXER: Fixing markdown issues before commit..."
+
+# Run the fixer on all markdown files
+node scripts/fix-all-markdown-fast.mjs
+
+# Check if any files were changed
+if [ -n "$(git status --porcelain)" ]; then
+    echo "✨ Markdown files auto-fixed. Adding changes to commit..."
+    git add -A
+else
+    echo "✨ All markdown is already perfect!"
+fi
+
+echo "✅ Pre-commit hook completed successfully"

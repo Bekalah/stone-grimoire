@@ -21,7 +21,6 @@
  * @param {Object} [options] - Rendering options; normalized by normaliseOptions() when omitted or incomplete.
  */
 
-
 const PHI = (1 + Math.sqrt(5)) / 2;
 const SAFE_FRAME_STROKE = 6;
 
@@ -591,7 +590,6 @@ function drawPolyline(ctx, points) {
 function computeNodeRadius(frame, NUM) {
   return Math.max(4, Math.min(frame.width, frame.height) / NUM.ONEFORTYFOUR * 3);
 }
-
 
 /* Clip helper keeps the vesica grid inside the twin circle lens. */
 function clipToVesica(ctx, circles) {

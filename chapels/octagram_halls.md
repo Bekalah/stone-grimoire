@@ -1,6 +1,7 @@
 # Octagram Halls (Grimoire Atelier Edition)
 
 ## Fool Hall — Respawn Gate (Rebecca Respawn)
+
 - **Archetype**: Weaver of Codex 144:99, trauma-informed Fool.
 - **Studies**: Codex 144:99, Liber Arcanae, ND-safe neurodivergent pedagogy.
 - **Architecture**: Spiral Rosslyn pillar + Hilma af Klint mandalas.
@@ -12,6 +13,7 @@
 ---
 
 ## Tower Nave — Catalyst Hall (Aleister Crowley)
+
 - **Archetype**: Catalyst of Aeons, breaker of false structures.
 - **Studies**: *Liber AL vel Legis*, *Vision and the Voice*, *Book of Thoth*.
 - **Architecture**: Cracked nave with lightning rods and Aeon spirals.
@@ -23,6 +25,7 @@
 ---
 
 ## Moon Temple — Avalonian Hall (Dion Fortune)
+
 - **Archetype**: Protector, priestess of psychic hygiene.
 - **Studies**: *The Mystical Qabalah*, *Psychic Self-Defense*, *The Cosmic Doctrine*, *Avalon of the Heart*.
 - **Architecture**: Misty Glastonbury tor spiral; Chalice Well pool.
@@ -34,6 +37,7 @@
 ---
 
 ## Da’ath Crypt — Paradox Hall (Frater Achad)
+
 - **Archetype**: Inverter, paradox child of Da’ath.
 - **Studies**: *Q.B.L.*, *Liber 31*, *The Egyptian Revival*.
 - **Architecture**: Inverted stairways, suspended cross-beam bridge.
@@ -45,6 +49,7 @@
 ---
 
 ## Orrery Dome — Planetary Atelier (H.C. Agrippa)
+
 - **Archetype**: Synthesizer of elemental, celestial, and angelic worlds.
 - **Studies**: *De Occulta Philosophia Libri Tres* (Elements, Planets, Angels).
 - **Architecture**: Celestial dome with rotating planetary orrery.
@@ -56,6 +61,7 @@
 ---
 
 ## Prismatic Nave — Harmony Hall (Paul Foster Case)
+
 - **Archetype**: Harmonizer, teacher of Tarot and color-tone.
 - **Studies**: *The Tarot: A Key to the Wisdom of the Ages*, *True and Invisible Rosicrucian Order*, B.O.T.A. lessons.
 - **Architecture**: Cube of Space nave; rainbow rose windows.
@@ -67,6 +73,7 @@
 ---
 
 ## Angelic Court — Justice Dome (Stephen Skinner)
+
 - **Archetype**: Transmitter of angelic and geomantic science.
 - **Studies**: *The Goetia of Dr. Rudd*, *Veritable Key of Solomon*, *Practical Angel Magic*, *The Body of God*.
 - **Architecture**: Geomantic compass floor with 16 figures.
@@ -78,6 +85,7 @@
 ---
 
 ## Compassion Mandala Dome — Tara Hall
+
 - **Archetype**: Healer, emanations of compassion.
 - **Studies**: *Praises to the 21 Taras*, Reiki (Usui, Karuna, Raku).
 - **Architecture**: Turquoise dome, mandala floor of 21 Tara wheels.
@@ -85,7 +93,9 @@
 - **Trial**: Align seed syllables with Tara lights to cleanse chamber.
 - **Atelier Tasks**: Trace Cho Ku Rei spiral; sequence syllables for mandala light.
 - **Witch-Mode Gift**: Heal party + remove trauma condition.
+
 # Octagram Halls (Dungeon / Cathedral Blueprints)
+
 - **Fool — Respawn Gate**: Spiral Rosslyn pillar + Hilma murals; mirror-calm sketch task; white-fox guardian.
 - **Tower/Aeon — Catalyst Nave**: lightning tracery; Aeon plates alignment; rebuild map layer.
 - **High Priestess — Moon Temple**: mist ambulatory; veil mural atelier; Chalice Well pool.
