@@ -18,6 +18,8 @@
     "fixmd": "node scripts/fix-all-markdown-fast.mjs",
     "checkmd": "node scripts/fix-all-markdown-fast.mjs --dry-run",
     "sweepmd": "node scripts/fix-all-markdown-fast.mjs",
+    "pre-commit": "node scripts/fix-all-markdown-fast.mjs",
+    "fix-changed": "node -e \"const {execSync} = require('child_process'); try { const changed = execSync('git status --porcelain').toString().split('\n').filter(l => l.includes('.md')).map(l => l.replace(/^[AM] */, '')); if(changed.length) require('./scripts/fix-all-markdown-fast.mjs')(changed); } catch(e) {}\" || true",
     "prebuild": "node scripts/verify-absent.mjs",
     "build": "node -e \"console.log('offline build: static renderer ready')\""
   }
