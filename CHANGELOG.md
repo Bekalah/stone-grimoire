@@ -6,6 +6,7 @@ Format: YYYY-MM-DD · Scope · Summary · Notes
 —
 
 ## 2025-08-27 · folios · Add “Thunder, Perfect Mind — Study Folio”
+
 **Files:**  
 - `stone-grimoire/folios/gnosis-thunder-perfect-mind.html` (new)
 

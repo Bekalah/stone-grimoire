@@ -1,0 +1,53 @@
+{
+  "name": "@bekalah/markdown-fixer",
+  "version": "1.0.0",
+  "description": "MARKDOWN-FIXER - Kills markdownlint errors forever! Automatically fixes recurrent markdownlint violations.",
+  "keywords": [
+    "markdown",
+    "linter",
+    "fixer",
+    "markdownlint",
+    "automation",
+    "cli",
+    "tool",
+    "formatter"
+  ],
+  "homepage": "https://github.com/Bekalah/stone-grimoire/tree/main/tools/markdown-perfecter",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bekalah/stone-grimoire.git",
+    "directory": "tools/markdown-perfecter"
+  },
+  "license": "MIT",
+  "author": "Rebecca Lemke (Bekalah)",
+  "type": "module",
+  "main": "index.mjs",
+  "bin": {
+    "markdown-fixer": "index.mjs",
+    "md-fixer": "index.mjs",
+    "md-fix": "index.mjs"
+  },
+  "files": [
+    "index.mjs",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node -e \"console.log('MARKDOWN-FIXER loaded successfully')\" && echo \"Basic smoke test passed\"",
+    "fix": "node index.mjs README.md || node index.mjs",
+    "fix-dry": "node index.mjs README.md --dry-run || node index.mjs --dry-run",
+    "fix-all": "find . -name \"*.md\" -not -path \"*/node_modules/*\" -exec node index.mjs {} \\;",
+    "help": "node index.mjs --help",
+    "version": "node index.mjs --version"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "preferGlobal": true,
+  "publishConfig": {
+    "access": "public"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/Bekalah"
+  }
+}

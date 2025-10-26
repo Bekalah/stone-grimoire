@@ -5,8 +5,19 @@
   "type": "module",
   "scripts": {
     "test": "node tests/interface.test.js",
+    "test-markdown-tool": "node tools/markdown-perfecter/index.mjs --dry-run README_STONE_GRIMOIRE_MASTER.md",
+    "fix-markdown-tool": "node tools/markdown-perfecter/index.mjs README_STONE_GRIMOIRE_MASTER.md",
     "dedupe": "node scripts/deduplicate-repo.mjs",
     "dedupe-file": "node scripts/dedupe.js",
+    "fix-markdown": "node scripts/fix-markdown-issues.mjs",
+    "fix-markdown-dry": "node scripts/fix-markdown-issues.mjs --dry-run",
+    "fix-all-markdown": "find . -name \"*.md\" -not -path \"*/node_modules/*\" -not -name \"*.backup.md\" -exec node scripts/fix-markdown-issues.mjs {} \\;",
+    "fix-all-markdown-dry": "find . -name \"*.md\" -not -path \"*/node_modules/*\" -not -name \"*.backup.md\" -exec node scripts/fix-markdown-issues.mjs {} --dry-run \\;",
+    "fix-all-markdown-fast": "node scripts/fix-all-markdown-fast.mjs",
+    "fix-all-markdown-fast-dry": "node scripts/fix-all-markdown-fast.mjs --dry-run",
+    "fixmd": "node scripts/fix-all-markdown-fast.mjs",
+    "checkmd": "node scripts/fix-all-markdown-fast.mjs --dry-run",
+    "sweepmd": "node scripts/fix-all-markdown-fast.mjs",
     "prebuild": "node scripts/verify-absent.mjs",
     "build": "node -e \"console.log('offline build: static renderer ready')\""
   }
