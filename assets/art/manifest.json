@@ -1,9 +1,0 @@
-{
-  "_about": "WEBP-only live art",
-  "policy": { "formats": ["webp"], "nd_safe": true },
-  "hero": {
-    "id": "black-madonna-altar",
-    "src": "/assets/art/black-madonna-altar-1600.webp",
-    "alt": "Black Madonna altar in obsidian and opal tones"
-  }
-}

@@ -1,5 +1,0 @@
-node_modules/
-
-# PNG masters kept offline
-assets/art/inbox/*.png
-assets/art/inbox/**/*.png

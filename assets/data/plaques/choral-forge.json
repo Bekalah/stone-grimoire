@@ -1,6 +1,0 @@
-{
-  "title": "Choral Forge",
-  "intention": "Forge a voice-sigil; temper light with rhythm.",
-  "tone": { "hz": 528, "note": "C5" },
-  "glyph": "images/pd/rosette.svg"
-}
