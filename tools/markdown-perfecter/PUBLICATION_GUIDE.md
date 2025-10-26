@@ -53,11 +53,11 @@
 
 pnpm add -g github:Bekalah/stone-grimoire#tools/markdown-perfecter
 
-# Check what needs fixing
+## Check what needs fixing
 
 markdown-fixer **/*.md --dry-run
 
-# Fix everything instantly
+## Fix everything instantly
 
 markdown-fixer **/*.md
 
@@ -68,7 +68,7 @@ markdown-fixer **/*.md
 ### Future NPM Installation
 
 ```bash
-# Once npm published:
+## Once npm published:
 
 pnpm add -g @bekalah/markdown-fixer
 markdown-fixer **/*.md
@@ -105,7 +105,7 @@ tools/markdown-perfecter/
 ### Dev.to Post
 
 ```markdown
-# MARKDOWN-FIXER: CLI Tool for Common Markdownlint Violations
+## MARKDOWN-FIXER: CLI Tool for Common Markdownlint Violations
 
 [![Install Globally](https://img.shields.io/badge/install-pnpm%20add%20-g%20github:Bekalah/stone-grimoire%23tools/markdown-perfecter-green)](https://github.com/Bekalah/stone-grimoire.git#tools/markdown-perfecter)
 
@@ -152,20 +152,20 @@ View code at github.com/Bekalah/stone-grimoire
 ## 🔑 FINAL NPM STEPS
 
 ```bash
-# 1. Authenticate (run in your terminal):
+## 1. Authenticate (run in your terminal):
 
 pnpm login
 
-# 2. Test publication:
+## 2. Test publication:
 
 cd tools/markdown-perfecter
 pnpm publish --dry-run
 
-# 3. Publish for real:
+## 3. Publish for real:
 
 pnpm publish
 
-# 4. Verify:
+## 4. Verify:
 
 pnpm info @bekalah/markdown-fixer
 

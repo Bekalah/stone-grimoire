@@ -56,10 +56,9 @@
 - Locked into the [Necropolis Spiral](../realms/necropolis_spiral.md) → Node 27.
 - Indigo/Black/Silver rays connect him to Sekhara Nox, Miribelle Vespertine, and Rebecca Respawn.
 - Witch Eye Covenant role shields mythos integrity and business authenticity.
-- Bridges cross-factions: Sirens (music), Void Walkers (shadow), Witch Eye (vision).
-=======
+# - Bridges cross-factions: Sirens (music), Void Walkers (shadow), Witch Eye (vision).
 
-# Aurex Nirvani
+## Aurex Nirvani
 
 ## Narrative / Mythic Layer
 
@@ -118,11 +117,10 @@
 - Locked into the Crypt—[Necropolis Spiral](../realms/necropolis_spiral.md)—Node 27.
 - Indigo/Black/Silver rays link to Sekhara Nox, Miribelle Vespertine, and Rebecca Respawn.
 - Witch Eye Covenant presence protects mythos integrity and business authenticity.
-- Cross-faction bridge: Sirens (music), Void Walkers (shadow), Witch Eye (vision).
-=======
-*Archetype*: Fallen Prophet / Wounded Artist / Sonic Seer  
-*Realm*: [Necropolis Spiral](../realms/necropolis_spiral.md)  
-*Faction*: [Witch Eye Covenant](../factions/witch_eye.md)  
+## - Cross-faction bridge: Sirens (music), Void Walkers (shadow), Witch Eye (vision).
+*Archetype*: Fallen Prophet / Wounded Artist / Sonic Seer
+*Realm*: [Necropolis Spiral](../realms/necropolis_spiral.md)
+*Faction*: [Witch Eye Covenant](../factions/witch_eye.md)
 *Jacob's Ladder Node*: [27](../nodes/jacobs_ladder_27.md)
 
 ## Narrative / Mythic Layer

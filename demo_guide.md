@@ -43,8 +43,7 @@
 - **Data Spiral** → paste JSON, CSV, or text.
 - **Style Spiral** → unlock Venus Net, Rilke Slate.
 - **Teaching Spiral** → export/import JSON configs as lessons.
-- **Sound Spiral** → pair monad/spiral/ring/border with tones.
-=======
+# - **Sound Spiral** → pair monad/spiral/ring/border with tones.
 codex/fill-in-demo-code-and-add-options-racrhm
 - **Visionary Dream CLI** → `python visionary_dream.py --style surrealism --pattern waves`.
 - **Visionary Dream CLI** → `python visionary_dream.py --style venus_net --pattern flower`.

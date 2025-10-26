@@ -24,8 +24,8 @@ export function init(view){
 
 ```text
 
-* `init(view)` — called after the base view is composed.
-* The `view` parameter is the global `__CATHEDRAL_VIEW__` object.
-* Adapters should be side‑effect free beyond mutating `view`.
+- `init(view)` — called after the base view is composed.
+- The `view` parameter is the global `__CATHEDRAL_VIEW__` object.
+- Adapters should be side‑effect free beyond mutating `view`.
 
 Failed imports or missing `init` are logged as warnings; they do not halt page load.

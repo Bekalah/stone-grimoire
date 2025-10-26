@@ -64,6 +64,7 @@ markdown-fixer **/*.md
 ```text
 
 ## Section
+
 ### Future NPM Installation
 
 ```bash

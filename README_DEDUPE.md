@@ -10,7 +10,7 @@ This repo occasionally gains duplicate lines when commits are repeated. The `scr
 
 npm run dedupe -- file1.md file2.js
 
-# clean all tracked files
+## clean all tracked files
 
 npm run dedupe -- $(git ls-files)
 

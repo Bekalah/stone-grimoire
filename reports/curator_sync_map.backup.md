@@ -75,7 +75,7 @@ _All others (core/docs/guides/herbs/music/ornaments/patrons/plans/tools/updates)
 
 Use this checklist to walk your tree once:
 
-### 1) Pairs: does each Chapel have a Folio?
+### 1) Pairs: does each Chapel have a Folio
 
 - For each `chapels/*.html`, confirm there is **one** folio document about that room’s theme.
   - If “Gnosis/Thunder” is now in `folios/`, ✅ pair it with `chapels/thunder-…html` (or keep chapel named “lady-chapel” etc. and link explicitly).
@@ -86,7 +86,7 @@ Use this checklist to walk your tree once:
 - For each chapel filename **stem**, look for `assets/data/plaques/<stem>.json`.  
   - If missing, create a one-page stub with the five fields.
 
-### 3) Effects: engines & controls present?
+### 3) Effects: engines & controls present
 
 - Open each `chapels/*.html` and verify:
   - Planetary tint buttons exist.

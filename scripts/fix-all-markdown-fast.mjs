@@ -42,7 +42,7 @@ function fixMarkdownIssues(content) {
         }
       }
 
-      if (level > prevLevel + 1) {
+      if (level > prevLevel + 1 && prevLevel > 0) {
         const intermediateLevel = '#'.repeat(prevLevel + 1);
         fixed.push(`${intermediateLevel} Section`);
         addBlankLine();
@@ -51,15 +51,95 @@ function fixMarkdownIssues(content) {
     }
   }
 
+  // MD002: First heading should be a top-level heading
+  let foundTopLevelHeading = false;
+
+  // MD025: Multiple top-level headings in the same document
+  const topLevelHeadings = [];
+
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     let nextLine = lines[i + 1] || '';
-    const prevLine = fixed[fixed.length - 1] || '';
+    let prevLine = fixed[fixed.length - 1] || '';
     const prevPrevLine = fixed.length > 1 ? fixed[fixed.length - 2] : '';
+
+    // MD002: First heading should be top-level
+    if (!foundTopLevelHeading && line.match(/^#+ /)) {
+      if (!line.startsWith('# ')) {
+        const headingText = line.replace(/^#+\s*/, '');
+        fixed.unshift('# Project Documentation', '', ...fixed);
+        fixed.push(`# ${headingText}`);
+        changes += 2;
+      }
+      foundTopLevelHeading = true;
+    }
+
+    // MD025: Track top-level headings
+    if (line.startsWith('# ')) {
+      topLevelHeadings.push(line);
+    }
 
     // MD012: Multiple consecutive blank lines (remove extras, keep one)
     if (line.trim() === '' && prevLine === '') {
       continue;
+    }
+
+    // MD009: Trailing spaces (remove)
+    if (line.match(/\s+$/)) {
+      fixed.push(line.trimEnd());
+      changes++;
+      continue;
+    }
+
+    // MD007: Unordered list indentation (should be consistent, assume 2 spaces)
+    const unorderedListMatch = line.match(/^(\s*)([-\*\+])\s+(.+)$/);
+    if (unorderedListMatch && unorderedListMatch[1].length > 0 && unorderedListMatch[1].length % 2 !== 0) {
+      const expectedSpaces = Math.floor(unorderedListMatch[1].length / 2) * 2;
+      fixed.push(`${' '.repeat(expectedSpaces)}${unorderedListMatch[2]} ${unorderedListMatch[3]}`);
+      changes++;
+      continue;
+    }
+
+    // MD005: Inconsistent indentation for list items
+    const listItemMatch = line.match(/^(\s*)([-\*\+]|\d+\.)\s+(.+)$/);
+    if (listItemMatch) {
+      const baseIndent = listItemMatch[1].length;
+      // Look for parent list item
+      for (let j = fixed.length - 1; j >= 0; j--) {
+        const parentMatch = fixed[j].match(/^(\s*)([-\*\+]|\d+\.)\s+/);
+        if (parentMatch && parentMatch[1].length < baseIndent) {
+          // This should be sub-item, ensure proper indentation
+          if ((baseIndent - parentMatch[1].length) !== 2) {
+            const correctedIndent = ' '.repeat(parentMatch[1].length + 2);
+            fixed.push(`${correctedIndent}${listItemMatch[2]} ${listItemMatch[3]}`);
+            changes++;
+            continue;
+          }
+          break;
+        }
+      }
+    }
+
+    // MD046: Code block style (mixing indented and fenced)
+    if (line.match(/^    /) && fixed.some(l => l.startsWith('```'))) {
+      // Convert indented to fenced
+      fixed.push('```text');
+      fixed.push(line.substring(4));
+      while (i + 1 < lines.length && lines[i + 1].match(/^    /)) {
+        i++;
+        fixed.push(lines[i].substring(4));
+      }
+      fixed.push('```');
+      changes += 2;
+      continue;
+    }
+
+    // MD047: Files should end with a single newline
+    if (i === lines.length - 1 && line.trim() !== '') {
+      fixed.push(line);
+      fixed.push('');
+      changes++;
+      break;
     }
 
     // MD023: Headings must start at the beginning of line (no leading whitespace)
@@ -74,6 +154,49 @@ function fixMarkdownIssues(content) {
     if (headingMatch && headingMatch[3]) {
       fixed.push(`${headingMatch[1]}${headingMatch[2]}`);
       changes++;
+      continue;
+    }
+
+    // MD003: Heading style consistency (prefer ATX: # style)
+    if (line.match(/^=+$/) && prevLine && !prevLine.match(/^#/)) {
+      fixed[fixed.length - 1] = `# ${fixed[fixed.length - 1]}`;
+      changes++;
+      continue; // Skip adding the === line
+    }
+    if (line.match(/^-+$/) && prevLine && !prevLine.match(/^##/)) {
+      fixed[fixed.length - 1] = `## ${fixed[fixed.length - 1]}`;
+      changes++;
+      continue; // Skip adding the --- line
+    }
+
+    // MD004: Unordered list style consistency (prefer -)
+    if (line.match(/^(\s*)([\*\+])\s/)) {
+      fixed.push(`${line.replace(/^(\s*)([\*\+])/, '$1-')}`);
+      changes++;
+      continue;
+    }
+
+    // MD013: Line length (warn if too long, we won't auto-fix as it might break content)
+    if (line.length > 80 && !line.match(/^```/) && !line.match(/^    /) && !line.startsWith('|-')) {
+      // Skip auto-fix for line length, just note it
+      // User must manually adjust long lines
+    }
+
+    // MD018: No space after hash on atx-style header
+    if (line.match(/^#+\s*$/)) {
+      // Empty heading, add placeholder
+      const level = line.length;
+      fixed.push(`${'#'.repeat(level)} Heading`);
+      changes++;
+      continue;
+    }
+
+    // MD027: Dollar signs used before commands without showing output
+    // Hard to catch automatically, skip
+
+    // MD028: Blank line inside blockquote
+    if (line.match(/^>/) && prevLine.match(/^>/) && line.trim().endsWith('>')) {
+      // Ensure proper blockquote formatting
       continue;
     }
 
@@ -95,6 +218,8 @@ function fixMarkdownIssues(content) {
       continue;
     }
 
+    // MD015: Multiple consecutive blank lines (handled earlier)
+
     // MD022: Headings should be surrounded by blank lines
     if (line.match(/^#+/) && prevLine.trim() !== '' && !prevLine.match(/^```/) && !prevLine.match(/^---/)) {
       fixed.push('');
@@ -104,7 +229,6 @@ function fixMarkdownIssues(content) {
     // MD029: Ordered list item prefix (consistent numbering)
     const orderedListMatch = line.match(/^(\s*)(\d+)\.\s+(.+)$/);
     if (orderedListMatch) {
-      // Find the expected number based on previous list items
       let expectedNumber = 1;
       for (let j = fixed.length - 1; j >= 0; j--) {
         const prevListMatch = fixed[j].match(/^(\s*)(\d+)\.\s+/);
@@ -139,12 +263,36 @@ function fixMarkdownIssues(content) {
       continue;
     }
 
-    // MD041: First line in file should be a top-level heading (for first line only)
-    if (fixed.length === 0 && !line.match(/^# /) && !line.match(/^---/)) {
-      // This is a complex rule - we'll add a top-level heading if needed
+    // MD036: Emphasis used instead of header (hard to detect reliably)
+    // MD037: Blank spaces inside emphasis (won't auto-fix)
+    // MD038: Spaces inside code spans (won't auto-fix)
+    // MD039: Spaces inside links (complex, skip)
+
+    // MD041: First line in file should be a top-level heading
+    if (fixed.length === 0 && !line.match(/^# /) && !line.match(/^---/) && !line.startsWith('#')) {
       fixed.push('# Project Documentation');
       fixed.push('');
+      changes += 2;
+    }
+
+    // MD042: No empty links (broken links)
+    if (line.match(/\[([^\]]*)\]\(\s*\)/)) {
+      // Remove empty link
+      fixed.push(line.replace(/\[[^\]]*\]\(\s*\)/g, ''));
       changes++;
+      continue;
+    }
+
+    // MD043: Required heading structure (complex, skip)
+    // MD044: Proper names (won't enforce)
+
+    // MD045: Images without alt text
+    const imageMatch = line.match(/!\[[^\]]*\]\([^)]+\)/);
+    if (imageMatch && line.match(/\!\[\]\(/)) {
+      // Add placeholder alt text
+      fixed.push(line.replace(/\!\[\]\(/, '![Image]('));
+      changes++;
+      continue;
     }
 
     fixHeadingIncrement(line, i);
@@ -156,7 +304,6 @@ function fixMarkdownIssues(content) {
     const isLastLineOfList = isList && !nextLine.match(/^[-\*\+]|\d+\.|^\s+/);
 
     if (isList && !isLastLineOfList && nextLine.match(/^[^-\*\+0-9\s]/)) {
-      // Enhanced: check for headings specifically
       if (nextLine.match(/^#/)) {
         fixed.push('');
         addBlankLine();
@@ -165,14 +312,25 @@ function fixMarkdownIssues(content) {
         addBlankLine();
       }
     }
+
+    // MD033: Inline HTML (flag for removal only, don't auto-fix)
+    if (line.match(/<[^>]*>/) && !line.match(/^```/) && !line.match(/^    /)) {
+      // Would flag this, but hard to auto-fix safely
+    }
   }
 
-  // Final cleanup: ensure headers at end have blank lines if followed by content
-  for (let i = 0; i < fixed.length - 1; i++) {
-    if (fixed[i].match(/^#+/) && fixed[i + 1] !== '' && !fixed[i + 1].match(/^#+/)) {
-      fixed.splice(i + 1, 0, '');
-      addBlankLine();
-      i++;
+  // MD025: Multiple top-level headings (convert excess to level 2)
+  if (topLevelHeadings.length > 1) {
+    let firstFixed = false;
+    for (let i = 1; i < fixed.length; i++) {
+      if (fixed[i].startsWith('# ')) {
+        if (!firstFixed) {
+          firstFixed = true;
+        } else {
+          fixed[i] = fixed[i].replace(/^#/, '##');
+          changes++;
+        }
+      }
     }
   }
 

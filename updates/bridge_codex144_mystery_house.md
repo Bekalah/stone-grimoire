@@ -16,21 +16,21 @@ This memo outlines the current bridge pieces in *Stone Grimoire* and a task list
 ## Bridge Tasks
 
 1. **Codex 144:99**
-   - Mirror `helix-renderer/` into the codex repo and expose numerology constants for card spreads.
-   - Add a `bridge/codex-bridge.json` that maps deck names to palette layers.
+  - Mirror `helix-renderer/` into the codex repo and expose numerology constants for card spreads.
+  - Add a `bridge/codex-bridge.json` that maps deck names to palette layers.
 2. **Living Tarot**
-   - Provide an import example showing how a tarot page loads the helix renderer as an optional overlay.
-   - Document a safe fallback when palette files are missing.
+  - Provide an import example showing how a tarot page loads the helix renderer as an optional overlay.
+  - Document a safe fallback when palette files are missing.
 3. **Circuitum99 (CYOA)**
-   - Extend `c99-bridge.json` with node IDs for story rooms so egregores can cross between books and apps.
-   - Draft a JSON schema for character stats that remain interchangeable across repos.
+  - Extend `c99-bridge.json` with node IDs for story rooms so egregores can cross between books and apps.
+  - Draft a JSON schema for character stats that remain interchangeable across repos.
 4. **Mystery House (144 rooms)**
-   - Create a new repo scaffold with `/rooms/001-144.json` files and a minimal `index.html` loader.
-   - Map each room to a stylepack and optional deity/egregore reference.
+  - Create a new repo scaffold with `/rooms/001-144.json` files and a minimal `index.html` loader.
+  - Map each room to a stylepack and optional deity/egregore reference.
 5. **General**
-   - Keep everything offline-first: all assets local, no CDN calls.
-   - Use shared palette file format to avoid accidental overwrites.
-   - Add README notes in each repo explaining how and why bridges exist.
+  - Keep everything offline-first: all assets local, no CDN calls.
+  - Use shared palette file format to avoid accidental overwrites.
+  - Add README notes in each repo explaining how and why bridges exist.
 
 ## Next Steps
 

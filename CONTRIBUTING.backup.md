@@ -7,6 +7,7 @@ No GitHub Actions. ND-safe only.
 —
 
 ## Section
+
 ### ✅ Required Checks
 
 - [ ] Ran `./scripts/check.sh` locally (ND-safe gate passed)

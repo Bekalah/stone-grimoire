@@ -2,9 +2,9 @@
 
 # PURPOSE: Preserve old SG style, add volcanic obsidian + Raku reiki, KEEP Alex Grey/visionary layer, and add a Secondary palette
 
-# NOTE: No tree changes. Uses existing folders only
+## NOTE: No tree changes. Uses existing folders only
 
-# PATHS (unchanged)
+## PATHS (unchanged)
 
 stone_grimoire/assets/tokens/perm-style.json
 stone_grimoire/assets/css/perm-style.css
@@ -16,7 +16,7 @@ cosmogenesis_learning_engine/public/c99/filters/_filters.html    (manual copy be
 bridge/c99-bridge.json
 bridge/c99-bridge.js
 
-# 1) TOKENS — merge/overwrite (adds secondary palette + visionary layers, keeps everything else)
+## 1) TOKENS — merge/overwrite (adds secondary palette + visionary layers, keeps everything else)
 
 stone_grimoire/assets/tokens/perm-style.json
 {
@@ -80,7 +80,7 @@ stone_grimoire/assets/tokens/perm-style.json
   “a11y”: { “min_contrast”: 4.5, “motion”: “reduce”, “autoplay”: false, “strobe”: false }
 }
 
-# 2) CSS — replace file (preserves SG, adds Secondary + Visionary layer classes)
+## 2) CSS — replace file (preserves SG, adds Secondary + Visionary layer classes)
 
 stone_grimoire/assets/css/perm-style.css
 :root{

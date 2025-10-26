@@ -1,7 +1,7 @@
 # ✦ Cathedral of Circuits — Pull Request Checklist ✦
 
-Please confirm all items before merging.  
-This project follows **CONTRIBUTING.md** (Bot Contract).  
+Please confirm all items before merging.
+This project follows **CONTRIBUTING.md** (Bot Contract).
 No GitHub Actions. ND-safe only.
 
 —
@@ -69,9 +69,9 @@ If using npm locally, `package.json` devDeps suggestion:
 BROWSER-SIDE (runs offline; no bundler; ND-safe)
 - Use ES modules only (no framework required).
 - Optional utility libs (drop in via <script> tags; remove if not needed):
-  • Marked (render .md folios to HTML): https://github.com/markedjs/marked (latest 5.x)  
-    Usage: `const html = marked.parse(mdString);` (sanitize your input).  
-  • KaTeX (math) if you need formulas (fast, no network).  
+  • Marked (render .md folios to HTML): https://github.com/markedjs/marked (latest 5.x)
+    Usage: `const html = marked.parse(mdString);` (sanitize your input).
+  • KaTeX (math) if you need formulas (fast, no network).
   • Mermaid (diagrams) if desired; keep animations minimal (ND-safe).
 - Audio: only manual play `<audio controls>`; default volume low; no autoplay attribute—ever.
 
@@ -91,7 +91,7 @@ SCRIPTS (local only; no CI)
 - Optional git hook: `.git/hooks/pre-push` runs `./scripts/check.sh`.
 
 DEPLOY (no workflows)
-- GitHub Pages (Manual): Settings → Pages → Branch: `main` (or `/docs`).  
+- GitHub Pages (Manual): Settings → Pages → Branch: `main` (or `/docs`).
   Or serve locally with a simple static server (`python -m http.server`).
 
 PROMPTS & MODES
@@ -100,10 +100,10 @@ PROMPTS & MODES
 - Egregores/daimons arrays must always be present (Tarot, IFS, Tibetan, Reiki, Genius-muses).
 
 GUARDRAILS (repeat)
-- NO `.github/workflows/*`.  
-- UPDATE only; do not overwrite canon.  
-- Keep layered art sources; never deliver flat SVG as the only source.  
-- Preserve numerology (33 spine, 99 gates, 144 lattice; include 72 Shem angels/demons where relevant).  
+- NO `.github/workflows/*`.
+- UPDATE only; do not overwrite canon.
+- Keep layered art sources; never deliver flat SVG as the only source.
+- Preserve numerology (33 spine, 99 gates, 144 lattice; include 72 Shem angels/demons where relevant).
 - Valid JSON/MD/JS/CSS only; LF endings; ASCII quotes.
 
 BOT PREFACE (paste atop any bot request)

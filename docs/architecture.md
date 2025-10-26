@@ -21,21 +21,25 @@ flowchart TD
 
   %% Data sources
   subgraph DATA[Data (JSON)]
-    S1[structure.json\nrooms, routes, elements]:::json
-    S2[stylepacks.json\npalettes, fonts, ornaments]:::json
-    S3[angels72.json\nzodiac, decans, tones, stylepack]:::json
-    S4[ambient.json\nsolfeggio cycle, IR, ND prefs]:::json
-    S5[rites.json\nTemple protocols]:::json
-    S6[hilma-plaque.json\ncurator note for Sanctum]:::json
+```text
+S1[structure.json\nrooms, routes, elements]:::json
+S2[stylepacks.json\npalettes, fonts, ornaments]:::json
+S3[angels72.json\nzodiac, decans, tones, stylepack]:::json
+S4[ambient.json\nsolfeggio cycle, IR, ND prefs]:::json
+S5[rites.json\nTemple protocols]:::json
+S6[hilma-plaque.json\ncurator note for Sanctum]:::json
+```
   end
 
   %% Overlays / media
   subgraph MEDIA[Overlays & Media]
-    M1[assets/overlays/\nspiral-mandalas.svg]
-    M2[assets/overlays/\nhealing-ribbons.*]
-    M3[assets/overlays/\nscroll-text.json]
-    M4[assets/sounds/\nir_cathedral.wav]
-    M5[assets/sounds/\ncathedral_pad_hilma.mp3]
+```text
+M1[assets/overlays/\nspiral-mandalas.svg]
+M2[assets/overlays/\nhealing-ribbons.*]
+M3[assets/overlays/\nscroll-text.json]
+M4[assets/sounds/\nir_cathedral.wav]
+M5[assets/sounds/\ncathedral_pad_hilma.mp3]
+```
   end
 
   %% Wiring

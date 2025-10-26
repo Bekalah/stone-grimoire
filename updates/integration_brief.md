@@ -1,6 +1,6 @@
 # 🜍 Stone Grimoire — Integration Brief (Sponsor-grade / Team-ready)
 
-**Scope:** Living Cathedral (Rosslyn pattern) with museum-quality style system, alchemy fusion engine, Shem Ladder, plaques, ND-friendly sound, and room routing.  
+**Scope:** Living Cathedral (Rosslyn pattern) with museum-quality style system, alchemy fusion engine, Shem Ladder, plaques, ND-friendly sound, and room routing.
 **Goal:** Make it trivial to reuse this stack across other art/magick projects.
 
 ---

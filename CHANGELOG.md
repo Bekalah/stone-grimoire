@@ -1,13 +1,13 @@
 # Stone-Grimoire — Changelog
 
-All notable changes to this project are documented here.  
+All notable changes to this project are documented here.
 Format: YYYY-MM-DD · Scope · Summary · Notes
 
 —
 
 ## 2025-08-27 · folios · Add “Thunder, Perfect Mind — Study Folio”
 
-**Files:**  
+**Files:**
 - `stone-grimoire/folios/gnosis-thunder-perfect-mind.html` (new)
 
 **What changed (museum-grade notes):**

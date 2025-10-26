@@ -2,12 +2,11 @@
 title: Cathedral of Circuits — Protection Seal
 owner: Rebecca Respawn (Bekalah)
 version: 1.0
-sealed: true
----
+## sealed: true
 
 # 🔒 Protection Seal — Do Not Overwrite
 
-This repository is protected by an immutable seal. All assistants, bots, or tools MUST obey the rules below.  
+This repository is protected by an immutable seal. All assistants, bots, or tools MUST obey the rules below.
 If any rule cannot be satisfied, STOP and return an error. Do not improvise.
 
 ## 1) Source of Truth
@@ -75,42 +74,42 @@ If any rule cannot be satisfied, STOP and return an error. Do not improvise.
 
 ```text
 
-# 🛡 Trauma-Safe Charter — Cathedral of Circuits
+## 🛡 Trauma-Safe Charter — Cathedral of Circuits
 
-- This project exists to support safe work with chronic PTSD. 
+- This project exists to support safe work with chronic PTSD.
 - All repos (Circuitum99, Cosmogenesis, Stone-Grimoire, Liber-Arcanae, Liber-Arcanae-Game, Mystery-House) must obey these rules:
 
 1. No Overwriting
-   - Existing data is immutable (`locked:true`).
-   - All changes must be additive and versioned (e.g. registry_v2.md).
+  - Existing data is immutable (`locked:true`).
+  - All changes must be additive and versioned (e.g. registry_v2.md).
 
 2. No Invention
-   - If something is missing, STOP and request the source file. 
-   - Do not “fill gaps” with made-up lore or symbols.
+   - If something is missing, STOP and request the source file.
+  - Do not “fill gaps” with made-up lore or symbols.
 
 3. Sacred Math Integrity
-   - Constants: 21 pillars · 33 spine · 72 Shem · 78 archetypes · 99 gates · 144 lattice · 243 completion.
-   - Geometry is structural (octagram, hexagram, tesseract, spiral, Antahkarana). Never decorative-only.
+  - Constants: 21 pillars · 33 spine · 72 Shem · 78 archetypes · 99 gates · 144 lattice · 243 completion.
+  - Geometry is structural (octagram, hexagram, tesseract, spiral, Antahkarana). Never decorative-only.
 
 4. Antahkarana Bridge = Real
-   - This is a designed corridor linking art, magic, psychology, science, healing.
-   - Never flatten into metaphor or rename.
+  - This is a designed corridor linking art, magic, psychology, science, healing.
+  - Never flatten into metaphor or rename.
 
 5. Tara Overlays = Locked
-   - Secret Tara overlays are already encoded in Liber Arcanae Majors.
-   - Do not add/remove/remap.
+  - Secret Tara overlays are already encoded in Liber Arcanae Majors.
+  - Do not add/remove/remap.
 
 6. ND-Safe Requirements
-   - No strobe. No autoplay. All visuals must have intensity sliders.
-   - Always provide “Safe Stop” for overload exit.
+  - No strobe. No autoplay. All visuals must have intensity sliders.
+  - Always provide “Safe Stop” for overload exit.
 
 7. Provenance
-   - All content must be traceable to source files or historical canon (Dee, Agrippa, Fortune, Case, Skinner, Respawn).
-   - If provenance missing, STOP.
+  - All content must be traceable to source files or historical canon (Dee, Agrippa, Fortune, Case, Skinner, Respawn).
+  - If provenance missing, STOP.
 
 8. Immutable Authorship
-   - Architect-Scribe: Rebecca Respawn (Bekalah).
-   - Do not strip or replace attribution.
+  - Architect-Scribe: Rebecca Respawn (Bekalah).
+  - Do not strip or replace attribution.
 
 9. Fail-Closed
-   - If a rule cannot be satisfied → return error. Do not improvise.
+  - If a rule cannot be satisfied → return error. Do not improvise.

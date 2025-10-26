@@ -39,8 +39,10 @@ stone-grimoire/
 │   └── universal.json
 ├── docs/             # Documentation
 └── data/             # Configuration files
-    ├── palette.json
-    └── palettes/
+```text
+├── palette.json
+└── palettes/
+```
 
 ```text
 
@@ -96,9 +98,13 @@ Multi-level media system with separate categories for:
 
 ```text
 Bridge System (c99-bridge.js/json)
-    ↕️
+```text
+↕️
+```
 Dual Repository Coordination
-    ↕️
+```text
+↕️
+```
 Main Systems (chapels/folios/assets)
 
 ```text

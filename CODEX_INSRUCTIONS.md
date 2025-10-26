@@ -1,10 +1,10 @@
 # ✦ SURVIVAL KIT — Cathedral of Circuits This scroll preserves the minimum DNA to recover the Cosmogenesis Learning Engine and the Trinity repos if this chat disappears
 
-# MASTER CODE BOT INSTRUCTIONS  
+# MASTER CODE BOT INSTRUCTIONS
 
-## Purpose  
+## Purpose
 
-Preserve all old SG style, add volcanic obsidian + Raku reiki lineage, Alex Grey visionary layer, Violet Flame 4-step, Rose Gate phi spiral, Fae Avalon realm, Morgan le Fey archetype.  
+Preserve all old SG style, add volcanic obsidian + Raku reiki lineage, Alex Grey visionary layer, Violet Flame 4-step, Rose Gate phi spiral, Fae Avalon realm, Morgan le Fey archetype.
 Do not change repo trees. Only update existing files.
 
 —
@@ -38,27 +38,27 @@ Do not change repo trees. Only update existing files.
 
 ## 2. TOKENS (stone_grimoire/assets/tokens/perm-style.json)
 
-- Version 2.2.0  
-- Preserve legacy SG palette.  
+- Version 2.2.0
+- Preserve legacy SG palette.
 - Add:
-  - **Volcanic / Raku**: obsidian_glass, obsidian_sheen, obsidian_rainbow, shungite_ink, tourmaline_ridge, basalt_ash, glint_silver, lava_ember, lava_core, raku_copper, raku_charcoal, raku_violet, raku_azure.  
-  - **Secondary palette**: sec-bg, sec-ink, sec-edge, sec-sun, sec-sea, sec-fern, sec-rose, sec-amethyst.  
-  - **Violet Flame**: violet_flame_core, violet_flame_halo, pink_grace.  
-  - **Rose Gate**: rose_heart, rose_leaf, avalon_moss.  
-  - **Fae Realm**: fae_mist, fae_glow, star_cobalt.  
-- Layers: visionary (Alex Grey grid), patina (Raku bloom), violetFlame (4-step rings), fae (Gossamer Veil), roseGate (PetalSpiral).  
+  - **Volcanic / Raku**: obsidian_glass, obsidian_sheen, obsidian_rainbow, shungite_ink, tourmaline_ridge, basalt_ash, glint_silver, lava_ember, lava_core, raku_copper, raku_charcoal, raku_violet, raku_azure.
+  - **Secondary palette**: sec-bg, sec-ink, sec-edge, sec-sun, sec-sea, sec-fern, sec-rose, sec-amethyst.
+  - **Violet Flame**: violet_flame_core, violet_flame_halo, pink_grace.
+  - **Rose Gate**: rose_heart, rose_leaf, avalon_moss.
+  - **Fae Realm**: fae_mist, fae_glow, star_cobalt.
+- Layers: visionary (Alex Grey grid), patina (Raku bloom), violetFlame (4-step rings), fae (Gossamer Veil), roseGate (PetalSpiral).
 - Rituals: violet_flame_steps [“bring”,“rotate”,“transmute”,“replace”]; fae journeys [“middle”,”lower”,”upper”].
 
 —
 
 ## 3. CSS (stone_grimoire/assets/css/perm-style.css)
 
-Keep all existing classes. Append:  
+Keep all existing classes. Append:
 
-- `.fae-veil` → misty, glowing overlay.  
-- `.violet-flame` → radial/conic gradient with 4-step marker.  
-- `.rose-gate` → phi-petal repeating pattern.  
-- `.morgan-sigil` → violet/rose border with amethyst glow.  
+- `.fae-veil` → misty, glowing overlay.
+- `.violet-flame` → radial/conic gradient with 4-step marker.
+- `.rose-gate` → phi-petal repeating pattern.
+- `.morgan-sigil` → violet/rose border with amethyst glow.
 
 Existing `.obsidian-*` (sculpt, facets, glint), `.raku-seal`, `.lava-brim`, `.visionary-grid` remain intact.
 
@@ -66,9 +66,9 @@ Existing `.obsidian-*` (sculpt, facets, glint), `.raku-seal`, `.lava-brim`, `.vi
 
 ## 4. SVG FILTERS (stone_grimoire/chapels/_filters.html)
 
-Preserve:  
-- `<filter id=“obsidianSheen”>`  
-- `<filter id=“rakuCopperIridescence”>`  
+Preserve:
+- `<filter id=“obsidianSheen”>`
+- `<filter id=“rakuCopperIridescence”>`
 
 No changes required.
 
@@ -76,17 +76,17 @@ No changes required.
 
 ## 5. BUILD SCRIPT (stone_grimoire/core/build/update-art.js)
 
-- Preserve ingest pipeline (sharp, originals/processed/thumbs/webp).  
+- Preserve ingest pipeline (sharp, originals/processed/thumbs/webp).
 - Add classification:
-  - `creatures.dragons` (lava/obsidian grid).  
-  - `creatures.daimons` (raku seal grid).  
-  - `creatures.fae` (fae-veil grid, for assets named fae/faery/fairy/sidhe/avalon).  
-- Add `morgan` collection → detects assets with names `morgan-le-fey`, `morgana`, `morrigan`.  
+  - `creatures.dragons` (lava/obsidian grid).
+  - `creatures.daimons` (raku seal grid).
+  - `creatures.fae` (fae-veil grid, for assets named fae/faery/fairy/sidhe/avalon).
+- Add `morgan` collection → detects assets with names `morgan-le-fey`, `morgana`, `morrigan`.
 - Manifest extras:
-  - `realms.avalon` with layers [fae, violetFlame, roseGate, visionary].  
-  - `rituals.violet_flame` = 4 steps.  
-  - `rituals.fae_tea` = [prepare,sip,journal].  
-  - `rituals.journeys` = [middle,lower,upper].  
+  - `realms.avalon` with layers [fae, violetFlame, roseGate, visionary].
+  - `rituals.violet_flame` = 4 steps.
+  - `rituals.fae_tea` = [prepare,sip,journal].
+  - `rituals.journeys` = [middle,lower,upper].
   - `lore_sources`: faery_pathway (Ramel), violet_flame (Silver Violet Flame Manual), rose_gate (Shamanic Rose Healing), qabalah_meta (Magician’s Kabbalah), achad (Anatomy of Body of God), crowley (Magick in Theory & Practice).
 
 Mirrors perm-style.json and perm-style.css to cosmogenesis/public/c99/ automatically.
@@ -95,75 +95,75 @@ Mirrors perm-style.json and perm-style.css to cosmogenesis/public/c99/ automatic
 
 ## 6. BRIDGE MANIFEST (bridge/c99-bridge.json)
 
-Generated by script. Keys must include:  
-- meta (project, updated, nd_safe).  
-- tokens (css path, json path, palette, secondary, layers).  
-- routes (stone_grimoire, cosmogenesis).  
-- rooms (crypt, nave, apprentice_pillar, respawn_gate).  
-- angels (from angels72 dataset).  
-- creatures (dragons, daimons, fae).  
-- visionary overlays.  
-- assets (all art).  
-- morgan (sigils).  
-- realms (avalon with layers/gates).  
-- rituals.  
+Generated by script. Keys must include:
+- meta (project, updated, nd_safe).
+- tokens (css path, json path, palette, secondary, layers).
+- routes (stone_grimoire, cosmogenesis).
+- rooms (crypt, nave, apprentice_pillar, respawn_gate).
+- angels (from angels72 dataset).
+- creatures (dragons, daimons, fae).
+- visionary overlays.
+- assets (all art).
+- morgan (sigils).
+- realms (avalon with layers/gates).
+- rituals.
 - lore_sources.
 
 —
 
 ## 7. BOOK & APP USAGE
 
-- **Stone Grimoire**:  
-  - Use `.visionary-grid` + `.obsidian-*` for core chapels.  
-  - Apply `.fae-veil` for Avalon areas, `.violet-flame.step-4` for transmutation rites, `.rose-gate` for heart/petal gateways, `.morgan-sigil` in Morgan’s chamber.  
-- **circuitum99**:  
-  - Reads `/bridge/c99-bridge.json`.  
-  - Book UI can show rooms, angels, fae, Morgan entries, rituals.  
-  - Codex 144:99 = angels72 + fae72 = 144 luminous folios, within 99 gates.  
-- **Cosmogenesis Learning Engine**:  
-  - Mirrors perm-style.css and perm-style.json.  
-  - Tabs for Four Worlds (Atziluth, Briah, Yetzirah, Assiah).  
-  - Violet Flame 4-step UI macro.  
-  - Center-point (Khabs/Khu) prompt before lessons.  
+- **Stone Grimoire**:
+  - Use `.visionary-grid` + `.obsidian-*` for core chapels.
+  - Apply `.fae-veil` for Avalon areas, `.violet-flame.step-4` for transmutation rites, `.rose-gate` for heart/petal gateways, `.morgan-sigil` in Morgan’s chamber.
+- **circuitum99**:
+  - Reads `/bridge/c99-bridge.json`.
+  - Book UI can show rooms, angels, fae, Morgan entries, rituals.
+  - Codex 144:99 = angels72 + fae72 = 144 luminous folios, within 99 gates.
+- **Cosmogenesis Learning Engine**:
+  - Mirrors perm-style.css and perm-style.json.
+  - Tabs for Four Worlds (Atziluth, Briah, Yetzirah, Assiah).
+  - Violet Flame 4-step UI macro.
+  - Center-point (Khabs/Khu) prompt before lessons.
   - Fae journaling overlay with “ancient eyes” prompt.
 
 —
 
 ## 8. LORE SOURCES (embedded as manifest keys)
 
-- *Magical Faery Shamanic Pathway* → Avalon realm, 3 journeys, ancient eyes.  
-- *Silver Violet Flame Manual* → 4-step violet flame ritual.  
-- *Shamanic Rose Healing* → Rose Gate phi spiral, rose heart geometry.  
-- *The Magician’s Kabbalah* → Four Worlds ladder.  
-- *Anatomy of the Body of God (Achad)* → Center point, balanced Venus–Mercury paths.  
+- *Magical Faery Shamanic Pathway* → Avalon realm, 3 journeys, ancient eyes.
+- *Silver Violet Flame Manual* → 4-step violet flame ritual.
+- *Shamanic Rose Healing* → Rose Gate phi spiral, rose heart geometry.
+- *The Magician’s Kabbalah* → Four Worlds ladder.
+- *Anatomy of the Body of God (Achad)* → Center point, balanced Venus–Mercury paths.
 - *Crowley, Magick in Theory & Practice* → Correspondences, True Will framework.
 
 —
 
 ## 9. RITUAL FLOW
 
-**Art ingest:**  
-1. Place art into `stone_grimoire/assets/art/inbox/`.  
-2. Run `node stone_grimoire/core/build/update-art.js`.  
-3. Commit outputs (originals/ processed/ thumbs/ webp/ bridge/ and mirrored cosmogenesis public/c99).  
-4. Use CSS classes in pages.  
+**Art ingest:**
+1. Place art into `stone_grimoire/assets/art/inbox/`.
+2. Run `node stone_grimoire/core/build/update-art.js`.
+3. Commit outputs (originals/ processed/ thumbs/ webp/ bridge/ and mirrored cosmogenesis public/c99).
+4. Use CSS classes in pages.
 
-**End-to-end spin:**  
-- SG serves bridge at :5173.  
-- C99 reads at :5174.  
+**End-to-end spin:**
+- SG serves bridge at :5173.
+- C99 reads at :5174.
 - Cosmogenesis uses mirrored CSS/tokens at :5175.
 
 —
 
-# END MASTER CODE BOT INSTRUCTIONS
+## END MASTER CODE BOT INSTRUCTIONS
 
-## Repo Structure (Core) cosmogenesis/ ├── docs/ │   ├── CODEX_INSTRUCTIONS.md     ← full unified instructions │   ├── SCIENCE_REFERENCES.md     ← citations & evidence │   ├── STYLE_GUIDE.md            ← palettes, motifs, styles │   ├── CORNERSTONE_CHARTER.md    ← Trinity framing │   └── CODEX_MILESTONES.md       ← task roadmap ├── src/ │   ├── codex.ext.js              ← Codex EXT init script │   ├── engines/                  ← spiral, art, sound, chamber │   └── components/               ← UI modules ├── data/ │   ├── spiral_map.json │   ├── angels.json │   └── stylepacks/ └── schemas/     ├── provenance.json     └── stylepack.json  
+## Repo Structure (Core) cosmogenesis/ ├── docs/ │   ├── CODEX_INSTRUCTIONS.md     ← full unified instructions │   ├── SCIENCE_REFERENCES.md     ← citations & evidence │   ├── STYLE_GUIDE.md            ← palettes, motifs, styles │   ├── CORNERSTONE_CHARTER.md    ← Trinity framing │   └── CODEX_MILESTONES.md       ← task roadmap ├── src/ │   ├── codex.ext.js              ← Codex EXT init script │   ├── engines/                  ← spiral, art, sound, chamber │   └── components/               ← UI modules ├── data/ │   ├── spiral_map.json │   ├── angels.json │   └── stylepacks/ └── schemas/     ├── provenance.json     └── stylepack.json
 
 ## CODEX INSTRUCTIONS (Essentials) Purpose: Living codex & nonlinear learning engine. Built for nonlinear thinkers, artists, trauma survivors. Spiral pedagogy (tesseract + Jacob’s Ladder). Anchors archetypal guardians & egregoric nodes. Integrates fusion art engines + sound labs. Core Metaphors: Spiral Rabbit Hole, Monad System, Living Spine of 33, Apprentice Pillar, Egregores. Modules: Jacob’s Ladder Engine, Apprentice Pillar, Tesseract, Cymatics Lab, Fusion Art Engine. Guardians: Alignment, Integration, Fusion, Spiral, Gate, Voice. Scientific Anchors: McGilchrist (hemispheres), Bruner (spiral curriculum), Davis & Sumara (complexity), Lakoff & Johnson (embodied mind), Brewin (trauma), Frith & Happé (autism), Eide & Eide (dyslexia), Vartanian & Skov (fractals), Chaieb (entrainment). Visionary Art Standard: Painterly, fractal, Alex Grey × Adam Jones × Hilma af Klint. Never SVG-only. Must export 4K+ PNG/WEBP with provenance overlays. Sound Harmonics: Tone.js, planetary tones, cathedral IR, Solfeggio. ND-safe: no autoplay, smooth fades only. Provenance & Safety: All assets tagged (title, creator, year, license, source). Calm Mode (reduced motion/contrast). Business Offering: Code = MIT. Art = CC BY-NC 4.0 unless sponsor-specific. Deliverables: avatar packs, licenses, sponsor decks, folios. Milestones: 1. Foundation → Charter + refs + Trinity cross-links. 2. Spiral Engine → build tilt + nodes + angels. 3. Chamber Skins → Agrippa, Tesla, Hypatia, Business, Visionary. 4. Visionary Art Engine → painterly render pipeline. 5. Harmonics → sound-engine.js. 6. Provenance & Safety → schema + calm mode. 7. Business → sponsor decks + avatars + folios. Codex Directive: Do not flatten. Do not cheapen. Expand, refine, preserve
 
-## Codex EXT Init Script Save as src/codex.ext.js:  
+## Codex EXT Init Script Save as src/codex.ext.js:
 
-import { readFile } from “node:fs/promises”; // Node adapter export const codexEXT = { paths: { codexInstructions: “./docs/CODEX_INSTRUCTIONS.md”, scienceReferences: “./docs/SCIENCE_REFERENCES.md”, styleGuide: “./docs/STYLE_GUIDE.md”, cornerstoneCharter: “./docs/CORNERSTONE_CHARTER.md”, milestones: “./docs/CODEX_MILESTONES.md”, spiralMap: “./data/spiral_map.json”, angels: “./data/angels.json”, stylepacks: “./data/stylepacks/stylepacks.json”, }, safety: { motion: { reduced: true, noStrobe: true }, audio: { autoplay: false, fadeMs: 1200 }, render: { neverSVGOnly: true, minExportPx: 3840 }, }, async init() { const instructions = await readFile(this.paths.codexInstructions, “utf8”).catch(() => “”); const science = await readFile(this.paths.scienceReferences, “utf8”).catch(() => “”); const styleGuide = await readFile(this.paths.styleGuide, “utf8”).catch(() => “”); const cornerstone = await readFile(this.paths.cornerstoneCharter, “utf8”).catch(() => “”); const milestones = await readFile(this.paths.milestones, “utf8”).catch(() => “”); return { instructions, science, styleGuide, cornerstone, milestones, safety: this.safety, note: “Codex EXT is read-only. Expand and refine, do not overwrite.”, }; }, };  
+import { readFile } from “node:fs/promises”; // Node adapter export const codexEXT = { paths: { codexInstructions: “./docs/CODEX_INSTRUCTIONS.md”, scienceReferences: “./docs/SCIENCE_REFERENCES.md”, styleGuide: “./docs/STYLE_GUIDE.md”, cornerstoneCharter: “./docs/CORNERSTONE_CHARTER.md”, milestones: “./docs/CODEX_MILESTONES.md”, spiralMap: “./data/spiral_map.json”, angels: “./data/angels.json”, stylepacks: “./data/stylepacks/stylepacks.json”, }, safety: { motion: { reduced: true, noStrobe: true }, audio: { autoplay: false, fadeMs: 1200 }, render: { neverSVGOnly: true, minExportPx: 3840 }, }, async init() { const instructions = await readFile(this.paths.codexInstructions, “utf8”).catch(() => “”); const science = await readFile(this.paths.scienceReferences, “utf8”).catch(() => “”); const styleGuide = await readFile(this.paths.styleGuide, “utf8”).catch(() => “”); const cornerstone = await readFile(this.paths.cornerstoneCharter, “utf8”).catch(() => “”); const milestones = await readFile(this.paths.milestones, “utf8”).catch(() => “”); return { instructions, science, styleGuide, cornerstone, milestones, safety: this.safety, note: “Codex EXT is read-only. Expand and refine, do not overwrite.”, }; }, };
 
 ## Survival Ritual 1. Copy this file (SURVIVAL_README.md) into the root of your repo. 2. Copy it into your iPad Notes. 3. If chat disappears, reseed your repo by splitting back out CODEX_INSTRUCTIONS.md and codex.ext.js from here and rebuilding the folder structure above
 

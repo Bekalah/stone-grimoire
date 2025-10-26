@@ -1,8 +1,8 @@
 # MASTER_UPDATE_NO_CI_FINAL_PLUS_ALEXGREY.md
 
-# PURPOSE: Preserve old SG style, add volcanic obsidian + Raku reiki, KEEP Alex Grey/visionary layer, and add a Secondary palette.
+# PURPOSE: Preserve old SG style, add volcanic obsidian + Raku reiki, KEEP Alex Grey/visionary layer, and add a Secondary palette
 
-# NOTE: No tree changes. Uses existing folders only.
+# NOTE: No tree changes. Uses existing folders only
 
 # PATHS (unchanged)
 

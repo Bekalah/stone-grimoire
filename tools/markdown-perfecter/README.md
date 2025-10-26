@@ -13,11 +13,11 @@
 
 markdown-fixer **/*.md
 
-# Or fix everything recursively
+## Or fix everything recursively
 
 find . -name "*.md" -exec markdown-fixer {} \;
 
-# Preview first (safe!)
+## Preview first (safe!)
 
 markdown-fixer **/*.md --dry-run
 
@@ -124,8 +124,10 @@ echo "markdown-fixer **/*.md" > .git/hooks/pre-commit
 ```json
 {
   "scripts": {
-    "fix-md": "markdown-fixer **/*.md",
-    "check-md": "markdown-fixer **/*.md --dry-run"
+```text
+"fix-md": "markdown-fixer **/*.md",
+"check-md": "markdown-fixer **/*.md --dry-run"
+```
   }
 }
 

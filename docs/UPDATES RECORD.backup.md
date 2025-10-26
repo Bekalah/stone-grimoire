@@ -1,3 +1,5 @@
+# Project Documentation
+
 — UPDATES RECORD — circuitum99 / STONE GRIMOIRE / COSMOGENESIS LEARNING ENGINE —
 
 DATE: [fill in when you commit]

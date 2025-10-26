@@ -22,16 +22,16 @@ musical-cubes.html, README_UPDATE.md, README.md
 
 ## II. Canonical Roles (keep these as-is)
 
-- `assets/` → engines, data, css, images.  
+- `assets/` → engines, data, css, images.
   - JS engines (ambient/fractal/cymatic/planetary/light), data (`structure.json`, plaques, stylepacks).
-- `chapels/` → **interactive rooms** (effects, ND-safe audio **on manual start**, planetary tint).  
-- `folios/` → **archive plates** (study pages: Intention · Technique · Lineage · Evidence · Reflection).  
-- `gnosis/` → mystical study pages (ok to keep here **if** they also appear on your Folio Shelf via link).  
-- `helpers/` → `cathedral-helper.js` (feature flags, rubric, audio-safe).  
-- `main/` → ateliers & briefs (tools, manifestos; can *link to* chapels; no duplication).  
-- `resources/` → image sources & PD indexes (cite from folios/chapels).  
-- `standards/` → project charter (`README.md`).  
-- `recovery/` → duplicates & unsure files (quarantine; not linked).  
+- `chapels/` → **interactive rooms** (effects, ND-safe audio **on manual start**, planetary tint).
+- `folios/` → **archive plates** (study pages: Intention · Technique · Lineage · Evidence · Reflection).
+- `gnosis/` → mystical study pages (ok to keep here **if** they also appear on your Folio Shelf via link).
+- `helpers/` → `cathedral-helper.js` (feature flags, rubric, audio-safe).
+- `main/` → ateliers & briefs (tools, manifestos; can *link to* chapels; no duplication).
+- `resources/` → image sources & PD indexes (cite from folios/chapels).
+- `standards/` → project charter (`README.md`).
+- `recovery/` → duplicates & unsure files (quarantine; not linked).
 _All others (core/docs/guides/herbs/music/ornaments/patrons/plans/tools/updates) are supportive folders; keep them untouched._
 
 —
@@ -41,7 +41,7 @@ _All others (core/docs/guides/herbs/music/ornaments/patrons/plans/tools/updates)
 ### A) What every **Chapel** page must minimally have
 
 - **Imports** (any one of):
-  - `helpers/cathedral-helper.js` (preferred)  
+  - `helpers/cathedral-helper.js` (preferred)
   - and/or `assets/js/planetary-light.js`, `assets/js/engines/ambient-engine.js`
 - **Controls**
   - Planetary tint buttons: Moon, Venus, Sun, Mercury, Jupiter, Mars, Saturn (subtle background; no motion).
@@ -57,8 +57,8 @@ _All others (core/docs/guides/herbs/music/ornaments/patrons/plans/tools/updates)
 
 ### B) What every **Folio** page must minimally have
 
-- Invocation fields (the 5-fold rubric).  
-- A static figure/plate (SVG/PNG) with a caption citing PD source.  
+- Invocation fields (the 5-fold rubric).
+- A static figure/plate (SVG/PNG) with a caption citing PD source.
 - Cross-links to:
   - Its Chapel twin in `chapels/`
   - Any atelier/tool (`angels72.html`, visual labs, etc.)
@@ -66,7 +66,7 @@ _All others (core/docs/guides/herbs/music/ornaments/patrons/plans/tools/updates)
 
 ### C) Engines stay put
 
-- Keep engines in `assets/` only. **Do not** copy engines into chapels/folios.  
+- Keep engines in `assets/` only. **Do not** copy engines into chapels/folios.
 - Chapel pages **call** engines (ambient, fractal, planetary) through their imports.
 
 —
@@ -83,7 +83,7 @@ Use this checklist to walk your tree once:
 
 ### 2) Plaques: JSON coverage
 
-- For each chapel filename **stem**, look for `assets/data/plaques/<stem>.json`.  
+- For each chapel filename **stem**, look for `assets/data/plaques/<stem>.json`.
   - If missing, create a one-page stub with the five fields.
 
 ### 3) Effects: engines & controls present
@@ -95,13 +95,13 @@ Use this checklist to walk your tree once:
 
 ### 4) Root strays (keep, alias, or relocate softly)
 
-- `musical-cubes.html` is at root **and** you may have `chapels/musical-cubes.html`.  
-  - **Option A (no move):** keep root file as a router/alias that links to the chapel version.  
+- `musical-cubes.html` is at root **and** you may have `chapels/musical-cubes.html`.
+  - **Option A (no move):** keep root file as a router/alias that links to the chapel version.
   - **Option B (soft relocate):** move the root file to `recovery/` and keep only the chapel version live.
 
 ### 5) Recovery quarantine
 
-- Put **all duplicates** or uncertain legacy files in `recovery/`.  
+- Put **all duplicates** or uncertain legacy files in `recovery/`.
   - Do **not** link to `recovery/` from live pages.
 
 —
@@ -114,43 +114,53 @@ Use this checklist to walk your tree once:
 <section aria-labelledby=“controls”>
   <h2 id=“controls” class=“sr-only”>Chapel Controls</h2>
   <div class=“bar”>
-    <button data-tint=“moon”>Moon</button>
-    <button data-tint=“venus”>Venus</button>
-    <button data-tint=“sun”>Sun</button>
-    <button data-tint=“mercury”>Mercury</button>
-    <button data-tint=“jupiter”>Jupiter</button>
-    <button data-tint=“mars”>Mars</button>
-    <button data-tint=“saturn”>Saturn</button>
-    <button id=“startTone”>Start Tone</button>
-    <button id=“stopTone” disabled>Stop</button>
+```text
+<button data-tint=“moon”>Moon</button>
+<button data-tint=“venus”>Venus</button>
+<button data-tint=“sun”>Sun</button>
+<button data-tint=“mercury”>Mercury</button>
+<button data-tint=“jupiter”>Jupiter</button>
+<button data-tint=“mars”>Mars</button>
+<button data-tint=“saturn”>Saturn</button>
+<button id=“startTone”>Start Tone</button>
+<button id=“stopTone” disabled>Stop</button>
+```
   </div>
 </section>
 <script type=“module”>
   import “../helpers/cathedral-helper.js”; // loads feature flags and safe defaults
   // Tint handlers
   document.querySelectorAll(“[data-tint]”).forEach(b=>{
-    b.addEventListener(“click”, ()=>{
-      const t=b.getAttribute(“data-tint”);
-      document.body.className = “”; // clear
-      document.body.classList.add(“t-“+t);
-    });
+```text
+b.addEventListener(“click”, ()=>{
+  const t=b.getAttribute(“data-tint”);
+  document.body.className = “”; // clear
+  document.body.classList.add(“t-“+t);
+});
+```
   });
   // ND-safe audio
   let ctx, osc, gain;
   const start=document.getElementById(“startTone”);
   const stop=document.getElementById(“stopTone”);
   function ensure(){ if(ctx) return;
-    const AC=window.AudioContext||window.webkitAudioContext; ctx=new AC();
-    osc=ctx.createOscillator(); gain=ctx.createGain();
-    osc.type=“sine”; osc.frequency.value=210.42; gain.gain.value=0.04;
-    osc.connect(gain).connect(ctx.destination);
+```text
+const AC=window.AudioContext||window.webkitAudioContext; ctx=new AC();
+osc=ctx.createOscillator(); gain=ctx.createGain();
+osc.type=“sine”; osc.frequency.value=210.42; gain.gain.value=0.04;
+osc.connect(gain).connect(ctx.destination);
+```
   }
   start.addEventListener(“click”, async ()=>{
-    ensure(); if(ctx.state===“suspended”) await ctx.resume(); try{osc.start();}catch{}
-    start.disabled=true; stop.disabled=false;
+```text
+ensure(); if(ctx.state===“suspended”) await ctx.resume(); try{osc.start();}catch{}
+start.disabled=true; stop.disabled=false;
+```
   });
   stop.addEventListener(“click”, async ()=>{
-    if(!ctx) return; try{osc.stop();}catch{} try{await ctx.close();}catch{}
-    ctx=osc=gain=null; stop.disabled=true; start.disabled=false;
+```text
+if(!ctx) return; try{osc.stop();}catch{} try{await ctx.close();}catch{}
+ctx=osc=gain=null; stop.disabled=true; start.disabled=false;
+```
   });
 </script>

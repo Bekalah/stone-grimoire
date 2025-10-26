@@ -3,23 +3,24 @@
   "editor.formatOnPaste": true,
   "editor.formatOnType": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.markdownlint": true,
-    "source.organizeImports": false
+    "source.fixAll.markdownlint": "explicit"
   },
-  "files.eol": "\n",
+  "files.eol": "auto",
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
   "[markdown]": {
     "editor.formatOnSave": true,
     "editor.formatOnSaveMode": "file",
     "editor.codeActionsOnSave": {
-      "source.fixAll.markdownlint": "explicit",
-      "source.organizeImports": "never"
+      "source.fixAll.markdownlint": "explicit"
     },
     "editor.wordWrap": "on",
     "editor.quickSuggestions": {
       "comments": "off",
       "strings": "off",
       "other": "off"
-    }
+    },
+    "editor.defaultFormatter": null
   },
   "markdownlint.config": {
     "MD032": true,
