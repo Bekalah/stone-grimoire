@@ -1,0 +1,6 @@
+
+> stone-grimoire@1.0.0 prebuild /Users/rebeccalemke/Documents/cathedral/external/stone-grimoire-repo
+> node scripts/verify-absent.mjs
+
+ ELIFECYCLE  Command failed.
+ WARN   Local package.json exists, but node_modules missing, did you mean to install?
